@@ -29,9 +29,8 @@ var reactomeAnalysis = function(btn, query, negative, spoke, projection) {
             parent.text("");
             if (data.pathwaysFound > 0) {// results in Reactome
                 btn3.get(0).onclick = function(){
-                    window.open("http://www.reactome.org/PathwayBrowser/#DTAB=AN&TOOL=AT&ANALYSIS=" + data.summary.token, "_blank");
+                    window.open("http://www.reactome.org/PathwayBrowser/#DTAB=AN&ANALYSIS=" + data.summary.token, "_blank");
                 };
-//                window.open("http://www.reactome.org/PathwayBrowser/#DTAB=AN&TOOL=AT&ANALYSIS=" + data.summary.token, "_blank");
                 btn3.removeClass("reactome-results-hidden").addClass("reactome-results");
                 parent.removeClass("reactome-loading").addClass("reactome-results");
                 btn2.removeClass("reactome-results-hidden").addClass("reactome-results");
@@ -84,10 +83,9 @@ var reactomeAnalysisList = function() {
             parent.text("");
             if (data.pathwaysFound > 0) {// results in Reactome
                 btn.get(0).onclick = function(){
-                    window.open("http://www.reactome.org/PathwayBrowser/#DTAB=AN&TOOL=AT&ANALYSIS=" + data.summary.token, "_blank");
+                    window.open("http://www.reactome.org/PathwayBrowser/#DTAB=AN&ANALYSIS=" + data.summary.token, "_blank");
                     return false;
                 };
-//                window.open("http://www.reactome.org/PathwayBrowser/#DTAB=AN&TOOL=AT&ANALYSIS=" + data.summary.token, "_blank");
                 btn.removeClass("reactome-results-hidden").addClass("reactome-results");
                 parent.removeClass("reactome-loading").addClass("reactome-results");
                 btn2.removeClass("reactome-results-hidden").addClass("reactome-results");
