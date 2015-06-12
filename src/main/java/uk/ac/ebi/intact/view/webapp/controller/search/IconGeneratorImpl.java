@@ -17,15 +17,9 @@ package uk.ac.ebi.intact.view.webapp.controller.search;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Transactional;
-import uk.ac.ebi.intact.core.context.DataContext;
-import uk.ac.ebi.intact.core.context.IntactContext;
 import uk.ac.ebi.intact.view.webapp.application.SpringInitializedService;
-import uk.ac.ebi.intact.view.webapp.controller.JpaBaseController;
 import uk.ac.ebi.intact.view.webapp.controller.config.ColourPalette;
 
 import javax.persistence.EntityManagerFactory;
@@ -43,11 +37,11 @@ import java.util.Map;
 @Controller
 public class IconGeneratorImpl extends SpringInitializedService implements IconGenerator {
 
-    private static final Log log = LogFactory.getLog( IconGeneratorImpl.class );
+    private static final Log log = LogFactory.getLog(IconGeneratorImpl.class);
 
-    private Map<String,ColouredCv> typeColourMap;
-    private Map<String,ColouredCv> expRoleColourMap;
-    private Map<String,ColouredCv> bioRoleColourMap;
+    private Map<String, ColouredCv> typeColourMap;
+    private Map<String, ColouredCv> expRoleColourMap;
+    private Map<String, ColouredCv> bioRoleColourMap;
 
     @Autowired
     private EntityManagerFactory entityManagerFactory;
@@ -56,14 +50,14 @@ public class IconGeneratorImpl extends SpringInitializedService implements IconG
     private ColourPalette colourPalette;
 
     public IconGeneratorImpl() {
-        typeColourMap = new HashMap<String,ColouredCv>(24);
-        expRoleColourMap = new HashMap<String,ColouredCv>(24);
-        bioRoleColourMap = new HashMap<String,ColouredCv>(24);
+        typeColourMap = new HashMap<String, ColouredCv>(24);
+        expRoleColourMap = new HashMap<String, ColouredCv>(24);
+        bioRoleColourMap = new HashMap<String, ColouredCv>(24);
     }
 
     @Override
     public void initialize() {
-        if (typeColourMap.isEmpty() || expRoleColourMap.isEmpty() || bioRoleColourMap.isEmpty()){
+        if (typeColourMap.isEmpty() || expRoleColourMap.isEmpty() || bioRoleColourMap.isEmpty()) {
             if (log.isInfoEnabled()) log.info("Preparing simple icons for CVs");
 
             final List<Object[]> proteinTypeLabels = listProteinTypeLabels();
@@ -186,11 +180,11 @@ public class IconGeneratorImpl extends SpringInitializedService implements IconG
             this.colourHex = colourHex;
             this.description = description;
 
-            if("prey".equals( description )){
+            if ("prey".equals(description)) {
                 description = "PY";
             }
 
-            this.initials = description.substring(0,2).toUpperCase();
+            this.initials = description.substring(0, 2).toUpperCase();
         }
 
         public String getColourHex() {

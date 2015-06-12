@@ -17,10 +17,10 @@ package uk.ac.ebi.intact.view.webapp.controller.search;
 
 /**
  * AND or OR. That is the question.
-*
-* @author Bruno Aranda (baranda@ebi.ac.uk)
-* @version $Id$
-*/
+ *
+ * @author Bruno Aranda (baranda@ebi.ac.uk)
+ * @version $Id$
+ */
 public enum BooleanOperand {
     AND, OR
 }

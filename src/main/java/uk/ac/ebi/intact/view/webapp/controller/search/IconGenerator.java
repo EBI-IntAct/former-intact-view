@@ -11,6 +11,8 @@ public interface IconGenerator {
     void reload();
 
     Map<String, IconGeneratorImpl.ColouredCv> getTypeColourMap();
+
     Map<String, IconGeneratorImpl.ColouredCv> getExpRoleColourMap();
+
     Map<String, IconGeneratorImpl.ColouredCv> getBioRoleColourMap();
 }

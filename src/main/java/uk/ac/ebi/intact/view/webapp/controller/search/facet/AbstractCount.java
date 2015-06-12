@@ -30,7 +30,7 @@ public abstract class AbstractCount {
 
     private static final String MISSING_KEY = "missing";
 
-    private Map<String,Long> counts;
+    private Map<String, Long> counts;
 
     public AbstractCount() {
         counts = new HashMap<String, Long>();
@@ -40,7 +40,7 @@ public abstract class AbstractCount {
         this();
 
         if (facetField != null) {
-            if (facetField.getValues() != null){
+            if (facetField.getValues() != null) {
                 for (FacetField.Count c : facetField.getValues()) {
                     String key = c.getName();
                     if (key == null) {
@@ -53,7 +53,7 @@ public abstract class AbstractCount {
     }
 
     public long getPhysicalCount() {
-       return getCount(MISSING_KEY);
+        return getCount(MISSING_KEY);
     }
 
     protected long getCount(String name) {

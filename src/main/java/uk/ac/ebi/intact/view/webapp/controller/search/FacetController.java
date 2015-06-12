@@ -37,7 +37,7 @@ import uk.ac.ebi.intact.view.webapp.model.LazySearchResultDataModel;
 @Scope("request")
 public class FacetController {
 
-    private static final Log log = LogFactory.getLog( FacetController.class );
+    private static final Log log = LogFactory.getLog(FacetController.class);
 
     @Autowired
     private SearchController searchController;
@@ -62,14 +62,14 @@ public class FacetController {
         if (model == null) {
             return null;
         } else {
-            log.debug( "LazySearchResultDataModel is null for FacetController.getFacetField(\""+ field +"\")" );
+            log.debug("LazySearchResultDataModel is null for FacetController.getFacetField(\"" + field + "\")");
         }
 
         final IntactSolrSearchResult result = model.getResult();
-        if( result != null ) {
+        if (result != null) {
             return result.getFacetField(field);
         } else {
-            log.debug( "SolrSearchResult is null" );
+            log.debug("SolrSearchResult is null");
         }
 
         return null;

@@ -18,7 +18,6 @@ package uk.ac.ebi.intact.view.webapp.controller.search.facet;
 import org.apache.solr.client.solrj.response.FacetField;
 
 /**
-*
  * @author Bruno Aranda (baranda@ebi.ac.uk)
  * @version $Id$
  */
@@ -31,9 +30,9 @@ public class ExpansionCount extends AbstractCount {
     public long getSpokeCount() {
         return getCount("psi-mi:MI:1060");
     }
-    
+
     public long getPhysicalCount() {
-       return getCount(null);
+        return getCount(null);
     }
 
 }

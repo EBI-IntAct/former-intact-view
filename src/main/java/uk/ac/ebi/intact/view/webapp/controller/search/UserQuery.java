@@ -52,58 +52,40 @@ import java.util.*;
 @ConversationName("general")
 public class UserQuery extends BaseController {
 
-    private static final Log log = LogFactory.getLog( UserQuery.class );
-
     public static final String SESSION_SOLR_QUERY_KEY = "UserQuery.SOLR_QUERY";
-
-    private static final String TERM_NAME_PARAM = "termName";
     public static final String STAR_QUERY = "*";
-
-    @Autowired
-    private FilterPopulatorController filterPopulator;
-
-    @Autowired
-    private IntactViewConfiguration intactViewConfiguration;
-
-    private String searchQuery = STAR_QUERY;
-    private String ontologySearchQuery;
-    private String urlFriendlyQuery;
-
-    private InteractionOntologyTerm ontologyTerm;
-
-    private Map<String,String> longQueriesMap;
-
-    private Map<String, String> termMap;
-
+    private static final Log log = LogFactory.getLog(UserQuery.class);
+    private static final String TERM_NAME_PARAM = "termName";
     //for sorting and ordering
     private static final String DEFAULT_SORT_COLUMN = FieldNames.INTACT_SCORE_NAME;
     private static final boolean DEFAULT_SORT_ORDER = true;
-
-    private String userSortColumn = DEFAULT_SORT_COLUMN;
-    private boolean userSortOrder = DEFAULT_SORT_ORDER;
-
-    private int pageSize = 20;
-
-    private boolean showNewFieldPanel;
-    private QueryToken newQueryToken;
-
-    private SearchField[] searchFields;
-
-    private List<SelectItem> searchFieldSelectItems;
-    private Map<String,SearchField> searchFieldsMap;
-
-    private String searchBrowseName;
-
-    private TreeNode selectedSearchTerm;
-
     private static final String ONTOLOGY_QUERY_PARAMETER_NAME = "ontologyQuery";
     private static final String INCLUDE_NEGATIVE_PARAMETER_NAME = "includeNegative";
     private static final String FILTER_SPOKE_PARAMETER_NAME = "filterSpoke";
     private static final String QUERY_PARAMETER_NAME = "query";
-
-    private boolean includeNegative =false;
-    private boolean filterSpoke=false;
-    private boolean isOntologyQuery=false;
+    @Autowired
+    private FilterPopulatorController filterPopulator;
+    @Autowired
+    private IntactViewConfiguration intactViewConfiguration;
+    private String searchQuery = STAR_QUERY;
+    private String ontologySearchQuery;
+    private String urlFriendlyQuery;
+    private InteractionOntologyTerm ontologyTerm;
+    private Map<String, String> longQueriesMap;
+    private Map<String, String> termMap;
+    private String userSortColumn = DEFAULT_SORT_COLUMN;
+    private boolean userSortOrder = DEFAULT_SORT_ORDER;
+    private int pageSize = 20;
+    private boolean showNewFieldPanel;
+    private QueryToken newQueryToken;
+    private SearchField[] searchFields;
+    private List<SelectItem> searchFieldSelectItems;
+    private Map<String, SearchField> searchFieldsMap;
+    private String searchBrowseName;
+    private TreeNode selectedSearchTerm;
+    private boolean includeNegative = false;
+    private boolean filterSpoke = false;
+    private boolean isOntologyQuery = false;
 
     public UserQuery() {
         this.longQueriesMap = new HashMap<String, String>();
@@ -130,14 +112,14 @@ public class UserQuery extends BaseController {
 
     public void clearFilters() {
         termMap.clear();
-        isOntologyQuery=false;
-        includeNegative =false;
-        filterSpoke=false;
+        isOntologyQuery = false;
+        includeNegative = false;
+        filterSpoke = false;
     }
 
     public void clearInteractionFilters() {
-        includeNegative =false;
-        filterSpoke=false;
+        includeNegative = false;
+        filterSpoke = false;
     }
 
     private void initSearchFields() {
@@ -158,10 +140,10 @@ public class UserQuery extends BaseController {
                 new SearchField(FieldNames.PUBID, "Publication id (Ex: 10837477)"),
                 new SearchField(FieldNames.PUBAUTH, "Author (Ex: scott)"),
                 new SearchField(FieldNames.BIOLOGICAL_ROLE, "Biological role (Ex : enzyme)", "biologicalRoleBrowser"),
-                new SearchField(FieldNames.INTERACTOR_XREF+":\"go", "Interactor GO xref", "goBrowser"),
-                new SearchField(FieldNames.INTERACTION_XREF+":\"go", "Interaction GO xref", "interactionGoBrowser"),
-                new SearchField(FieldNames.ID+":\"chebi", "ChEBI", "chebiBrowser"),
-                new SearchField(FieldNames.INTERACTOR_XREF+":\"interpro", "Interpro"),
+                new SearchField(FieldNames.INTERACTOR_XREF + ":\"go", "Interactor GO xref", "goBrowser"),
+                new SearchField(FieldNames.INTERACTION_XREF + ":\"go", "Interaction GO xref", "interactionGoBrowser"),
+                new SearchField(FieldNames.ID + ":\"chebi", "ChEBI", "chebiBrowser"),
+                new SearchField(FieldNames.INTERACTOR_XREF + ":\"interpro", "Interpro"),
                 new SearchField(FieldNames.INTERACTOR_XREF, "Interactor xref (Ex: GO:0005794)"),
                 new SearchField(FieldNames.INTERACTION_XREF, "Interaction xref (Ex: GO:0005634)"),
                 new SearchField(FieldNames.COMPLEX_EXPANSION, "Complex expansion", filterPopulator.getExpansionSelectItems()),
@@ -171,7 +153,7 @@ public class UserQuery extends BaseController {
                 new SearchField(FieldNames.NEGATIVE, "Negative interaction", filterPopulator.getNegativeSelectItems()),
                 new SearchField(FieldNames.INTERACTOR_STOICHIOMETRY, "Stoichiometry", filterPopulator.getStoichiometrySelectItems()),
                 new SearchField(FieldNames.INTERACTION_PARAMETERS, "Interaction parameter", filterPopulator.getParametersSelectItems()),
-                new SearchField(FieldNames.INTERACTION_ANNOTATIONS+":\"dataset", "Dataset", filterPopulator.getDatasetSelectItems()),
+                new SearchField(FieldNames.INTERACTION_ANNOTATIONS + ":\"dataset", "Dataset", filterPopulator.getDatasetSelectItems()),
         };
 
         searchFieldSelectItems = new ArrayList<SelectItem>(searchFields.length);
@@ -191,38 +173,37 @@ public class UserQuery extends BaseController {
         this.newQueryToken = new QueryToken("");
     }
 
-    public SolrQuery createSolrQuery( ) {
+    public SolrQuery createSolrQuery() {
 
-        if( searchQuery == null || searchQuery.trim().length() == 0 ||
+        if (searchQuery == null || searchQuery.trim().length() == 0 ||
                 searchQuery.equals("*") || searchQuery.equals("?")) {
             searchQuery = STAR_QUERY;
         }
 
         autoQuoteWhenNecessary();
 
-        SolrQuery query = new SolrQuery( searchQuery );
-        query.setSortField(userSortColumn, (userSortOrder)? SolrQuery.ORDER.desc : SolrQuery.ORDER.asc);
+        SolrQuery query = new SolrQuery(searchQuery);
+        query.setSortField(userSortColumn, (userSortOrder) ? SolrQuery.ORDER.desc : SolrQuery.ORDER.asc);
         query.addSortField(FieldNames.BINARY, SolrQuery.ORDER.asc);
 
-        if (includeNegative){
-            query.addFilterQuery(FieldNames.NEGATIVE+":(true OR false)");
+        if (includeNegative) {
+            query.addFilterQuery(FieldNames.NEGATIVE + ":(true OR false)");
         }
-        if (filterSpoke){
-            query.addFilterQuery(FieldNames.COMPLEX_EXPANSION+":\"-\"");
+        if (filterSpoke) {
+            query.addFilterQuery(FieldNames.COMPLEX_EXPANSION + ":\"-\"");
         }
 
         // add default parameters if nor already there
         query.setParam("defType", "edismax");
         query.setParam("mm", "1");
-        if (isOntologyQuery){
-            query.setParam("qf", SolrFieldName.identifier.toString()+" "+SolrFieldName.xref.toString()+" "+SolrFieldName.pxref.toString()+" "+SolrFieldName.species.toString()+" "+SolrFieldName.detmethod.toString()+" "+SolrFieldName.type.toString()+" "+SolrFieldName.pbiorole.toString()
-                    +" "+SolrFieldName.ptype.toString()+" "+SolrFieldName.ftype.toString()+" "+SolrFieldName.pmethod.toString()+" "+SolrFieldName.annot.toString()+" "+SolrFieldName.pubid.toString()+" "+SolrFieldName.pubauth.toString()+" "+SolrFieldName.interaction_id.toString());
-        }
-        else {
-            query.setParam("qf", SolrFieldName.identifier.toString()+" "+SolrFieldName.pubid.toString()+" "
-                    +SolrFieldName.pubauth.toString()+" "+SolrFieldName.species.toString()+" "+SolrFieldName.detmethod.toString()
-                    +" "+SolrFieldName.type.toString()+" "+SolrFieldName.interaction_id.toString()+" "+SolrFieldName.xref.toString()
-                    +" "+SolrFieldName.pxref.toString());
+        if (isOntologyQuery) {
+            query.setParam("qf", SolrFieldName.identifier.toString() + " " + SolrFieldName.xref.toString() + " " + SolrFieldName.pxref.toString() + " " + SolrFieldName.species.toString() + " " + SolrFieldName.detmethod.toString() + " " + SolrFieldName.type.toString() + " " + SolrFieldName.pbiorole.toString()
+                    + " " + SolrFieldName.ptype.toString() + " " + SolrFieldName.ftype.toString() + " " + SolrFieldName.pmethod.toString() + " " + SolrFieldName.annot.toString() + " " + SolrFieldName.pubid.toString() + " " + SolrFieldName.pubauth.toString() + " " + SolrFieldName.interaction_id.toString());
+        } else {
+            query.setParam("qf", SolrFieldName.identifier.toString() + " " + SolrFieldName.pubid.toString() + " "
+                    + SolrFieldName.pubauth.toString() + " " + SolrFieldName.species.toString() + " " + SolrFieldName.detmethod.toString()
+                    + " " + SolrFieldName.type.toString() + " " + SolrFieldName.interaction_id.toString() + " " + SolrFieldName.xref.toString()
+                    + " " + SolrFieldName.pxref.toString());
         }
 
         // store it in the HTTP Session - so it can be used by servlets (e.g. ExportServlet)
@@ -234,7 +215,6 @@ public class UserQuery extends BaseController {
     }
 
 
-
     private void autoQuoteWhenNecessary() {
         searchQuery = searchQuery.trim();
 
@@ -244,7 +224,7 @@ public class UserQuery extends BaseController {
 
             String[] qtokens = searchQuery.split(" ");
 
-            StringBuilder sb = new StringBuilder(searchQuery.length()+12);
+            StringBuilder sb = new StringBuilder(searchQuery.length() + 12);
 
             for (String qtoken : qtokens) {
                 qtoken = qtoken.trim();
@@ -252,7 +232,7 @@ public class UserQuery extends BaseController {
                 if (qtokenLowerCase.startsWith("MI:") ||
                         qtokenLowerCase.startsWith("GO:") ||
                         qtokenLowerCase.startsWith("CHEBI:")) {
-                    qtoken = "\""+qtoken+"\"";
+                    qtoken = "\"" + qtoken + "\"";
                 }
 
                 sb.append(qtoken).append(" ");
@@ -264,10 +244,10 @@ public class UserQuery extends BaseController {
 
     public void prepareFromOntologySearch(ActionEvent evt) {
         if (ontologyTerm != null) {
-            String query = ontologyTerm.getResults().getSearchField()+":\""+ontologyTerm.getIdentifier()+"\"";
+            String query = ontologyTerm.getResults().getSearchField() + ":\"" + ontologyTerm.getIdentifier() + "\"";
             setSearchQuery(query);
         } else {
-            isOntologyQuery=true;
+            isOntologyQuery = true;
             setSearchQuery(JsfUtils.surroundByQuotesIfMissing(ontologySearchQuery));
         }
     }
@@ -293,7 +273,7 @@ public class UserQuery extends BaseController {
             }
             // add the new field in the query
             else {
-                query =  surroundByBraces(query) + " " + queryToken.toQuerySyntax();
+                query = surroundByBraces(query) + " " + queryToken.toQuerySyntax();
             }
         }
 
@@ -312,10 +292,10 @@ public class UserQuery extends BaseController {
 
     private String surroundByBraces(String query) {
 
-        if (query == null){
+        if (query == null) {
             return null;
         }
-        return "("+query+")";
+        return "(" + query + ")";
     }
 
     public void doCancelAddField(ActionEvent evt) {
@@ -340,32 +320,33 @@ public class UserQuery extends BaseController {
 
     private SolrQuery createSolrQueryForHierarchView() {
         // export all available rows
-        return createSolrQuery( ).setRows(0);
+        return createSolrQuery().setRows(0);
     }
 
     /**
      * Builds a String representation of a Solr query without size constraint. The query would return all document hit.
+     *
      * @return a non null string.
      */
     public String getSolrQueryString() {
         return getSolrQueryString(createSolrQuery().setRows(0));
     }
 
-    private String getSolrQueryString( SolrQuery query ) {
+    private String getSolrQueryString(SolrQuery query) {
         StringBuilder sb = new StringBuilder(128);
-        boolean first=true;
+        boolean first = true;
         final Iterator<String> namesIterator = query.getParameterNamesIterator();
-        while ( namesIterator.hasNext() ) {
-            String paramName =  namesIterator.next();
-            final String[] params = query.getParams( paramName );
+        while (namesIterator.hasNext()) {
+            String paramName = namesIterator.next();
+            final String[] params = query.getParams(paramName);
 
             for (String param : params) {
                 if (!first) sb.append('&');
-                first=false;
+                first = false;
                 sb.append(paramName);
                 sb.append('=');
-                if( param != null ) {
-                    sb.append( param );
+                if (param != null) {
+                    sb.append(param);
                 }
             }
         }
@@ -384,7 +365,7 @@ public class UserQuery extends BaseController {
         return buildHierarchViewURL(intactViewConfiguration.getHierarchViewUrl());
     }
 
-    private String buildHierarchViewURL( String prefix ) {
+    private String buildHierarchViewURL(String prefix) {
         StringBuilder sb = new StringBuilder(256);
 
         sb.append(prefix);
@@ -392,9 +373,9 @@ public class UserQuery extends BaseController {
 
         try {
             final SolrQuery solrQuery = createSolrQueryForHierarchView();
-            final String q = getSolrQueryString( solrQuery );
-            final String qe = URLEncoder.encode( q, "UTF-8" );
-            sb.append( qe );
+            final String q = getSolrQueryString(solrQuery);
+            final String qe = URLEncoder.encode(q, "UTF-8");
+            sb.append(qe);
         } catch (UnsupportedEncodingException e) {
             // cannot happen
             throw new RuntimeException(e);
@@ -404,7 +385,7 @@ public class UserQuery extends BaseController {
     }
 
     public void doAddParamOntologyTermToQuery(ActionEvent evt) {
-        String term = (String)JsfUtils.getParameterValue( "term", evt);
+        String term = (String) JsfUtils.getParameterValue("term", evt);
 
         this.ontologySearchQuery = term;
         prepareFromOntologySearch(evt);
@@ -417,10 +398,9 @@ public class UserQuery extends BaseController {
     public void doSelectCvTerm(NodeSelectEvent evt) {
         final OntologyTermWrapper data = (OntologyTermWrapper) evt.getTreeNode().getData();
 
-        if (data.isUseName()){
+        if (data.isUseName()) {
             newQueryToken.setQuery(data.getTerm().getName());
-        }
-        else {
+        } else {
             newQueryToken.setQuery(data.getTerm().getId());
         }
     }
@@ -466,7 +446,7 @@ public class UserQuery extends BaseController {
         return friendlyQuery;
     }
 
-    public void resetSearchQuery(){
+    public void resetSearchQuery() {
         this.searchQuery = null;
         this.urlFriendlyQuery = null;
     }
@@ -483,7 +463,7 @@ public class UserQuery extends BaseController {
         return userSortColumn;
     }
 
-    public void setUserSortColumn( String userSortColumn ) {
+    public void setUserSortColumn(String userSortColumn) {
         this.userSortColumn = userSortColumn;
     }
 
@@ -491,7 +471,7 @@ public class UserQuery extends BaseController {
         return userSortOrder;
     }
 
-    public void setUserSortOrder( boolean userSortOrder ) {
+    public void setUserSortOrder(boolean userSortOrder) {
         this.userSortOrder = userSortOrder;
     }
 
@@ -504,17 +484,14 @@ public class UserQuery extends BaseController {
     }
 
     public void setUpQueryParameters(ActionEvent event) {
-        for (Map.Entry<String, Object> entry : event.getComponent().getAttributes().entrySet()){
-            if (QUERY_PARAMETER_NAME.equals(entry.getKey())){
+        for (Map.Entry<String, Object> entry : event.getComponent().getAttributes().entrySet()) {
+            if (QUERY_PARAMETER_NAME.equals(entry.getKey())) {
                 setSearchQuery((String) entry.getValue());
-            }
-            else if (INCLUDE_NEGATIVE_PARAMETER_NAME.equals(entry.getKey())){
+            } else if (INCLUDE_NEGATIVE_PARAMETER_NAME.equals(entry.getKey())) {
                 setIncludeNegative(Boolean.parseBoolean((String) entry.getValue()));
-            }
-            else if (FILTER_SPOKE_PARAMETER_NAME.equals(entry.getKey())){
+            } else if (FILTER_SPOKE_PARAMETER_NAME.equals(entry.getKey())) {
                 setFilterSpoke(Boolean.parseBoolean((String) entry.getValue()));
-            }
-            else if (ONTOLOGY_QUERY_PARAMETER_NAME.equals(entry.getKey())){
+            } else if (ONTOLOGY_QUERY_PARAMETER_NAME.equals(entry.getKey())) {
                 setOntologyQuery(Boolean.parseBoolean((String) entry.getValue()));
             }
         }
@@ -524,7 +501,7 @@ public class UserQuery extends BaseController {
         return termMap;
     }
 
-    public void setTermMap( Map<String, String> termMap ) {
+    public void setTermMap(Map<String, String> termMap) {
         this.termMap = termMap;
     }
 

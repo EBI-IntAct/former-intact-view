@@ -72,11 +72,10 @@ public class QueryToken {
     }
 
     public void setOperand(BooleanOperand operand) {
-        if (operand != null){
+        if (operand != null) {
             this.operand = operand;
             this.booleanString = operand.toString();
-        }
-        else {
+        } else {
             this.operand = BooleanOperand.AND;
             this.booleanString = "AND";
         }
@@ -96,11 +95,10 @@ public class QueryToken {
 
     public void setOperandStr(String booleanStr) {
 
-        if (booleanStr != null){
+        if (booleanStr != null) {
             this.booleanString = booleanStr;
             operand = BooleanOperand.valueOf(booleanStr);
-        }
-        else {
+        } else {
             this.operand = BooleanOperand.AND;
             this.booleanString = "AND";
         }
@@ -119,14 +117,13 @@ public class QueryToken {
             queryString.append((operand == BooleanOperand.AND) ? (isNotQuery() ? "AND NOT " : "AND ") : (isNotQuery() ? "OR NOT " : "OR "));
         }
 
-        queryString.append((field != null? field+":" : ""));
+        queryString.append((field != null ? field + ":" : ""));
 
         // close any opened parenthesis in field name. For instance : interaction_id:"GO
-        if (field.contains("\"")){
+        if (field.contains("\"")) {
 
             queryString.append(query).append("\"");
-        }
-        else {
+        } else {
             escapeIfNecessary(query, queryString);
         }
         return queryString.toString();
@@ -138,16 +135,15 @@ public class QueryToken {
     }
 
     public void escapeIfNecessary(String query, StringBuffer queryString) {
-        if (query.equals(UserQuery.STAR_QUERY)){
+        if (query.equals(UserQuery.STAR_QUERY)) {
             queryString.append(query);
             return;
         }
 
         // range query, do nothing
-        if (query.startsWith("[") && query.endsWith("]")){
+        if (query.startsWith("[") && query.endsWith("]")) {
             queryString.append(query);
-        }
-        else if (query.contains(" ") ||
+        } else if (query.contains(" ") ||
                 query.contains(":") ||
                 query.contains("(") ||
                 query.contains(")") ||
@@ -155,7 +151,7 @@ public class QueryToken {
                 query.contains("+")) {
 
             // deal with wild search
-            if (query.contains("*")){
+            if (query.contains("*")) {
                 queryString.append(query.toLowerCase()
                         .replaceAll(" ", "\\\\ ")
                         .replaceAll(":", "\\\\:")
@@ -163,21 +159,17 @@ public class QueryToken {
                         .replaceAll("\\)", "\\\\)")
                         .replaceAll("-", "\\\\-")
                         .replaceAll("\\+", "\\\\+"));
-            }
-            else if (query.contains("(") ||
+            } else if (query.contains("(") ||
                     query.contains(")") ||
                     query.contains("-") ||
-                    query.contains("+")){
+                    query.contains("+")) {
                 queryString.append(query);
+            } else {
+                queryString.append("\"" + query + "\"");
             }
-            else {
-                queryString.append("\""+query+"\"");
-            }
-        }
-        else if (query.contains("*")){
+        } else if (query.contains("*")) {
             queryString.append(query.toLowerCase());
-        }
-        else {
+        } else {
             queryString.append(query);
         }
     }

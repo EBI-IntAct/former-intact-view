@@ -19,20 +19,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Transactional;
-import uk.ac.ebi.intact.core.context.DataContext;
-import uk.ac.ebi.intact.core.context.IntactContext;
 import uk.ac.ebi.intact.model.CvTopic;
 import uk.ac.ebi.intact.view.webapp.application.SpringInitializedService;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.model.SelectItem;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -43,13 +37,11 @@ import java.util.List;
  */
 @Controller("filterPopulator")
 @ApplicationScoped
-public class FilterPopulatorController extends SpringInitializedService{
-
-    private static final Log log = LogFactory.getLog( FilterPopulatorController.class );
+public class FilterPopulatorController extends SpringInitializedService {
 
     public static final String NOT_SPECIFIED_VALUE = "-";
     public static final String EXPANSION_SPOKE_VALUE = "MI:1060";
-
+    private static final Log log = LogFactory.getLog(FilterPopulatorController.class);
     private List<SelectItem> stoichiometrySelectItems;
     private List<SelectItem> negativeSelectItems;
     private List<SelectItem> parametersSelectItems;
@@ -65,10 +57,10 @@ public class FilterPopulatorController extends SpringInitializedService{
     }
 
     @Override
-    public synchronized void initialize(){
+    public synchronized void initialize() {
         if (datasetSelectItems == null
                 || stoichiometrySelectItems == null || negativeSelectItems == null
-                || sourceSelectItems == null || expansionSelectItems == null){
+                || sourceSelectItems == null || expansionSelectItems == null) {
 
             if (log.isInfoEnabled()) log.info("Preloading filters");
 
@@ -92,7 +84,7 @@ public class FilterPopulatorController extends SpringInitializedService{
         }
     }
 
-    public synchronized void reload(){
+    public synchronized void reload() {
         if (log.isInfoEnabled()) log.info("Preloading filters");
 
         if (log.isDebugEnabled()) log.debug("\tPreloading datasets");
@@ -125,7 +117,7 @@ public class FilterPopulatorController extends SpringInitializedService{
 
         List<String> datasetResults = query.getResultList();
 
-        List<SelectItem> datasets = new ArrayList<SelectItem>(datasetResults.size()+1);
+        List<SelectItem> datasets = new ArrayList<SelectItem>(datasetResults.size() + 1);
 
         for (String dataset : datasetResults) {
             String[] ds = dataset.split("-");
