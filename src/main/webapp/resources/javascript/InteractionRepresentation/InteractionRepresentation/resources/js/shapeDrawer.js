@@ -45,7 +45,7 @@ ShapeDrawer = function(paper){
 		var path = this._paper.path("M" + x + "," + y + 
 								    "C" + xRight + "," + y + " " + xRight + "," + yMiddle + " "+ x + "," + yMiddle);
 		return path;
-	}
+    };
 	
 	// draw a curve with the curved part to the left
 	this.getCurveToLeft = function(x, y, distance){
@@ -56,7 +56,7 @@ ShapeDrawer = function(paper){
 		var path = this._paper.path("M" + x + "," + y + 
 								    "C" + xLeft + "," + y + " " + xLeft + "," + yMiddle + " "+ x + "," + yMiddle);
 		return path;
-	}
+    };
 	
 	// draw a quadrangle with horizontal bottom and top line (coordinates should contain x, x2, y, height)
 	this.getQuadrangle = function(xTop, yTop, widthTop, xBottom, yBottom, widthBottom){
@@ -251,4 +251,4 @@ ShapeDrawer = function(paper){
 					" " + x5 + "," + bottomY2 + " " + x6 + "," + y2;
 		return this._paper.path(path);
 	}
-}
+};

@@ -33,7 +33,7 @@
 // useful when one of the tokens is \n (a newline), as it 
 // allows smart autocompletion after linebreaks.
 
-var Autocompleter = {}
+var Autocompleter = {};
 Autocompleter.Base = function() {};
 Autocompleter.Base.prototype = {
   baseInitialize: function(element, update, options) {
@@ -200,12 +200,12 @@ Autocompleter.Base.prototype = {
   },
   
   markPrevious: function() {
-    if(this.index > 0) this.index--
+      if (this.index > 0) this.index--;
       else this.index = this.entryCount-1;
   },
   
   markNext: function() {
-    if(this.index < this.entryCount-1) this.index++
+      if (this.index < this.entryCount - 1) this.index++;
       else this.index = 0;
   },
   
@@ -311,7 +311,7 @@ Autocompleter.Base.prototype = {
     }
     return lastTokenPos;
   }
-}
+};
 
 Ajax.Autocompleter = Class.create();
 Object.extend(Object.extend(Ajax.Autocompleter.prototype, Autocompleter.Base.prototype), {
@@ -431,7 +431,7 @@ Autocompleter.Local.prototype = Object.extend(new Autocompleter.Base(), {
           }
         }
         if (partial.length)
-          ret = ret.concat(partial.slice(0, instance.options.choices - ret.length))
+            ret = ret.concat(partial.slice(0, instance.options.choices - ret.length));
         return "<ul>" + ret.join('') + "</ul>";
       }
     }, options || {});
@@ -449,7 +449,7 @@ Field.scrollFreeActivate = function(field) {
   setTimeout(function() {
     Field.activate(field);
   }, 1);
-}
+};
 
 Ajax.InPlaceEditor = Class.create();
 Ajax.InPlaceEditor.defaultHighlightColor = "#FFFF99";
@@ -541,7 +541,7 @@ Ajax.InPlaceEditor.prototype = {
   createForm: function() {
     this.form = document.createElement("form");
     this.form.id = this.options.formId;
-    Element.addClassName(this.form, this.options.formClassName)
+      Element.addClassName(this.form, this.options.formClassName);
     this.form.onsubmit = this.onSubmit.bind(this);
 
     this.createEditField();
@@ -717,7 +717,7 @@ Ajax.InPlaceEditor.prototype = {
     if (this.options.backgroundColor) {
       this.element.style.backgroundColor = this.oldBackground;
     }
-    Element.removeClassName(this.element, this.options.hoverClassName)
+      Element.removeClassName(this.element, this.options.hoverClassName);
     if (this.saving) return;
     this.effect = new Effect.Highlight(this.element, {
       startcolor: this.options.highlightcolor,

@@ -6,7 +6,7 @@ function transformSeqData(seqData){ //return seqData;
 	if(seqData == null || seqData.length == 0)
 		return "";
 	var seq = "";
-	var seqDataArray = new Array;
+    var seqDataArray = [];
 	seqDataArray = seqData.toArray();
 	for(var i=0;i<seqDataArray.length;i++){
 		seq +="<span id='aa_"+(i+1)+"' onmousedown='addPos("+(i+1)+");' onmouseup='highlightStru("+(i+1)+");'>"+seqDataArray[i]+"</span>";
@@ -29,33 +29,50 @@ function parseSequenceXML(xmldoc) {
 	if(root_node) {
 		if (root_node.hasChildNodes()) {
 			var children = root_node.childNodes;
-			sequence_loop: 
 			for (var j = 0; j < children.length; j++) {
-				if (children[j].nodeName == 'SEQUENCE') {
-					if(useHighlight) {
-						sequence = transformSeqData(children[j].firstChild.data);
-					} else {
-						sequence = children[j].firstChild.data;
-					}
-					var sequence_attrs = children[j].attributes;
-					for(var i=sequence_attrs.length-1; i>=0; i--) {
-						if (sequence_attrs[i].name == 'id') { var sequence_id = sequence_attrs[i].value; }
-						else if (sequence_attrs[i].name == 'version') { var sequence_version = sequence_attrs[i].value; }
-						else if (sequence_attrs[i].name == 'start') { var sequence_start = sequence_attrs[i].value; }
-						else if (sequence_attrs[i].name == 'stop') { var sequence_stop = sequence_attrs[i].value; }
-						else if (sequence_attrs[i].name == 'moltype') { var sequence_moltype = sequence_attrs[i].value; };
-					}
-					var sequence_length = sequence_stop - (parseInt(sequence_start) - 1);
-					var sequence_row = {sequence: sequence, sequence_id: sequence_id, sequence_version: sequence_version, sequence_start: sequence_start, sequence_stop: sequence_stop, sequence_moltype: sequence_moltype, sequence_length: sequence_length };
-					 
-					sequence_info = sequence_row;
-					 
-					createQueryInformationField(sequence_info, "display_query");
-					createSequenceField("display_seque"); 
-					 
-					break sequence_loop;
-				}
-			}
+                if (children[j].nodeName == 'SEQUENCE') {
+                    if (useHighlight) {
+                        sequence = transformSeqData(children[j].firstChild.data);
+                    } else {
+                        sequence = children[j].firstChild.data;
+                    }
+                    var sequence_attrs = children[j].attributes;
+                    for (var i = sequence_attrs.length - 1; i >= 0; i--) {
+                        if (sequence_attrs[i].name == 'id') {
+                            var sequence_id = sequence_attrs[i].value;
+                        }
+                        else if (sequence_attrs[i].name == 'version') {
+                            var sequence_version = sequence_attrs[i].value;
+                        }
+                        else if (sequence_attrs[i].name == 'start') {
+                            var sequence_start = sequence_attrs[i].value;
+                        }
+                        else if (sequence_attrs[i].name == 'stop') {
+                            var sequence_stop = sequence_attrs[i].value;
+                        }
+                        else if (sequence_attrs[i].name == 'moltype') {
+                            var sequence_moltype = sequence_attrs[i].value;
+                        }
+                    }
+                    var sequence_length = sequence_stop - (parseInt(sequence_start) - 1);
+                    var sequence_row = {
+                        sequence: sequence,
+                        sequence_id: sequence_id,
+                        sequence_version: sequence_version,
+                        sequence_start: sequence_start,
+                        sequence_stop: sequence_stop,
+                        sequence_moltype: sequence_moltype,
+                        sequence_length: sequence_length
+                    };
+
+                    sequence_info = sequence_row;
+
+                    createQueryInformationField(sequence_info, "display_query");
+                    createSequenceField("display_seque");
+
+                    break;
+                }
+            }
 		}
 	} // if(root_node)
 	if (excep != null) {

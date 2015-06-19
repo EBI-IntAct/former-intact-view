@@ -1,6 +1,6 @@
 // Fernando's code to get started with pasing alignments
 var testing = false,  		  // used for testing
-	alignments = new Array(), // array of parsed alignments
+    alignments = [], // array of parsed alignments
 	nalignments = 0;		  // number of alignments	
 
 
@@ -38,7 +38,7 @@ segment.prototype.equals=function(segm){
 		return true;
 	}
 	return false;
-}
+};
 
 /**
  *  defines a block contained withing an alignment
@@ -78,8 +78,10 @@ function doParseAligment(doc){
 	for(var i=0;i<alignElms.length;i++){
 		algn = alignElms.item(i);
 		atype = algn.attributes.getNamedItem("alignType").value;
-		blocks = new Array();nblocks = 0;
-		alignObjs = new Array();nalobjs = 0;
+        blocks = [];
+        nblocks = 0;
+        alignObjs = [];
+        nalobjs = 0;
 		for(var j=0;j<algn.childNodes.length;j++){
 			//if(algn.childNodes[j].nodeType == document.ELEMENT_NODE){ // Rafael
 				if(algn.childNodes[j].nodeName == "block"){
@@ -112,7 +114,11 @@ function parseAlignObject(obj){
 	accessionid = obj.attributes.getNamedItem("dbAccessionId").value;
 	type = obj.attributes.getNamedItem("type").value;
 	dbsrc = obj.attributes.getNamedItem("dbSource").value;
-	adetails = new Array();ndets = 0;header="";title="";descr="";
+    adetails = [];
+    ndets = 0;
+    header = "";
+    title = "";
+    descr = "";
 	for(var k=0;k<obj.childNodes.length;k++){
 		if(obj.childNodes[k].nodeName == "alignObjectDetail"){
 			detail = obj.childNodes[k];
@@ -155,7 +161,8 @@ function getNodeData2(node){
 */
 function parseBlock(blk){
 	blockOrder = blk.attributes.getNamedItem("blockOrder").value;
-	segments = new Array();nsegms = 0;
+    segments = [];
+    nsegms = 0;
 	for(var k=0;k<blk.childNodes.length;k++){
 		if(blk.childNodes[k].nodeName == "segment"){
 			segm = blk.childNodes[k];
@@ -215,8 +222,8 @@ function segmentUniprot2segmentPDB(segmentUniprot){
 
 function extrapolatePosition(position,pdb){
 	var term=0;
-	var top=0
-	var bottom=0
+    var top = 0;
+    var bottom = 0;
 	var entro=false;
 	//Find the block with the PDB block target
 	for(i=0;i<alignments.length;i++){
@@ -248,8 +255,8 @@ function extrapolatePosition(position,pdb){
 }
 function extrapolateSegment(segmentQuery){
 	var term=0;
-	var top=0
-	var bottom=0
+    var top = 0;
+    var bottom = 0;
 	var entro=false;
 //	segmentUniprot=null;
 //	segmentPDB=null;
@@ -285,7 +292,7 @@ function extrapolateSegment(segmentQuery){
 *  get an array of the parsed structure with the name of the pdb's files
 */
 function getPDBfileNames(){
-	var fileNames = new Array();
+    var fileNames = [];
 	for(i=0;i<alignments.length;i++){
 		//printOnTest(alignments[i].alignObjects);
 		if(alignments[i].blocks!=null)

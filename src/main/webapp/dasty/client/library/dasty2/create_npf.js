@@ -15,12 +15,12 @@
 			/**
 			* The first time that a DAS source is loaded:
 			*/
-			var countNPF = dasty2.countNPF
+            var countNPF = dasty2.countNPF;
 			if(countNPF == 0)
 				{
 					dasty2.countNPF++;
 					//Principio
-					var title = new Array();
+                    var title = [];
 					title["type_category"] = "EVIDENCE (Category)";
 					title["type_data"] = "TYPE NAME";
 					title["type_id"] = "FEATURE TYPE";
@@ -32,8 +32,8 @@
 					title["annotation_server"] = "SERVER NAME";
 					title["link_data"] = "";
 					title["version"] = "";
-					
-					var title_width = new Array();
+
+                    var title_width = [];
 					title_width["type_category"] = col_category_width;
 					title_width["type_data"] = col_type_width;
 					//title_width["type_id"] = col_type_width;
@@ -100,7 +100,7 @@
 						// Lo del medio
 
 			var mytbody = document.getElementById("non_positional_features_tbody");
-			var npfTypes = new Array();
+            var npfTypes = [];
 			var newType = false;
 
 			
@@ -270,7 +270,7 @@
 													var mycurrent_server_text = document.createElement("a");
 													mycurrent_server_text.setAttribute("class", "gr_text_01");
 													mycurrent_server_text.setAttribute("className", "gr_text_01");
-													mycurrent_server_text.setAttribute("target", "_dasregistry")
+                                                    mycurrent_server_text.setAttribute("target", "_dasregistry");
 													mycurrent_server_text.setAttribute("href", "http://www.dasregistry.org/showdetails.jsp?auto_id=" + serverRegistryURI);
 													
 													mycurrent_server_text.appendChild(content);
@@ -288,7 +288,7 @@
 														var mycurrent_type_text = document.createElement("a");
 														mycurrent_type_text.setAttribute("class", "gr_text_01");
 														mycurrent_type_text.setAttribute("className", "gr_text_01");
-														mycurrent_type_text.setAttribute("target", "_type")
+                                                        mycurrent_type_text.setAttribute("target", "_type");
 														mycurrent_type_text.setAttribute("href", "http://www.ebi.ac.uk/ontology-lookup/?termId=" + typeId);
 														
 														mycurrent_type_text.appendChild(content);

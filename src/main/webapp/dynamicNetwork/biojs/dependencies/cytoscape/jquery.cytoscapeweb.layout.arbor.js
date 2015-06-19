@@ -77,9 +77,8 @@
 		
 		if( options.liveUpdate && options.fit ){
 			cy.reset();
-		};
-		
-		var doneTime = 250;
+        }
+        var doneTime = 250;
 		var doneTimeout;
 		
 		var ready = false;
@@ -191,7 +190,7 @@
 				break;
 			case "dragstop":
 				this.scratch().arbor.fixed = false;
-				this.scratch().arbor.tempMass = 1000
+                this.scratch().arbor.tempMass = 1000;
 				break;
 			}
 		};
@@ -234,9 +233,9 @@
 				cy.fit();
 			}
 			callback();
-		};
-		
-		var grabbableNodes = nodes.filter(":grabbable");
+        }
+
+        var grabbableNodes = nodes.filter(":grabbable");
 		// disable grabbing if so set
 		if( options.ungrabifyWhileSimulating ){
 			grabbableNodes.ungrabify();

@@ -60,8 +60,10 @@ function ts_makeSortable(t) {
 
 function ts_getInnerText(el) {
 	if (typeof el == "string") return el;
-	if (typeof el == "undefined") { return el };
-	if (el.innerText) return el.innerText;	//Not needed but it is faster
+    if (typeof el == "undefined") {
+        return el
+    }
+    if (el.innerText) return el.innerText;	//Not needed but it is faster
 	var str = "";
 	
 	var cs = el.childNodes;
@@ -104,11 +106,11 @@ function ts_resortTable(lnk, clid) {
 	sortfn = ts_sort_caseinsensitive;
 	if (itm.match(/^\d\d[\/\.-][a-zA-z][a-zA-Z][a-zA-Z][\/\.-]\d\d\d\d$/)) sortfn = ts_sort_date;
 	if (itm.match(/^\d\d[\/\.-]\d\d[\/\.-]\d\d\d{2}?$/)) sortfn = ts_sort_date;
-	if (itm.match(/^-?[£$€Û¢´]\d/)) sortfn = ts_sort_numeric;
+	if (itm.match(/^-?[ï¿½$ï¿½Û¢ï¿½]\d/)) sortfn = ts_sort_numeric;
 	if (itm.match(/^-?(\d+[,\.]?)+(E[-+][\d]+)?%?$/)) sortfn = ts_sort_numeric;
 	SORT_COLUMN_INDEX = column;
-	var firstRow = new Array();
-	var newRows = new Array();
+    var firstRow = [];
+    var newRows = [];
 	for (k=0;k<t.tBodies.length;k++) {
 		for (i=0;i<t.tBodies[k].rows[0].length;i++) { 
 			firstRow[i] = t.tBodies[k].rows[0][i]; 

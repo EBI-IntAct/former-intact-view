@@ -116,7 +116,7 @@ var Droppables = {
     if(this.last_active)
       this.deactivate(this.last_active);
   }
-}
+};
 
 var Draggables = {
   drags: [],
@@ -199,7 +199,7 @@ var Draggables = {
       ).length;
     });
   }
-}
+};
 
 /*--------------------------------------------------------------------------*/
 
@@ -217,7 +217,7 @@ Draggable.prototype = {
         element._revert = new Effect.Move(element, { x: -left_offset, y: -top_offset, duration: dur});
       },
       endeffect: function(element) {
-        var toOpacity = typeof element._opacity == 'number' ? element._opacity : 1.0
+          var toOpacity = typeof element._opacity == 'number' ? element._opacity : 1.0;
         new Effect.Opacity(element, {duration:0.2, from:0.7, to:toOpacity}); 
       },
       zindex: 1000,
@@ -501,7 +501,7 @@ Draggable.prototype = {
     }
     return { top: T, left: L, width: W, height: H };
   }
-}
+};
 
 /*--------------------------------------------------------------------------*/
 
@@ -522,7 +522,7 @@ SortableObserver.prototype = {
     if(this.lastValue != Sortable.serialize(this.element))
       this.observer(this.element)
   }
-}
+};
 
 var Sortable = {
   sortables: {},
@@ -613,14 +613,14 @@ var Sortable = {
       hoverclass:  options.hoverclass,
       onHover:     Sortable.onHover
       //greedy:      !options.dropOnEmpty
-    }
+    };
     
     var options_for_tree = {
       onHover:      Sortable.onEmptyHover,
       overlap:      options.overlap,
       containment:  options.containment,
       hoverclass:   options.hoverclass
-    }
+    };
 
     // fix for gecko engine
     Element.cleanWhitespace(element); 
@@ -676,7 +676,7 @@ var Sortable = {
     if(Element.isParent(dropon, element)) return;
 
     if(overlap > .33 && overlap < .66 && Sortable.options(dropon).tree) {
-      return;
+
     } else if(overlap>0.5) {
       Sortable.mark(dropon, 'before');
       if(dropon.previousSibling != element) {
@@ -775,14 +775,14 @@ var Sortable = {
         id: encodeURIComponent(match ? match[1] : null),
         element: element,
         parent: parent,
-        children: new Array,
+          children: [],
         position: parent.children.length,
         container: Sortable._findChildrenElement(children[i], options.treeTag.toUpperCase())
-      }
+      };
       
       /* Get the element containing the children and recurse over it */
       if (child.container)
-        this._tree(child.container, options, child)
+          this._tree(child.container, options, child);
       
       parent.children.push (child);
     }
@@ -815,10 +815,10 @@ var Sortable = {
     var root = {
       id: null,
       parent: null,
-      children: new Array,
+        children: [],
       container: element,
       position: 0
-    }
+    };
     
     return Sortable._tree (element, options, root);
   },
@@ -878,7 +878,7 @@ var Sortable = {
       }).join('&');
     }
   }
-}
+};
 
 /* Returns true if child is contained within element */
 Element.isParent = function(child, element) {
@@ -887,7 +887,7 @@ Element.isParent = function(child, element) {
   if (child.parentNode == element) return true;
 
   return Element.isParent(child.parentNode, element);
-}
+};
 
 Element.findChildren = function(element, only, recursive, tagName) {    
   if(!element.hasChildNodes()) return null;
@@ -905,11 +905,11 @@ Element.findChildren = function(element, only, recursive, tagName) {
   });
 
   return (elements.length>0 ? elements.flatten() : []);
-}
+};
 
 Element.offsetSize = function (element, type) {
   if (type == 'vertical' || type == 'height')
     return element.offsetHeight;
   else
     return element.offsetWidth;
-}
+};

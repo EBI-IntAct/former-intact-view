@@ -29,7 +29,7 @@ Window.prototype = {
   //                        hideEffect, showEffect, showEffectOptions, hideEffectOptions, effectOptions, url, draggable, closable, minimizable, maximizable, parent, onload
   initialize: function(id) {
     if ($(id))
-      alert("Window " + id + " is already register is the DOM!!, be sure to use setDestroyOnClose()")
+        alert("Window " + id + " is already register is the DOM!!, be sure to use setDestroyOnClose()");
       
     this.hasEffectLib = String.prototype.parseColor != null;
     this.options = Object.extend({
@@ -71,7 +71,10 @@ Window.prototype = {
       this.options.hideEffectOptions.from = this.options.opacity;
 
     if (this.options.hideEffect == Element.hide)
-      this.options.hideEffect = function(){ Element.hide(this.element); if (this.destroyOnClose) this.destroy(); }.bind(this)
+        this.options.hideEffect = function () {
+            Element.hide(this.element);
+            if (this.destroyOnClose) this.destroy();
+        }.bind(this);
       
     this.element = this._createWindow(id);
     
@@ -144,7 +147,7 @@ Window.prototype = {
     
     this.setOpacity(this.options.opacity);
     if (this.options.zIndex)
-      this.setZIndex(this.options.zIndex)
+        this.setZIndex(this.options.zIndex);
 
     this.destroyOnClose = false;
 
@@ -158,7 +161,7 @@ Window.prototype = {
     
     if (this.width && this.height)
       this.setSize(this.options.width, this.options.height);
-    this.setTitle(this.options.title)
+      this.setTitle(this.options.title);
     Windows.register(this);      
   },
   
@@ -192,8 +195,8 @@ Window.prototype = {
     if (this.sizer)
         Event.stopObserving(this.sizer, "mousedown", this.eventMouseDown);
 
-    if (this.options.url) 
-      this.content.src = null
+    if (this.options.url)
+        this.content.src = null;
 
      if(this.iefix) 
       Element.remove(this.iefix);
@@ -231,7 +234,7 @@ Window.prototype = {
     if (autoposition) 
       p = Position.cumulativeOffset(element);
 
-    var content = this.getContent()
+      var content = this.getContent();
     content.appendChild(element);
     element.show();
     if (autoresize) 
@@ -260,7 +263,7 @@ Window.prototype = {
     this.showModal = showModal || false;
   
     if (options == null)
-      options = {}  
+        options = {};
 
     this.onComplete = options.onComplete;
     if (! this._onCompleteHandler)
@@ -308,7 +311,7 @@ Window.prototype = {
     this.cookie = [name, expires, path, domain, secure];
     
     // Get cookie
-    var value = WindowUtilities.getCookie(name)
+      var value = WindowUtilities.getCookie(name);
     // If exists
     if (value) {
       var values = value.split(',');
@@ -345,8 +348,10 @@ Window.prototype = {
       var func = this.options.hideEffectOptions.afterFinish;
       this.options.hideEffectOptions.afterFinish = function() {func();destroyFunc() }
     }
-    else 
-      this.options.hideEffectOptions.afterFinish = function() {destroyFunc() }
+    else
+        this.options.hideEffectOptions.afterFinish = function () {
+            destroyFunc()
+        };
     this.destroyOnClose = true;
   },
   
@@ -421,18 +426,18 @@ Window.prototype = {
     if (this.doResize) {
       var w = this.widthOrg + dx;
       var h = this.heightOrg + dy;
-      
-      dx = this.width - this.widthOrg
-      dy = this.height - this.heightOrg
+
+        dx = this.width - this.widthOrg;
+        dy = this.height - this.heightOrg;
       
       // Check if it's a right position, update it to keep upper-left corner at the same position
-      if (this.useLeft) 
-        w = this._updateWidthConstraint(w)
+      if (this.useLeft)
+          w = this._updateWidthConstraint(w);
       else 
         this.currentDrag.setStyle({right: (this.rightOrg -dx) + 'px'});
       // Check if it's a bottom position, update it to keep upper-left corner at the same position
-      if (this.useTop) 
-        h = this._updateHeightConstraint(h)
+      if (this.useTop)
+          h = this._updateHeightConstraint(h);
       else
         this.currentDrag.setStyle({bottom: (this.bottomOrg -dy) + 'px'});
         
@@ -489,7 +494,7 @@ Window.prototype = {
     this._hideWiredElement();
 
     // Store new location/size if need be
-    this._saveCookie()
+       this._saveCookie();
       
     // Restore selection
     document.body.ondrag = null;
@@ -659,8 +664,8 @@ Window.prototype = {
     this.width = width;
     this.height = height;
     var e = this.currentDrag ? this.currentDrag : this.element;
-    e.setStyle({width: width + this.widthW + this.widthE + "px"})
-    e.setStyle({height: height  + this.heightN + this.heightS + "px"})
+      e.setStyle({width: width + this.widthW + this.widthE + "px"});
+      e.setStyle({height: height + this.heightN + this.heightS + "px"});
 
     // Update content height
     if (!this.currentDrag || this.currentDrag == this.element) {
@@ -701,9 +706,9 @@ Window.prototype = {
       this.getContent().setStyle({overflow: this.oldStyle});
       
     if (! this.width || !this.height) {
-      var size = WindowUtilities._computeSize(this.content.innerHTML, this.content.id, this.width, this.height, 0, this.options.className)
+        var size = WindowUtilities._computeSize(this.content.innerHTML, this.content.id, this.width, this.height, 0, this.options.className);
       if (this.height)
-        this.width = size + 5
+          this.width = size + 5;
       else
         this.height = size + 5
     }
@@ -720,7 +725,7 @@ Window.prototype = {
       
     this._checkIEOverlapping();
     this.visible = true;
-    WindowUtilities.focusedWindow = this
+      WindowUtilities.focusedWindow = this;
     Windows.notify("onShow", this);    
   },
   
@@ -743,11 +748,11 @@ Window.prototype = {
 
     if (!top)
       top = (pageSize.windowHeight - (this.height + this.heightN + this.heightS))/2;
-    top += windowScroll.top
+      top += windowScroll.top;
     
     if (!left)
       left = (pageSize.windowWidth - (this.width + this.widthW + this.widthE))/2;
-    left += windowScroll.left 
+      left += windowScroll.left;
     
     this.setLocation(top, left);
     this.toFront();
@@ -779,7 +784,7 @@ Window.prototype = {
       Windows.resetOverflow();
     }
     // To avoid bug on scrolling bar
-    this.oldStyle = this.getContent().getStyle('overflow') || "auto"
+      this.oldStyle = this.getContent().getStyle('overflow') || "auto";
     this.getContent().setStyle({overflow: "hidden"});
 
     this.options.hideEffect(this.element, this.options.hideEffectOptions);  
@@ -794,9 +799,9 @@ Window.prototype = {
     var dh = r2.getDimensions().height;
     
     if (r2.visible()) {
-      var h  = this.element.getHeight() - dh
-      r2.hide()
-      this.element.setStyle({height: h + "px"})
+        var h = this.element.getHeight() - dh;
+        r2.hide();
+        this.element.setStyle({height: h + "px"});
       if (! this.useTop) {
         var bottom = parseFloat(this.element.getStyle('bottom'));
         this.element.setStyle({bottom: (bottom + dh) + 'px'});
@@ -804,7 +809,7 @@ Window.prototype = {
     } 
     else {
       var h  = this.element.getHeight() + dh;
-      this.element.setStyle({height: h + "px"})
+        this.element.setStyle({height: h + "px"});
       if (! this.useTop) {
         var bottom = parseFloat(this.element.getStyle('bottom'));
         this.element.setStyle({bottom: (bottom - dh) + 'px'});
@@ -835,7 +840,7 @@ Window.prototype = {
       this.element.setStyle(this.useLeft ? {left: windowScroll.left} : {right: windowScroll.left});
       this.element.setStyle(this.useTop ? {top: windowScroll.top} : {bottom: windowScroll.top});
 
-      this.setSize(pageSize.windowWidth - this.widthW - this.widthE, pageSize.windowHeight - this.heightN - this.heightS)
+        this.setSize(pageSize.windowWidth - this.widthW - this.widthE, pageSize.windowHeight - this.heightN - this.heightS);
       this.toFront();
       if (this.iefix) 
         this._fixIEOverlapping(); 
@@ -902,19 +907,19 @@ Window.prototype = {
   
   _getWindowBorderSize: function(event) {
     // Hack to get real window border size!!
-    var div = this._createHiddenDiv(this.options.className + "_n")
-    this.heightN = Element.getDimensions(div).height;    
-    div.parentNode.removeChild(div)
+      var div = this._createHiddenDiv(this.options.className + "_n");
+    this.heightN = Element.getDimensions(div).height;
+      div.parentNode.removeChild(div);
 
-    var div = this._createHiddenDiv(this.options.className + "_s")
-    this.heightS = Element.getDimensions(div).height;    
-    div.parentNode.removeChild(div)
+      var div = this._createHiddenDiv(this.options.className + "_s");
+    this.heightS = Element.getDimensions(div).height;
+      div.parentNode.removeChild(div);
 
-    var div = this._createHiddenDiv(this.options.className + "_e")
-    this.widthE = Element.getDimensions(div).width;    
-    div.parentNode.removeChild(div)
+      var div = this._createHiddenDiv(this.options.className + "_e");
+    this.widthE = Element.getDimensions(div).width;
+      div.parentNode.removeChild(div);
 
-    var div = this._createHiddenDiv(this.options.className + "_w")
+      var div = this._createHiddenDiv(this.options.className + "_w");
     this.widthW = Element.getDimensions(div).width;
     div.parentNode.removeChild(div);
 
@@ -975,13 +980,13 @@ Window.prototype = {
     if (this.cookie) {
       var value = "";
       if (this.useLeft)
-        value += "l:" +  (this.storedLocation ? this.storedLocation.left : this.element.getStyle('left'))
+          value += "l:" + (this.storedLocation ? this.storedLocation.left : this.element.getStyle('left'));
       else
-        value += "r:" + (this.storedLocation ? this.storedLocation.right : this.element.getStyle('right'))
+          value += "r:" + (this.storedLocation ? this.storedLocation.right : this.element.getStyle('right'));
       if (this.useTop)
-        value += ",t:" + (this.storedLocation ? this.storedLocation.top : this.element.getStyle('top'))
+          value += ",t:" + (this.storedLocation ? this.storedLocation.top : this.element.getStyle('top'));
       else
-        value += ",b:" + (this.storedLocation ? this.storedLocation.bottom :this.element.getStyle('bottom'))
+          value += ",b:" + (this.storedLocation ? this.storedLocation.bottom : this.element.getStyle('bottom'));
         
       value += "," + (this.storedLocation ? this.storedLocation.width : this.width);
       value += "," + (this.storedLocation ? this.storedLocation.height : this.height);
@@ -1154,7 +1159,7 @@ var Windows = {
   },
   // Minimizes a window with its id
   minimize: function(id, event) {
-    var win = this.getWindow(id)
+      var win = this.getWindow(id);
     if (win && win.visible)
       win.minimize();
     Event.stop(event);
@@ -1162,7 +1167,7 @@ var Windows = {
   
   // Maximizes a window with its id
   maximize: function(id, event) {
-    var win = this.getWindow(id)
+      var win = this.getWindow(id);
     if (win && win.visible)
       win.maximize();
     Event.stop(event);
@@ -1205,8 +1210,8 @@ var Dialog = {
     var windowParam = parameters.windowParameters || {};
     windowParam.className = windowParam.className || "alert";
 
-    var okButtonClass = "class ='" + (parameters.buttonClass ? parameters.buttonClass + " " : "") + " ok_button'" 
-    var cancelButtonClass = "class ='" + (parameters.buttonClass ? parameters.buttonClass + " " : "") + " cancel_button'" 
+      var okButtonClass = "class ='" + (parameters.buttonClass ? parameters.buttonClass + " " : "") + " ok_button'";
+      var cancelButtonClass = "class ='" + (parameters.buttonClass ? parameters.buttonClass + " " : "") + " cancel_button'";
     var content = "\
       <div class='" + windowParam.className + "_message'>" + content  + "</div>\
         <div class='" + windowParam.className + "_buttons'>\
@@ -1230,7 +1235,7 @@ var Dialog = {
     var windowParam = parameters.windowParameters || {};
     windowParam.className = windowParam.className || "alert";
 
-    var okButtonClass = "class ='" + (parameters.buttonClass ? parameters.buttonClass + " " : "") + " ok_button'" 
+      var okButtonClass = "class ='" + (parameters.buttonClass ? parameters.buttonClass + " " : "") + " ok_button'";
     var content = "\
       <div class='" + windowParam.className + "_message'>" + content  + "</div>\
         <div class='" + windowParam.className + "_buttons'>\
@@ -1283,9 +1288,9 @@ var Dialog = {
 
     // compute height or width if need be
     if (! parameters.windowParameters.height || ! parameters.windowParameters.width) {
-      var size = WindowUtilities._computeSize(content, this.dialogId, parameters.windowParameters.width, parameters.windowParameters.height, 5, className)
+        var size = WindowUtilities._computeSize(content, this.dialogId, parameters.windowParameters.width, parameters.windowParameters.height, 5, className);
       if (parameters.windowParameters.height)
-        parameters.windowParameters.width = size + 5
+          parameters.windowParameters.width = size + 5;
       else
         parameters.windowParameters.height = size + 5
     }
@@ -1314,7 +1319,7 @@ var Dialog = {
   
   _runAjaxRequest: function(message, parameters, callFunc) {
     if (message.options == null)
-      message.options ={}  
+        message.options = {};
     Dialog.onCompleteFunc = message.options.onComplete;
     Dialog.parameters = parameters;
     Dialog.callFunc = callFunc;
@@ -1327,7 +1332,9 @@ var Dialog = {
     var win = Windows.focusedWindow;
     if (!win.okCallback || win.okCallback(win)) {
       // Remove onclick on button
-      $$("#" + win.getId()+" input").each(function(element) {element.onclick=null;})
+        $$("#" + win.getId() + " input").each(function (element) {
+            element.onclick = null;
+        });
       win.hide();
     }
   },
@@ -1335,12 +1342,14 @@ var Dialog = {
   cancelCallback: function() {
     var win = Windows.focusedWindow;
     // Remove onclick on button
-    $$("#" + win.getId()+" input").each(function(element) {element.onclick=null})
+      $$("#" + win.getId() + " input").each(function (element) {
+          element.onclick = null
+      });
     win.hide();
     if (win.cancelCallback)
       win.cancelCallback(win);
   }
-}
+};
 /*
   Based on Lightbox JS: Fullsize Image Overlays 
   by Lokesh Dhakar - http://www.huddletogether.com
@@ -1520,7 +1529,7 @@ var WindowUtilities = {
       var objBody = document.body;
       var objOverlay = document.createElement("div");
       objOverlay.setAttribute('id', id);
-      objOverlay.className = "overlay_" + className
+        objOverlay.className = "overlay_" + className;
       objOverlay.style.display = 'none';
       objOverlay.style.position = 'absolute';
       objOverlay.style.top = '0';
@@ -1563,9 +1572,9 @@ var WindowUtilities = {
     tmpObj.className = className + "_content";
 
     if (height)
-      tmpObj.style.height = height + "px"
+        tmpObj.style.height = height + "px";
     else
-      tmpObj.style.width = width + "px"
+        tmpObj.style.width = width + "px";
   
     tmpObj.style.position = 'absolute';
     tmpObj.style.top = '0';
@@ -1582,6 +1591,6 @@ var WindowUtilities = {
       size = $(id).getDimensions().height + margin;
     objBody.removeChild(tmpObj);
     return size;
-  }  
-}
+  }
+};
 

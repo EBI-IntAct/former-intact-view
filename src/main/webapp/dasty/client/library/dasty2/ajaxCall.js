@@ -29,6 +29,6 @@ function ajaxCall(url,callback){
 			}else
 				alert("error");
 		}
-	}
+    };
 	http_request.send(null);
 }

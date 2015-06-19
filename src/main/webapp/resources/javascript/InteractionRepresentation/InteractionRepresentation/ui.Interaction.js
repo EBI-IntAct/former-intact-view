@@ -132,11 +132,11 @@
 		_DASStylesheet: 'http://wwwdev.ebi.ac.uk/das-srv/uniprot/das/uniprot/stylesheet',
 
 		// structures needed to manage data --
-		_featureTracksPerParticipant: new Array(),
-        _featurePositions: new Object(),
-        _linkedFeatures: new Object(),
-		_joinedFeatures: new Object(),
-        _participantsWithFeatures: new Object(),
+        _featureTracksPerParticipant: [],
+        _featurePositions: {},
+        _linkedFeatures: {},
+        _joinedFeatures: {},
+        _participantsWithFeatures: {},
         _error: false,
         // --
 
@@ -466,16 +466,16 @@
                 $(interaction.participantList.participant).each(function(){
 
 					var participant = this;
-                    var lengthsObject = new Object();
+                    var lengthsObject = {};
                     lengthsObject["interactorRef"] = participant.interactorRef;
 
                     if (!(participant.featureList === undefined)) {
 
-                        lengthsObject["annotations"] = new Object();
+                        lengthsObject["annotations"] = {};
 
                         // add place to store information for each position on protein
                         for (var position in self._positionsOnProtein) {
-                            lengthsObject.annotations[position] = new Object();
+                            lengthsObject.annotations[position] = {};
                         }
 
                         var i = 0;
@@ -667,7 +667,7 @@
                     $(this.participant).each(function(){
                         var featureRef = this.participantFeatureRef;
                         if (!(featureRef === undefined)) {
-                            self._linkedFeatures[featureRef] = new Object();
+                            self._linkedFeatures[featureRef] = {};
 
 							for(var iRef in self._participantsWithFeatures){
 								var curObject = self._participantsWithFeatures[iRef];
@@ -845,8 +845,8 @@
             var valueA = 0;
             if (!(a.featureList === undefined)) {
                 if ($.inArray(a.interactorRef, this._participantsWithFeatures) < 0) {
-                    this._participantsWithFeatures[a.id] = new Object();
-                    this._participantsWithFeatures[a.id]["featureRefs"] = new Array();
+                    this._participantsWithFeatures[a.id] = {};
+                    this._participantsWithFeatures[a.id]["featureRefs"] = [];
                     this._participantsWithFeatures[a.id]["linkedCount"] = 0;
                     $(a.featureList.feature).each(function(){
                         self._participantsWithFeatures[a.id]["featureRefs"].push(this.id);
@@ -865,7 +865,7 @@
 
 			withFeatures.sort(function(a,b){
 				return self._participantWithFeatureSortingFunction(a,b);
-			})
+            });
 			withFeatures = this._arrangeByCount(withFeatures);
 			return $.merge(withFeatures, participants);
 		},

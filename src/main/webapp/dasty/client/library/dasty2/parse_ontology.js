@@ -44,13 +44,19 @@ function doParseOntology(doc,otype){
 	if(testing){
 		document.getElementById("nalgn").innerHTML = xmlterms.length;
 	}
-	this.terms = new Array(), // array of parsed ontology terms
+    this.terms = [], // array of parsed ontology terms
 	this.nterms = 1;		  	 // number of terms in ontology. Init to 1, pos. 0 reserved for root	
 	this.rootptr = -1;		 // pointer to root
-	var s = "";this.termsidx = new Array();
+    var s = "";
+    this.termsidx = [];
 	for(var i=0;i<xmlterms.length;i++){
 		xmlterm = xmlterms.item(i);
-		relations = new Array();definition = "";is_definition = false;rel_count = 0;isroot = 0;isobsolete = 0;
+        relations = [];
+        definition = "";
+        is_definition = false;
+        rel_count = 0;
+        isroot = 0;
+        isobsolete = 0;
 		for(var j=0;j<xmlterm.childNodes.length;j++){
 			//if(xmlterm.childNodes[j].nodeType == document.ELEMENT_NODE){ // Rafael
 				if(xmlterm.childNodes[j].nodeName == "id"){
@@ -60,12 +66,12 @@ function doParseOntology(doc,otype){
 					name = getNodeData(xmlterm.childNodes[j]);
 				}else
 				if(xmlterm.childNodes[j].nodeName == "is_a"){
-					relations[rel_count] = new Array();
+                    relations[rel_count] = [];
 					relations[rel_count]['type'] = 'is_a';
 					relations[rel_count++]['termid'] = getNodeData(xmlterm.childNodes[j]);
 				}else
 				if(xmlterm.childNodes[j].nodeName == "has_a"){
-					relations[rel_count] = new Array();
+                    relations[rel_count] = [];
 					relations[rel_count]['type'] = 'has_a';
 					relations[rel_count++]['termid'] = getNodeData(xmlterm.childNodes[j]);
 				}else
@@ -96,9 +102,9 @@ function doParseOntology(doc,otype){
 				this.rootptr = 0;
 				this.terms[0] = addTerm(id,name,relations,otype,definition);
 				this.termsidx[id] = 0;
-			}else{ 
-				if(this.rootptr==-1){ 
-					this.terms[0]= new Array();
+			}else{
+                if (this.rootptr == -1) {
+                    this.terms[0] = [];
 					this.terms[this.nterms] = addTerm(id,name,relations,otype,definition);
 					this.rootptr = 0;
 				}else{
@@ -119,7 +125,7 @@ function doParseOntology(doc,otype){
  * @param definition Description of the term to show in the system information when the node is selected.
  */
 function addTerm(id,name,relations,otype,definition){
-	term = new Array(); 
+    term = [];
 	term['dataContainer'] = id;
 	term['caption'] = name;
 	term['visible'] = false;
@@ -201,14 +207,14 @@ doParseOntology.prototype.genTreeData = function(otype){
 		termO['isOpen'] = true;
 		termO['isChecked'] = 2;
 		if(other['children']==null){
-			other['children'] = new Array();
+            other['children'] = [];
 			other['children'][0] = termO;
 		}else{
 			other['children'][other['children'].length] = termO;
 		}
 	}
 	this.terms[this.terms.length] = other;
-}
+};
 
 /**
 * family reunion: connects a child with its parent term
@@ -221,7 +227,7 @@ doParseOntology.prototype.genTreeData = function(otype){
  */
 function parent(p,child){
 	if(p['children']==null){
-		p['children'] = new Array();
+        p['children'] = [];
 		p['children'][0] = child;
 	}else{
 		p['children'][p['children'].length] = child;
@@ -238,15 +244,14 @@ function parent(p,child){
  * @param child this node and its ancestors will be tagged as vissible 
  */
 function setAncestorsVisible(child){
-	nodeLoop: 
-	for(var i=0;i<collapsedOntologyTypeTerms.length;i++){
-		if(child['caption'] == collapsedOntologyTypeTerms[i]){
-			child['isOpen'] = false;
-			break nodeLoop;
-		} else {
-			child['isOpen'] = true;
-		}
-	}
+    for (var i = 0; i < collapsedOntologyTypeTerms.length; i++) {
+        if (child['caption'] == collapsedOntologyTypeTerms[i]) {
+            child['isOpen'] = false;
+            break;
+        } else {
+            child['isOpen'] = true;
+        }
+    }
 
 	child['visible'] = true;
 	child['isChecked'] = 2;
@@ -326,7 +331,7 @@ doParseOntology.prototype.showOntologyTree = function(ontoType){
 		category_tree.initByArray(this.terms);
 		category_tree.drawInto('display_maniputation_options3_category_div');
 	}
-}
+};
 
 /**
  * Load the xml ontology file from the server (This is the only ajax call out of request_xml.js)

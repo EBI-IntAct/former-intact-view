@@ -27,7 +27,8 @@
 
 // for documentation see www.jmol.org/jslibrary
 
-try{if(typeof(_jmol)!="undefined")exit()
+try {
+    if (typeof(_jmol) != "undefined")exit();
 
 // place "?NOAPPLET" on your command line to check applet control action with a textarea
 
@@ -56,9 +57,9 @@ try{if(typeof(_jmol)!="undefined")exit()
 // bh         -- jmolCommandInput()
 // bh         -- jmolSetTranslation(TF) -- forces translation even if there might be message callback issues
 // bh         -- minor fixes suggested by Angel
-	  	
-var defaultdir = "."
-var defaultjar = "JmolApplet.jar"
+
+    var defaultdir = ".";
+    var defaultjar = "JmolApplet.jar";
 
 var undefined; // for IE 5 ... wherein undefined is undefined
 
@@ -107,7 +108,7 @@ function jmolSetAppletColor(boxbgcolor, boxfgcolor, progresscolor) {
   _jmolInitCheck();
   _jmol.params.boxbgcolor = boxbgcolor;
   if (boxfgcolor)
-    _jmol.params.boxfgcolor = boxfgcolor
+      _jmol.params.boxfgcolor = boxfgcolor;
   else if (boxbgcolor == "white" || boxbgcolor == "#FFFFFF")
     _jmol.params.boxfgcolor = "black";
   else
@@ -165,16 +166,16 @@ function jmolCheckbox(scriptWhenChecked, scriptWhenUnchecked,
   }
   var indexChecked = _jmolAddScript(scriptWhenChecked);
   var indexUnchecked = _jmolAddScript(scriptWhenUnchecked);
-  var eospan = "</span>"
+    var eospan = "</span>";
   var t = "<span id=\"span_"+id+"\""+(title ? " title =\"" + title + "\"":"")+"><input type='checkbox' name='" + id + "' id='" + id +
           "' onClick='_jmolCbClick(this," +
           indexChecked + "," + indexUnchecked + _jmol.targetText +
           ")' onMouseover='_jmolCbOver(this," + indexChecked + "," +
           indexUnchecked +
           ");return true' onMouseout='_jmolMouseOut()' " +
-	  (isChecked ? "checked " : "") + _jmol.checkboxCssText + "/>" 
+      (isChecked ? "checked " : "") + _jmol.checkboxCssText + "/>";
   if (labelHtml.toLowerCase().indexOf("<td>")>=0) {
-	t += eospan
+      t += eospan;
 	eospan = "";
   }
   t += labelHtml +eospan;
@@ -219,7 +220,7 @@ function jmolRadioGroup(arrayOfRadioButtons, separatorHtml, groupName, id, title
       t += _jmolRadio(radio, null, null, separatorHtml, groupName, (id ? id : groupName)+"_"+i, title);
     }
   }
-  t+="</span>"
+    t += "</span>";
   if (_jmol.debugAlert)
     alert(t);
   return _jmolDocumentWrite(t);
@@ -361,20 +362,20 @@ function jmolScript(script, targetSuffix) {
 }
 
 function jmolLoadInline(model, targetSuffix) {
-  if (!model)return
+    if (!model)return;
   var applet=_jmolGetApplet(targetSuffix);
   if (applet)applet.loadInline(model);
 }
 
 function jmolLoadInlineScript(model, script, targetSuffix) {
-  if (!model)return
+    if (!model)return;
   var applet=_jmolGetApplet(targetSuffix);
   if (applet)applet.loadInline(model, script);
 }
 
 function jmolLoadInlineArray(ModelArray, script, targetSuffix) {
-  if (!model)return
-  if (!script)script=""
+    if (!model)return;
+    if (!script)script = "";
   var applet=_jmolGetApplet(targetSuffix);
   if (applet)applet.loadInlineArray(ModelArray, script);
 }
@@ -525,7 +526,7 @@ var _jmol = {
 
   previousOnloadHandler: null,
   ready: {}
-}
+};
 
 with (_jmol) {
 
@@ -679,10 +680,10 @@ function _jmolApplet(size, inlineModel, script, nameSuffix) {
     }
     var visitJava;
     if (isIEWin || useHtml4Object) {
-		var szX = "width:" + sz[0]
-		if ( szX.indexOf("%")==-1 ) szX+="px" 
-		var szY = "height:" + sz[1]
-		if ( szY.indexOf("%")==-1 ) szY+="px" 
+        var szX = "width:" + sz[0];
+        if (szX.indexOf("%") == -1) szX += "px";
+        var szY = "height:" + sz[1];
+        if (szY.indexOf("%") == -1) szY += "px";
       visitJava =
         "<p style='background-color:yellow; color:black; " +
 		szX + ";" + szY + ";" +
@@ -797,7 +798,7 @@ function _jmolSterilizeInline(model) {
 		2048 standard for GeoWall (http://geowall.geo.lsa.umich.edu/home.html)
 	*/
 
-if (allowedJmolSize==undefined) var allowedJmolSize = [25, 2048, 300]   // min, max, default (pixels)
+    if (allowedJmolSize == undefined) var allowedJmolSize = [25, 2048, 300];   // min, max, default (pixels)
 function _jmolGetAppletSize(size) {
 	/*  AngelH, mar2007
 		Accepts single number or 2-value array, each one can be either:
@@ -837,14 +838,14 @@ function _jmolRadio(script, labelHtml, isChecked, separatorHtml, groupName, id, 
   if (! separatorHtml)
     separatorHtml = "";
   var scriptIndex = _jmolAddScript(script);
-  var eospan = "</span>"
+    var eospan = "</span>";
   var t = "<span id=\"span_"+id+"\""+(title ? " title =\"" + title + "\"":"")+"><input name='" 
 	+ groupName + "' id='"+id+"' type='radio' onClick='_jmolClick(" +
          scriptIndex + _jmol.targetText + ");return true;' onMouseover='_jmolMouseOver(" +
          scriptIndex + ");return true;' onMouseout='_jmolMouseOut()' " +
-	 (isChecked ? "checked " : "") + _jmol.radioCssText + "/>"
+      (isChecked ? "checked " : "") + _jmol.radioCssText + "/>";
   if (labelHtml.toLowerCase().indexOf("<td>")>=0) {
-	t += eospan
+      t += eospan;
 	eospan = "";
   }
   t += labelHtml +eospan + separatorHtml;
@@ -866,7 +867,7 @@ function _jmolFindApplet(target) {
 function _jmolGetApplet(targetSuffix){
  var target = "jmolApplet" + (targetSuffix ? targetSuffix : "0");
  var applet = _jmolFindApplet(target);
- if (applet) return applet
+    if (applet) return applet;
  if(!_jmol.alerted)alert("could not find applet " + target);
  _jmol.alerted = true;
  return null
@@ -929,17 +930,17 @@ function _jmolMenuSelected(menuObject, targetSuffix) {
 }
 
 
-_jmol.checkboxMasters = new Array();
-_jmol.checkboxItems = new Array();
+    _jmol.checkboxMasters = [];
+    _jmol.checkboxItems = [];
 
 function jmolSetCheckboxGroup(chkMaster,chkBox) {
 	var id = chkMaster;
 	if(typeof(id)=="number")id = "jmolCheckbox" + id;
 	chkMaster = document.getElementById(id);
 	if (!chkMaster)alert("jmolSetCheckboxGroup: master checkbox not found: " + id);
-	var m = _jmol.checkboxMasters[id] = new Array();
+    var m = _jmol.checkboxMasters[id] = [];
 	m.chkMaster = chkMaster;
-	m.chkGroup = new Array();
+    m.chkGroup = [];
 	for (var i = 1; i < arguments.length; i++){
 		var id = arguments[i];
 		if(typeof(id)=="number")id = "jmolCheckbox" + id;
@@ -969,7 +970,7 @@ function _jmolNotifyMaster(m){
 function _jmolNotifyGroup(m, isOn){
 	//called when a master item is checked
 	for (var chkBox in m.chkGroup){
-		var item = m.chkGroup[chkBox]
+        var item = m.chkGroup[chkBox];
 		item.checked = isOn;
 		if (_jmol.checkboxMasters[item.id])
 			_jmolNotifyGroup(_jmol.checkboxMasters[item.id], isOn)
@@ -979,7 +980,7 @@ function _jmolNotifyGroup(m, isOn){
 function _jmolCbClick(ckbox, whenChecked, whenUnchecked, targetSuffix) {
   _jmolClick(ckbox.checked ? whenChecked : whenUnchecked, targetSuffix);
   if(_jmol.checkboxMasters[ckbox.id])
-	_jmolNotifyGroup(_jmol.checkboxMasters[ckbox.id], ckbox.checked)
+      _jmolNotifyGroup(_jmol.checkboxMasters[ckbox.id], ckbox.checked);
   if(_jmol.checkboxItems[ckbox.id])
 	_jmolNotifyMaster(_jmol.checkboxItems[ckbox.id])
 }
@@ -1025,28 +1026,28 @@ function _jmolOnloadResetForms() {
 
 
 function _jmolEvalJSON(s,key){
- s=s+""
- if(!s)return []
+    s = s + "";
+    if (!s)return [];
  if(s.charAt(0)!="{"){
-	if(s.indexOf(" | ")>=0)s=s.replace(/\ \|\ /g, "\n")
+     if (s.indexOf(" | ") >= 0)s = s.replace(/\ \|\ /g, "\n");
 	return s
  }
- var A = eval("("+s+")")
- if(!A)return
- if(key && A[key])A=A[key]
+    var A = eval("(" + s + ")");
+    if (!A)return;
+    if (key && A[key])A = A[key];
  return A
 }
 
 function _jmolEnumerateObject(A,key){
- var sout=""
+    var sout = "";
  if(typeof(A) == "string" && A!="null"){
 	sout+="\n"+key+"=\""+A+"\""
  }else if(!isNaN(A)||A==null){
 	sout+="\n"+key+"="+(A+""==""?"null":A)
  }else if(A.length){
-    sout+=key+"=new Array()"
+     sout += key + "=new Array()";
     for(var i=0;i<A.length;i++){
-	sout+="\n"
+        sout += "\n";
 	if(typeof(A[i]) == "object"||typeof(A[i]) == "array"){
 		sout+=_jmolEnumerateObject(A[i],key+"["+i+"]")
 	}else{
@@ -1055,12 +1056,12 @@ function _jmolEnumerateObject(A,key){
     }
  }else{
     if(key != ""){
-	sout+=key+"=new Array()"
+        sout += key + "=new Array()";
 	key+="."
     }
     
     for(var i in A){
-	sout+="\n"
+        sout += "\n";
 	if(typeof(A[i]) == "object"||typeof(A[i]) == "array"){
 		sout+=_jmolEnumerateObject(A[i],key+i)
 	}else{
@@ -1077,11 +1078,11 @@ function _jmolSortKey0(a,b){
 }
 
 function _jmolSortMessages(A){
- if(!A || typeof(A)!="object")return []
- var B = new Array()
+    if (!A || typeof(A) != "object")return [];
+    var B = [];
  for(var i=A.length-1;i>=0;i--)for(var j=0;j<A[i].length;j++)B[B.length]=A[i][j]
- if(B.length == 0) return
- B=B.sort(_jmolSortKey0)
+    if (B.length == 0) return;
+    B = B.sort(_jmolSortKey0);
  return B
 }
 
@@ -1090,30 +1091,30 @@ function _jmolSortMessages(A){
 
 function _jmolDomScriptLoad(URL){
  //open(URL) //to debug
- _jmol.servercall=URL
- var node = document.getElementById("_jmolScriptNode")
+    _jmol.servercall = URL;
+    var node = document.getElementById("_jmolScriptNode");
  if (node && _jmol.browser!="msie"){
-    document.getElementsByTagName("HEAD")[0].removeChild(node)
+     document.getElementsByTagName("HEAD")[0].removeChild(node);
     node=null
  }
  if (node) {
    node.setAttribute("src",URL)
  } else {
-   node=document.createElement("script")
-   node.setAttribute("id","_jmolScriptNode")
-   node.setAttribute("type","text/javascript")
-   node.setAttribute("src",URL)
+     node = document.createElement("script");
+     node.setAttribute("id", "_jmolScriptNode");
+     node.setAttribute("type", "text/javascript");
+     node.setAttribute("src", URL);
    document.getElementsByTagName("HEAD")[0].appendChild(node)
  }
 }
 
 
 function _jmolExtractPostData(url){
- S=url.split("&POST:")
- var s=""
+    S = url.split("&POST:");
+    var s = "";
  for(var i=1;i<S.length;i++){
-	KV=S[i].split("=")
-	s+="&POSTKEY"+i+"="+KV[0]
+     KV = S[i].split("=");
+     s += "&POSTKEY" + i + "=" + KV[0];
 	s+="&POSTVALUE"+i+"="+KV[1]
  }
  return "&url="+escape(S[0])+s
@@ -1122,8 +1123,8 @@ function _jmolExtractPostData(url){
 function _jmolLoadModel(targetSuffix,remoteURL,array,isError,errorMessage){
  //called by server, but in client
  //overload this function to customize return
- _jmol.remoteURL=remoteURL
- if(isError)alert(errorMessage)
+    _jmol.remoteURL = remoteURL;
+    if (isError)alert(errorMessage);
  jmolLoadInlineScript(array.join("\n"),_jmol.optionalscript,targetSuffix)
 }
 
@@ -1139,12 +1140,12 @@ function jmolGetPropertyAsArray(sKey,sValue,targetSuffix) {
 
 function jmolGetPropertyAsString(sKey,sValue,targetSuffix) {
  var applet = _jmolGetApplet(targetSuffix);
- if(!sValue)sValue=""
+    if (!sValue)sValue = "";
  return (applet ? applet.getPropertyAsString(sKey,sValue) + "" : "")
 }
 
 function jmolGetPropertyAsJSON(sKey,sValue,targetSuffix) {
- if(!sValue)sValue = ""
+    if (!sValue)sValue = "";
  var applet = _jmolGetApplet(targetSuffix);
  try {
   return (applet ? applet.getPropertyAsJSON(sKey,sValue) + "" : "")
@@ -1154,7 +1155,7 @@ function jmolGetPropertyAsJSON(sKey,sValue,targetSuffix) {
 }
 
 function jmolGetPropertyAsJavaObject(sKey,sValue,targetSuffix) {
- if(!sValue)sValue = ""
+    if (!sValue)sValue = "";
  var applet = _jmolGetApplet(targetSuffix);
  return (applet ? applet.getProperty(sKey,sValue) : null)
 }
@@ -1168,9 +1169,9 @@ function jmolDecodeJSON(s) {
 ///////// synchronous scripting ////////
 
 function jmolScriptWait(script, targetSuffix) {
-  if(!targetSuffix)targetSuffix="0"
-  var Ret=jmolScriptWaitAsArray(script, targetSuffix)
-  var s = ""
+    if (!targetSuffix)targetSuffix = "0";
+    var Ret = jmolScriptWaitAsArray(script, targetSuffix);
+    var s = "";
   for(i=Ret.length;--i>=0;)
   for(j=0;j< Ret[i].length;j++)
 	s+=Ret[i][j]+"\n"
@@ -1181,48 +1182,48 @@ function jmolEvaluate(molecularMath, targetSuffix) {
 
   //carries out molecular math on a model
 
-  if(!targetSuffix)targetSuffix="0"
+    if (!targetSuffix)targetSuffix = "0";
   var result = "" + jmolGetPropertyAsJavaObject("evaluate", molecularMath, targetSuffix);
-  var s = result.replace(/\-*\d+/,"")
+    var s = result.replace(/\-*\d+/, "");
   if (s == "" && !isNaN(parseInt(result)))return parseInt(result);
-  var s = result.replace(/\-*\d*\.\d*/,"")
+    var s = result.replace(/\-*\d*\.\d*/, "");
   if (s == "" && !isNaN(parseFloat(result)))return parseFloat(result);
   return result;
 }
 
 function jmolScriptEcho(script, targetSuffix) {
   // returns a newline-separated list of all echos from a script
-  if(!targetSuffix)targetSuffix="0"
-  var Ret=jmolScriptWaitAsArray(script, targetSuffix)
-  var s = ""
+    if (!targetSuffix)targetSuffix = "0";
+    var Ret = jmolScriptWaitAsArray(script, targetSuffix);
+    var s = "";
   for(i=Ret.length;--i>=0;)
   for(j=Ret[i].length;--j>=0;)
-        if (Ret[i][j][1] == "scriptEcho")s+=Ret[i][j][3]+"\n"
+      if (Ret[i][j][1] == "scriptEcho")s += Ret[i][j][3] + "\n";
   return s.replace(/ \| /g, "\n")
 }
 
 
 function jmolScriptMessage(script, targetSuffix) {
   // returns a newline-separated list of all messages from a script, ending with "script completed\n"
-  if(!targetSuffix)targetSuffix="0"
-  var Ret=jmolScriptWaitAsArray(script, targetSuffix)
-  var s = ""
+    if (!targetSuffix)targetSuffix = "0";
+    var Ret = jmolScriptWaitAsArray(script, targetSuffix);
+    var s = "";
   for(i=Ret.length;--i>=0;)
   for(j=Ret[i].length;--j>=0;)
-        if (Ret[i][j][1] == "scriptStatus")s+=Ret[i][j][3]+"\n"
+      if (Ret[i][j][1] == "scriptStatus")s += Ret[i][j][3] + "\n";
   return s.replace(/ \| /g, "\n")
 }
 
 
 function jmolScriptWaitAsArray(script, targetSuffix) {
- var ret = ""
+    var ret = "";
  try{
-  jmolGetStatus("scriptEcho,scriptMessage,scriptStatus,scriptError",targetSuffix)
+     jmolGetStatus("scriptEcho,scriptMessage,scriptStatus,scriptError", targetSuffix);
   if (script) {
     _jmolCheckBrowser();
     var applet=_jmolGetApplet(targetSuffix);
     if (applet) ret += applet.scriptWait(script);
-    ret = _jmolEvalJSON(ret,"jmolStatus")
+      ret = _jmolEvalJSON(ret, "jmolStatus");
     if(typeof ret == "object")
 	return ret
   }
@@ -1235,25 +1236,25 @@ function jmolScriptWaitAsArray(script, targetSuffix) {
 
 ////////////   save/restore orientation   /////////////
 
-function jmolSaveOrientation(id, targetSuffix) {  
- if(!targetSuffix)targetSuffix="0"
+    function jmolSaveOrientation(id, targetSuffix) {
+        if (!targetSuffix)targetSuffix = "0";
   return _jmol["savedOrientation"+id] = jmolGetPropertyAsArray("orientationInfo","info",targetSuffix).moveTo
 }
 
 function jmolRestoreOrientation(id, targetSuffix) {
- if(!targetSuffix)targetSuffix="0"
- var s=_jmol["savedOrientation"+id]
- if (!s || s == "")return
- s=s.replace(/1\.0/,"0")
+    if (!targetSuffix)targetSuffix = "0";
+    var s = _jmol["savedOrientation" + id];
+    if (!s || s == "")return;
+    s = s.replace(/1\.0/, "0");
  return jmolScriptWait(s,targetSuffix)
 }
 
 function jmolRestoreOrientationDelayed(id, delay, targetSuffix) {
  if(arguments.length < 2)delay=1;
- if(!targetSuffix)targetSuffix="0"
- var s=_jmol["savedOrientation"+id]
- if (!s || s == "")return
- s=s.replace(/1\.0/,delay)
+    if (!targetSuffix)targetSuffix = "0";
+    var s = _jmol["savedOrientation" + id];
+    if (!s || s == "")return;
+    s = s.replace(/1\.0/, delay);
  return jmolScriptWait(s,targetSuffix)
 }
 
@@ -1270,7 +1271,7 @@ function jmolRestoreOrientationDelayed(id, delay, targetSuffix) {
  */
 
 function jmolAppletAddParam(appletCode,name,value){
-  if(value == "")return appletCode
+    if (value == "")return appletCode;
   return appletCode.replace(/\<param/,"\n<param name='"+name+"' value='"+value+"' />\n<param")
 }
 
@@ -1278,41 +1279,41 @@ function jmolAppletAddParam(appletCode,name,value){
 
 function jmolLoadAjax_STOLAF_RCSB(fileformat,pdbid,optionalscript,targetSuffix){
 
- if(!_jmol.thismodel)_jmol.thismodel = "1crn"
- if(!_jmol.serverURL)_jmol.serverURL="http://fusion.stolaf.edu/chemistry/jmol/getajaxjs.cfm"
- if(!_jmol.RCSBserver)_jmol.RCSBserver="http://www.rcsb.org"
- if(!_jmol.defaultURL_RCSB)_jmol.defaultURL_RCSB=_jmol.RCSBserver+"/pdb/files/1CRN.CIF"
- if(!fileformat)fileformat="PDB"
- if(!pdbid)pdbid=prompt("Enter a 4-digit PDB ID:",_jmol.thismodel)
- if(!pdbid || pdbid.length != 4)return ""
- if(!targetSuffix)targetSuffix="0"
- if(!optionalscript)optionalscript=""
- var url=_jmol.defaultURL_RCSB.replace(/1CRN/g,pdbid.toUpperCase())
- if(fileformat!="CIF")url=url.replace(/CIF/,fileformat)
- _jmol.optionalscript=optionalscript
- _jmol.thismodel=pdbid
- _jmol.thistargetsuffix=targetSuffix
- _jmol.thisurl=url
- _jmol.modelArray = new Array()
- url=_jmol.serverURL+"?returnfunction=_jmolLoadModel&returnArray=_jmol.modelArray&id="+targetSuffix+_jmolExtractPostData(url)
- _jmolDomScriptLoad(url)
+    if (!_jmol.thismodel)_jmol.thismodel = "1crn";
+    if (!_jmol.serverURL)_jmol.serverURL = "http://fusion.stolaf.edu/chemistry/jmol/getajaxjs.cfm";
+    if (!_jmol.RCSBserver)_jmol.RCSBserver = "http://www.rcsb.org";
+    if (!_jmol.defaultURL_RCSB)_jmol.defaultURL_RCSB = _jmol.RCSBserver + "/pdb/files/1CRN.CIF";
+    if (!fileformat)fileformat = "PDB";
+    if (!pdbid)pdbid = prompt("Enter a 4-digit PDB ID:", _jmol.thismodel);
+    if (!pdbid || pdbid.length != 4)return "";
+    if (!targetSuffix)targetSuffix = "0";
+    if (!optionalscript)optionalscript = "";
+    var url = _jmol.defaultURL_RCSB.replace(/1CRN/g, pdbid.toUpperCase());
+    if (fileformat != "CIF")url = url.replace(/CIF/, fileformat);
+    _jmol.optionalscript = optionalscript;
+    _jmol.thismodel = pdbid;
+    _jmol.thistargetsuffix = targetSuffix;
+    _jmol.thisurl = url;
+    _jmol.modelArray = [];
+    url = _jmol.serverURL + "?returnfunction=_jmolLoadModel&returnArray=_jmol.modelArray&id=" + targetSuffix + _jmolExtractPostData(url);
+    _jmolDomScriptLoad(url);
  return url
 }
 
 /////////////// St. Olaf College AJAX server -- ANY URL ///////////
 
 function jmolLoadAjax_STOLAF_ANY(url, userid, optionalscript,targetSuffix){
- _jmol.serverURL="http://fusion.stolaf.edu/chemistry/jmol/getajaxjs.cfm"
- if(!_jmol.thisurlANY)_jmol.thisurlANY = "http://www.stolaf.edu/depts/chemistry/mo/struc/data/ycp3-1.mol"
- if(!url)url=prompt("Enter any (uncompressed file) URL:", _jmol.thisurlANY)
- if(!userid)userid="0"
- if(!targetSuffix)targetSuffix="0"
- if(!optionalscript)optionalscript=""
- _jmol.optionalscript=optionalscript
- _jmol.thistargetsuffix=targetSuffix
- _jmol.modelArray = new Array()
- _jmol.thisurl = url
- url=_jmol.serverURL+"?returnfunction=_jmolLoadModel&returnArray=_jmol.modelArray&id="+targetSuffix+_jmolExtractPostData(url)
+    _jmol.serverURL = "http://fusion.stolaf.edu/chemistry/jmol/getajaxjs.cfm";
+    if (!_jmol.thisurlANY)_jmol.thisurlANY = "http://www.stolaf.edu/depts/chemistry/mo/struc/data/ycp3-1.mol";
+    if (!url)url = prompt("Enter any (uncompressed file) URL:", _jmol.thisurlANY);
+    if (!userid)userid = "0";
+    if (!targetSuffix)targetSuffix = "0";
+    if (!optionalscript)optionalscript = "";
+    _jmol.optionalscript = optionalscript;
+    _jmol.thistargetsuffix = targetSuffix;
+    _jmol.modelArray = [];
+    _jmol.thisurl = url;
+    url = _jmol.serverURL + "?returnfunction=_jmolLoadModel&returnArray=_jmol.modelArray&id=" + targetSuffix + _jmolExtractPostData(url);
  _jmolDomScriptLoad(url)
 }
 
@@ -1321,40 +1322,40 @@ function jmolLoadAjax_STOLAF_ANY(url, userid, optionalscript,targetSuffix){
 
 function jmolLoadAjax_MSA(key,value,optionalscript,targetSuffix){
 
- if(!_jmol.thiskeyMSA)_jmol.thiskeyMSA = "mineral"
- if(!_jmol.thismodelMSA)_jmol.thismodelMSA = "quartz"
- if(!_jmol.ajaxURL_MSA)_jmol.ajaxURL_MSA="http://rruff.geo.arizona.edu/AMS/result.php?mineral=quartz&viewing=ajaxjs"
- if(!key)key=prompt("Enter a field:", _jmol.thiskeyMSA)
- if(!key)return ""
- if(!value)value=prompt("Enter a "+key+":", _jmol.thismodelMSA)
- if(!value)return ""
- if(!targetSuffix)targetSuffix="0"
- if(!optionalscript)optionalscript=""
- if(optionalscript == 1)optionalscript='load "" {1 1 1}'
- var url=_jmol.ajaxURL_MSA.replace(/mineral/g,key).replace(/quartz/g,value)
- _jmol.optionalscript=optionalscript
- _jmol.thiskeyMSA=key
- _jmol.thismodelMSA=value
- _jmol.thistargetsuffix=targetSuffix
- _jmol.thisurl=url
- _jmol.modelArray = new Array()
- loadModel=_jmolLoadModel
- _jmolDomScriptLoad(url)
+    if (!_jmol.thiskeyMSA)_jmol.thiskeyMSA = "mineral";
+    if (!_jmol.thismodelMSA)_jmol.thismodelMSA = "quartz";
+    if (!_jmol.ajaxURL_MSA)_jmol.ajaxURL_MSA = "http://rruff.geo.arizona.edu/AMS/result.php?mineral=quartz&viewing=ajaxjs";
+    if (!key)key = prompt("Enter a field:", _jmol.thiskeyMSA);
+    if (!key)return "";
+    if (!value)value = prompt("Enter a " + key + ":", _jmol.thismodelMSA);
+    if (!value)return "";
+    if (!targetSuffix)targetSuffix = "0";
+    if (!optionalscript)optionalscript = "";
+    if (optionalscript == 1)optionalscript = 'load "" {1 1 1}';
+    var url = _jmol.ajaxURL_MSA.replace(/mineral/g, key).replace(/quartz/g, value);
+    _jmol.optionalscript = optionalscript;
+    _jmol.thiskeyMSA = key;
+    _jmol.thismodelMSA = value;
+    _jmol.thistargetsuffix = targetSuffix;
+    _jmol.thisurl = url;
+    _jmol.modelArray = [];
+    loadModel = _jmolLoadModel;
+    _jmolDomScriptLoad(url);
  return url
 }
 
 
 
 function jmolLoadAjaxJS(url, userid, optionalscript,targetSuffix){
- if(!userid)userid="0"
- if(!targetSuffix)targetSuffix="0"
- if(!optionalscript)optionalscript=""
- _jmol.optionalscript=optionalscript
- _jmol.thismodel=userid
- _jmol.thistargetsuffix=targetSuffix
- _jmol.modelArray = new Array()
- _jmol.thisurl = url
- url+="&returnFunction=_jmolLoadModel&returnArray=_jmol.modelArray&id="+targetSuffix
+    if (!userid)userid = "0";
+    if (!targetSuffix)targetSuffix = "0";
+    if (!optionalscript)optionalscript = "";
+    _jmol.optionalscript = optionalscript;
+    _jmol.thismodel = userid;
+    _jmol.thistargetsuffix = targetSuffix;
+    _jmol.modelArray = [];
+    _jmol.thisurl = url;
+    url += "&returnFunction=_jmolLoadModel&returnArray=_jmol.modelArray&id=" + targetSuffix;
  _jmolDomScriptLoad(url)
 }
 
@@ -1389,11 +1390,13 @@ if(document.location.search.indexOf("NOAPPLET")>=0){
 		+"<td align=center valign=center style='background-color:white'>"
 		+"Applet would be here"
 		+"<p><textarea id=fakeApplet rows=5 cols=50></textarea>"
-		+"</td></tr></table>"
+            + "</td></tr></table>";
 		return _jmolDocumentWrite(s)
-	}
+    };
 
-	_jmolFindApplet = function(){return jmolApplet0}
+    _jmolFindApplet = function () {
+        return jmolApplet0
+    };
 
 	jmolApplet0 = {
 	 script: function(script){document.getElementById("fakeApplet").value="\njmolScript:\n"+script}
@@ -1412,8 +1415,8 @@ if(document.location.search.indexOf("NOAPPLET")>=0){
 //if either is greater than 1, then it is taken as a size. 
 function jmolResize(w,h) {
  _jmol.alerted = true;
- var percentW = (!w ? 100 : w <= 1  && w > 0 ? w * 100 : 0)
- var percentH = (!h ? percentW : h <= 1 && h > 0 ? h * 100 : 0)
+    var percentW = (!w ? 100 : w <= 1 && w > 0 ? w * 100 : 0);
+    var percentH = (!h ? percentW : h <= 1 && h > 0 ? h * 100 : 0);
  if (_jmol.browser=="msie") {
    var width=document.body.clientWidth;
    var height=document.body.clientHeight;
@@ -1424,8 +1427,8 @@ function jmolResize(w,h) {
  }
  var applet = _jmolGetApplet(0);
  if(!applet)return;
- applet.style.width = (percentW ? width * percentW/100 : w)+"px"
- applet.style.height = (percentH ? height * percentH/100 : h)+"px"
+    applet.style.width = (percentW ? width * percentW / 100 : w) + "px";
+    applet.style.height = (percentH ? height * percentH / 100 : h) + "px";
  title=width +  " " + height + " " + (new Date())
 }
 

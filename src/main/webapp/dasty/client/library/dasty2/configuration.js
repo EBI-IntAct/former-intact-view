@@ -313,7 +313,7 @@ function configuration()
 		}
 
 	/** Column index for non-positional panel --> [ name_column ] = index */
-	non_positional_features_columns_index = new Object();
+    non_positional_features_columns_index = {};
 	for ( var i = 0; i < non_positional_features_coulmns.length; i++)
 		non_positional_features_columns_index [ non_positional_features_coulmns[i] ] = i;
 

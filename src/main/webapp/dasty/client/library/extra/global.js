@@ -199,9 +199,9 @@ function hideRestoreIcon(asset_id) {
 	Element.hide('list_restore_icon_' + asset_id);
 }
 
-var trashHighlights = new Array();
-var listHighlights = new Array();
-var iconHighlights = new Array();
+var trashHighlights = [];
+var listHighlights = [];
+var iconHighlights = [];
 
 function waitToHighlight(what, asset_id) {
 	what[what.length] = asset_id;
@@ -245,10 +245,12 @@ function UpdateAmounts(plan, period) {
 	}
 
 	switch(period) {
-		case 'Monthly': var retval = "$" + amount + "/month"; break
+        case 'Monthly':
+            var retval = "$" + amount + "/month";
+            break;
 		case 'HalfYear': var retval = "$" + ((amount*6)-amount).toFixed(2); retval += "/half-year"; break 
-		case 'Yearly': var retval = "$" + ((amount*12)-(amount*2)).toFixed(2); retval += "/yearly"; break 
-	}
+		case 'Yearly': var retval = "$" + ((amount*12)-(amount*2)).toFixed(2); retval += "/yearly"; break
+    };;;
 
 	$('to_amount').innerHTML = retval;
 	new Effect.Shake('to_amount');

@@ -12,8 +12,12 @@
 * @author    Samuel Blume <sam at blueshoes dot org>
 * @author    Andrej Arn <andrej at blueshoes dot org>
 */
-if (!Bs_Objects) {var Bs_Objects = [];};function bs_radio_onClickLabel() {
-var srcElm = event.srcElement;if (typeof(srcElm.forValue) == 'undefined') {
+if (!Bs_Objects) {
+    var Bs_Objects = [];
+}
+function bs_radio_onClickLabel() {
+    var srcElm = event.srcElement;
+    if (typeof(srcElm.forValue) == 'undefined') {
 srcElm = srcElm.parentElement;if (typeof(srcElm.forValue) == 'undefined') {
 srcElm = srcElm.parentElement;if (typeof(srcElm.forValue) == 'undefined') {
 return;}
@@ -21,8 +25,30 @@ return;}
 }
 srcElm.bsRadioObj.onClick(srcElm.forValue);}
 function Bs_Radio() {
-this._objectId;this.options = new Object();this.value = null;this.disabled = false;this.guiNochange = false;this.allowNoSelection = false;this.radioFieldName;this.imgDir = '/_bsJavascript/components/radio/img/bobby/';this.imgType = 'gif';this.imgWidth  = '12';this.imgHeight = '12';this.captionAsTitleText = false;this.cssClass;this.cssStyle;this.useMouseover = false;this.pixelate = 0;this.invertActive = false;this.iconType = 'image';this._attachedEvents;this.constructor = function() {
-this._id = Bs_Objects.length;Bs_Objects[this._id] = this;this._objectId = "Bs_Radio_"+this._id;}
+    this._objectId;
+    this.options = {};
+    this.value = null;
+    this.disabled = false;
+    this.guiNochange = false;
+    this.allowNoSelection = false;
+    this.radioFieldName;
+    this.imgDir = '/_bsJavascript/components/radio/img/bobby/';
+    this.imgType = 'gif';
+    this.imgWidth = '12';
+    this.imgHeight = '12';
+    this.captionAsTitleText = false;
+    this.cssClass;
+    this.cssStyle;
+    this.useMouseover = false;
+    this.pixelate = 0;
+    this.invertActive = false;
+    this.iconType = 'image';
+    this._attachedEvents;
+    this.constructor = function () {
+        this._id = Bs_Objects.length;
+        Bs_Objects[this._id] = this;
+        this._objectId = "Bs_Radio_" + this._id;
+    };
 this.loadSkin = function(skinName) {
 switch (skinName) {
 case 'win2k':
@@ -36,11 +62,15 @@ this.imgDir         = '/_bsJavascript/components/radio/img/smoothstreak/';this.i
 case 'ximian_industrial':
 this.imgDir         = '/_bsJavascript/components/radio/img/ximian_industrial/';this.imgWidth       = 13;this.imgHeight      = 13;break;default:
 return false;}
-return true;}
+    return true;
+};
 this.initByField = function(fieldName) {
-this.radioFieldName = fieldName;this.options        = new Object;var elms = document.getElementsByName(fieldName);for (var i=0; i<elms.length; i++) {
+    this.radioFieldName = fieldName;
+    this.options = {};
+    var elms = document.getElementsByName(fieldName);
+    for (var i = 0; i < elms.length; i++) {
 var elm = elms[i];var activateable   = (elm.disabled) ? 'no' : 'yes';var deactivateable = (elm.disabled) ? 'no' : 'yes';this.addOption(elm.value, '', false, activateable, deactivateable);if (elm.checked) this.value = elm.value;}
-}
+};
 this.convertField = function(fieldName) {
 this.initByField(fieldName);var allLabels = document.getElementsByTagName('label');var elms = document.getElementsByName(fieldName);for (var i=elms.length; i>0; i--) {
 var elm = elms[i -1];var elmValue = elm.value;elm.outerHTML = this.render(elmValue);var forId = fieldName + '_' + elmValue;for (var j=0; j<allLabels.length; j++) {
@@ -48,18 +78,21 @@ if (allLabels[j]['htmlFor'] == forId) {
 allLabels[j].forValue   = elmValue;allLabels[j].bsRadioObj = this;allLabels[j].attachEvent('onclick', bs_radio_onClickLabel);break;}
 }
 }
-}
+};
 this.drawInto = function(value, tagId) {
 if (bs_isNull(value)) {
 var out = this.renderAsTable();} else {
 var out = this.render(value);}
 var tag = document.getElementById(tagId);if (tag != null) {
 tag.innerHTML = out;return true;}
-return false;}
+    return false;
+};
 this.draw = function(value) {
-document.write(this.render(value));}
+    document.write(this.render(value));
+};
 this.renderAsTable = function(direction, tableTag) {
-var ret = new Array();if (bs_isNull(tableTag)) {
+    var ret = [];
+    if (bs_isNull(tableTag)) {
 ret[ret.length] = '<table border="0">';} else {
 ret[ret.length] = tableTag;}
 if (direction == 'horizontal') {
@@ -69,9 +102,16 @@ ret[ret.length] = '</tr>';} else {
 for (var value in this.options) {
 ret[ret.length] = '<tr><td>' + this.render(value) + '</td></tr>';}
 }
-ret[ret.length] = '</table>';return ret.join('');}
+    ret[ret.length] = '</table>';
+    return ret.join('');
+};
 this.render = function(value) {
-if (typeof(this.options[value]) == 'undefined') return '';if (this.options[value]['hide']) return '';var out  = new Array();var outI = 0;var valueId = this._objectId + value;if (!bs_isNull(this.options[value]['furtherOptions']) && !bs_isNull(this.options[value]['furtherOptions']['captionAsTitleText'])) {
+    if (typeof(this.options[value]) == 'undefined') return '';
+    if (this.options[value]['hide']) return '';
+    var out = [];
+    var outI = 0;
+    var valueId = this._objectId + value;
+    if (!bs_isNull(this.options[value]['furtherOptions']) && !bs_isNull(this.options[value]['furtherOptions']['captionAsTitleText'])) {
 var captionAsTitleText = this.options[value]['furtherOptions']['captionAsTitleText'];} else {
 if (typeof(this.captionAsAltText) != 'undefined') {
 var captionAsTitleText = this.captionAsAltText;} else {
@@ -106,13 +146,27 @@ out[outI++] = '</span>';}
 if (typeof(this.radioFieldName) != 'undefined') {
 var radioFieldName = this.radioFieldName;} else {
 var radioFieldName = valueId + 'Field';this.radioFieldName = radioFieldName;}
-out[outI++] = '<input type="radio" name="' + radioFieldName + '" value="' + value + '" style="display:none; visibility:hidden;"';if (isSelected) out[outI++] = ' checked';out[outI++] = '>';return out.join('');}
+    out[outI++] = '<input type="radio" name="' + radioFieldName + '" value="' + value + '" style="display:none; visibility:hidden;"';
+    if (isSelected) out[outI++] = ' checked';
+    out[outI++] = '>';
+    return out.join('');
+};
 this.addOption = function(value, caption, hide, activateable, deactivateable, furtherOptions) {
-if (bs_isNull(hide))           hide             = false;if (bs_isNull(activateable))   activateable     = 'yes';if (bs_isNull(deactivateable)) deactivateable   = 'yes';value += '';this.options[value] = new Object;this.options[value]['caption']        = caption;this.options[value]['hide']           = hide;this.options[value]['activateable']   = activateable;this.options[value]['deactivateable'] = deactivateable;if (typeof(furtherOptions) == 'object') {
+    if (bs_isNull(hide))           hide = false;
+    if (bs_isNull(activateable))   activateable = 'yes';
+    if (bs_isNull(deactivateable)) deactivateable = 'yes';
+    value += '';
+    this.options[value] = {};
+    this.options[value]['caption'] = caption;
+    this.options[value]['hide'] = hide;
+    this.options[value]['activateable'] = activateable;
+    this.options[value]['deactivateable'] = deactivateable;
+    if (typeof(furtherOptions) == 'object') {
 this.options[value]['furtherOptions'] = furtherOptions;}
-}
+};
 this.getValue = function() {
-return this.value;}
+    return this.value;
+};
 this.onClick = function(value) {
 var newValueReal = value;if (this.value == value) {
 if (this.allowNoSelection) {
@@ -141,7 +195,10 @@ if (col[i].value == this.value) {
 col[i].checked = true;} else {
 col[i].checked = false;}
 }
-if (this.eventOnClick)  this._fireEvent(this.eventOnClick);if (this.eventOnChange) this._fireEvent(this.eventOnChange);if (this.hasEventAttached('onChange')) this.fireEvent('onChange');}
+    if (this.eventOnClick)  this._fireEvent(this.eventOnClick);
+    if (this.eventOnChange) this._fireEvent(this.eventOnChange);
+    if (this.hasEventAttached('onChange')) this.fireEvent('onChange');
+};
 this.onMouseOver = function(value) {
 if (this.useMouseover && (this.iconType == 'image')) {
 var img = document.getElementById(this._objectId  + value + 'Icon');if (!img.swapOver0) {
@@ -149,22 +206,24 @@ img.swapOver0 = new Image();img.swapOver0.src = this.imgDir + 'enabled_0_over.gi
 img.src = img['swapOver' + this.value].src;}
 if (this.pixelate > 0) {
 var img = document.getElementById(this._objectId  + value + 'Icon');img.style.filter = '';}
-}
+};
 this.onMouseOut = function(value) {
 if (this.useMouseover && (this.iconType == 'image')) {
 var img = document.getElementById(this._objectId  + value + 'Icon');img.src = img['swapOut' + this.value].src;}
 if ((this.pixelate > 0) && (this.value != value)) {
 var img = document.getElementById(this._objectId  + value + 'Icon');img.style.filter = 'progid:DXImageTransform.Microsoft.Pixelate(maxsquare=' + this.pixelate + ')';}
-}
+};
 this.attachEvent = function(trigger, yourEvent) {
 if (typeof(this._attachedEvents) == 'undefined') {
-this._attachedEvents = new Array();}
+    this._attachedEvents = [];
+}
 if (typeof(this._attachedEvents[trigger]) == 'undefined') {
 this._attachedEvents[trigger] = new Array(yourEvent);} else {
 this._attachedEvents[trigger][this._attachedEvents[trigger].length] = yourEvent;}
-}
+};
 this.hasEventAttached = function(trigger) {
-return (this._attachedEvents && this._attachedEvents[trigger]);}
+    return (this._attachedEvents && this._attachedEvents[trigger]);
+};
 this.fireEvent = function(trigger) {
 if (this._attachedEvents && this._attachedEvents[trigger]) {
 var e = this._attachedEvents[trigger];if ((typeof(e) == 'string') || (typeof(e) == 'function')) {
@@ -175,7 +234,7 @@ e[i](this);} else if (typeof(e[i]) == 'string') {
 eval(e[i]);}
 }
 }
-}
+};
 this._fireEvent = function(e) {
 if (e) {
 if (typeof(e) != 'array') {
@@ -186,9 +245,10 @@ e[i](this);} else if (typeof(e[i]) == 'string') {
 eval(e[i]);}
 }
 }
-}
+};
 this._getIconPrefix = function(value) {
 if (!bs_isNull(this.options[value]['furtherOptions']) && !bs_isNull(this.options[value]['furtherOptions']['iconPrefix'])) {
 return this.options[value]['furtherOptions']['iconPrefix'];}
-return '';}
+    return '';
+};
 this.constructor();}
