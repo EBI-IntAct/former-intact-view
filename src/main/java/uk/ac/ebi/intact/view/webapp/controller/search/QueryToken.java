@@ -158,13 +158,10 @@ public class QueryToken {
                         .replaceAll("\\)", "\\\\)")
                         .replaceAll("-", "\\\\-")
                         .replaceAll("\\+", "\\\\+"));
-            } else if (query.contains("(") ||
-                    query.contains(")") ||
-                    query.contains("-") ||
-                    query.contains("+")) {
+            } else if (query.contains("(") || query.contains(")")) {
                 queryString.append(query);
             } else {
-                queryString.append("\"" + query + "\"");
+                queryString.append("\"").append(query).append("\"");
             }
         } else if (query.contains("*")) {
             queryString.append(query.toLowerCase());
