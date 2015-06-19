@@ -1,9 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:jsp="http://java.sun.com/JSP/Page"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 
                 xmlns:iv="http://java.sun.com/jsf/composite/intactview">
 
@@ -11,7 +8,8 @@
     <h2>Help: Searches in #{intactView['webapp.name']}</h2>
 
     <h:panelGroup>
-        <h:outputText value="To do a search you can use the Molecular Interaction Query Language (MIQL), which is based on "/>
+        <h:outputText
+                value="To do a search you can use the Molecular Interaction Query Language (MIQL), which is based on "/>
 
         <h:outputLink value="http://lucene.apache.org/core/3_6_0/queryparsersyntax.html#Terms"
                       target="_blank">Lucene's syntax.</h:outputLink>
@@ -28,7 +26,9 @@
         <li>Search will recognize ontologies and synonyms.
             <ul>
                 <li><i>Eukaryota</i> will retrieve all children of <i>Eukaryota</i> using the Uniprot taxonomy</li>
-                <li><i>affinity techniques</i> will match <i>affinity technology</i> because it is affinity techniques is a synonym of affinity technology in the PSI-MI ontology</li>
+                <li><i>affinity techniques</i> will match
+                    <i>affinity technology</i> because it is affinity techniques is a synonym of affinity technology in the PSI-MI ontology
+                </li>
             </ul>
         </li>
         <li>Default fields are used when no field is specified (simple search) :
@@ -41,10 +41,11 @@
                 <li>Interaction detection method</li>
                 <li>Interactor xrefs (GO, uniprot secondary xrefs, ...)</li>
                 <li>Interaction xrefs (GO, ...)</li>
-            </ul>.
+            </ul>
+            .
             <br/>For instance, if you put
             <i>'P12345'</i> in the simple query box,
-            this will mean the same as <i>  identifier:P12345 OR pubid:P12345 OR pubauth:P12345 OR species:P12345
+            this will mean the same as <i> identifier:P12345 OR pubid:P12345 OR pubauth:P12345 OR species:P12345
                 OR type:P12345 OR detmethod:P12345 OR interaction_id:P12345</i></li>
         <li>Use OR or space ' ' to search for ANY of the terms in a field</li>
         <li>Use AND if you want to search for those interactions where ALL of your terms are found</li>
@@ -66,7 +67,8 @@
 
     <h2>MIQL fields</h2>
 
-    <h:outputText value="You can find more information about the Molecular Interactions Query Language (MIQL) defined for PSICQUIC "/>
+    <h:outputText
+            value="You can find more information about the Molecular Interactions Query Language (MIQL) defined for PSICQUIC "/>
     <h:outputLink value="http://code.google.com/p/psicquic/wiki/MiqlDefinition" target="_blank">Here</h:outputLink>
 
 
@@ -238,7 +240,8 @@
         <iv:queryLink value="source:mbinfo"/>
 
         <h:outputText value="intact-miscore"/>
-        <h:outputText value="IntAct MI Score (between 0 and 1), based on number of publications, detection methods and interaction types."/>
+        <h:outputText
+                value="IntAct MI Score (between 0 and 1), based on number of publications, detection methods and interaction types."/>
         <iv:queryLink value="intact-miscore:[0.5 TO 1.0]"/>
 
     </h:panelGrid>

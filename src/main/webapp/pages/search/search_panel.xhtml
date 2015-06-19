@@ -3,7 +3,6 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
                 xmlns:ot="http://myfaces.apache.org/orchestra">
 
     <p:panel style="width:100%">
@@ -57,95 +56,100 @@
 
 
             <h:panelGroup id="searchPanelDetails">
-            <p:panel visible="#{userQuery.showNewFieldPanel}">
+                <p:panel visible="#{userQuery.showNewFieldPanel}">
 
-                <!--<h:panelGroup>-->
+                    <!--<h:panelGroup>-->
 
-                <h:selectOneMenu id="chooseOperator" value="#{userQuery.newQueryToken.operandStr}"
-                                 disabled="#{userQuery.wildcardQuery}">
-                    <f:selectItem itemValue="AND" itemLabel="AND"/>
-                    <f:selectItem itemValue="OR" itemLabel="OR" itemDisabled="#{empty userQuery.searchQuery or
+                    <h:selectOneMenu id="chooseOperator" value="#{userQuery.newQueryToken.operandStr}"
+                                     disabled="#{userQuery.wildcardQuery}">
+                        <f:selectItem itemValue="AND" itemLabel="AND"/>
+                        <f:selectItem itemValue="OR" itemLabel="OR" itemDisabled="#{empty userQuery.searchQuery or
                                                                                     userQuery.searchQuery eq '*'}"/>
-                </h:selectOneMenu>
-                &#160;
-                <h:outputText value="NOT"/>
-                <h:selectBooleanCheckbox id="notQueryBox" title="NOT" value="#{userQuery.newQueryToken.notQuery}"/>
-
-                &#160;
-                <h:outputText value="Field: "/>
-                <h:selectOneMenu id="newQueryField" title="Field: " value="#{userQuery.newQueryToken.field}">
-                    <p:ajax event="change" update="newQueryPanel" process="@this"
-                            onstart="statusDialog.show()"
-                            oncomplete="statusDialog.hide()"/>
-                    <f:selectItems value="#{userQuery.searchFieldSelectItems}"/>
-                </h:selectOneMenu>
-
-                <h:panelGroup id="newQueryPanel">
-                    <h:inputText id="newQuerytxt" value="#{userQuery.newQueryToken.query}" columns="60"
-                                 rendered="#{not userQuery.searchFieldsMap[userQuery.newQueryToken.field].list}"/>
-
-                    <h:selectOneMenu id="selectFieldMap" value="#{userQuery.newQueryToken.query}"
-                                     rendered="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].list}">
-                        <f:selectItems value="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].selectItems}"/>
                     </h:selectOneMenu>
-
-                    <h:panelGroup rendered="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].ontologyBrowser}">
-                        <p:commandLink id="browseOntology"
-                                       actionListener="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].browser.initializeTreeNode}"
-                                       oncomplete="browseCvDialog.show()" ajax="true" update="newQueryPanel">
-                            <h:graphicImage id="browseOntologyImg" alt="Browse" url="/images/magnify.png" height="16px" width="16px"/>
-                        </p:commandLink>
-
-                        <p:dialog id="ontologyDialog"
-                                  header="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].displayName}"
-                                  widgetVar="browseCvDialog" fixedCenter="true"
-                                  width="800" height="600">
-                            <p>
-                                <b>Choose a term by clicking on its name. The identifier will be used as the value for the search.</b>
-                            </p>
-                            <br/>
-
-                            <p:tree id="ontologyTree" var="otw"
-                                    value="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].browser.ontologyTreeNode}"
-                                    selectionMode="single" selection="#{userQuery.selectedSearchTerm}"
-                                    dynamic="true" cache="true"
-                                    style="width:50%;">
-                                <p:ajax event="select"
-                                        listener="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].browser.doSelectCvTerm}"
-                                        oncomplete="browseCvDialog.hide(); statusDialog.hide()"
-                                        update=":intactForm:searchPanelDetails" onstart="statusDialog.show()" process="@this"/>
-
-                                <p:treeNode id="ontologyTreeNode">
-                                    <h:outputText id="termTxt" value="#{otw.term.name} - (#{otw.interactionCount} interactions)"/>
-                                </p:treeNode>
-                            </p:tree>
-
-                        </p:dialog>
-                    </h:panelGroup>
+                    &#160;
+                    <h:outputText value="NOT"/>
+                    <h:selectBooleanCheckbox id="notQueryBox" title="NOT" value="#{userQuery.newQueryToken.notQuery}"/>
 
                     &#160;
+                    <h:outputText value="Field: "/>
+                    <h:selectOneMenu id="newQueryField" title="Field: " value="#{userQuery.newQueryToken.field}">
+                        <p:ajax event="change" update="newQueryPanel" process="@this"
+                                onstart="statusDialog.show()"
+                                oncomplete="statusDialog.hide()"/>
+                        <f:selectItems value="#{userQuery.searchFieldSelectItems}"/>
+                    </h:selectOneMenu>
 
-                    <h:panelGroup style="display: inline-block">
+                    <h:panelGroup id="newQueryPanel">
+                        <h:inputText id="newQuerytxt" value="#{userQuery.newQueryToken.query}" columns="60"
+                                     rendered="#{not userQuery.searchFieldsMap[userQuery.newQueryToken.field].list}"/>
 
-                        <p:commandButton id="addAndSearchBtn" value="Add &amp; Search"
-                                         actionListener="#{userQuery.doAddFieldToQuery}"
-                                         action="#{searchBean.doBinarySearchAction}"
-                                         ajax="false" process="@this"
-                                         onstart="statusDialog.show()"
-                                         oncomplete="statusDialog.hide()"/>
-                        <p:commandButton id="cancelFieldBtn" value="Cancel"
-                                         process="@this"
-                                         actionListener="#{userQuery.doCancelAddField}"
-                                         update="searchPanel,searchPanelDetails"
-                                         onstart="statusDialog.show()"
-                                         oncomplete="statusDialog.hide()"
-                                         ajax="true"/>
+                        <h:selectOneMenu id="selectFieldMap" value="#{userQuery.newQueryToken.query}"
+                                         rendered="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].list}">
+                            <f:selectItems
+                                    value="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].selectItems}"/>
+                        </h:selectOneMenu>
+
+                        <h:panelGroup
+                                rendered="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].ontologyBrowser}">
+                            <p:commandLink id="browseOntology"
+                                           actionListener="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].browser.initializeTreeNode}"
+                                           oncomplete="browseCvDialog.show()" ajax="true" update="newQueryPanel">
+                                <h:graphicImage id="browseOntologyImg" alt="Browse" url="/images/magnify.png"
+                                                height="16px" width="16px"/>
+                            </p:commandLink>
+
+                            <p:dialog id="ontologyDialog"
+                                      header="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].displayName}"
+                                      widgetVar="browseCvDialog" fixedCenter="true"
+                                      width="800" height="600">
+                                <p>
+                                    <b>Choose a term by clicking on its name. The identifier will be used as the value for the search.</b>
+                                </p>
+                                <br/>
+
+                                <p:tree id="ontologyTree" var="otw"
+                                        value="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].browser.ontologyTreeNode}"
+                                        selectionMode="single" selection="#{userQuery.selectedSearchTerm}"
+                                        dynamic="true" cache="true"
+                                        style="width:50%;">
+                                    <p:ajax event="select"
+                                            listener="#{userQuery.searchFieldsMap[userQuery.newQueryToken.field].browser.doSelectCvTerm}"
+                                            oncomplete="browseCvDialog.hide(); statusDialog.hide()"
+                                            update=":intactForm:searchPanelDetails" onstart="statusDialog.show()"
+                                            process="@this"/>
+
+                                    <p:treeNode id="ontologyTreeNode">
+                                        <h:outputText id="termTxt"
+                                                      value="#{otw.term.name} - (#{otw.interactionCount} interactions)"/>
+                                    </p:treeNode>
+                                </p:tree>
+
+                            </p:dialog>
+                        </h:panelGroup>
+
+                        &#160;
+
+                        <h:panelGroup style="display: inline-block">
+
+                            <p:commandButton id="addAndSearchBtn" value="Add &amp; Search"
+                                             actionListener="#{userQuery.doAddFieldToQuery}"
+                                             action="#{searchBean.doBinarySearchAction}"
+                                             ajax="false" process="@this"
+                                             onstart="statusDialog.show()"
+                                             oncomplete="statusDialog.hide()"/>
+                            <p:commandButton id="cancelFieldBtn" value="Cancel"
+                                             process="@this"
+                                             actionListener="#{userQuery.doCancelAddField}"
+                                             update="searchPanel,searchPanelDetails"
+                                             onstart="statusDialog.show()"
+                                             oncomplete="statusDialog.hide()"
+                                             ajax="true"/>
+
+                        </h:panelGroup>
 
                     </h:panelGroup>
-
-                </h:panelGroup>
-            </p:panel>
-           </h:panelGroup>
+                </p:panel>
+            </h:panelGroup>
         </fieldset>
 
         <h:panelGroup id="searchTips">
