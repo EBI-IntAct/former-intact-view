@@ -120,8 +120,7 @@ public class QueryToken {
         queryString.append((field != null ? field + ":" : ""));
 
         // close any opened parenthesis in field name. For instance : interaction_id:"GO
-        if (field.contains("\"")) {
-
+        if (field != null && field.contains("\"")) {
             queryString.append(query).append("\"");
         } else {
             escapeIfNecessary(query, queryString);
