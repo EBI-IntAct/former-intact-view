@@ -35,9 +35,7 @@ function bs_arrayMerge(obj1, obj2) {
 if (!bs_isObject(obj1) || !bs_isObject(obj2)) return false;for (var key in obj2) {obj1[key] = obj2[key];}
 return obj1;}
 function bs_arrayFlip(aArray) {
-    var aHash = {};
-    type = bs_typeOf(aArray);
-    if (type == 'array') {
+var aHash = new Object();type = bs_typeOf(aArray);if (type == 'array') {
 for (var i=0; i<aArray.length; i++) {
 aHash[aArray[i]] = true;}
 } else if (type == 'string') {
@@ -48,12 +46,7 @@ return aHash;}
 function queryStringToHash(queryString) {
 if (typeof(queryString) == 'undefined') {
 var queryString = window.location.search;}
-    var ret = [];
-    if (bs_isEmpty(queryString)) return ret;
-    queryString = queryString.substr(1);
-    if (bs_isEmpty(queryString)) return ret;
-    var junks = queryString.split('&');
-    for (var i = 0; i < junks.length; i++) {
+var ret = new Array;if (bs_isEmpty(queryString)) return ret;queryString = queryString.substr(1);if (bs_isEmpty(queryString)) return ret;var junks = queryString.split('&');for (var i=0; i<junks.length; i++) {
 var x = junks[i].split('=');if (x.length == 2) {
 ret[x[0]] = x[1];} else {
 ret[x[0]] = '';}
@@ -106,28 +99,22 @@ _out += _indent + typeof(theVar) + ' => ' + theVar + "\n";}
 }
 if (isInternal || doReturn) {
 return _out;} else {
-    alert(_out);
-}
+alert(_out);return;}
 }
 function Bs_Position(x, y) {
-    this.x = x;
-    this.y = y;
-}
-function getAbsolutePos(el, stopIfAbsolute) {
-    if (bs_isNull(el)) {
+this.x = x;this.y = y;};function getAbsolutePos(el, stopIfAbsolute) {
+if (bs_isNull(el)) {
 var res = new Bs_Position(0, 0);return res;}
 var res = new Bs_Position(el.offsetLeft, el.offsetTop);if (el.offsetParent) {
 if ((stopIfAbsolute != true ) || ((el.offsetParent.currentStyle.position != 'absolute') && (el.offsetParent.currentStyle.position != 'relative') && (el.offsetParent.currentStyle.overflow != 'auto') && (el.offsetParent.currentStyle.overflow != 'scroll'))) {
 var tmp = getAbsolutePos(el.offsetParent, stopIfAbsolute);res.x += tmp.x;res.y += tmp.y;}
 }
-    return res;
-}
-if ("undefined" != typeof(HTMLElement)) {
-    if ("undefined" == typeof(HTMLElement.insertAdjacentElement)) {
+return res;};if ("undefined" != typeof(HTMLElement)) {
+if ("undefined" == typeof(HTMLElement.insertAdjacentElement)) {
 HTMLElement.prototype.insertAdjacentElement = function(where, parsedNode)	{
 switch(where){
 case 'beforeBegin':
-    this.parentNode.insertBefore(parsedNode, this);
+this.parentNode.insertBefore(parsedNode,this)
 break;case 'afterBegin':
 this.insertBefore(parsedNode,this.firstChild);break;case 'beforeEnd':
 this.appendChild(parsedNode);break;case 'afterEnd':

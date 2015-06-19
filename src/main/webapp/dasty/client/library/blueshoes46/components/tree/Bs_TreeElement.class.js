@@ -13,73 +13,33 @@
 * @author    Andrej Arn <andrej at blueshoes dot org>
 */
 function Bs_TreeElement() {
-    this.id;
-    this.parent;
-    this._tree;
-    this.caption;
-    this.url;
-    this.target;
-    this.linkStyle;
-    this.divStyle;
-    this.onClick;
-    this.isOpen = false;
-    this.visible = true;
-    this.isChecked = 0;
-    this.checkboxName;
-    this.radioButtonSelected;
-    this._checkboxObject;
-    this._level = 0;
-    this._children = [];
-    this._undoneChildren;
-    this.imageDir;
-    this.imageHeight;
-    this.icon;
-    this.beforeIconSpan;
-    this.beforeCaptionSpan;
-    this.afterCaptionSpan;
-    this.dataContainer;
-    this._attachedEvents;
-    this._isOutrendered = false;
-    this._errorArray;
-    this.getThis = function () {
-        return this;
-    };
+this.id;this.parent;this._tree;this.caption;this.url;this.target;this.linkStyle;this.divStyle;this.onClick;this.isOpen = false;this.visible = true;this.isChecked = 0;this.checkboxName;this.radioButtonSelected;this._checkboxObject;this._level = 0;this._children = new Array;this._undoneChildren;this.imageDir;this.imageHeight;this.icon;this.beforeIconSpan;this.beforeCaptionSpan;this.afterCaptionSpan;this.dataContainer;this._attachedEvents;this._isOutrendered = false;this._errorArray;this.getThis = function() {
+return this;}
 this.addChild = function(treeElement) {
-    treeElement.parent = this;
-    if (typeof(this._children) != 'object') this._children = [];
-    if (this._children.push) {
+treeElement.parent = this;if (typeof(this._children) != 'object') this._children = new Array;if (this._children.push) {
 this._children.push(treeElement);} else {
 this._children[this._children.length] = treeElement;}
 treeElement._level = this._level +1;this._updateLevelAndParent(treeElement);this._tree._clearingHouse[treeElement.id] = treeElement;if (this._isOutrendered) {
 this.render(true, true);}
-};
+}
 this.addChildByArray = function(elementData) {
-    var treeElement = this._tree._createTreeElement(elementData);
-    this.addChild(treeElement);
-    return treeElement;
-};
+var treeElement = this._tree._createTreeElement(elementData);this.addChild(treeElement);return treeElement;}
 this.isChild = function(elementId, bubble) {
 for (var i=0, n=this._children.length; i<n; i++) {
 if (this._children[i].id == elementId) return true;if (bubble) {
 if (this._children[i].isChild(elementId, true)) return true;}
 }
-    return false;
-};
+return false;}
 this.setCaption = function(caption) {
 this.caption = caption;if (this._isOutrendered) {
 var span = document.getElementById(this._tree._objectId + '_e_' + this.id + '_caption2');if (span) span.innerHTML = caption;}
-};
+}
 this.render = function(omitDivTags, putIntoPage, lookAhead) {
 if (typeof(this._tree.stopWatch) == 'object') this._tree.stopWatch.takeTime('Bs_TreeElement.render() for id: ' + this.id + ' in level: ' + this._level);if (typeof(lookAhead) == 'undefined') {
 lookAhead = this._tree.lookAhead;}
 if ((this._tree._pseudoElement == this) && !this._tree.showPseudoElement && (lookAhead != -1)) {
 lookAhead++;}
-    var imageDir = this._getVar('imageDir');
-    var imageHeight = this._getVar('imageHeight');
-    var out = [];
-    var outI = 0;
-    var evalStr = '';
-    if (!omitDivTags) {
+var imageDir    = this._getVar('imageDir');var imageHeight = this._getVar('imageHeight');var out      = new Array();var outI     = 0;var evalStr  = '';if (!omitDivTags) {
 out[outI++] = '<span id="' + this._tree._objectId + '_e_' + this.id + '"';out[outI++] = ' style="';if (!this.visible) {
 out[outI++] = 'display:none;';}
 out[outI++] = '">';}
@@ -173,10 +133,7 @@ var t = this._children[i].render(false, false, newLookAhead);out[outI++] = t[0];
 }
 out[outI++] = '</span>';if (!omitDivTags) {
 out[outI++] = '</span>';}
-    out[outI++] = "\n";
-    this._isOutrendered = true;
-    var content = [out.join(''), evalStr];
-    if (putIntoPage) {
+out[outI++] = "\n";this._isOutrendered = true;var content = new Array(out.join(''), evalStr);if (putIntoPage) {
 var doc = document.getElementById(this._tree._objectId + '_e_' + this.id);if (doc != null) {
 doc.innerHTML = content[0];if (content[1] != '') {
 eval(content[1]);}
@@ -184,18 +141,13 @@ return true;} else {
 return false;}
 } else {
 return content;}
-};
+}
 this.renderSimple = function(omitDivTags, putIntoPage, lookAhead) {
 if (typeof(this._tree.stopWatch) == 'object') this._tree.stopWatch.takeTime('Bs_TreeElement.renderSimple() for id: ' + this.id + ' in level: ' + this._level);if (typeof(lookAhead) == 'undefined') {
 lookAhead = this._tree.lookAhead;}
 if ((this._tree._pseudoElement == this) && !this._tree.showPseudoElement && (lookAhead != -1)) {
 lookAhead++;}
-    var imageDir = this._getVar('imageDir');
-    var imageHeight = this._getVar('imageHeight');
-    var out = [];
-    var outI = 0;
-    var evalStr = [];
-    if (!omitDivTags) {
+var imageDir    = this._getVar('imageDir');var imageHeight = this._getVar('imageHeight');var out      = new Array;var outI     = 0;var evalStr  = new Array;if (!omitDivTags) {
 out[outI++] = '<span id="' + this._tree._objectId + '_e_' + this.id + '"';out[outI++] = ' style="';if (!this.visible) {
 out[outI++] = 'display:none;';}
 out[outI++] = '">';}
@@ -257,10 +209,7 @@ var t = this._children[i].renderSimple(false, false, newLookAhead);out[outI++]  
 }
 out[outI++] = '</span>';if (!omitDivTags) {
 out[outI++] = '</span>';}
-    out[outI++] = "\n";
-    this._isOutrendered = true;
-    var content = [out.join(''), evalStr.join('')];
-    if (putIntoPage) {
+out[outI++] = "\n";this._isOutrendered = true;var content = new Array(out.join(''), evalStr.join(''));if (putIntoPage) {
 var doc = document.getElementById(this._tree._objectId + '_e_' + this.id);if (doc != null) {
 doc.innerHTML = content[0];if (content[1] != '') {
 eval(content[1]);}
@@ -268,21 +217,9 @@ return true;} else {
 return false;}
 } else {
 return content;}
-};
+}
 this.reset = function() {
-    this.caption = null;
-    this.url = null;
-    this.target = null;
-    this.onClick = null;
-    this.isOpen = false;
-    this.isChecked = 0;
-    this.checkboxName = null;
-    this.beforeIconSpan = null;
-    this.beforeCaptionSpan = null;
-    this.afterCaptionSpan = null;
-    this.linkStyle = null;
-    this.divStyle = null;
-};
+this.caption           = null;this.url               = null;this.target            = null;this.onClick           = null;this.isOpen            = false;this.isChecked         = 0;this.checkboxName      = null;this.beforeIconSpan    = null;this.beforeCaptionSpan = null;this.afterCaptionSpan  = null;this.linkStyle         = null;this.divStyle          = null;}
 this.initByArray = function(a, tree, level) {
 this._tree   = tree;this._level  = level;if (typeof(this._tree.stopWatch) == 'object') this._tree.stopWatch.takeTime('Bs_TreeElement.initByArray()');if (this._tree.useAutoSequence && (level > 0)) {
 this.id      = ++this._tree._elementSequence;} else {
@@ -304,45 +241,20 @@ for (ev in a['events']) {
 this.attachEvent(ev, a['events'][ev]);}
 }
 }
-    return true;
-};
+return true;}
 this.exportAsArray = function(withChildren) {
-    var ret = [];
-    if (typeof(this.id) != 'undefined') ret['id'] = this.id;
-    if (typeof(this.caption) != 'undefined') ret['caption'] = this.caption;
-    if (typeof(this.url) != 'undefined') ret['url'] = this.url;
-    if (typeof(this.target) != 'undefined') ret['target'] = this.target;
-    if (typeof(this.onClick) != 'undefined') ret['onClick'] = this.onClick;
-    if (typeof(this.isOpen) != 'undefined') ret['isOpen'] = this.isOpen;
-    if (typeof(this.isChecked) != 'undefined') ret['isChecked'] = this.isChecked;
-    if (typeof(this.visible) != 'undefined') ret['visible'] = this.visible;
-    if (typeof(this.icon) != 'undefined') ret['icon'] = this.icon;
-    if (typeof(this.imageDir) != 'undefined') ret['imageDir'] = this.imageDir;
-    if (typeof(this.beforeIconSpan) != 'undefined') ret['beforeIconSpan'] = this.beforeIconSpan;
-    if (typeof(this.afterCaptionSpan) != 'undefined') ret['afterCaptionSpan'] = this.afterCaptionSpan;
-    if (typeof(this.radioButtonSelected) != 'undefined') ret['radioButtonSelected'] = this.radioButtonSelected;
-    if (typeof(this.dataContainer) != 'undefined') ret['dataContainer'] = this.dataContainer;
-    if (typeof(this.checkboxName) != 'undefined') ret['checkboxName'] = this.checkboxName;
-    if (typeof(this.beforeCaptionSpan) != 'undefined') ret['beforeCaptionSpan'] = this.beforeCaptionSpan;
-    if (typeof(this.linkStyle) != 'undefined') ret['linkStyle'] = this.linkStyle;
-    if (typeof(this.divStyle) != 'undefined') ret['divStyle'] = this.divStyle;
-    if (withChildren) {
-        ret['children'] = [];
-        for (var i = 0; i < this._children.length; i++) {
+var ret = new Array();if (typeof(this.id)                       != 'undefined') ret['id']                       = this.id;if (typeof(this.caption)                  != 'undefined') ret['caption']                  = this.caption;if (typeof(this.url)                      != 'undefined') ret['url']                      = this.url;if (typeof(this.target)                   != 'undefined') ret['target']                   = this.target;if (typeof(this.onClick)                  != 'undefined') ret['onClick']                  = this.onClick;if (typeof(this.isOpen)                   != 'undefined') ret['isOpen']                   = this.isOpen;if (typeof(this.isChecked)                != 'undefined') ret['isChecked']                = this.isChecked;if (typeof(this.visible)                  != 'undefined') ret['visible']                  = this.visible;if (typeof(this.icon)                     != 'undefined') ret['icon']                     = this.icon;if (typeof(this.imageDir)                 != 'undefined') ret['imageDir']                 = this.imageDir;if (typeof(this.beforeIconSpan)           != 'undefined') ret['beforeIconSpan']           = this.beforeIconSpan;if (typeof(this.afterCaptionSpan)         != 'undefined') ret['afterCaptionSpan']         = this.afterCaptionSpan;if (typeof(this.radioButtonSelected)      != 'undefined') ret['radioButtonSelected']      = this.radioButtonSelected;if (typeof(this.dataContainer)            != 'undefined') ret['dataContainer']            = this.dataContainer;if (typeof(this.checkboxName)             != 'undefined') ret['checkboxName']             = this.checkboxName;if (typeof(this.beforeCaptionSpan)        != 'undefined') ret['beforeCaptionSpan']        = this.beforeCaptionSpan;if (typeof(this.linkStyle)                != 'undefined') ret['linkStyle']                = this.linkStyle;if (typeof(this.divStyle)                 != 'undefined') ret['divStyle']                 = this.divStyle;if (withChildren) {
+ret['children'] = new Array();for (var i=0; i<this._children.length; i++) {
 ret['children'][ret['children'].length] = this._children[i].exportAsArray(true);}
 }
-    return ret;
-};
+return ret;}
 this.updateObjectByArray = function(a) {
 this.reset();if (a['caption'])            this.caption            = a['caption'];if (a['url'])                this.url                = a['url'];if (a['target'])             this.target             = a['target'];if (a['onClick'])            this.onClick            = a['onClick'];if (a['isOpen'])             this.isOpen             = a['isOpen'];if (a['isChecked'])          this.isChecked          = a['isChecked'];if (a['imageDir'])           this.imageDir           = a['imageDir'];if (a['checkboxName']) {
 this.checkboxName  = a['checkboxName'];} else {
 if (this._tree.useCheckboxSystem) {
 this.checkboxName = 'bsTreeCheckbox' + this.id;}
 }
-    if (a['beforeIconSpan'])     this.beforeIconSpan = a['beforeIconSpan'];
-    if (a['beforeCaptionSpan'])  this.beforeCaptionSpan = a['beforeCaptionSpan'];
-    if (a['afterCaptionSpan'])   this.afterCaptionSpan = a['afterCaptionSpan'];
-};
+if (a['beforeIconSpan'])     this.beforeIconSpan     = a['beforeIconSpan'];if (a['beforeCaptionSpan'])  this.beforeCaptionSpan  = a['beforeCaptionSpan'];if (a['afterCaptionSpan'])   this.afterCaptionSpan   = a['afterCaptionSpan'];}
 this.getJavascriptCode = function(varName, recursive) {
 var ret = "";if (
 (this._tree.useAutoSequence && (this.id > 1))
@@ -362,23 +274,18 @@ ret += varName + " = new Array();\n";for (var i=0; i<this._children.length; i++)
 ret += this._children[i].getJavascriptCode(varName + "[" + i + "]", recursive);}
 }
 }
-    return ret;
-};
+return ret;}
 this.setActive = function() {
 var activeElement = this._tree.getActiveElement();if (activeElement != false) {
 activeElement.unsetActive();}
-    this._tree.setActiveElement(this);
-    this._highlight();
-};
+this._tree.setActiveElement(this);this._highlight();}
 this._highlight = function() {
 var elmSetActive = document.getElementById(this._tree._objectId + '_e_' + this.id + '_caption');if (elmSetActive != null) {
 elmSetActive.style.backgroundColor = this._getVar('captionBgColor');} else {
 setTimeout("Bs_Objects["+this._tree._id+"].executeOnElement('" + this.id + "', '_highlight');", 800);}
-};
+}
 this.unsetActive = function() {
-    var e = document.getElementById(this._tree._objectId + '_e_' + this.id + '_caption');
-    if (e != null) e.style.backgroundColor = 'transparent';
-};
+var e = document.getElementById(this._tree._objectId + '_e_' + this.id + '_caption');if (e != null) e.style.backgroundColor = 'transparent';}
 this.toggleOpenClose = function() {
 if (this.isOpen) {
 if (this.hasEventAttached('onBeforeClose')) {
@@ -387,7 +294,7 @@ this.close();if (this.hasEventAttached('onAfterClose')) this.fireEvent('onAfterC
 if (this.hasEventAttached('onBeforeOpen')) {
 var status = this.fireEvent('onBeforeOpen');if (status != true) return;}
 this.open();if (this.hasEventAttached('onAfterOpen')) this.fireEvent('onAfterOpen');}
-};
+}
 this.open = function(checkParents) {
 if (this.isOpen) return;this.isOpen = true;if (this.hasVisibleChildren()) {
 var lookAhead = this._tree.lookAhead;var doRender  = false;for (var i=0; i<this._children.length; i++) {
@@ -424,24 +331,20 @@ treeElm._children[j].render(true, true, lookAhead);}
 }
 }
 }
-};
+}
 this._renderParentsUp = function() {
-    if (typeof(this.parent) == 'undefined') this.parent._renderParentsUp();
-    if (this._isOutrendered) return;
-    this.render(true, true);
-};
+if (typeof(this.parent) == 'undefined') this.parent._renderParentsUp();if (this._isOutrendered) return;this.render(true, true);}
 this.close = function() {
 if (!this.isOpen) return;this.isOpen = false;if (this._isOutrendered) {
 var d = document.getElementById(this._tree._objectId + '_e_' + this.id + '_children');d.style.display = 'none';this._switchIconsOnToggleOpenClose();} else {
 this.render(true, true);}
-    if (this._tree.rememberState) this._tree._updateStateCookie(this.id, 'open', false);
-};
+if (this._tree.rememberState) this._tree._updateStateCookie(this.id, 'open', false);}
 this._switchIconsOnToggleOpenClose = function() {
 var openClose = document.getElementById(this._tree._objectId + '_e_' + this.id + '_openClose');if (openClose) openClose.src = this._getSourceOpenCloseIcon();if (this._getVar('useFolderIcon')) {
 var folderIconId = this._tree._objectId + '_e_' + this.id + '_folder';var fIcon = document.getElementById(folderIconId);if (fIcon) {
 fIcon.src = this._getSourceFolderIcon();}
 }
-};
+}
 this._getSourceOpenCloseIcon = function() {
 if (this.hasSiblingsDown()) {
 var imgNumber = 3;} else {
@@ -457,9 +360,7 @@ var plusImg = 'minus' + imgNumber;var onClick = 'Close';} else {
 var plusImg = 'plus' + imgNumber;var onClick = 'Open';}
 } else {
 var plusImg = 'line' + imgNumber;}
-    var imageDir = this._getVar('imageDir');
-    return imageDir + plusImg + '.gif';
-};
+var imageDir = this._getVar('imageDir');return imageDir + plusImg + '.gif';}
 this._getSourceFolderIcon = function() {
 var imageDir = this._getVar('imageDir');switch (typeof(this.icon)) {
 case 'undefined':
@@ -472,11 +373,9 @@ break;case 'string':
 if (this.icon != 'false') {
 var ret = '';if (!this._iconHasPath(this.icon)) ret += imageDir;ret += this.icon;if (!this._iconHasExtension(this.icon)) ret += '.gif';return ret;}
 }
-    return '';
-};
+return '';}
 this.hasChildren = function() {
-    return (this._children.length > 0);
-};
+return (this._children.length > 0);}
 this.hasVisibleChildren = function() {
 if (!this._children || !(this._children.length > 0)) {
 this._hasVisibleChildren = false;return false;}
@@ -484,56 +383,47 @@ for (var i=0, n=this._children.length; i<n; i++) {
 if (this._children[i].visible) {
 this._hasVisibleChildren = true;return true;}
 }
-    this._hasVisibleChildren = false;
-    return false;
-};
+this._hasVisibleChildren = false;return false;}
 this.numChildren = function() {
-    return this._children.length;
-};
+return this._children.length;}
 this.childPos = function(id) {
 for (var i=0, n=this._children.length; i<n; i++) {
 if (this._children[i].id == id) return ++i;}
-    return false;
-};
+return false;}
 this.hasSiblings = function() {
-};
+}
 this.hasSiblingsDown = function(ignoreCache) {
 if (false && !ignoreCache) {
 if (typeof(this._hasSiblingsDown) != 'undefined') return this._hasSiblingsDown;}
 try {
 var tot = this.parent.numChildren();var pos = this.parent.childPos(this.id);this._hasSiblingsDown = (pos < tot);return this._hasSiblingsDown;} catch (e) {
 this._hasSiblingsDown = false;return false;}
-};
+}
 this.hasSiblingsAbove = function() {
-};
+}
 this.getSiblings = function() {
 try {
 return this.parent.getChildren();} catch(e) {
-    return [];
+return new Array;}
 }
-};
 this.getChildren = function() {
-    return this._children;
-};
+return this._children;}
 this.getParentId = function() {
 try {
 return this.parent.id;} catch (e) {
 return false;}
-};
+}
 this.hasParent = function() {
-    return (this.parent);
-};
+return (this.parent);}
 this.attachEvent = function(trigger, yourEvent) {
 if (typeof(this._attachedEvents) == 'undefined') {
-    this._attachedEvents = [];
-}
+this._attachedEvents = new Array();}
 if (typeof(this._attachedEvents[trigger]) == 'undefined') {
 this._attachedEvents[trigger] = new Array(yourEvent);} else {
 this._attachedEvents[trigger][this._attachedEvents[trigger].length] = yourEvent;}
-};
+}
 this.hasEventAttached = function(trigger) {
-    return ((typeof(this._attachedEvents) != 'undefined') && (typeof(this._attachedEvents[trigger]) != 'undefined'));
-};
+return ((typeof(this._attachedEvents) != 'undefined') && (typeof(this._attachedEvents[trigger]) != 'undefined'));}
 this.fireEvent = function(trigger) {
 var ret = true;if (trigger == 'onClickCaption') {
 this.setActive();}
@@ -548,20 +438,18 @@ var status = e[i](this);if (status == false) ret = false;} else if (typeof(e[i])
 eval(ev);}
 }
 }
-    return ret;
-};
+return ret;}
 this._addError = function(str) {
 if (typeof(this._errorArray) == 'undefined') {
 this._errorArray = new Array(str);} else {
 this._errorArray[this._errorArray.length] = str;}
-};
+}
 this.getLastError = function() {
 if (typeof(this._errorArray) != 'undefined') {
 if (this._errorArray.length > 0) {
 return this._errorArray[this._errorArray.length -1];}
 }
-    return false;
-};
+return false;}
 this._getVar = function(varName) {
 if (typeof(this[varName]) != 'undefined') {
 return this[varName];} else {
@@ -570,16 +458,13 @@ return this.parent._getVar(varName);} else if (typeof(this._tree[varName]) != 'u
 return this._tree[varName];} else {
 return null;}
 }
-};
+}
 this.onMouseOver = function() {
 var img = document.getElementById(this._spanId + 'icon');if (!img.swapOver0) {
 img.swapOver0 = new Image();img.swapOver0.src = this.imgDir + 'enabled_0_over.gif';img.swapOver1 = new Image();img.swapOver1.src = this.imgDir + 'enabled_1_over.gif';img.swapOver2 = new Image();img.swapOver2.src = this.imgDir + 'enabled_2_over.gif';img.swapOut0 = new Image();img.swapOut0.src = this.imgDir + 'enabled_0.gif';img.swapOut1 = new Image();img.swapOut1.src = this.imgDir + 'enabled_1.gif';img.swapOut2 = new Image();img.swapOut2.src = this.imgDir + 'enabled_2.gif';}
-    img.src = img['swapOver' + this.value].src;
-};
+img.src = img['swapOver' + this.value].src;}
 this.onMouseOut = function() {
-    var img = document.getElementById(this._spanId + 'icon');
-    img.src = img['swapOut' + this.value].src;
-};
+var img = document.getElementById(this._spanId + 'icon');img.src = img['swapOut' + this.value].src;}
 this.setCheckboxValue = function(value, fireEvents, doWalk) {
 if (typeof(fireEvents) == 'undefined') fireEvents = true;if (typeof(doWalk)     == 'undefined') doWalk     = true;if (!this.hasChildren()) {
 value = (value) ? 2 : 0;} else {
@@ -596,7 +481,7 @@ this.parent.updateCheckboxFromChild();}
 if ((this._tree.checkboxSystemWalkTree == 3) || (this._tree.checkboxSystemWalkTree == 2) || ((this._tree.checkboxSystemWalkTree == 4) && (value == 0))) {
 this.checkboxUpdateDown(value);}
 }
-};
+}
 this.checkboxEvent = function(value) {
 if (!this.hasChildren()) {
 value = (value) ? 2 : 0;} else {
@@ -613,23 +498,22 @@ this.isChecked = value;this._checkboxObject.setTo(value, true);if (this.hasEvent
 this.parent.updateCheckboxFromChild();}
 if ((this._tree.checkboxSystemWalkTree == 3) || (this._tree.checkboxSystemWalkTree == 2) || ((this._tree.checkboxSystemWalkTree == 4) && (value == 0))) {
 this.checkboxUpdateDown(value);}
-};
+}
 this.checkboxUpdateDown = function(value) {
 for (var i=0; i<this._children.length; i++) {
 this._children[i]._updateCheckboxFromParent(value, true);}
-};
+}
 this.updateCheckboxVisually = function() {
 if (typeof(this._checkboxObject) == 'object') {
 try {
 this._checkboxObject.setTo(this.isChecked);} catch (e) {
 }
 }
-};
+}
 this._updateCheckboxFromParent = function(newValue, recursiveDown) {
 var backupValue = this.isChecked;this.isChecked = (newValue) ? 2 : 0;var hasChanged = (this.isChecked != backupValue);if (hasChanged) {
 this.updateCheckboxVisually();if (this.hasEventAttached('onChangeCheckbox')) this.fireEvent('onChangeCheckbox');}
-    if (recursiveDown) this.checkboxUpdateDown(newValue, true);
-};
+if (recursiveDown) this.checkboxUpdateDown(newValue, true);}
 this.updateCheckboxFromChild = function() {
 var backupIsChecked = this.isChecked;var numYes   = 0;var numNo    = 0;var isPartly = false;for (var i=0, n=this._children.length; i<n; i++) {
 if (this._children[i].isChecked == 1) {
@@ -649,26 +533,22 @@ if (backupIsChecked != this.isChecked) {
 this.updateCheckboxVisually();if (this.hasEventAttached('onChangeCheckbox')) this.fireEvent('onChangeCheckbox');}
 if (typeof(this.parent) == 'object') {
 this.parent.updateCheckboxFromChild();}
-};
+}
 this._updateLevelAndParent = function(treeElement) {
 if ((typeof(treeElement._children) == 'object') && (treeElement._children.length > 0)) {
 for (var i=0, n=treeElement._children.length; i<n; i++) {
 treeElement._children[i].parent = treeElement;treeElement._children[i]._level = treeElement._level +1;this._updateLevelAndParent(treeElement._children[i]);}
 }
-};
+}
 this._getLinkStyle = function() {
-    if (typeof(this.linkStyle) != 'undefined') return this.linkStyle;
-    if (typeof(this._tree.linkStyle) != 'undefined') return this._tree.linkStyle;
-    return '';
-};
+if (typeof(this.linkStyle)       != 'undefined') return this.linkStyle;if (typeof(this._tree.linkStyle) != 'undefined') return this._tree.linkStyle;return '';}
 this._iconHasExtension = function(iconStr) {
 var iconLower = iconStr.toLowerCase();var iconPos   = iconLower.lastIndexOf('.');if (iconPos > -1) {
 var iconExt = iconLower.substr(iconPos +1);if ((iconExt != 'gif') && (iconExt != 'png') && (iconExt != 'jpg') && (iconExt != 'jpeg')) {
 return false;}
 } else {
 return false;}
-    return true;
-};
+return true;}
 this._iconHasPath = function(iconStr) {
 if (iconStr.indexOf('://') > -1) return true;if (iconStr.substr(0, 1) == '/') return true;return false;}
 }

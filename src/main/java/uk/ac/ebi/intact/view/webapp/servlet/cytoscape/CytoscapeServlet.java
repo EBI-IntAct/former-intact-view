@@ -36,7 +36,10 @@ import java.net.URLEncoder;
  */
 public class CytoscapeServlet extends HttpServlet {
 
+    private static final Log log = LogFactory.getLog( CytoscapeServlet.class );
+
     public static final String DATA_URL = "intactDataURL";
+
     public static final String PARAM_QUERY = "query";
     public static final String PARAM_FORMAT = "format";
     public static final String PARAM_FILTER_NEGATIVE = "negative";
@@ -44,14 +47,6 @@ public class CytoscapeServlet extends HttpServlet {
     public static final String PARAM_ONTOLOGY_QUERY = "ontology";
     public static final String PARAM_SORT = "sort";
     public static final String PARAM_SORT_ASC = "asc";
-    private static final Log log = LogFactory.getLog(CytoscapeServlet.class);
-
-    private static String encodeURL(String url) throws UnsupportedEncodingException {
-        if (url == null) {
-            throw new IllegalArgumentException("You must give a non null url");
-        }
-        return URLEncoder.encode(url, "UTF-8");
-    }
 
     @Override
     public void init( ServletConfig config ) throws ServletException {
@@ -78,7 +73,7 @@ public class CytoscapeServlet extends HttpServlet {
         if ( log.isTraceEnabled() ) log.trace( "Encoded query: " + searchQuery );
 
         final String serverContext = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-        final String exportUrl = serverContext + "/export?query=" + searchQuery + "&amp;format=" + format + "&amp;negative=" + negative + "&amp;spoke=" + spoke + "&amp;ontology=" + ontology + "&amp;sort=" + sort + "&amp;asc=" + asc;
+        final String exportUrl = serverContext + "/export?query=" + searchQuery + "&amp;format=" + format+"&amp;negative="+negative+"&amp;spoke="+spoke+"&amp;ontology="+ontology+"&amp;sort="+sort+"&amp;asc="+asc;;
         response.setContentType( "application/x-java-jnlp-file" );
 
         // Read the template cytoscape.jnlp from from WEB-INF directory.
@@ -119,5 +114,12 @@ public class CytoscapeServlet extends HttpServlet {
             }
             is.close();
         }
+    }
+
+    private static String encodeURL( String url ) throws UnsupportedEncodingException {
+        if ( url == null ) {
+            throw new IllegalArgumentException( "You must give a non null url" );
+        }
+        return URLEncoder.encode( url, "UTF-8" );
     }
 }

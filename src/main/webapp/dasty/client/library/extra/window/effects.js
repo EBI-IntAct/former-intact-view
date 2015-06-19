@@ -21,8 +21,8 @@ String.prototype.parseColor = function() {
       if(this.length==7) color = this.toLowerCase();  
     }  
   }  
-  return(color.length==7 ? color : (arguments[0] || this));
-};
+  return(color.length==7 ? color : (arguments[0] || this));  
+}
 
 /*--------------------------------------------------------------------------*/
 
@@ -31,7 +31,7 @@ Element.collectTextNodes = function(element) {
     return (node.nodeType==3 ? node.nodeValue : 
       (node.hasChildNodes() ? Element.collectTextNodes(node) : ''));
   }).flatten().join('');
-};
+}
 
 Element.collectTextNodesIgnoreClass = function(element, className) {  
   return $A($(element).childNodes).collect( function(node) {
@@ -39,13 +39,13 @@ Element.collectTextNodesIgnoreClass = function(element, className) {
       ((node.hasChildNodes() && !Element.hasClassName(node,className)) ? 
         Element.collectTextNodesIgnoreClass(node, className) : ''));
   }).flatten().join('');
-};
+}
 
 Element.setContentZoom = function(element, percent) {
   element = $(element);  
   Element.setStyle(element, {fontSize: (percent/100) + 'em'});   
   if(navigator.appVersion.indexOf('AppleWebKit')>0) window.scrollBy(0,0);
-};
+}
 
 Element.getOpacity = function(element){  
   var opacity;
@@ -53,8 +53,8 @@ Element.getOpacity = function(element){
     return parseFloat(opacity);  
   if (opacity = (Element.getStyle(element, 'filter') || '').match(/alpha\(opacity=(.*)\)/))  
     if(opacity[1]) return parseFloat(opacity[1]) / 100;  
-  return 1.0;
-};
+  return 1.0;  
+}
 
 Element.setOpacity = function(element, value){  
   element= $(element);  
@@ -72,11 +72,11 @@ Element.setOpacity = function(element, value){
        { filter: Element.getStyle(element,'filter').replace(/alpha\([^\)]*\)/gi,'') +
                  'alpha(opacity='+value*100+')' });  
   }
-};
+}  
  
 Element.getInlineOpacity = function(element){  
   return $(element).style.opacity || '';
-};
+}  
 
 Element.childrenWithClassName = function(element, className, findFirst) {
   var classNameRegExp = new RegExp("(^|\\s)" + className + "(\\s|$)");
@@ -85,7 +85,7 @@ Element.childrenWithClassName = function(element, className, findFirst) {
   });
   if(!results) results = [];
   return results;
-};
+}
 
 Element.forceRerendering = function(element) {
   try {
@@ -101,7 +101,7 @@ Element.forceRerendering = function(element) {
 Array.prototype.call = function() {
   var args = arguments;
   this.each(function(f){ f.apply(this, args) });
-};
+}
 
 /*--------------------------------------------------------------------------*/
 
@@ -168,32 +168,32 @@ var Effect2 = Effect; // deprecated
 
 /* ------------- transitions ------------- */
 
-Effect.Transitions = {};
+Effect.Transitions = {}
 
 Effect.Transitions.linear = Prototype.K;
 
 Effect.Transitions.sinoidal = function(pos) {
   return (-Math.cos(pos*Math.PI)/2) + 0.5;
-};
+}
 Effect.Transitions.reverse  = function(pos) {
   return 1-pos;
-};
+}
 Effect.Transitions.flicker = function(pos) {
   return ((-Math.cos(pos*Math.PI)/4) + 0.75) + Math.random()/4;
-};
+}
 Effect.Transitions.wobble = function(pos) {
   return (-Math.cos(pos*Math.PI*(9*pos))/2) + 0.5;
-};
+}
 Effect.Transitions.pulse = function(pos) {
   return (Math.floor(pos*10) % 2 == 0 ? 
     (pos*10-Math.floor(pos*10)) : 1-(pos*10-Math.floor(pos*10)));
-};
+}
 Effect.Transitions.none = function(pos) {
   return 0;
-};
+}
 Effect.Transitions.full = function(pos) {
   return 1;
-};
+}
 
 /* ------------- core effects ------------- */
 
@@ -258,7 +258,7 @@ Effect.Queues = {
       
     return this.instances[queueName];
   }
-};
+}
 Effect.Queue = Effect.Queues.get('global');
 
 Effect.DefaultOptions = {
@@ -270,7 +270,7 @@ Effect.DefaultOptions = {
   to:         1.0,
   delay:      0.0,
   queue:      'parallel'
-};
+}
 
 Effect.Base = function() {};
 Effect.Base.prototype = {
@@ -334,7 +334,7 @@ Effect.Base.prototype = {
   inspect: function() {
     return '#<Effect:' + $H(this).inspect() + ',options:' + $H(this.options).inspect() + '>';
   }
-};
+}
 
 Effect.Parallel = Class.create();
 Object.extend(Object.extend(Effect.Parallel.prototype, Effect.Base.prototype), {
@@ -563,7 +563,7 @@ Effect.Fade = function(element) {
     effect.element.setStyle({opacity: oldOpacity}); 
   }}, arguments[1] || {});
   return new Effect.Opacity(element,options);
-};
+}
 
 Effect.Appear = function(element) {
   element = $(element);
@@ -579,7 +579,7 @@ Effect.Appear = function(element) {
     effect.element.show(); 
   }}, arguments[1] || {});
   return new Effect.Opacity(element,options);
-};
+}
 
 Effect.Puff = function(element) {
   element = $(element);
@@ -604,7 +604,7 @@ Effect.Puff = function(element) {
          effect.effects[0].element.setStyle(oldStyle); }
      }, arguments[1] || {})
    );
-};
+}
 
 Effect.BlindUp = function(element) {
   element = $(element);
@@ -619,7 +619,7 @@ Effect.BlindUp = function(element) {
       } 
     }, arguments[1] || {})
   );
-};
+}
 
 Effect.BlindDown = function(element) {
   element = $(element);
@@ -639,7 +639,7 @@ Effect.BlindDown = function(element) {
       effect.element.undoClipping();
     }
   }, arguments[1] || {}));
-};
+}
 
 Effect.SwitchOff = function(element) {
   element = $(element);
@@ -665,7 +665,7 @@ Effect.SwitchOff = function(element) {
       })
     }
   }, arguments[1] || {}));
-};
+}
 
 Effect.DropOut = function(element) {
   element = $(element);
@@ -687,7 +687,7 @@ Effect.DropOut = function(element) {
           effect.effects[0].element.setStyle(oldStyle);
         } 
       }, arguments[1] || {}));
-};
+}
 
 Effect.Shake = function(element) {
   element = $(element);
@@ -709,7 +709,7 @@ Effect.Shake = function(element) {
         effect.element.undoPositioned();
         effect.element.setStyle(oldStyle);
   }}) }}) }}) }}) }}) }});
-};
+}
 
 Effect.SlideDown = function(element) {
   element = $(element);
@@ -747,7 +747,7 @@ Effect.SlideDown = function(element) {
       effect.element.firstChild.setStyle({bottom: oldInnerBottom}); }
     }, arguments[1] || {})
   );
-};
+}
 
 Effect.SlideUp = function(element) {
   element = $(element);
@@ -776,7 +776,7 @@ Effect.SlideUp = function(element) {
       effect.element.setStyle({bottom: oldInnerBottom}); }
    }, arguments[1] || {})
   );
-};
+}
 
 // Bug in opera makes the TD containing this element expand for a instance after finish 
 Effect.Squish = function(element) {
@@ -788,7 +788,7 @@ Effect.Squish = function(element) {
         effect.element.hide(effect.element); 
         effect.element.undoClipping(effect.element); }
   });
-};
+}
 
 Effect.Grow = function(element) {
   element = $(element);
@@ -867,7 +867,7 @@ Effect.Grow = function(element) {
       )
     }
   });
-};
+}
 
 Effect.Shrink = function(element) {
   element = $(element);
@@ -924,7 +924,7 @@ Effect.Shrink = function(element) {
            effect.effects[0].element.setStyle(oldStyle); }
        }, options)
   );
-};
+}
 
 Effect.Pulsate = function(element) {
   element = $(element);
@@ -937,7 +937,7 @@ Effect.Pulsate = function(element) {
     Object.extend(Object.extend({  duration: 3.0, from: 0,
       afterFinishInternal: function(effect) { effect.element.setStyle({opacity: oldOpacity}); }
     }, options), {transition: reverser}));
-};
+}
 
 Effect.Fold = function(element) {
   element = $(element);

@@ -11,20 +11,20 @@ ParticipantDrawer = function(interactionInformation){
     
     this._featureDrawer = new FeatureDrawer(interactionInformation, this._shapeDrawer, this._featureSet);
     this._rangeStatusFunctionCollection = new RangeStatusFunctionCollection(this._featureDrawer);
-
-    this._calledFunctions = {};
+    
+    this._calledFunctions = new Object();
     this._multipleRangeKeyword = "multiple";
     
     this._interactionSet = this._shapeDrawer.getSet();
-    this._interactions = [];
+    this._interactions = new Array();
     this._hidden = false;
-    this._saveColours = [];
+    this._saveColours = new Array();
     this._selectedInteraction = {"connections": null, "elements": null};
-    this._connectedElements = {};
+	this._connectedElements = new Object();
 
-    this._interactors = {};
+	this._interactors = new Object();
 	this._curHighlightingRegion;
-    this._highlightingRegions = {};
+	this._highlightingRegions = new Object();
     
     // draw all participants of all interactions in the given data
     // and their features and connect linked features
@@ -144,7 +144,7 @@ ParticipantDrawer = function(interactionInformation){
             
 			var uniProtId = "";
 			var intactId = "";
-            var parentIds = [];
+			var parentIds = new Array();
 			if((interactor.xref.primaryRef.refType == "identity") && !(interactor.xref.primaryRef.db == "intact")){
 				uniProtId = interactor.xref.primaryRef.id;
 			}else if(interactor.xref.primaryRef.refType == "identity" && (interactor.xref.primaryRef.db == "intact")){
@@ -299,7 +299,7 @@ ParticipantDrawer = function(interactionInformation){
 		var interactorObject = {
 			y: interactorStart,
 			height: y - interactorStart
-        };
+		}
 		
 		if (this._interactors[uniProtId] === undefined) {
 			this._interactors[uniProtId] = [interactorObject];
@@ -377,7 +377,7 @@ ParticipantDrawer = function(interactionInformation){
                         var opacity = curFeatureType.opacity;
                         var symbol = curFeatureType.symbol;
                         var rangeList = feature.featureRangeList.featureRange;
-                        var xrefs = {};
+                        var xrefs = new Object();
                         
                         if (!(feature.xref === undefined)) {
                             self.extractXrefs(feature.xref.primaryRef, xrefs);
@@ -445,7 +445,7 @@ ParticipantDrawer = function(interactionInformation){
         });
 
         return curY;
-    };
+    }
     
 	
 	// calculate gradient colour
@@ -453,7 +453,7 @@ ParticipantDrawer = function(interactionInformation){
 		var HSL = this._interactionInformation._utils.HEXtoHSL(hexString);
 		HSL[2] += 10;
 		return this._interactionInformation._utils.HSLtoHEX(HSL);
-    };
+	}
 	
 	// throw "feature_selected" event when the user clicks on a feature
 	this.addFeatureClickHandling = function(interactorId, interactorName, featureId, coordinates){
@@ -470,7 +470,7 @@ ParticipantDrawer = function(interactionInformation){
 														});
 			});
 		}
-    };
+	}
 	
 	// throw "interactor_selected" event when the user clicks on an interactor
 	this.addInteractorClickHandling = function(interactorId, interactorName, element){
@@ -484,7 +484,7 @@ ParticipantDrawer = function(interactionInformation){
 														   });
 			});
 		}
-    };
+	}
 	
     // extract xref-Information
     this.extractXrefs = function(xref, xrefs){
@@ -495,7 +495,7 @@ ParticipantDrawer = function(interactionInformation){
         else {
             xrefs[db].push(xref.id);
         }
-    };
+    }
     
     // draw all ranges of a feature and connect them with a line
     this.drawMultipleRangeList = function(categoryKey, colour, rangeColour, opacity, rangeList, y, height, featureStart, interactorLength, tooltipText, symbol){
@@ -537,7 +537,7 @@ ParticipantDrawer = function(interactionInformation){
         coordinates = self.drawConnectingLine(x, x2, set, colour, tooltipText);
 		coordinates["positionArray"] = singlePositions;
         return coordinates;
-    };
+    }
     
     // draw ONE range of a feature
     this.drawSingleRangeList = function(category, colour, rangeColour, opacity, rangeList, y, height, featureStart, interactorLength, tooltipText, symbol){
@@ -722,8 +722,8 @@ ParticipantDrawer = function(interactionInformation){
 		if (this._connectedElements[id] === undefined) {
 			this._connectedElements[id] = {
 				"highlightSet": element,
-                "highlightElements": [],
-                "connections": []
+				"highlightElements": new Array(),
+				"connections": new Array()
 			};
 		}
 		this._connectedElements[id].connections.push(connection);
@@ -733,7 +733,7 @@ ParticipantDrawer = function(interactionInformation){
 				self._connectedElements[id].highlightElements.push(this);
 			}
 		});
-    };
+	}
 	
 	this.highlightRegion = function(interactorId, x, x2){
 		if(!(this._curHighlightingRegion === undefined)){
@@ -769,13 +769,13 @@ ParticipantDrawer = function(interactionInformation){
 				this._highlightingRegions[interactorId + x + x2].show();
 			}
 		}
-    };
+	}
 	
 	this.unhighlightRegion = function(){
 		if(!(this._curHighlightingRegion === undefined)){
 			this._curHighlightingRegion.hide();
 		}
-    };
+	}
 	
 	// add eventListener to each interaction's elements
 	this.handleClickForConnectionSet = function(coordinates){
@@ -821,7 +821,7 @@ ParticipantDrawer = function(interactionInformation){
 		}
 
 		return true;
-    };
+	}
 	
     // unhighlight a featureSet
     this.unhighlight = function(interaction){
@@ -841,8 +841,8 @@ ParticipantDrawer = function(interactionInformation){
 		$(interaction.connections).each(function(){
 			this.show();
 		});
-
-        this._saveColours = [];
+		
+		this._saveColours = new Array();
 		for (var i = 0; i < interaction.elements.length; i++) {
 			this._saveColours.push(interaction.elements[i].attr("stroke"));
 			interaction.elements[i].attr("stroke", "black");
@@ -990,7 +990,7 @@ ParticipantDrawer = function(interactionInformation){
         }
 
         return width + ((legendItemWidth/2) * this._interactionInformation._pxPerAA) + 4 * textGap;
-    };
+    }
 
 
     this.calculateLegendRangetypeSectionWidth = function(){
@@ -1052,7 +1052,7 @@ ParticipantDrawer = function(interactionInformation){
 			}
 		}
         return legendItemText;
-    };
+    }
 
     this.drawLegendRangetypeSection = function(itemX, y, yText, yLine, legendItemWidth, legendHeight, textGap, gap){
         var itemTextX = 0;
@@ -1115,7 +1115,7 @@ ParticipantDrawer = function(interactionInformation){
 					else
 						if (functionName == self._multipleRangeKeyword) {
 							range.end.position = range.begin.position;
-                            var range2 = {};
+							var range2 = new Object();
 
 							$.extend(true, range2, range);
 
@@ -1161,9 +1161,9 @@ ParticipantDrawer = function(interactionInformation){
 				var text = this._shapeDrawer.getText(x + legendItemHeight*3 + textGap, yLegend + legendItemHeight / 2, category);
 				yLegend += 2*gap + legendItemHeight;
 			}
-		}
-
-    };
+		}											
+		  
+	}
 
 	this.drawLegendPicture = function(x, yLegend, yText, yLine, startGap, legendItemWidth, legendItemHeight, gap, textGap, pictureWidth){
 		var fTypesText = this._shapeDrawer.getText(x + textGap, yText, "feature types");
@@ -1192,10 +1192,10 @@ ParticipantDrawer = function(interactionInformation){
 			var curType = this._interactionInformation._typeCategories[category];
 			if (!($.isArray(curType.identifiers)) || curType.identifiers.length > 0) {
 				if (curType.position == position) {
-                    var range = {};
-                    range["begin"] = {};
-
-                    range["end"] = {};
+					var range = new Object();
+					range["begin"] = new Object();
+					
+					range["end"] = new Object();
 					if (curType.symbol == "") {
 						range.begin["position"] = 1;
 						range.end["position"] = legendItemWidth / 2;
@@ -1219,7 +1219,7 @@ ParticipantDrawer = function(interactionInformation){
 			}
 		}
 		return y;
-    };
+	}
 	
 	// add participant name at the end of a protein
     this.drawParticipantName = function(x, y, text){
@@ -1251,7 +1251,7 @@ ParticipantDrawer = function(interactionInformation){
 		var diamond = this._shapeDrawer.getDiamond(x, y, height);
 		diamond.attr("fill", "black");
 		return diamond;
-    };
+	}
 	
 	// draw interactors with type "nucleic acid"
 	this.drawNucleicAcid = function(x, y, height){
@@ -1259,4 +1259,4 @@ ParticipantDrawer = function(interactionInformation){
 		wave.attr("stroke-width", 3);
 		return wave;
 	}
-};
+}

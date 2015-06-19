@@ -14,16 +14,9 @@
 */
 function Bs_Wddx () {
 this.serialize = function(obj) {
-    var ret = "<wddxPacket version='1.0'><header /><data>" + this._recursiveSerialize(obj) + '</data></wddxPacket>';
-    return ret;
-};
+var ret = "<wddxPacket version='1.0'><header /><data>" + this._recursiveSerialize(obj) + '</data></wddxPacket>';return ret;}
 this._recursiveSerialize = function(obj) {
-    var status = false;
-    var cr = '';
-    var ret = '';
-    var tmpArray = [];
-    var ii = 0;
-    do {
+var status = false;var cr = '';var ret = '';var tmpArray = new Array();var ii = 0;do {
 if (('undefined' == typeof(obj)) || (null == obj)) {
 ret = '<null />';status = true;break;}
 var value = obj.valueOf();switch(typeof(value)) {
@@ -47,46 +40,35 @@ if ('wddxSerializationType' == prop) continue;if ('function' == typeof(prop)) co
 tmpArray[ii++] = cr + '</struct>';ret = tmpArray.join('');}
 break;default :
 }
-        status = true;
-    } while (false);
-    return ret;
-};
+status = true;} while(false);return ret;}
 this.deserialize = function(wddxPacket) {
 var ret = null;var xmlParser = new Bs_XmlParser();var xmlRoot = xmlParser.parse(wddxPacket);for (var i=0; i<xmlRoot.index.length; i++) {
 if ('data' == xmlRoot.index[i].name) {
 ret = this._recursiveDeserialize(xmlRoot.index[i].children[0]);break;}
 }
-    return ret;
-};
+return ret;}
 this._recursiveDeserialize = function(wddxElement) {
 var i=0; var leng=0;var ret = null;switch (wddxElement.name) {
 case 'array':
-    ret = [];
-    leng = parseInt(wddxElement.attributes["length"]);
-    for (i = 0; i < leng; i++) {
+ret = new Array();leng = parseInt(wddxElement.attributes["length"]);for (i=0; i<leng; i++) {
 ret[i] = this._recursiveDeserialize(wddxElement.children[i]);}
 break;case 'struct':
 leng = wddxElement.children.length;var constructorFound = false;if (typeof(wddxElement.attributes['type']) == 'string') {
 var constructorCheck = 'typeof(' + wddxElement.attributes['type']+ ')';if ( eval(constructorCheck) == 'function' ) constructorFound = true;}
-            ret = (constructorFound) ? eval('new ' + wddxElement.attributes['type'] + '()') : {};
-            var varName = '';
-            for (i = 0; i < leng; i++) {
+ret = (constructorFound) ? eval('new '+ wddxElement.attributes['type']+'()') : new Object();var varName = '';for (i=0; i<leng; i++) {
 varName = wddxElement.children[i].attributes['name'];ret[varName] = this._recursiveDeserialize(wddxElement.children[i].children[0]);}
 break;case 'recordset':
 break;case 'binary':
 break;default:
 return this._parseSimpleType(wddxElement);}
-    return ret;
-};
+return ret;}
 this._parseSimpleType = function(wddxElement) {
 var ret = ''; var value;switch (wddxElement.name) {
 case 'boolean':
 ret = (wddxElement.attributes['value']=='true');break;case 'string':
 if (wddxElement.children.length == 0) {
 ret = '';break;}
-            var tmp = [];
-            var ii = 0;
-            for (var i = 0; i < wddxElement.children.length; i++) {
+var tmp = new Array();var ii = 0;for (var i=0; i<wddxElement.children.length; i++) {
 if (wddxElement.children[i].type == 'chardata') {
 tmp[ii++] =  wddxElement.children[i].value;} else if (wddxElement.children[i].name == 'char') {
 var code = wddxElement.children[i].attributes['code'];tmp[ii++] =  (1 == code.indexOf('x')) ? String.fromCharCode(code) : String.fromCharCode('0x'+ code);}
@@ -94,18 +76,17 @@ var code = wddxElement.children[i].attributes['code'];tmp[ii++] =  (1 == code.in
 ret = tmp.join('');        ret = ret.replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
         ret = ret.replace(/&#(\w+);/g, this._unEntityNummeric);
 break;case 'number':
-            value = wddxElement.children[0].value;
+value = wddxElement.children[0].value
 ret = parseFloat(value);break;case 'null':
 ret = null;break;case 'datetime':
-            value = wddxElement.children[0].value;
+value = wddxElement.children[0].value
         var parts = value.match(/(\w+)-(\w+)-(\w+)T(\w+):(\w+):(\w+)(.*)/);
 if (null != parts) {
 ret = new Date(parts[1], parts[2]-1, parts[3], parts[4], parts[5], parts[6]);} else {
 ret = new Date();}
 break;default :
 ret = null;}
-    return ret;
-};
+return ret;}
 this._unEntityNummeric = function(str) {
 if (0 == str.indexOf('x')) str = '0'+ str;if (isNaN(parseInt(str))) {
 return '';} else {

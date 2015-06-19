@@ -35,8 +35,8 @@ function zoom(startId, endId)
 			
 							if(temp_zoom_start < 0 && temp_zoom_end < 0)
 							  {
-                                  zoom_message = "Zoom error! ... The start and end zoom value can not be negative.";
-                                  zoom_message2 = "... Please correct it and try again.";
+								  zoom_message = "Zoom error! ... The start and end zoom value can not be negative."; 
+								  zoom_message2 = "... Please correct it and try again."
 								  zoom_start = seq_start;
 								  zoom_end = seq_stop;
 								  zoom_error = 1;
@@ -45,8 +45,8 @@ function zoom(startId, endId)
 							  {
 								  if(temp_zoom_end > seq_stop)
 									{
-                                        zoom_message = "Zoom error! ... The start zoom value can not be negative and the end zoom value can not be greater than the lenght of the sequence.";
-                                        zoom_message2 = "... Please correct it and try again.";
+										zoom_message = "Zoom error! ... The start zoom value can not be negative and the end zoom value can not be greater than the lenght of the sequence.";  
+										zoom_message2 = "... Please correct it and try again."
 										zoom_end = seq_stop;
 										zoom_start = seq_start;
 										zoom_error = 1;
@@ -54,7 +54,7 @@ function zoom(startId, endId)
 								  else
 									{
 										zoom_message = "Zoom error! ... The start zoom value can not be negative.";
-                                        zoom_message2 = "... Dasty2 finished to zoom the graphic setting the start zoom value to " + (seq_start + 1);
+										zoom_message2 = "... Dasty2 finished to zoom the graphic setting the start zoom value to " + (seq_start + 1)
 										zoom_start = seq_start;
 										zoom_error = 2;
 									}
@@ -63,16 +63,16 @@ function zoom(startId, endId)
 							  {
 								  if(temp_zoom_start > seq_stop)
 									{
-                                        zoom_message = "Zoom error! ... The end value can not be negative and the start value can not be greater than the lenght of the sequence.";
-                                        zoom_message2 = "... Please correct it and try again.";
+										zoom_message = "Zoom error! ... The end value can not be negative and the start value can not be greater than the lenght of the sequence."; 
+										zoom_message2 = "... Please correct it and try again."
 										zoom_end = seq_stop;
 										zoom_start = seq_start;
 										zoom_error = 1;
 									}
 								  else
 									{
-                                        zoom_message = "Zoom error! ... The end zoom value can not be negative.";
-                                        zoom_message2 = "... Dasty2 finished to zoom the graphic setting the end zoom value to " + seq_stop;
+										zoom_message = "Zoom error! ... The end zoom value can not be negative."; 
+										zoom_message2 = "... Dasty2 finished to zoom the graphic setting the end zoom value to " + seq_stop
 										
 										zoom_end = seq_stop;
 										zoom_error = 2;
@@ -82,7 +82,7 @@ function zoom(startId, endId)
 							else if(temp_zoom_start > seq_stop && temp_zoom_end > seq_stop)
 							  {
 								  zoom_message = "Zoom error! ... The start and end zoom value can not be greater than the lenght of the sequence.";
-                                  zoom_message2 = "... Please correct it and try again.";
+								  zoom_message2 = "... Please correct it and try again."
 								  
 								  zoom_start = seq_start;
 								  zoom_end = seq_stop;
@@ -96,7 +96,7 @@ function zoom(startId, endId)
 							if(temp_zoom_start > temp_zoom_end && zoom_error == 0)
 								{
 									zoom_message = "Zoom error! ... The start zoom value can not be greater than end zoom value.";
-                                    zoom_message2 = "... Please correct it and try again.";
+									zoom_message2 = "... Please correct it and try again."
 									
 									zoom_start = seq_start;
 									zoom_end = seq_stop;

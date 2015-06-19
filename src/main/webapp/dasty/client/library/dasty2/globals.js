@@ -49,27 +49,12 @@ function set_query(q_id, q_label, q_timeout, q_template) {
 	dasty_mainpage_name = "";
 	
 	default_query_parameters();
-
-    if (q_id == null || q_id == "") {
-        query_id = default_query_id;
-    } else {
-        query_id = q_id;
-    }
-    if (q_label == null || q_label == "") {
-        filterLabel = default_filterLabel;
-    } else {
-        filterLabel = q_label;
-    }
-    if (q_timeout == null || q_timeout == "") {
-        timeout = default_timeout;
-    } else {
-        timeout = q_timeout;
-    }
-    if (q_template == null || q_template == "") {
-        dasty_mainpage_name = default_dasty_mainpage_name;
-    } else {
-        filterLabel = template;
-    }
+	
+	if( q_id == null || q_id == "") { query_id = default_query_id; } else { query_id = q_id; };
+	if( q_label == null || q_label == "") { filterLabel = default_filterLabel; } else { filterLabel = q_label; };
+	if( q_timeout == null || q_timeout == "") { timeout = default_timeout; } else { timeout = q_timeout; };
+	if( q_template == null || q_template == "") { dasty_mainpage_name = default_dasty_mainpage_name; } else { filterLabel = template; };
+	
 }
 
 /**
@@ -101,17 +86,12 @@ function start_globals() {
 	dasty_mainpage_name = findDastyHtmlPageName('page_name') + "." + findDastyHtmlPageName('ext_name');
 	configuration();
 	default_query_parameters();
-
-    if (typeof query_id == "undefined") {
-        query_id = default_query_id;
-    }
-    if (typeof filterLabel == "undefined") {
-        filterLabel = default_filterLabel;
-    }
-    if (typeof timeout == "undefined") {
-        timeout = default_timeout;
-    }
-    checkSectionIcons();
+	
+	if (typeof query_id == "undefined") { query_id = default_query_id; };
+	if (typeof filterLabel == "undefined") { filterLabel = default_filterLabel; };
+	if (typeof timeout == "undefined") { timeout = default_timeout; };
+	
+	checkSectionIcons();
 	checkMoColumnIcons();
 	
 
@@ -119,8 +99,8 @@ function start_globals() {
 //------------------------------------------------------------------------------------------	
 //  NECESSARY GLOBAL VARIABLES USED BY DASTY2
 //------------------------------------------------------------------------------------------	
-
-    dasty2 = {};
+	
+	dasty2 = new Object;
 	
 	// CREATED_IN: ajax.js 				// USED_IN: parse_sequence.js, parse_sequece.js, parse_serverlist.js, parse_stylesheet.js, request_xml.js
 	// CREATED_IN: request_xml.js		// USED_IN: parse_feature.js
@@ -147,7 +127,7 @@ function start_globals() {
 	// CREATED_IN: parse_sequence.js	// USED_IN: functions.js => highlightSequence()
 	
 	//sequence_info = [];
-    sequence_info = {};
+	sequence_info = new Object();
 	
 	selStart = 1; // stores selection starting position
 	useHighlight = true;  // if true, sequence will be transformed to support highlight technique
@@ -232,8 +212,8 @@ function start_globals() {
 	dasty2.IdlinesPerServer = [];
 	dasty2.temporalTree =[];
 	dasty2.temporalArray =[];
-
-    dasty2.line_id_name2 = []; // Hash
+	
+	dasty2.line_id_name2 = new Array(); // Hash
 	dasty2.line_id_name2_length = 0;
 	
 	dasty2.countVisibleLines = 0;
@@ -266,7 +246,7 @@ function start_globals() {
  	document.getElementById("progress_bar_2").style.width = 0;
 	document.getElementById('feature_id_box').value = query_id;
 	document.getElementById("graphic_width_px").value = graphic_width;
-    filterLabel = filterLabel.replace(/%20/g, " ");
+	filterLabel = filterLabel.replace(/%20/g, " ")
 	
 	//myDasty.init();
 	start();

@@ -125,37 +125,38 @@
 		   {
 		     con_line = 0;
 		     line_length = line.length;
-               for (var a = 0; a < line_length; a++) {
-                   con_eline = 0;
-                   con_eline01 = 0;
-                   con_eline02 = 0;
-                   eline_length = line[a].length;
-                   for (var b = 0; b < eline_length; b++) {
-                       start01 = finfo[array_row_num]["start_data"];
-                       start02 = start_end[a][0][b];
-                       end01 = finfo[array_row_num]["end_data"];
-                       end02 = start_end[a][1][b];
-
-                       con_eline01 = end02 - start01;
-                       con_eline02 = end01 - start02;
-
-                       if (con_eline01 < 0) {
-                           con_eline++
-                       }
-                       if (con_eline02 < 0) {
-                           con_eline++
-                       }
-                   }
-                   if (con_eline == eline_length) { // include in the line
-                       line[a].push(array_row_num);
-                       start_end[a][0].push(finfo[array_row_num]["start_data"]);
-                       start_end[a][1].push(finfo[array_row_num]["end_data"]);
-                       break;
-                   }
-                   else { // not include in the line
-                       con_line++;
-                   }
-               } // for(var a = 0; a < line_length; a++)
+			 line_loop: 
+		     for(var a = 0; a < line_length; a++)
+			    {
+				   con_eline = 0;
+				   con_eline01 = 0;
+				   con_eline02 = 0;
+				   eline_length = line[a].length;
+				   for(var b = 0; b < eline_length; b++)
+				      {
+					  	 start01 = finfo[array_row_num]["start_data"];
+						 start02 = start_end[a][0][b];
+						 end01 = finfo[array_row_num]["end_data"];
+						 end02 = start_end[a][1][b];
+						 
+						 con_eline01 = end02 - start01;
+						 con_eline02 = end01 - start02;
+						 
+						 if(con_eline01 < 0) { con_eline++ }
+						 if(con_eline02 < 0) { con_eline++ } 
+					  }
+				   if(con_eline == eline_length)
+				      { // include in the line
+						 line[a].push(array_row_num);
+						 start_end[a][0].push(finfo[array_row_num]["start_data"]);
+						 start_end[a][1].push(finfo[array_row_num]["end_data"]);
+						 break line_loop;
+					  }
+				   else
+				      { // not include in the line
+					  	 con_line++;
+					  }
+				  } // for(var a = 0; a < line_length; a++)
 			      if(con_line == line_length)
 					   { // include new line
 							 line[line_length] = [];

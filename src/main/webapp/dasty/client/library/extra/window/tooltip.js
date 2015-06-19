@@ -41,7 +41,7 @@ TooltipManager = {
     TooltipManager.ajaxInfo = ajaxInfo;
     TooltipManager.elements = $$("." + cssClassName);
     TooltipManager.elements.each(function(element) {
-        element = $(element);
+      element = $(element)
       var info = TooltipManager._getInfo(element);
       if (info.ajax) {
         element.ajaxId = info.id;
@@ -204,8 +204,8 @@ TooltipManager = {
     else 
       // Find ajax_ for ajax content
       id = element.className.split(' ').detect(function(name) {return name.indexOf("ajax_") == 0});
-
-      id = id.substr(id.indexOf('_') + 1, id.length);
+    
+    id = id.substr(id.indexOf('_')+1, id.length)
     return id ? {ajax: ajax, id: id} : null;
   },
   

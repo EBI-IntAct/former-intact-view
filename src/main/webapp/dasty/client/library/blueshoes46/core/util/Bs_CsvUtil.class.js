@@ -14,24 +14,13 @@
 */
 function Bs_CsvUtil()  {
 this.foo = '';this.Bs_CsvUtil = function() {
-    };
+}
 this.csvStringToArray = function(string, separator, trim, removeHeader, removeEmptyLines, checkMultiline) {
-    if (typeof(separator) == 'undefined') separator = ';';
-    if (typeof(trim) == 'undefined') trim = 'none';
-    if (typeof(removeHeader) == 'undefined') removeHeader = false;
-    if (typeof(removeEmptyLines) == 'undefined') removeEmptyLines = false;
-    if (typeof(checkMultiline) == 'undefined') checkMultiline = false;
-    if (string.length == 0) return [];
-    var array = string.split("\n");
-    for (var i = 0; i < array.length; i++) {
+if (typeof(separator)        == 'undefined') separator        = ';';if (typeof(trim)             == 'undefined') trim             = 'none';if (typeof(removeHeader)     == 'undefined') removeHeader     = false;if (typeof(removeEmptyLines) == 'undefined') removeEmptyLines = false;if (typeof(checkMultiline)   == 'undefined') checkMultiline   = false;if (string.length == 0) return new Array;var array = string.split("\n");for (var i=0; i<array.length; i++) {
 if (array[i].substr(array[i].length -1) == "\r") {
 array[i] = array[i].substr(0, array[i].length -1);}
 }
-    if ((typeof(array) != 'object') || (array.length == 0)) return [];
-    if (checkMultiline) array = this._checkMultiline(array);
-    if (separator == 'auto') separator = this.guessSeparator(array);
-    return this.csvArrayToArray(array, separator, trim, removeHeader, removeEmptyLines);
-};
+if ((typeof(array) != 'object') || (array.length == 0)) return new Array;if (checkMultiline) array = this._checkMultiline(array);if (separator == 'auto') separator = this.guessSeparator(array);return this.csvArrayToArray(array, separator, trim, removeHeader, removeEmptyLines);}
 this.csvArrayToArray = function(array, separator, trim, removeHeader, removeEmptyLines) {
 if (typeof(separator)        == 'undefined') separator        = ';';if (typeof(trim)             == 'undefined') trim             = 'none';if (typeof(removeHeader)     == 'undefined') removeHeader     = false;if (typeof(removeEmptyLines) == 'undefined') removeEmptyLines = false;switch (trim) {
 case 'none':
@@ -41,13 +30,8 @@ var trimFunction = 'rtrim';break;default:
 var trimFunction = 'trim';break;}
 var sepLength = separator.length;if (removeHeader) {
 array.shift();}
-    var ret = [];
-    for (var i = 0; i < array.length; i++) {
-        var line = array[i];
-        var offset = 0;
-        var lastPos = 0;
-        var lineArray = [];
-        for (var j = 0; j < 1; j--) {
+var ret = new Array;for (var i=0; i<array.length; i++) {
+var line = array[i];var offset    = 0;var lastPos   = 0;var lineArray = new Array;for (var j=0; j<1; j--) {
 var pos = line.indexOf(separator, offset);if (pos == -1) {
 lineArray[lineArray.length] = line.substr(lastPos);break;}
 var currentSnippet = line.substr(lastPos, pos-lastPos);var numQuotes = currentSnippet.split('"').length -1;if ((numQuotes % 2) == 0) {
@@ -82,13 +66,9 @@ addIt = true;break;}
 if (addIt) {
 ret[ret.length] = lineArray;}
 }
-    return ret;
-};
+return ret;}
 this.guessSeparator = function(cvsArray) {
-    if (cvsArray[0].indexOf(';') >= 0) return ';';
-    if (cvsArray[0].indexOf("\t") >= 0) return "\t";
-    return false;
-};
+if (cvsArray[0].indexOf(';')  >= 0) return ';';if (cvsArray[0].indexOf("\t") >= 0) return "\t";return false;}
 this._checkMultiline = function(input) {
 return input;}
 }

@@ -28,7 +28,7 @@ function ia_submitToReactome(selectedIds) {
 
     var inputQuery = ia_createHiddenInput('input', ids);
     var order = ia_createHiddenInput('order','ASC');
-    var resource = ia_createHiddenInput('resource', 'TOTAL');
+    var resource = ia_createHiddenInput('resource','TOTAL')
     reactomeForm.appendChild(inputQuery);
     reactomeForm.appendChild(order);
     reactomeForm.appendChild(resource);

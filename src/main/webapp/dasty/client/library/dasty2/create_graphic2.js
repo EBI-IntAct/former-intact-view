@@ -228,18 +228,22 @@ function createGraphic2(featureXML_num, tagId, segment_start, segment_stop, orig
 			 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 			    // TAKING COLORS FROM THE STYLESHEET
 				// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-             for (var p = 0; p < stylesheet_properties_info.length; p++) {
-                 if (stylesheet_properties_info[p]["type_id"] == feature_list[c]["type"]) {
-                     feature_border_color = stylesheet_properties_info[p]["fgcolor_data"];
-                     feature_background_color = stylesheet_properties_info[p]["bgcolor_data"];
-                     var aborder_type = 'solid';
-                     break;
-                 } else {
-                     feature_border_color = stylesheet_properties_info[0]["fgcolor_data"];
-                     feature_background_color = stylesheet_properties_info[0]["bgcolor_data"];
-                     var aborder_type = 'dotted';
-                 }
-             }
+				feature_color_loop: 
+				for(var p = 0; p < stylesheet_properties_info.length; p++)
+				  {
+				    if(stylesheet_properties_info[p]["type_id"] == feature_list[c]["type"] )
+					  {
+					   feature_border_color = stylesheet_properties_info[p]["fgcolor_data"];
+					   feature_background_color = stylesheet_properties_info[p]["bgcolor_data"];
+					   var aborder_type = 'solid';
+					   break feature_color_loop;
+					  } else
+					  {
+					   feature_border_color = stylesheet_properties_info[0]["fgcolor_data"];
+					   feature_background_color = stylesheet_properties_info[0]["bgcolor_data"];
+					   var aborder_type = 'dotted';
+					  }
+				  }	
 				  
 				  
 				  
@@ -645,7 +649,7 @@ function createGraphic2(featureXML_num, tagId, segment_start, segment_stop, orig
 				{
 					document.getElementById("system_information").innerHTML = this.getAttribute('alt');
 					return false;
-                };
+				}
 				
 				//var id_row = feature_list[c]["features"][0];
 				//var mycurrent_id_text_content = document.createTextNode(finfo[feature_xmlnumber][id_row]["feature_id"]);
@@ -715,7 +719,7 @@ function createGraphic2(featureXML_num, tagId, segment_start, segment_stop, orig
 				var mycurrent_server_text = document.createElement("a");
 				mycurrent_server_text.setAttribute("class", "gr_text_01");	
 				mycurrent_server_text.setAttribute("className", "gr_text_01");
-                   mycurrent_server_text.setAttribute("target", "_dasregistry");
+				mycurrent_server_text.setAttribute("target", "_dasregistry")
 				mycurrent_server_text.setAttribute("href", "http://www.dasregistry.org/showdetails.jsp?auto_id=" + feature_list[c]["registry_uri"]);
 				
 				var mycurrent_server_text_content = document.createTextNode(feature_list[c]["server"]);
@@ -818,7 +822,7 @@ function createGraphic2(featureXML_num, tagId, segment_start, segment_stop, orig
 						 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 						 if(feature_results_count == 0)
 							{
-                                var system_information = document.getElementById("system_information").innerHTML;
+								var system_information = document.getElementById("system_information").innerHTML
 								document.getElementById("system_information").innerHTML = system_information + "<br><span style=\"color:#CC0000\">There were no entries found with the Protein ID: \"<strong>" + query_id + "</strong>\" and the Registry label: \"<strong>" + filterLabel + "</strong>\" </span>";
 							}
 	

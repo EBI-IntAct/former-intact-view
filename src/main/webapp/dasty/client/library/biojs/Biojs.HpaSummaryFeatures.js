@@ -124,14 +124,14 @@ Biojs.HpaSummaryFeatures = Biojs.HpaSummaryFeature.extend (
          * Inputs: xml -> {String} DAS XML with HPA summary information
          */
         _getAntibodiesAccessions: function (xml){
-            var tempSet = {};
+            var tempSet = new Object();
             jQuery(xml).find("PARENT").each(function(){
                 var antibodyTextSplit = jQuery(this).attr("id").split("_");
                 if(antibodyTextSplit.length == 2){
                     tempSet[antibodyTextSplit[0]] = true;
                 }
             });
-            var antibodies = [];
+            var antibodies = new Array();
             for (var a in tempSet){
                 antibodies.push(a);
             }
@@ -147,7 +147,7 @@ Biojs.HpaSummaryFeatures = Biojs.HpaSummaryFeature.extend (
             var self = this;
             var html = '';
             jQuery.each(antibodies, function(key, value){
-                html += '<div style="width:' + self.opt.width + ';" class="' + Biojs.HpaSummaryFeatures.COMPONENT_PREFIX + 'antibodyTitle">Antibody ' + value + '</div>';
+                html += '<div style="width:'+self.opt.width+';" class="'+Biojs.HpaSummaryFeatures.COMPONENT_PREFIX+'antibodyTitle">Antibody '+value+'</div>'
                 html += '<div class="'+Biojs.HpaSummaryFeatures.COMPONENT_PREFIX+'summary" id="'+value+'_cell_line_immunofluorescence_summary"></div>';
                 html += '<div class="'+Biojs.HpaSummaryFeatures.COMPONENT_PREFIX+'summary" id="'+value+'_cell_line_immunohistochemistry_summary"></div>';
                 html += '<div class="'+Biojs.HpaSummaryFeatures.COMPONENT_PREFIX+'summary" id="'+value+'_cell_line_immunohistochemistry_summary"></div>';
@@ -167,7 +167,7 @@ Biojs.HpaSummaryFeatures = Biojs.HpaSummaryFeature.extend (
             jQuery(xml).find("FEATURE").each(function(){
                 if (jQuery(this).attr("id").indexOf("_summary") != -1) {
                     /* Get notes */
-                    var notes = [];
+                    var notes = new Array();
                     var xmlNotes = jQuery(this).find("NOTE");
                     xmlNotes.each(function(){
                         notes.push(jQuery(this).text());

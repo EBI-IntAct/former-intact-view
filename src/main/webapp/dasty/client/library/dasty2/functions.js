@@ -299,14 +299,16 @@ function highlightSequence(fstart, fend, aa_num_per_line, color)
 		var dot;
 		var i;
 		var u = String(s);
-        for (i = 0; i < u.length; i++) {
-            if (u[i] == ".") {
-                dot = "true";
-                break;
-            } else {
-                dot = "false";
-            }
-        }
+		loop:
+		for (i = 0; i < u.length; i++)
+		{
+			if (u[i] == ".") {
+			  dot = "true";
+			  break loop;
+			} else {
+			  dot = "false";
+			}
+		}
 		if (dot == "false") { return false; } else { return true; }
 	}
 	//
@@ -372,9 +374,7 @@ function f_filterResults(n_win, n_docel, n_body) {
 //------------------------------------------------------------------------------------------
 
 function MM_preloadImages() { //v3.0
-    var d = document;
-    if (d.images) {
-        if (!d.MM_p) d.MM_p = [];
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
     var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
     if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
 }
@@ -459,7 +459,7 @@ function changeStructure(){
 	loadingPDBMessage();
 	var PDBList=document.getElementById("PDBlist");
 	//var PDBname=PDBList.value; // Rafael
-    var PDBname = PDBList.options[PDBList.selectedIndex].text;
+	var PDBname = PDBList.options[PDBList.selectedIndex].text
 	//alert(PDBList.selectedIndex);
   	//alert(PDBList.options[PDBList.selectedIndex].text);
 	var punto=PDBname.indexOf(".");

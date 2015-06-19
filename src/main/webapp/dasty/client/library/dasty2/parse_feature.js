@@ -60,14 +60,12 @@ function parseFeatureXML(xmldoc,featureXML_num) {
 						// opa.innerHTML = (content_opa + " <br>------------<br>tf:" + tf);		
 						
 						var gff_attrs = gff_node.attributes;
-                          for (var g = gff_attrs.length - 1; g >= 0; g--) {
-                              if (gff_attrs[g].name == 'version') {
-                                  var gff_version = gff_attrs[g].value;
-                              }
-                              else if (gff_attrs[g].name == 'href') {
-                                  var gff_href = gff_attrs[g].value;
-                              }
-                          }
+						gff_loop: 
+						for(var g=gff_attrs.length-1; g>=0; g--)
+							{
+							if (gff_attrs[g].name == 'version') { var gff_version = gff_attrs[g].value; }
+							else if (gff_attrs[g].name == 'href') { var gff_href = gff_attrs[g].value; };
+							}
 							
 							// var opa = document.getElementById("display_test");
 							// var content_opa = opa.innerHTML;
@@ -75,288 +73,313 @@ function parseFeatureXML(xmldoc,featureXML_num) {
 							
 						
 						   var segment_node = gff_node.childNodes;
-                          for (var s = 0; s < segment_node.length; s++) {
-                              if (segment_node[s].nodeName == 'SEGMENT') {
-                                  //var segment_data = segment_node[s].firstChild.data;
-                                  var segment_attrs = segment_node[s].attributes;
-                                  for (var i = segment_attrs.length - 1; i >= 0; i--) {
-                                      if (segment_attrs[i].name == 'id') {
-                                          var segment_id = segment_attrs[i].value;
-                                      }
-                                      else if (segment_attrs[i].name == 'version') {
-                                          var segment_version = segment_attrs[i].value;
-                                          if (segment_version == sequence_info.sequence_version) {
-                                              annotation_version[featureXML_num] = 1; // ok
-                                          }
-                                          else {
-                                              annotation_version[featureXML_num] = 0; // different
-                                          }
-                                      }
-                                      else if (segment_attrs[i].name == 'start') {
-                                          //if(segment_attrs[i].value == '')
-                                          //{
-                                          var segment_start = sequence_info.sequence_start;
-                                          //} // sequence_info is glogal!
-                                          //else
-                                          //{ var segment_start = segment_attrs[i].value;}
-                                      }
-                                      else if (segment_attrs[i].name == 'stop') {
-                                          //if(segment_attrs[i].value == '' || segment_attrs[i].value == '-1')
-                                          //{
-                                          var segment_stop = sequence_info.sequence_stop;
-                                          //} // sequence_info is glogal!
-                                          //else
-                                          //{
-                                          //var segment_stop = segment_attrs[i].value;
-                                          //}
-                                      }
-                                  }
-                                  var feature_node = segment_node[s].childNodes;
-                                  for (var f = 0; f < feature_node.length; f++) {
-                                      var feature_id = '';
-                                      var feature_label = '';
-                                      var type_data = '';
-                                      var type_id = '';
-                                      var type_category = '';
-                                      var method_data = '';
-                                      var method_id = '';
-                                      var start_data = '';
-                                      var end_data = '';
-                                      var score_data = '';
-                                      var orientation_data = '';
-                                      var phase_data = '';
-                                      var note_data = [];
-                                      var link_data = [];
-                                      var link_href = [];
-                                      var group_id = '';
+						   segment_loop: 
+						   for (var s = 0; s < segment_node.length; s++) 
+						   {
+						   		if (segment_node[s].nodeName == 'SEGMENT')
+								{
+									//var segment_data = segment_node[s].firstChild.data;
+									var segment_attrs = segment_node[s].attributes;
+									for(var i=segment_attrs.length-1; i>=0; i--)
+									{
+										if (segment_attrs[i].name == 'id') { var segment_id = segment_attrs[i].value; }
+										else if (segment_attrs[i].name == 'version')
+										  {
+											var segment_version = segment_attrs[i].value;
+											if(segment_version == sequence_info.sequence_version)
+												{
+													annotation_version[featureXML_num] = 1; // ok
+												}
+											else
+												{
+													annotation_version[featureXML_num] = 0; // different
+												}
+										  }
+										else if (segment_attrs[i].name == 'start')
+										  { 
+											//if(segment_attrs[i].value == '')
+											  //{
+											  var segment_start = sequence_info.sequence_start;
+											  //} // sequence_info is glogal!
+											//else
+											  //{ var segment_start = segment_attrs[i].value;}
+										  }
+										else if (segment_attrs[i].name == 'stop')
+										  {
+											//if(segment_attrs[i].value == '' || segment_attrs[i].value == '-1')
+											  //{ 
+											  var segment_stop = sequence_info.sequence_stop;
+											  //} // sequence_info is glogal!
+											//else
+											  //{ 
+											  //var segment_stop = segment_attrs[i].value;
+											  //}
+										  }
+									 }
+								   var feature_node = segment_node[s].childNodes;
+								   feature_loop: 
+								   for (var f = 0; f < feature_node.length; f++) 
+								   {
+									   var feature_id = '';
+									   var feature_label = '';
+									   var type_data = '';
+									   var type_id = '';
+									   var type_category = '';
+									   var method_data = '';
+									   var method_id = '';
+									   var start_data = '';
+									   var end_data = '';
+									   var score_data = '';
+									   var orientation_data = '';
+									   var phase_data = '';
+									   var note_data = [];
+									   var link_data = [];
+									   var link_href = [];
+									   var group_id = '';
+									   
+										if (feature_node[f].nodeName == 'FEATURE')
+										{
+											//var segment_data = segment_node[s].firstChild.data;
+											var feature_attrs = feature_node[f].attributes;
+											for(var i=feature_attrs.length-1; i>=0; i--)
+											{
+												if (feature_attrs[i].name == 'id') { feature_id = feature_attrs[i].value; }
+												else if (feature_attrs[i].name == 'label') { feature_label = feature_attrs[i].value; };
+											 }
+										   // Exception for "http://cathwww.biochem.ucl.ac.uk:9000/das/cath_pdb/"
+										 if(feature_id == "Query_failed") { break feature_loop; parsing_error = 1; }
 
-                                      if (feature_node[f].nodeName == 'FEATURE') {
-                                          //var segment_data = segment_node[s].firstChild.data;
-                                          var feature_attrs = feature_node[f].attributes;
-                                          for (var i = feature_attrs.length - 1; i >= 0; i--) {
-                                              if (feature_attrs[i].name == 'id') {
-                                                  feature_id = feature_attrs[i].value;
-                                              }
-                                              else if (feature_attrs[i].name == 'label') {
-                                                  feature_label = feature_attrs[i].value;
-                                              }
-                                          }
-                                          // Exception for "http://cathwww.biochem.ucl.ac.uk:9000/das/cath_pdb/"
-                                          if (feature_id == "Query_failed") {
-                                              break;
-                                              parsing_error = 1;
-                                          }
+										   var feature_child_node = feature_node[f].childNodes;
+										   feature_child_loop: 
+										   for (var c = 0; c < feature_child_node.length; c++) 
+										   {
+												if (feature_child_node[c].nodeName == 'TYPE')
+												{
+													if(feature_child_node[c].firstChild == null)
+														{
+															//var type_data = "";
+															var type_data_temp = "";
+															type_data = "";
+														}
+													else
+														{
+															//var type_data = feature_child_node[c].firstChild.data;
+															var type_data_temp = feature_child_node[c].firstChild.data;
+															type_data = feature_child_node[c].firstChild.data;
+														}
+													var feature_child_attrs = feature_child_node[c].attributes;
+													for(var i=feature_child_attrs.length-1; i>=0; i--)
+													{
+														if (feature_child_attrs[i].name == 'id')	
+															{
+																type_id = feature_child_attrs[i].value;
+																if (type_data_temp == "")
+																	{
+																		type_data = type_id;
+																	}
+																//if (type_data_temp.toLowerCase() == type_id.toLowerCase() || type_data_temp == "" )
+																	//{
+																	//	// do nothing
+																	//}
+																//else
+																	//{
+																	//	type_data = type_data_temp + " (" + type_id + ")";
+																	//}
+															}
+														else if (feature_child_attrs[i].name == 'category')
+															{
+																type_category = feature_child_attrs[i].value;
+															}
+													} // for(var i=feature_child_attrs.length-1; i>=0; i--)
+													
+													
+													
+													/**
+													* Create an list of non redundant types
+													*/
+													
+													//if(type_id != "")
+														//{
+															var typesLoadedLength = dasty2.typesLoaded.length;
+															var typeDuplicated = 0;
+															for(var w = 0; w < typesLoadedLength; w++)
+																{
+																	if(dasty2.typesLoaded[w].toUpperCase() == type_id.toUpperCase())
+																		{
+																			typeDuplicated = 1;
+																		}
+																}
+																if(typeDuplicated == 0)
+																	{
+																			dasty2.typesLoaded.push(type_id);
+																	}
+														//}
+													
+													/**
+													* Create an list of non redundant categories
+													*/
+													
+													//if(type_category != "")
+														//{
+															var categoriesLoadedLength = dasty2.categoriesLoaded.length;
+															var categoryDuplicated = 0;
+															for(var w = 0; w < categoriesLoadedLength; w++)
+																{
+																	if(dasty2.categoriesLoaded[w].toUpperCase() == type_category.toUpperCase())
+																		{
+																			categoryDuplicated = 1;
+																		}
+																}
+																if(categoryDuplicated == 0)
+																	{
+																			dasty2.categoriesLoaded.push(type_category);
+																	}
+														//}
+													
+															
+													
+													
+													
+												}	 
+												else if (feature_child_node[c].nodeName == 'METHOD')
+												{
+													if(feature_child_node[c].firstChild == null)
+														{
+															var method_data_temp = "";
+															method_data = "";
+														}
+													else
+														{
+															method_data = feature_child_node[c].firstChild.data;
+															var method_data_temp = feature_child_node[c].firstChild.data;
+														}
+													//var method_data = feature_child_node[c].firstChild.data;
+													var feature_child_attrs = feature_child_node[c].attributes;
+													for(var i=feature_child_attrs.length-1; i>=0; i--)
+													{
+														if (feature_child_attrs[i].name == 'id')
+															{
+																method_id = feature_child_attrs[i].value;
+																if (method_data_temp == "")
+																	{
+																		method_data = method_id;
+																	}
+																if (method_data_temp.toLowerCase() == method_id.toLowerCase() || method_data_temp == "" )
+																	{
+																		// do nothing
+																	}
+																else
+																	{
+																		method_data = method_data_temp + " (" + method_id + ")";
+																	}
+															}
+													 }	 
+												}
+												else if (feature_child_node[c].nodeName == 'START')
+												{
+													start_data = feature_child_node[c].firstChild.data;
+												}
+													else if (feature_child_node[c].nodeName == 'END')
+												{
+													end_data = feature_child_node[c].firstChild.data;
+												}
+												else if (feature_child_node[c].nodeName == 'SCORE')
+												{
+													if(feature_child_node[c].firstChild == null)
+														{
+															score_data = "0.0";
+														}
+													else
+														{
+															score_data = feature_child_node[c].firstChild.data;
+														}
+												}
+												else if (feature_child_node[c].nodeName == 'ORIENTATION')
+												{
+													orientation_data = feature_child_node[c].firstChild.data;
+												}
+												else if (feature_child_node[c].nodeName == 'PHASE')
+												{
+													phase_data = feature_child_node[c].firstChild.data;
+												}
+												else if (feature_child_node[c].nodeName == 'NOTE')
+												{
+													note_data.push(feature_child_node[c].firstChild.data);
+												}
+												else if (feature_child_node[c].nodeName == 'LINK')
+												{
+													link_data.push(feature_child_node[c].firstChild.data);
+													var feature_child_attrs = feature_child_node[c].attributes;
+													for(var i=feature_child_attrs.length-1; i>=0; i--)
+													{
+														if (feature_child_attrs[i].name == 'href') { link_href.push(feature_child_attrs[i].value); };
+													 }
+												}
+												else if (feature_child_node[c].nodeName == 'GROUP')
+												{
+													var feature_child_attrs = feature_child_node[c].attributes;
+													for(var i=feature_child_attrs.length-1; i>=0; i--)
+													{
+														if (feature_child_attrs[i].name == 'id') { group_id = feature_child_attrs[i].value; };
+													}
+												}
+										   // FOR feature_child_loop
+										   }
+										 //} // if(feature_id != "Query_failed")
+										   
+										 //if(type_category) { /* defined */ } else { var type_category = ''; } 
+										 
+										 var feature_row = {feature_id: feature_id, feature_label: feature_label, type_data: type_data, type_id: type_id, type_category: type_category, method_data: method_data, method_id: method_id, start_data: start_data, end_data: end_data, score_data: score_data, orientation_data: orientation_data, phase_data: phase_data, note_data: note_data, link_data: link_data, link_href: link_href, group_id: group_id, annotation_server: feature_url[featureXML_num].id, annotation_server_uri: feature_url[featureXML_num].registry_uri, xmlnumber: featureXML_num };
+										 //feature_info[row_num] = feature_row; 
+										 feature_info[featureXML_num][row_num] = feature_row;
+										 
+										 if (start_data==0 && end_data==0)
+		  									{
+											  npf_num++;	
+											}
 
-                                          var feature_child_node = feature_node[f].childNodes;
-                                          for (var c = 0; c < feature_child_node.length; c++) {
-                                              if (feature_child_node[c].nodeName == 'TYPE') {
-                                                  if (feature_child_node[c].firstChild == null) {
-                                                      //var type_data = "";
-                                                      var type_data_temp = "";
-                                                      type_data = "";
-                                                  }
-                                                  else {
-                                                      //var type_data = feature_child_node[c].firstChild.data;
-                                                      var type_data_temp = feature_child_node[c].firstChild.data;
-                                                      type_data = feature_child_node[c].firstChild.data;
-                                                  }
-                                                  var feature_child_attrs = feature_child_node[c].attributes;
-                                                  for (var i = feature_child_attrs.length - 1; i >= 0; i--) {
-                                                      if (feature_child_attrs[i].name == 'id') {
-                                                          type_id = feature_child_attrs[i].value;
-                                                          if (type_data_temp == "") {
-                                                              type_data = type_id;
-                                                          }
-                                                          //if (type_data_temp.toLowerCase() == type_id.toLowerCase() || type_data_temp == "" )
-                                                          //{
-                                                          //	// do nothing
-                                                          //}
-                                                          //else
-                                                          //{
-                                                          //	type_data = type_data_temp + " (" + type_id + ")";
-                                                          //}
-                                                      }
-                                                      else if (feature_child_attrs[i].name == 'category') {
-                                                          type_category = feature_child_attrs[i].value;
-                                                      }
-                                                  } // for(var i=feature_child_attrs.length-1; i>=0; i--)
-
-
-                                                  /**
-                                                   * Create an list of non redundant types
-                                                   */
-
-                                                  //if(type_id != "")
-                                                  //{
-                                                  var typesLoadedLength = dasty2.typesLoaded.length;
-                                                  var typeDuplicated = 0;
-                                                  for (var w = 0; w < typesLoadedLength; w++) {
-                                                      if (dasty2.typesLoaded[w].toUpperCase() == type_id.toUpperCase()) {
-                                                          typeDuplicated = 1;
-                                                      }
-                                                  }
-                                                  if (typeDuplicated == 0) {
-                                                      dasty2.typesLoaded.push(type_id);
-                                                  }
-                                                  //}
-
-                                                  /**
-                                                   * Create an list of non redundant categories
-                                                   */
-
-                                                  //if(type_category != "")
-                                                  //{
-                                                  var categoriesLoadedLength = dasty2.categoriesLoaded.length;
-                                                  var categoryDuplicated = 0;
-                                                  for (var w = 0; w < categoriesLoadedLength; w++) {
-                                                      if (dasty2.categoriesLoaded[w].toUpperCase() == type_category.toUpperCase()) {
-                                                          categoryDuplicated = 1;
-                                                      }
-                                                  }
-                                                  if (categoryDuplicated == 0) {
-                                                      dasty2.categoriesLoaded.push(type_category);
-                                                  }
-                                                  //}
-
-
-                                              }
-                                              else if (feature_child_node[c].nodeName == 'METHOD') {
-                                                  if (feature_child_node[c].firstChild == null) {
-                                                      var method_data_temp = "";
-                                                      method_data = "";
-                                                  }
-                                                  else {
-                                                      method_data = feature_child_node[c].firstChild.data;
-                                                      var method_data_temp = feature_child_node[c].firstChild.data;
-                                                  }
-                                                  //var method_data = feature_child_node[c].firstChild.data;
-                                                  var feature_child_attrs = feature_child_node[c].attributes;
-                                                  for (var i = feature_child_attrs.length - 1; i >= 0; i--) {
-                                                      if (feature_child_attrs[i].name == 'id') {
-                                                          method_id = feature_child_attrs[i].value;
-                                                          if (method_data_temp == "") {
-                                                              method_data = method_id;
-                                                          }
-                                                          if (method_data_temp.toLowerCase() == method_id.toLowerCase() || method_data_temp == "") {
-                                                              // do nothing
-                                                          }
-                                                          else {
-                                                              method_data = method_data_temp + " (" + method_id + ")";
-                                                          }
-                                                      }
-                                                  }
-                                              }
-                                              else if (feature_child_node[c].nodeName == 'START') {
-                                                  start_data = feature_child_node[c].firstChild.data;
-                                              }
-                                              else if (feature_child_node[c].nodeName == 'END') {
-                                                  end_data = feature_child_node[c].firstChild.data;
-                                              }
-                                              else if (feature_child_node[c].nodeName == 'SCORE') {
-                                                  if (feature_child_node[c].firstChild == null) {
-                                                      score_data = "0.0";
-                                                  }
-                                                  else {
-                                                      score_data = feature_child_node[c].firstChild.data;
-                                                  }
-                                              }
-                                              else if (feature_child_node[c].nodeName == 'ORIENTATION') {
-                                                  orientation_data = feature_child_node[c].firstChild.data;
-                                              }
-                                              else if (feature_child_node[c].nodeName == 'PHASE') {
-                                                  phase_data = feature_child_node[c].firstChild.data;
-                                              }
-                                              else if (feature_child_node[c].nodeName == 'NOTE') {
-                                                  note_data.push(feature_child_node[c].firstChild.data);
-                                              }
-                                              else if (feature_child_node[c].nodeName == 'LINK') {
-                                                  link_data.push(feature_child_node[c].firstChild.data);
-                                                  var feature_child_attrs = feature_child_node[c].attributes;
-                                                  for (var i = feature_child_attrs.length - 1; i >= 0; i--) {
-                                                      if (feature_child_attrs[i].name == 'href') {
-                                                          link_href.push(feature_child_attrs[i].value);
-                                                      }
-                                                  }
-                                              }
-                                              else if (feature_child_node[c].nodeName == 'GROUP') {
-                                                  var feature_child_attrs = feature_child_node[c].attributes;
-                                                  for (var i = feature_child_attrs.length - 1; i >= 0; i--) {
-                                                      if (feature_child_attrs[i].name == 'id') {
-                                                          group_id = feature_child_attrs[i].value;
-                                                      }
-                                                  }
-                                              }
-                                              // FOR feature_child_loop
-                                          }
-                                          //} // if(feature_id != "Query_failed")
-
-                                          //if(type_category) { /* defined */ } else { var type_category = ''; }
-
-                                          var feature_row = {
-                                              feature_id: feature_id,
-                                              feature_label: feature_label,
-                                              type_data: type_data,
-                                              type_id: type_id,
-                                              type_category: type_category,
-                                              method_data: method_data,
-                                              method_id: method_id,
-                                              start_data: start_data,
-                                              end_data: end_data,
-                                              score_data: score_data,
-                                              orientation_data: orientation_data,
-                                              phase_data: phase_data,
-                                              note_data: note_data,
-                                              link_data: link_data,
-                                              link_href: link_href,
-                                              group_id: group_id,
-                                              annotation_server: feature_url[featureXML_num].id,
-                                              annotation_server_uri: feature_url[featureXML_num].registry_uri,
-                                              xmlnumber: featureXML_num
-                                          };
-                                          //feature_info[row_num] = feature_row;
-                                          feature_info[featureXML_num][row_num] = feature_row;
-
-                                          if (start_data == 0 && end_data == 0) {
-                                              npf_num++;
-                                          }
-
-                                          if (start_data == 0 && end_data == 0) { // non positional feature
-                                          } else {
-                                              //----------------------------------------------------------------------------------
-                                              // ARRAY THAT SAYS WHERE A "type" IS HAPPENING IN THE "feature_info" ARRAY
-                                              //----------------------------------------------------------------------------------
-                                              tc_length = type_counter.length;
-
-                                              if (tc_length == 0) {
-                                                  type_counter[0] = [];
-                                                  type_counter[0][0] = type_id;
-                                                  type_counter[0][1] = [];
-                                                  type_counter[0][1] = [row_num];
-                                              }
-
-                                              tc_update = 0;
-                                              for (var h = 0; h < tc_length; h++) {
-                                                  if (type_counter[h][0] == type_id) {
-                                                      type_counter[h][1].push(row_num);
-                                                      tc_update = 1;
-                                                  }
-                                              }
-
-                                              if (tc_update == 0 && tc_length != 0) {
-                                                  type_counter[tc_length] = [];
-                                                  type_counter[tc_length][0] = type_id;
-                                                  type_counter[tc_length][1] = [];
-                                                  type_counter[tc_length][1] = [row_num];
-                                              }
-
-                                          } // finish => if (start_data == 0 && end_data ==0)
-                                          row_num++;
-                                          // IF 'FEATURE'
-                                      }
-                                      // FOR feature_loop
-                                  }
-                              }
-                          }
+							if (start_data == 0 && end_data ==0)
+									{ // non positional feature
+									} else {
+										//----------------------------------------------------------------------------------
+										// ARRAY THAT SAYS WHERE A "type" IS HAPPENING IN THE "feature_info" ARRAY
+										//----------------------------------------------------------------------------------
+										tc_length = type_counter.length;
+										
+										if(tc_length == 0)
+										  {
+											type_counter[0] = [];
+											type_counter[0][0] = type_id;
+											type_counter[0][1] = [];
+											type_counter[0][1] = [row_num];
+										   }
+										
+										tc_update = 0;
+										for(var h = 0; h < tc_length; h++)
+										  {									  
+											if(type_counter[h][0] == type_id)
+											  {
+											    type_counter[h][1].push(row_num);
+												tc_update = 1;
+											  }
+										   }
+										   
+										if(tc_update == 0 && tc_length != 0)
+										  {
+											 type_counter[tc_length] = [];
+											 type_counter[tc_length][0] = type_id;
+											 type_counter[tc_length][1] = [];
+											 type_counter[tc_length][1] = [row_num];
+										   }
+											
+									 } // finish => if (start_data == 0 && end_data ==0)
+										row_num++;
+										// IF 'FEATURE'   	
+										}
+								   // FOR feature_loop	
+								   }
+								}
+						   }	
 						   
 						  if(parsing_error == 0)
 						   {

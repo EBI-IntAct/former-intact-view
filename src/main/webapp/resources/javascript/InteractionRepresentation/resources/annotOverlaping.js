@@ -1,17 +1,17 @@
 
 		function annotationOverlaping(){
-            this.annots = {};
-            this.tracks = [];
-            this.tracks.push({});
+			this.annots = new Object();
+			this.tracks = new Array();
+			this.tracks.push(new Object());
 		}
 
 		annotationOverlaping.prototype.setAnnot = function(annotObjectArray){
 			this.annots = annotObjectArray;
-        };
+		}
 
 		annotationOverlaping.prototype.run = function(){
 			var trackNumber = 0;
-            var annot = [];
+			var annot = new Array();
 			for(annotId in this.annots){
 				annot = this.getRoundAnnotation(this.annots[annotId]);
 				var message = annotationOverlaping.prototype.checkAnnotation(annot);
@@ -22,33 +22,34 @@
 					console.log("Coordinates error: " + message);
 				}
 			}
-        };
+		}
 		
 		annotationOverlaping.prototype.getRoundAnnotation = function(annotArray){
-            var newAnnotArray = [];
+			var newAnnotArray = new Array();
 			newAnnotArray[0] = Math.round(annotArray[0]);
 			newAnnotArray[1] = Math.round(annotArray[1]);
 			return newAnnotArray;
-        };
+		}
 		
 		annotationOverlaping.prototype.sortAnnotInOneTrack = function(annot, annotId){
 			var overlaping = false;
 			var trackNumber = 0;
+			tracks:
 			for (var i = 0; i < this.tracks.length; i++) {
-                overlaping = this.isOverlaping(annot, this.tracks[i]);
-                if (overlaping == false) {
-                    this.tracks[i][annotId] = annot;
-                    trackNumber = i;
-                    break;
-                } else {
-                    if (this.tracks[i + 1] == undefined) {
-                        //if (YAHOO.lang.isUndefined(this.tracks[i + 1])) {
-                        this.tracks.push({});
-                    }
-                }
-            }
+				overlaping = this.isOverlaping(annot, this.tracks[i]);
+				if (overlaping == false) {
+					this.tracks[i][annotId] = annot;
+					trackNumber = i;
+					break tracks;
+				} else {
+					if(this.tracks[i + 1]==undefined){
+					//if (YAHOO.lang.isUndefined(this.tracks[i + 1])) {
+						this.tracks.push(new Object());
+					}
+				}
+			}
 			return trackNumber;
-        };
+		}
 		
 		annotationOverlaping.prototype.checkAnnotation = function(annot){
 			var message = "";
@@ -61,24 +62,25 @@
 				message = "";
 			}
 			return message;
-        };
+		}
 		
 		annotationOverlaping.prototype.isOverlaping = function(annot, track){
 			var overlaping = false;
 			//ANNOT INSIDE TRACKS (k)
-            for (k in track) {
-                // TRACK ANNOT START (0), TRACK ANNOT STOP (1)
-                if (annot[0] < track[k][0] && annot[1] < track[k][0]) {
-                    overlaping = false;
-                } else if (annot[0] >= track[k][1] && annot[1] > track[k][1]) {
-                    overlaping = false;
-                } else {
-                    overlaping = true;
-                    break;
-                }
-            }
+			trackAnnot:
+			for(k in track){
+				// TRACK ANNOT START (0), TRACK ANNOT STOP (1)
+				if (annot[0] < track[k][0] && annot[1] < track[k][0]) {
+					overlaping = false;
+				} else if (annot[0] >= track[k][1] && annot[1] > track[k][1]) {
+					overlaping = false;
+				} else {
+					overlaping = true;
+					break trackAnnot;
+				}
+			}
 			return overlaping;
-        };
+		}
 		
 		annotationOverlaping.prototype.getResultInFirebug = function(){
 			for (var i = 0; i < this.tracks.length; i++) {
@@ -87,4 +89,4 @@
 					console.log(annotId + ":" + this.tracks[i][annotId][0] + "," + this.tracks[i][annotId][1]);
 				}
 			}
-        };
+		}

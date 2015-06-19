@@ -258,7 +258,7 @@ function createGraphicTittle(tagId, width_ul, left_div_category, width_div_categ
 			//mycurrent_server_text.setAttribute("href", "");
 			
 			//mycurrent_server_text.setAttribute("onclick", "sorting('server')");
-               mycurrent_server_text.onclick = new Function("sorting('server');");
+			mycurrent_server_text.onclick = new Function("sorting('server');")
 				
 			var mycurrent_server_text_content = document.createTextNode("SERVER NAME ");
 			var mycurrent_server_img_content = document.createElement("img");

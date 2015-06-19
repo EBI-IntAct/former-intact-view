@@ -254,7 +254,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
             "element": element,
             "eventHandlingElement": eventHandlingElement
         };
-    };
+    }
     
     
     // default drawing function for begin > given position and end > given position
@@ -303,7 +303,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
             "element": element,
             "eventHandlingElement": eventHandlingElement
         };
-    };
+    }
     
     
     // default drawing function for begin > given position and end < given position
@@ -352,7 +352,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
             "element": element,
             "eventHandlingElement": eventHandlingElement
         };
-    };
+    }
     
     
     // default drawing function for begin > given position and end's position in a certain range
@@ -422,7 +422,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
                 "eventHandlingElement": eventHandlingElement
             };
         }
-    };
+    }
     
     
     // default drawing function for begin < given position and certain end
@@ -518,7 +518,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
             "element": element,
             "eventHandlingElement": eventHandlingElement
         };
-    };
+    }
     
     // default drawing function for begin < given position and end > given position
     this.drawLessThanGreaterThan = function(range, y, height, featureStart, interactorLength, colour, rangeColour, opacity, tooltipText, symbol){
@@ -675,7 +675,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
             "element": element,
             "eventHandlingElement": eventHandlingElement
         };
-    };
+    }
     
     
     // default drawing function for begin's position in a certain range and certain end
@@ -809,7 +809,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
             "element": element,
             "eventHandlingElement": eventHandlingElement
         };
-    };
+    }
     
     // default drawing function for begin's position in a certain range and end > given position
     this.drawRangeGreaterThan = function(range, y, height, featureStart, interactorLength, colour, rangeColour, opacity, tooltipText, symbol){
@@ -1232,7 +1232,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
                 element.push(line);
 				featureSet.push(line);
                 if (leftCertain) {
-                    var addLine = this._shapeDrawer.getLine(x, y, x, y + height);
+                    var addLine = this._shapeDrawer.getLine(x, y, x, y + height)
                     addLine.attr("opacity", opacity);
 					addLine.attr("stroke-width", this._interactionInformation._strokeWidth);
                     element.push(addLine);
@@ -1284,7 +1284,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
             element = this.drawLegendSymbol(x, y, height, colour, undetermined, opacity);
         }
         return element;
-    };
+    }
     
     // draw a triangle pointing to the right 
     this.drawGreaterThan = function(x, y, y2, colour, opacity, symbol, width){
@@ -1391,7 +1391,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
         
         featureSet.push(curve);
         return curve;
-    };
+    }
     
     // draw a rectangle with the given width and height with a gradient from left to right
     this.drawSpecifiedRight = function(x, y, width, height, colour, rangeColour, opacity, symbol, elementWidth){
@@ -1462,7 +1462,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
             "font-size": height + 2
         });
         return text;
-    };
+    }
     
     // draw a star with black lines and filled with the given colour at the given position
     this.drawIsotope = function(x, y, height, colour, undetermined, opacity){
@@ -1533,7 +1533,7 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
 		rect.attr("opacity", 0);
 		set.push(rect);
 		return set;
-    };
+	}
 	
 	
 	this.getTooltip = function(element, tooltipText, colour, opacity){
@@ -1582,4 +1582,4 @@ FeatureDrawer = function(interactionInformation, shapeDrawer, featureSet){
 			});
 		}
 	};
-};
+}
