@@ -181,6 +181,7 @@ public class UserQuery extends BaseController {
         }
 
         autoQuoteWhenNecessary();
+        removeAllNewLines();
 
         SolrQuery query = new SolrQuery(searchQuery);
         query.setSortField(userSortColumn, (userSortOrder) ? SolrQuery.ORDER.desc : SolrQuery.ORDER.asc);
@@ -214,6 +215,9 @@ public class UserQuery extends BaseController {
         return query;
     }
 
+    private void removeAllNewLines() {
+        searchQuery = searchQuery.replaceAll("\\n", " ").replaceAll("\\r", " ");
+    }
 
     private void autoQuoteWhenNecessary() {
         searchQuery = searchQuery.trim();
