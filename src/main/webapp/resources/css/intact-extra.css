@@ -185,7 +185,7 @@
 .publication {
     border: 1px;
     background-color: #f5fcfa;
-    box-shadow: 6px 6px 3px #bbbbbb;
+    /*box-shadow: 6px 6px 3px #bbbbbb;*/
     padding: 10px;
 }
 
