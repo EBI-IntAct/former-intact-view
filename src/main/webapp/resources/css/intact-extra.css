@@ -147,8 +147,7 @@
     display:block;
     padding: 2px;
     margin-bottom:5px;
-    background:url(../../dasty/client/img/ebi_bg.gif);
-    background-repeat:repeat-y;
+    background: url(../../dasty/client/img/ebi_bg.gif) repeat-y;
     font-weight:bold;
     font-size:120%;
     color:#006666;
@@ -158,7 +157,6 @@
 .contributorLogo{
     float: left;
     position: relative;
-    border: 3px solid #E8E8E8;
     margin: 10px 10px 0px 0px;
     padding: 3px;
     text-align: center;
@@ -199,7 +197,7 @@
     right: 100px;
     display: none;
     text-indent: -9999px;
-    background: url('../../images/ico_scroll_top.png') no-repeat;
+    background: url('../../images/arrow-up.png') no-repeat;
 }
 
 
@@ -218,8 +216,7 @@ span.searchterm:hover {
 }
 
 .reactome-loading {
-    background: url('../../images/spinner.gif') no-repeat;
-    background-position: left center;
+    background: url('../../images/spinner.gif') no-repeat left center;
     color: blue;
 }
 
