@@ -1,154 +1,251 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
-        >
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <section class="grid_18 alpha">
-        <h2>IntAct Molecular Interaction Database</h2>
+    <section class="grid_24">
+        <section class="grid_18">
+            <section class="grid_24">
+                <h2>IntAct Molecular Interaction Database</h2>
 
-        <p>
-
-            <h:outputText value="#{intactView['webapp.name']} provides a freely available, open source database system
+                <p style="margin-bottom: 0;">
+                    <h:outputText value="#{intactView['webapp.name']} provides a freely available, open source database system
                                 and analysis tools for molecular interaction data. All interactions are derived from
                                 literature curation or direct user submissions and are freely available."/>
-            <h:outputText
-                    value=" To perform a search in the #{intactView['webapp.name']} database use the search box above."/>
+                </p>
+                <section>
+                    <section class="grid_9">
+                        <h:form id="intactForm" style="display: inline;" prependId="false">
+                            <ui:include src="/pages/search/search_panel.xhtml"/>
+                        </h:form>
+                    </section>
+                    <section class="grid_8">
+                        <h3 class="icon icon-generic" data-icon="t">Examples</h3>
+                        <h:form>
+                            <ul class="exampleList">
+                                <li>Gene, Protein, RNA or Chemical name:
+                                    <h:commandLink id="example1" value="BRCA2"
+                                                   action="#{searchBean.doBinarySearchAction}">
+                                        <f:setPropertyActionListener value="BRCA2"
+                                                                     target="#{userQuery.searchQuery}"/>
+                                    </h:commandLink>
+                                </li>
+                                <li>Staurosporine, UniProtKB or ChEBI AC:
+                                    <h:commandLink id="example2" value="Q06609"
+                                                   action="#{searchBean.doBinarySearchAction}">
+                                        <f:setPropertyActionListener value="Q06609"
+                                                                     target="#{userQuery.searchQuery}"/>
+                                    </h:commandLink>
+                                </li>
+                                <li>CHEBI:
+                                    <h:commandLink id="example3" value="15996"
+                                                   action="#{searchBean.doBinarySearchAction}">
+                                        <f:setPropertyActionListener value="15996"
+                                                                     target="#{userQuery.searchQuery}"/>
+                                    </h:commandLink>
+                                </li>
+                                <li>UniProtKB ID:
+                                    <h:commandLink id="example4" value="LCK_HUMAN"
+                                                   action="#{searchBean.doBinarySearchAction}">
+                                        <f:setPropertyActionListener value="LCK_HUMAN"
+                                                                     target="#{userQuery.searchQuery}"/>
+                                    </h:commandLink>
+                                </li>
+                                <li>RNACentral ID:
+                                    <h:commandLink id="example5" value="URS00004C95F4_559292"
+                                                   action="#{searchBean.doBinarySearchAction}">
+                                        <f:setPropertyActionListener value="URS00004C95F4_559292"
+                                                                     target="#{userQuery.searchQuery}"/>
+                                    </h:commandLink>
+                                </li>
+                                <li>PMID:
+                                    <h:commandLink id="example6" value="25416956"
+                                                   action="#{searchBean.doBinarySearchAction}">
+                                        <f:setPropertyActionListener value="25416956"
+                                                                     target="#{userQuery.searchQuery}"/>
+                                    </h:commandLink>
+                                </li>
+                                <li>IMEx ID:
+                                    <h:commandLink id="example7" value="IM-23318"
+                                                   action="#{searchBean.doBinarySearchAction}">
+                                        <f:setPropertyActionListener value="IM-23318"
+                                                                     target="#{userQuery.searchQuery}"/>
+                                    </h:commandLink>
+                                </li>
+                            </ul>
+                        </h:form>
+                    </section>
+                    <section class="grid_7">
+                        <h3 class="icon icon-functional" data-icon="D">Submission</h3>
 
-        </p>
+                        <p style="margin-bottom: 0;text-align: justify;">
+                            <h:outputText>Submit your data to IntAct to increase its visibility and usability! We welcome
+                                direct submission of molecular interaction data, regardless of the number of interactions.
+                                <br/><br/>
+                                More information:
+                                <h:link value="Data Submission" outcome="documentation.data_submission"/>
+                            </h:outputText>
+                        </p>
+                    </section>
+                </section>
+            </section>
+            <section class="grid_24">
+                <section class="grid_9">
+                    <h:panelGroup rendered="#{dataSetsBean.dataSetOfTheMonth != null}">
 
-        <h:form id="intactForm" prependId="false">
-            <ui:include src="/pages/search/search_panel.xhtml"/>
-        </h:form>
+                        <h3 class="icon icon-generic"
+                            data-icon="r">Dataset of the month: #{dataSetsBean.dataSetOfTheMonth.month}</h3>
 
-        <section class="grid_12">
-            <h3>News</h3>
+                        <p>
+                            <ui:include src="/pages/dotm/dotm_template.xhtml">
+                                <ui:param name="dataSet" value="#{dataSetsBean.dataSetOfTheMonth}"/>
+                            </ui:include>
+                        </p>
 
-            <p><!-- TWITTER -->
-                <ui:include src="/news_twitter.xhtml"/>
-            </p>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{dataSetsBean.dataSetOfTheMonth == null}">
+                        <h3>Dataset of the month</h3>
+
+                        <p style="text-align: justify;">
+                            Dataset of the month is not available in this moment
+                        </p>
+
+                    </h:panelGroup>
+                    <!--</section>-->
+                </section>
+                <section class="grid_8">
+                    <h3 class="icon icon-generic" data-icon="f">Training</h3>
+
+                    <p style="margin-bottom: 0;text-align: justify;">If you want to learn more about using IntAct check the following:</p>
+                    <br/>
+                    <ul>
+                        <li>
+                            <a href="#">Online courses</a>
+                        </li>
+                        <li>
+                            <a href="#">Upcoming presential courses</a>
+                        </li>
+                    </ul>
+                </section>
+                <section class="grid_7">
+                    <h3 class="icon icon-generic" data-icon="P">Citing #{intactView['webapp.name']}</h3>
+
+                    <p style="margin-bottom: 0; text-align: justify;">
+                        <strong>The MIntAct project--IntAct as a common curation platform for 11 molecular interaction databases.</strong>
+                    </p>
+                    <br/>
+
+                    <p>Orchard S et al [PMID: <a
+                            href="http://europepmc.org/abstract/MED/24234451" target="_blank">24234451</a>]</p>
+                    <!--<span style="font-style: italic">Nucl. Acids Res. (2013) doi: 10.1093/nar/gkt1115</span>-->
+                    <p>
+                        <a href="http://europepmc.org/abstract/MED/24234451" target="_blank">[Abstract]</a>
+                        <a href="http://nar.oxfordjournals.org/content/early/2013/11/13/nar.gkt1115.long"
+                           target="_blank">[Full Text]</a>
+                    </p>
+                </section>
+            </section>
+            <section class="grid_24">
+                <section class="grid_18">
+                    <h3 class="icon icon-generic" data-icon="o">Contributors</h3>
+
+                    <p style="text-align: justify;">Manually curated content is added to IntAct by curators at the EMBL-EBI and the following organisations:</p>
+
+                    <p>
+                        <!-- LOGOS -->
+                        <a href="http://mint.bio.uniroma2.it/">
+                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_mint_s.png"/>
+                        </a>
+                        <a href="http://www.uniprot.org/">
+                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_uniprot_s.png"/>
+                        </a>
+                        <a href="http://www.isb-sib.ch/">
+                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_sib_s.png"/>
+                        </a>
+                        <a href="http://ophid.utoronto.ca/i2d/">
+                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_id2_s.png"/>
+                        </a>
+                        <a href="http://www.innatedb.com/">
+                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_innatedb_s.png"/>
+                        </a>
+                        <a href="http://www.molecularconnections.com/">
+                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_mconnections_s.png"/>
+                        </a>
+                        <a href="http://matrixdb.ibcp.fr/">
+                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_matrixdb_s.png"/>
+                        </a>
+                        <a href="http://www.mechanobio.info/">
+                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_mbinfo_s.png"/>
+                        </a>
+                        <a href="http://www.agbase.msstate.edu/">
+                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_agbase_s.png"/>
+                        </a>
+                        <a href="http://www.ucl.ac.uk/cardiovasculargeneontology/">
+                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_acg_s.png"/>
+                        </a>
+                        <br style="clear:both"/>
+                    </p>
+                </section>
+                <section class="grid_6">
+                    <h3 class="icon icon-generic" data-icon="}">IMEx</h3>
+                    <section class="grid_15">
+                        <p style="text-align: justify;">Under the terms of the <a
+                                href="http://www.imexconsortium.org/">IMEx</a> agreement, IntAct also incorporated and maintains the
+                            <a href="http://www.imexconsortium.org/">IMEx</a> records of the now inactive MPIDB database.
+                        </p>
+                    </section>
+                    <section class="grid_">
+                        <a href="http://www.imexconsortium.org/" target="_blank">
+                            <img src="/intact/images/logos/IMEx_logo_webmedium.jpg"
+                                 alt="IMEX" style="width: 100px" border="0"/>
+                        </a>
+                    </section>
+                </section>
+            </section>
         </section>
 
-        <section class="grid_12" style="overflow-y: auto">
+        <section class="grid_6">
+            <section>
+                <h3 class="icon icon-generic" data-icon="g"><h:link
+                        value="Data Content" outcome="documentation.statistics"/></h3>
 
-            <h:panelGroup rendered="#{dataSetsBean.dataSetOfTheMonth != null}">
-
-                <h3>Dataset of the month: #{dataSetsBean.dataSetOfTheMonth.month}</h3>
-
-
-                <p>
-                    <ui:include src="/pages/dotm/dotm_template.xhtml">
-                        <ui:param name="dataSet" value="#{dataSetsBean.dataSetOfTheMonth}"/>
-                    </ui:include>
+                <ul>
+                    <li>
+                        Publications: <h:outputText style="font-weight:bold;"
+                                                    value="#{statisticsController.publicationCount}"/>
+                    </li>
+                    <li>
+                        Interactions: <h:outputText style="font-weight:bold;"
+                                                    value="#{statisticsController.binaryInteractionCount}"/>
+                    </li>
+                    <li>
+                        Interactors: <h:outputText style="font-weight:bold;"
+                                                   value="#{statisticsController.interactorsWithNoInteractions}"/>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <!--<h3 class="icon icon-generic" data-icon="N">News-->
+                <!--</h3>-->
+                <h3 class="icon icon-socialmedia icon-s2" data-icon="T">News<i style="float: right"><a
+                        href="https://twitter.com/intact_project"
+                        class="twitter-follow-button"
+                        data-show-count="false"
+                        data-show-screen-name="false">Follow @intact_project</a>
+                    <script>!function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                        if (!d.getElementById(id)) {
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = p + '://platform.twitter.com/widgets.js';
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }
+                    }(document, 'script', 'twitter-wjs');</script>
+                </i>
+                </h3>
+                <p><!-- TWITTER -->
+                    <ui:include src="/news_twitter.xhtml"/>
                 </p>
-
-                <p>
-                    <h:outputText value="Go to "/>
-                    <h:link value="Archive" outcome="dotm_archive"/>
-
-                </p>
-
-
-            </h:panelGroup>
-            <h:panelGroup rendered="#{dataSetsBean.dataSetOfTheMonth == null}">
-                <h3>Dataset of the month</h3>
-
-                <p>
-                    Dataset of the month is not available in this moment
-                </p>
-
-            </h:panelGroup>
-        </section>
-
-        <br/>
-
-        <section class="grid_24 publication">
-            <h3>Citing #{intactView['webapp.name']}</h3>
-
-            <p>
-                <strong>The MIntAct project--IntAct as a common curation platform for 11 molecular interaction databases.</strong>
-                Orchard S et al [PMID: 24234451]
-                <br/>
-                <span style="font-style: italic">Nucl. Acids Res. (2013) doi: 10.1093/nar/gkt1115</span>
-                <br/>
-                <a href="http://europepmc.org/abstract/MED/24234451" target="_blank">[Abstract]</a>
-                <a href="http://nar.oxfordjournals.org/content/early/2013/11/13/nar.gkt1115.long"
-                   target="_blank">[Full Text]</a>
-            </p>
+            </section>
         </section>
     </section>
-
-    <section class="grid_6 omega">
-
-        <section>
-            <h3 class="icon icon-generic" data-icon="g">Data Content</h3>
-            <ul>
-                <li>
-                    Publications: <h:outputText style="font-weight:bold;"
-                                                value="#{statisticsController.publicationCount}"/>
-                </li>
-                <li>
-                    Interactions: <h:outputText style="font-weight:bold;"
-                                                value="#{statisticsController.binaryInteractionCount}"/>
-                </li>
-                <li>
-                    Interactors: <h:outputText style="font-weight:bold;"
-                                               value="#{statisticsController.interactorsWithNoInteractions}"/>
-                </li>
-            </ul>
-        </section>
-
-        <section>
-
-            <h3>Contributors</h3>
-
-            <p>Manually curated content is added to IntAct by curators at the EMBL-EBI and the following organisations:</p>
-
-            <p>
-                <!-- LOGOS -->
-                <a href="http://mint.bio.uniroma2.it/">
-                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_mint_s.png"/>
-                </a>
-                <a href="http://www.uniprot.org/">
-                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_uniprot_s.png"/>
-                </a>
-                <a href="http://www.isb-sib.ch/">
-                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_sib_s.png"/>
-                </a>
-                <a href="http://ophid.utoronto.ca/i2d/">
-                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_id2_s.png"/>
-                </a>
-                <a href="http://www.innatedb.com/">
-                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_innatedb_s.png"/>
-                </a>
-                <a href="http://www.molecularconnections.com/">
-                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_mconnections_s.png"/>
-                </a>
-                <a href="http://matrixdb.ibcp.fr/">
-                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_matrixdb_s.png"/>
-                </a>
-                <a href="http://www.mechanobio.info/">
-                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_mbinfo_s.png"/>
-                </a>
-                <a href="http://www.agbase.msstate.edu/">
-                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_agbase_s.png"/>
-                </a>
-                <a href="http://www.ucl.ac.uk/cardiovasculargeneontology/">
-                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_acg_s.png"/>
-                </a>
-                <br style="clear:both"/>
-                <br/>
-                Under the terms of the <a
-                    href="http://www.imexconsortium.org/">IMEx</a> agreement, IntAct also incorporated and maintains the
-                <a href="http://www.imexconsortium.org/">IMEx</a> records of the now inactive MPIDB database.
-            </p>
-        </section>
-        <section style="overflow-y: auto">
-            <p><a href="http://www.imexconsortium.org/" target="_blank">
-                <img src="/intact/images/logos/IMEx_logo_webmedium.jpg" width="160px" alt="IMEX" border="0"/>
-                <br/>IMEx member
-            </a></p>
-        </section>
-    </section>
-
-
 </ui:composition>
