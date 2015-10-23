@@ -147,7 +147,7 @@
     display:block;
     padding: 2px;
     margin-bottom:5px;
-    background: url(../../dasty/client/img/ebi_bg.gif) repeat-y;
+    background: url("../../dasty/client/img/ebi_bg.gif") repeat-y;
     font-weight:bold;
     font-size:120%;
     color:#006666;
@@ -241,4 +241,9 @@ span.searchterm:hover {
 
 .reactome-clear-hidden{
     visibility: hidden;
+}
+
+a.external {
+    background: url("../../images/link-external.png") top right no-repeat;
+    padding-right: 5px;
 }
