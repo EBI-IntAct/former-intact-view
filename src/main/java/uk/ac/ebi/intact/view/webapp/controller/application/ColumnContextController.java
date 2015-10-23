@@ -53,9 +53,6 @@ public class ColumnContextController implements Serializable{
     private static String COOKIE_STANDARD_VALUE = "std cols";
     private static String COOKIE_EXPANDED_VALUE = "ext cols";
     private static String COOKIE_COMPLETE_VALUE = "comp cols";
-
-    private String[] selectedColumns;
-    private List<SelectItem> columnsSelectItems;
     private static String MOLECULE_A_NAME = "moleculeA.name";
     private static String MOLECULE_A_LINKS = "moleculeA.links";
     private static String MOLECULE_B_NAME = "moleculeB.name";
@@ -102,7 +99,8 @@ public class ColumnContextController implements Serializable{
     private static String MOLECULE_B_STOICHIOMETRY = "moleculeB.stc";
     private static String MOLECULE_A_IDENTIFICATION = "moleculeA.pmethod";
     private static String MOLECULE_B_IDENTIFICATION = "moleculeB.pmethod";
-
+    private String[] selectedColumns;
+    private List<SelectItem> columnsSelectItems;
     private String[] simpleColumns;
 
     private String[] basicColumns;
@@ -202,6 +200,7 @@ public class ColumnContextController implements Serializable{
     private String[] getCompleteColumns() {
         if (completeColumns == null){
             completeColumns = new String[] {
+                    MOLECULE_A_NAME, MOLECULE_A_LINKS, MOLECULE_B_NAME, MOLECULE_B_LINKS,
                     MOLECULE_A_ID, MOLECULE_B_ID, MOLECULE_A_ALTID, MOLECULE_B_ALTID,
                     MOLECULE_A_ALIASES, MOLECULE_B_ALIASES,INTERACTION_DETECTION_METHOD, FIRST_AUTHOR, PUBMED_IDENTIFIER,
                     MOLECULE_A_SPECIES, MOLECULE_B_SPECIES, INTERACTION_TYPE, SOURCE_DATABASE, INTERACTION_AC,
