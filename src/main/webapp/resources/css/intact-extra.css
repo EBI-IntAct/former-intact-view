@@ -200,15 +200,14 @@
     background: url('../../images/arrow-up.png') no-repeat;
 }
 
-
-span.searchterm{
+span.searchterm {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 500px;
+    width: 100%;
 }
 
-span.searchterm:hover {
+span.searchterm:active {
     overflow: visible;
     white-space: normal;
     width: 90%;
@@ -243,7 +242,11 @@ span.searchterm:hover {
     visibility: hidden;
 }
 
-a.external {
-    background: url("../../images/link-external.png") top right no-repeat;
-    padding-right: 5px;
+#mainPanels\:resultsTable .ui-widget-header {
+    border: none !important;
+}
+
+#ebi_search_results {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
 }
