@@ -44,6 +44,7 @@
 
         <!-- for production the above can be replaced with -->
         <link rel="stylesheet" href="//www.ebi.ac.uk/web_guidelines/css/compliance/mini/ebi-fluid-embl.css"/>
+        <!--<link rel="stylesheet" href="https://www.ebi.ac.uk/sites/ebi.ac.uk/files/css/css_9Fp4et4OY0o36KNaD8z-Mizx_zjCH6dGAQyd2Fi91iI.css"></link>-->
 
         <!-- you can replace this with [projectname]-colours.css. See http://frontier.ebi.ac.uk/web/style/colour for details of how to do this -->
         <!-- also inform ES so we can host your colour palette file -->
@@ -190,34 +191,43 @@
                     <nav>
                         <ul id="local-nav" class="grid_24">
                             <ot:separateConversationContext>
-                                <li class="#{sectionTitle eq 'Home' ? 'active' : null} first"><h:link value="Home"
-                                                                                                      outcome="home"/>
+                                <li class="#{sectionTitle eq 'Home' ? 'active' : null} first">
+                                    <h:link value="Home" outcome="home"/>
                                 </li>
-                                <li class="#{sectionTitle eq 'Advanced Search' ? 'active' : null}"><h:link
-                                        value="Search" outcome="search"/></li>
-                                <li class="#{sectionTitle eq 'IntAct Search Results' ? 'active' : null}"><h:link
-                                        value="Browse" outcome="interactions"/></li>
-                                <li class="#{sectionTitle eq 'Data Submission' ? 'active' : null}"><h:link
-                                        value="Data Submission" outcome="documentation.data_submission"/></li>
-                                <li class="#{sectionTitle eq 'Downloads' ? 'active' : null}"><h:link value="Downloads"
-                                                                                                     outcome="documentation.downloads"/>
+                                <li class="#{sectionTitle eq 'Advanced Search' ? 'active' : null}">
+                                    <h:link value="Advanced Search" outcome="search"/>
                                 </li>
-                                <li class="#{sectionTitle eq 'Datasets' ? 'active' : null}"><h:link value="Datasets"
-                                                                                                    outcome="documentation.dataset"/>
+                                <li class="#{sectionTitle eq 'About' ? 'active' : null}">
+                                    <h:link value="About" outcome="about.overview"/>
                                 </li>
-                                <li class="#{sectionTitle eq 'Statistics' ? 'active' : null}"><h:link value="Statistics"
-                                                                                                      outcome="documentation.statistics"/>
+                                <li class="#{sectionTitle eq 'Resources' ? 'active' : null}">
+                                    <h:link value="Resources" outcome="resources.overview"/>
                                 </li>
-                                <li class="#{sectionTitle eq 'FAQ' ? 'active' : null}"><h:link value="FAQ"
-                                                                                               outcome="documentation.faq"/>
+                                <li class="#{sectionTitle eq 'Download' ? 'active' : null}last">
+                                    <h:link value="Download" outcome="documentation.downloads"/>
                                 </li>
-                                <li class="#{sectionTitle eq 'Developer Resources' ? 'active' : null}"><h:link
-                                        value="Developer Resources" outcome="documentation.tools"/></li>
-                                <li class="#{sectionTitle eq 'Contact Us' ? 'active' : null}"><h:link value="Contact Us"
-                                                                                                      outcome="documentation.contactus"/>
-                                </li>
-                                <li class="#{sectionTitle eq 'About IntAct' ? 'active' : null} last"><h:link
-                                        value="About IntAct" outcome="documentation.about"/></li>
+                                <!--<li class="#{sectionTitle eq 'IntAct Search Results' ? 'active' : null}"><h:link-->
+                                <!--value="Browse" outcome="interactions"/></li>-->
+                                <!--<li class="#{sectionTitle eq 'Data Submission' ? 'active' : null}"><h:link-->
+                                <!--value="Data Submission" outcome="documentation.data_submission"/></li>-->
+
+                                <!--<li class="#{sectionTitle eq 'Datasets' ? 'active' : null}">-->
+                                <!--<h:link value="Datasets" outcome="documentation.dataset"/>-->
+                                <!--</li>-->
+                                <!--<li class="#{sectionTitle eq 'Statistics' ? 'active' : null}"><h:link value="Statistics"-->
+                                <!--outcome="documentation.statistics"/>-->
+                                <!--</li>-->
+                                <!--<li class="#{sectionTitle eq 'FAQ' ? 'active' : null}"><h:link value="FAQ"-->
+                                <!--outcome="documentation.faq"/>-->
+                                <!--</li>-->
+                                <!--<li class="#{sectionTitle eq 'Developer Resources' ? 'active' : null} last">-->
+                                <!--<h:link value="Developer Resources" outcome="documentation.tools"/>-->
+                                <!--</li>-->
+
+                                <!--<li class="#{sectionTitle eq 'Contact Us' ? 'active' : null}"><h:link value="Contact Us"-->
+                                <!--outcome="documentation.contactus"/>-->
+                                <!--</li>-->
+
 
                             </ot:separateConversationContext>
 
@@ -258,7 +268,7 @@
                         </nav>
                     </div>
 
-                    <h:panelGroup class="grid_6 omega shortcuts expander" id="search-extras"
+                    <h:panelGroup class="grid_6 omega shortcuts expander" style="box-shadow: none" id="search-extras"
                                   rendered="#{sectionTitle eq 'IntAct Search Results'}">
                         <div id="ebi_search_results"><h3 class="slideToggle icon icon-functional"
                                                          data-icon="u">Show more data from EMBL-EBI</h3>
