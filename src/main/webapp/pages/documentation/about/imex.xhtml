@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                template="/WEB-INF/facelets/layout/compliance-template-ebi.xhtml">
+
+    <!-- Mandatorty params -->
+    <ui:param name="sectionTitle" value="About"/>
+
+    <ui:define name="content">
+        <h2 id="imex">Member of IMEX</h2>
+
+        <section class="grid_18 alpha">
+            <h5>International Molecular Exchange Consortium</h5>
+
+            <p style="text-align: left">
+                <a href="http://imex.sourceforge.net/" target="_blank">
+                    <img src="http://www.imexconsortium.org/sites/imexconsortium.org/themes/custom/inove/images/IMEx_logo_webmedium.jpg"
+                         width="80px" alt="IMEX" border="0"/>
+                </a>
+            </p>
+        </section>
+        <section>
+            <ui:include src="about_menu.xhtml"/>
+        </section>
+    </ui:define>
+</ui:composition>

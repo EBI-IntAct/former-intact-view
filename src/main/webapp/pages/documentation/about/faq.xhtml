@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+
+                template="/WEB-INF/facelets/layout/compliance-template-ebi.xhtml">
+
+    <!-- Mandatorty params -->
+    <ui:param name="sectionTitle" value="About"/>
+
+    <ui:define name="content">
+        <section class="grid_18 alpha">
+            <h2>FAQ</h2>
+            <section id="intro" class="grid_23 panel-pane pane-custom pane-3 clearfix" style="padding: 10px;">
+                <ui:repeat var="topic" value="#{faqBean.topics}">
+                    <h4>#{topic.topicInformation.name} #{topic.topicInformation.description}</h4>
+
+                    <ul>
+                        <ui:repeat var="item" value="#{topic.items}">
+                            <li><a href="##{item.id}">#{item.question}</a></li>
+                        </ui:repeat>
+                    </ul>
+                </ui:repeat>
+            </section>
+            <br/>
+            <ui:repeat var="topic" value="#{faqBean.topics}">
+
+                <h3>#{topic.topicInformation.name} #{topic.topicInformation.description}</h3>
+
+                <ui:repeat var="item" value="#{topic.items}">
+                    <section id="#{item.id}">
+                        <h5>#{item.question}</h5>
+                        <h:outputText value="#{item.answer.value}" escape="#{item.answer.escape}"/>
+                    </section>
+                </ui:repeat>
+            </ui:repeat>
+        </section>
+        <section>
+            <ui:include src="about_menu.xhtml"/>
+        </section>
+    </ui:define>
+</ui:composition>
