@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+
+                template="/WEB-INF/facelets/layout/compliance-template-ebi.xhtml">
+
+    <!-- Mandatorty params -->
+    <ui:param name="sectionTitle" value="Resources"/>
+
+    <ui:define name="content">
+        <h2>Overview</h2>
+        <section class="grid_18 alpha">
+            <section id="intro" class="grid_23 panel-pane pane-custom pane-3 clearfix"
+                     style="padding: 10px;">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate dolor nisl, eu rhoncus velit maximus ut. Suspendisse tristique dui orci, nec viverra quam dictum sit amet. Morbi aliquet augue in mi efficitur, ac vehicula lacus consectetur. Nullam egestas dolor dui, sed cursus ligula semper.</p>
+                <ul>
+                    <li>
+                        <h:link value="Developer Resources" outcome="resources.datasets"/><br/>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span>
+                    </li>
+                    <li>
+                        <h:link value="Curation Manual" outcome="resources.curation_manual"/><br/>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span>
+                    </li>
+                    <li>
+                        <h:link value="Datasets" outcome="resources.datasets"/><br/>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span>
+                    </li>
+                    <li>
+                        <h:link value="Training" outcome="resources.training"/><br/>
+                        <span>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </span>
+                    </li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <ui:include src="resources_menu.xhtml"/>
+        </section>
+    </ui:define>
+</ui:composition>

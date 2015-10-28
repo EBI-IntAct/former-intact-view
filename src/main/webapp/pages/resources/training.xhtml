@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                template="/WEB-INF/facelets/layout/compliance-template-ebi.xhtml">
+
+
+    <!-- Mandatorty params -->
+    <ui:param name="sectionTitle" value="Resources"/>
+
+    <ui:define name="content">
+        <h2>Training</h2>
+        <section class="grid_18 alpha">
+            <section class="grid_12">
+                <h3 class="icon icon-generic" data-icon="f">Face-To-Face Training</h3>
+                <h6>November 2015</h6>
+                <ul style="list-style-position:inside;">
+                    <li>
+                        <h5>
+                            <a href="http://www.ebi.ac.uk/training/events/2015/interactions-pathways-intact"
+                               target="_blank">Interactions &amp; Pathways - IntAct</a>
+                        </h5>
+                    </li>
+                    <li>
+                        <h5>
+                            <a href="http://www.ebi.ac.uk/training/events/2015/networks-and-pathways-0"
+                               target="_blank">Networks and Pathways</a>
+                        </h5>
+                    </li>
+                    <li>
+                        <h5>
+                            <a href="http://www.ebi.ac.uk/training/events/2015/network-analysis-cytoscape-and-psicquic"
+                               target="_blank">Network Analysis with Cytoscape and PSICQUIC</a>
+                        </h5>
+                    </li>
+                </ul>
+                <h6>May 2016</h6>
+                <ul style="list-style-position:inside;">
+                    <li>
+                        <h5>
+                            <a href="http://www.ebi.ac.uk/training/events/2016/networks-and-pathways-1"
+                               target="_blank">Networks and Pathways</a>
+                        </h5>
+                    </li>
+                </ul>
+                <h6>July 2016</h6>
+                <ul style="list-style-position:inside;">
+                    <li>
+                        <h5>
+                            <a href="http://www.ebi.ac.uk/training/events/2016/silico-systems-biology"
+                               target="_blank">In Silico Systems Biology</a>
+                        </h5>
+                    </li>
+                </ul>
+            </section>
+            <section class="grid_12">
+                <h3 class="icon icon-generic" data-icon="T">Online Training</h3>
+                <section class="grid_24">
+                    <h4>IntAct</h4>
+                    <ul style="list-style-position:inside;">
+                        <li>
+                            <h5>
+                                <a href="http://www.ebi.ac.uk/training/online/course/intact-molecular-interactions-database-embl-ebi-we"
+                                   target="_blank">IntAct: the molecular interactions database at EMBL-EBI (webinar)</a>
+                            </h5>
+                        </li>
+                        <li>
+                            <h5>
+                                <a href="http://www.ebi.ac.uk/training/online/course/intact-molecular-interactions-ebi"
+                                   target="_blank">IntAct: Molecular Interactions at the EBI</a>
+                            </h5>
+                        </li>
+                        <li>
+                            <h5>
+                                <a href="http://www.ebi.ac.uk/training/online/course/protein-interactions-and-their-importance"
+                                   target="_blank">Protein interactions and their importance</a>
+                            </h5>
+                        </li>
+                        <li>
+                            <h5>
+                                <a href="http://www.ebi.ac.uk/training/online/course/intact-quick-tour"
+                                   target="_blank">IntAct: Quick tour</a>
+                            </h5>
+                        </li>
+                        <li>
+                            <h5>
+                                <a href="http://www.ebi.ac.uk/training/online/course/proteomics-introduction-ebi-resources"
+                                   target="_blank">Proteomics: an introduction to the EBI resources</a>
+                            </h5>
+                        </li>
+                    </ul>
+                </section>
+                <section class="grid_24">
+                    <h4>Complex Portal</h4>
+                    <ul style="list-style-position:inside;">
+                        <li>
+                            <h5>
+                                <a href="http://www.ebi.ac.uk/training/online/course/complex-portal-quick-tour"
+                                   target="_blank">Complex Portal: Quick tour</a>
+                            </h5>
+
+                        </li>
+                        <li>
+                            <h5>
+                                <a href="http://www.ebi.ac.uk/training/online/course/complex-portal-webinar"
+                                   target="_blank">Complex Portal: webinar</a>
+                            </h5>
+
+                        </li>
+                    </ul>
+                </section>
+            </section>
+        </section>
+        <section>
+            <ui:include src="resources_menu.xhtml"/>
+        </section>
+    </ui:define>
+</ui:composition>
