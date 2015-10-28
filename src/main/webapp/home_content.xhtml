@@ -115,16 +115,11 @@
                 <section class="grid_8">
                     <h3 class="icon icon-generic" data-icon="f">Training</h3>
 
-                    <p style="margin-bottom: 0;text-align: justify;">If you want to learn more about using IntAct check the following:</p>
-                    <br/>
-                    <ul>
-                        <li>
-                            <a href="#">Online courses</a>
-                        </li>
-                        <li>
-                            <a href="#">Upcoming presential courses</a>
-                        </li>
-                    </ul>
+                    <p style="margin-bottom: 0;text-align: justify;">If you want to learn more about using IntAct check the following:
+                        <br/>
+                        <br/>
+                        <h:link value="Online courses &amp; Upcoming presential courses" outcome="resources.training"/>
+                    </p>
                 </section>
                 <section class="grid_7">
                     <h3 class="icon icon-generic" data-icon="P">Citing #{intactView['webapp.name']}</h3>
@@ -136,7 +131,8 @@
 
                     <p>Orchard S et al [PMID: <a
                             href="http://europepmc.org/abstract/MED/24234451" target="_blank">24234451</a>]
-                        <a href="http://nar.oxfordjournals.org/content/early/2013/11/13/nar.gkt1115.long"
+                        <a class="external"
+                           href="http://nar.oxfordjournals.org/content/early/2013/11/13/nar.gkt1115.long"
                            target="_blank">[Full Text]</a>
                     </p>
                 </section>
@@ -227,6 +223,7 @@
                     <ui:include src="/follow_twitter.xhtml"/>
                 </i>
                 </h3>
+
                 <p><!-- TWITTER -->
                     <ui:include src="/news_twitter.xhtml"/>
                 </p>
