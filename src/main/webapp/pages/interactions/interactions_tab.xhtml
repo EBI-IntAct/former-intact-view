@@ -5,7 +5,6 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
 
-                xmlns:iv="http://java.sun.com/jsf/composite/intactview"
                 xmlns:ot="http://myfaces.apache.org/orchestra">
 
     <section id="search-results" class="grid_24">
@@ -18,7 +17,8 @@
                         </h:commandLink>
                         <h:outputText value=" the spoke expanded co-complexes "/>
                         <p:commandLink onclick="complexExpansionDialog.show()">
-                            <h:graphicImage alt="helpIcon" url="/images/help.png"/>
+                            <i class="icon icon-generic" style="outline: 0; font-size: 108%;" title="Help"
+                               data-icon="?"/>
                         </p:commandLink>
                         <strong><h:outputText value="(#{facetController.expansionCount.spokeCount})">
                             <f:convertNumber pattern="#,###"/>
@@ -34,7 +34,8 @@
                         </h:commandLink>
                         <h:outputText value=" the spoke expanded co-complexes "/>
                         <p:commandLink onclick="complexExpansionDialog.show()">
-                            <h:graphicImage alt="helpIcon" url="/images/help.png"/>
+                            <i class="icon icon-generic" style="outline: 0; font-size: 108%;" title="Help"
+                               data-icon="?"/>
                         </p:commandLink>
                     </li>
                 </h:panelGroup>
@@ -79,7 +80,7 @@
 
                     biological complexes in IntAct.
                     <p:commandLink type="button" onclick="complexDialog.show()">
-                        <h:graphicImage alt="helpIcon" url="/images/help.png"/>
+                        <i class="icon icon-generic" style="outline: 0; font-size: 108%;" title="Help" data-icon="?"/>
                     </p:commandLink></strong>
                 <br/>
             </h:panelGroup>
@@ -100,7 +101,7 @@
                     <h:outputText value="( #{searchBean.psicquicSearchManager.nonRespondingDatabases} database(s) non responding)" rendered="#{searchBean.psicquicSearchManager.nonRespondingDatabases gt 0}"/>
 
                     <p:commandLink type="button" onclick="psicquicDialog.show()">
-                        <h:graphicImage alt="helpIcon" url="/images/help.png"/>
+                        <i class="icon icon-generic" style="outline: 0; font-size: 108%;" title="Help" data-icon="?"/>
                     </p:commandLink>
                     <br/>
                 </h:panelGroup>
@@ -118,7 +119,7 @@
                     interaction evidences from <strong>#{searchBean.psicquicSearchManager.otherImexDatabasesWithResults}</strong> other IMEx databases.
                     <h:outputText value="( #{searchBean.psicquicSearchManager.nonRespondingImexDatabases} IMEx database(s) non responding)" rendered="#{searchBean.psicquicSearchManager.nonRespondingImexDatabases gt 0}"/>
                     <p:commandLink type="button" onclick="psicquicImexDialog.show()">
-                        <h:graphicImage alt="helpIcon" url="/images/help.png"/>
+                        <i class="icon icon-generic" style="outline: 0; font-size: 108%;" title="Help" data-icon="?"/>
                     </p:commandLink>
 
                     <br/>
@@ -127,7 +128,7 @@
                 <h:panelGroup rendered="#{searchBean.psicquicSearchManager.countInOtherDatabases == 0 and searchBean.psicquicSearchManager.countInOtherImexDatabases == 0}">
                     No results in other databases.
                     <p:commandLink type="button" onclick="psicquicDialog.show()">
-                        <h:graphicImage alt="helpIcon" url="/images/help.png"/>
+                        <i class="icon icon-generic" style="outline: 0; font-size: 108%;" title="Help" data-icon="?"/>
                     </p:commandLink>
                 </h:panelGroup>
 
@@ -136,12 +137,8 @@
         <div class='grid_4 omega' style="overflow-y: auto">
             <p:commandLink onclick="whatIsInteractionsDialog.show()">
                 What is this view?
-                <h:graphicImage alt="helpIcon" url="/images/help.png"/>
+                <i class="icon icon-generic" style="outline: 0; font-size: 108%;" title="Help" data-icon="?"/>
             </p:commandLink>
-        </div>
-
-        <div class="grid_24">
-            <ui:include src="interactionTable.xhtml"/>
         </div>
     </section>
 </ui:composition>
