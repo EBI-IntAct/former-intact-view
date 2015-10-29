@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
 
-                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-                xmlns:sf="http://www.ebi.ac.uk/faces/site"
-
-                xmlns:iv="http://java.sun.com/jsf/composite/intactview">
+        >
 
     <ui:param name="displayWarning" value="#{browseBean.maxSize lt searchBean.interactorTotalResults}"/>
 
@@ -104,13 +100,13 @@
                     <li>
                         <h:graphicImage alt="warnIcon" url="/images/warning_icon.png"
                                         rendered="#{displayWarning}" title="Numerous interactors available"/>
-                        <h:outputLink target="_blank"
+                        <h:outputLink class="external" target="_blank"
                                       value="http://www.ensembl.org/Homo_sapiens/featureview?type=ProteinAlignFeature;id=#{browseBean.chromosomalLocationIdentifierList}">By Chromosomal Location</h:outputLink>
                     </li>
                     <li>
                         <h:graphicImage alt="warnIcon" url="/images/warning_icon.png"
                                         rendered="#{displayWarning}" title="Numerous interactors available"/>
-                        <h:outputLink target="_blank"
+                        <h:outputLink class="external" target="_blank"
                                       value="http://www.ebi.ac.uk/gxa/query?geneQuery=#{browseBean.MRNAExpressionIdentifierList}">By mRNA expression</h:outputLink>
                     </li>
                 </ul>
