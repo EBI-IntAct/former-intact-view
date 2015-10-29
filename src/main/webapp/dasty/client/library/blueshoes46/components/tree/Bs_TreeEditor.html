@@ -18,7 +18,7 @@ note: this editor is experimental and not up to date.
 <script type="text/javascript" src="/_bsJavascript/components/tree/Bs_TreeElement.class.js"></script>
 
 <script>
-var treeArray = new Array();
+  var treeArray = [];
 
 function init() {
   updateTreeFromCode();
@@ -44,9 +44,9 @@ function isTrue(param) {
 * @return array
 */
 function _prepareDataArrayForEditMode(arr) {
-  var a = new Array;
+  var a = [];
   for (var i=0; i<arr.length; i++) {
-    a[i] = new Array;
+    a[i] = [];
     a[i]['caption'] = arr[i]['caption'];
     a[i]['isOpen']  = true;
     a[i]['onClick'] = "editTreeElement(__this.id__);";
@@ -63,8 +63,8 @@ function initTree(arr) {
     //need to modify that array here. only care about the caption.
     var a = _prepareDataArrayForEditMode(arr);
   } else {
-    var a = new Array;
-    a[0] = new Array;
+    var a = [];
+    a[0] = [];
     a[0]['caption'] = "start";
     a[0]['onClick'] = "editTreeElement(__this.id__);";
   }
@@ -78,8 +78,8 @@ function initTree(arr) {
   if (arr) {
     a = arr;
   } else {
-    var a = new Array;
-    a[0] = new Array;
+    var a = [];
+    a[0] = [];
     a[0]['caption'] = "start";
   }
   previewTree = new Bs_Tree('previewTree'); //global
@@ -143,7 +143,7 @@ function storeElementFromForm(){
   }
   
   //prepare data array
-  var a = new Array();
+  var a = [];
   a['caption']           = f.caption.value;
   a['onClick']           = "editTreeElement(__this.id__);";
   a['isOpen']            = true;
@@ -161,7 +161,7 @@ function storeElementFromForm(){
   
   
   //prepare data array
-  var a = new Array();
+  var a = [];
   a['caption']           = f.caption.value;
   a['url']               = f.url.value;
   a['target']            = f.target.value;

@@ -62,7 +62,12 @@ field.focus();field.select();}
 return false;}
 return true;}
 function bsFormDoHiddenSubmit(exitScreen, exitAction, nextScreen, nextAction, dataHash, submitToAction) {
-var formOutArray =  new Array();var ii=0;formOutArray[ii++] = '<form name="smSubmitForm" action="' + submitToAction + '" method="post">';formOutArray[ii++] = '<input type="hidden" name="bs_todo[nextScreen]" value="' + nextScreen + '">';formOutArray[ii++] = '<input type="hidden" name="bs_todo[exitScreen]" value="' + exitScreen + '">';switch (typeof(nextAction)) {
+    var formOutArray = [];
+    var ii = 0;
+    formOutArray[ii++] = '<form name="smSubmitForm" action="' + submitToAction + '" method="post">';
+    formOutArray[ii++] = '<input type="hidden" name="bs_todo[nextScreen]" value="' + nextScreen + '">';
+    formOutArray[ii++] = '<input type="hidden" name="bs_todo[exitScreen]" value="' + exitScreen + '">';
+    switch (typeof(nextAction)) {
 case 'string':
 formOutArray[ii++] = '<input type="hidden" name="bs_todo[nextAction]" value="' + nextAction + '">';break;case 'object':
 for (var key in nextAction) {
@@ -81,7 +86,9 @@ if (typeof(dataHash[matrixStr]) == 'function') continue;var valStr = bs_filterFo
 formOutArray[ii++] = '</form>';var body = document.getElementsByTagName('body').item(0);body.innerHTML = formOutArray.join('');var form = document.smSubmitForm;form.submit();}
 function _recursiveObj2Hash(aObject, matrixStr, flatObjHash) {
 if (!flatObjHash) {
-flatObjHash = new Object();matrixStr = '';}
+    flatObjHash = {};
+    matrixStr = '';
+}
 if (typeof(aObject) != 'object') {
 flatObjHash[matrixStr] = aObject;} else {
 for (var key in aObject) {

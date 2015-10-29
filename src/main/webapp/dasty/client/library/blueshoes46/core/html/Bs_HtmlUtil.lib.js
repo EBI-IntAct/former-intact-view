@@ -17,7 +17,19 @@ if (Hex == "A") Value = 10;else if(Hex == "B") Value = 11;else if(Hex == "C") Va
 function GiveHex(Dec) {
 if(Dec == 10) Value = "A";else if(Dec == 11) Value = "B";else if(Dec == 12) Value = "C";else if(Dec == 13) Value = "D";else if(Dec == 14) Value = "E";else if(Dec == 15) Value = "F";else Value = "" + Dec;return Value;}
 function HexToDec(Input) {
-Input = Input.toUpperCase();a = GiveDec(Input.substring(0, 1));b = GiveDec(Input.substring(1, 2));c = GiveDec(Input.substring(2, 3));d = GiveDec(Input.substring(3, 4));e = GiveDec(Input.substring(4, 5));f = GiveDec(Input.substring(5, 6));outRed   = (a * 16) + b;outGreen = (c * 16) + d;outBlue  = (e * 16) + f;out = new Array(outRed, outGreen, outBlue);return out;}
+  Input = Input.toUpperCase();
+  a = GiveDec(Input.substring(0, 1));
+  b = GiveDec(Input.substring(1, 2));
+  c = GiveDec(Input.substring(2, 3));
+  d = GiveDec(Input.substring(3, 4));
+  e = GiveDec(Input.substring(4, 5));
+  f = GiveDec(Input.substring(5, 6));
+  outRed = (a * 16) + b;
+  outGreen = (c * 16) + d;
+  outBlue = (e * 16) + f;
+  out = [outRed, outGreen, outBlue];
+  return out;
+}
 function DecToHex(Red, Green, Blue) {
 a = GiveHex(Math.floor(Red / 16));b = GiveHex(Red % 16);c = GiveHex(Math.floor(Green / 16));d = GiveHex(Green % 16);e = GiveHex(Math.floor(Blue / 16));f = GiveHex(Blue % 16);out = a + b + c + d + e + f;return out;}
 function filterForHtml(str) {
@@ -27,12 +39,12 @@ function bs_filterForHtml(str) {
   str = str.replace(/\r/g,'&#x0D;').replace(/\f/g,'&#x0C;').replace(/\n/g,'&#x0A;').replace(/\t/g,'&#x09;');
 return str;}
 function filterForHtml2(str) {
-str = filter("&lt;",   "<", str)
-str = filter("&gt;",   ">", str)
+  str = filter("&lt;", "<", str);
+  str = filter("&gt;", ">", str);
   str = str.replace("<>", ""); //bug in filter function?
 return str;}
 function filter(inTag, outTag, inString) {
-split = inString.split(inTag)
+  split = inString.split(inTag);
 var outString = '';if (split.length > 0) {
 for(i=0; i<split.length; i++) {
 if (i==split.lenth) {
@@ -49,7 +61,11 @@ hackyTag.innerHTML = str;return hackyTag.innerText;}
 function bs_parseSimpleTagProps(tagStr) {
 var hackyTagName = 'bs_parseSimpleTagProps_helperTag';var hackyTag = document.getElementById(hackyTagName);if (hackyTag == null) {
 var tags    = document.getElementsByTagName('body');var bodyTag = tags[0];bodyTag.insertAdjacentHTML('BeforeEnd', '<div id="' + hackyTagName + '" style="display:none;"></div>');hackyTag = document.getElementById(hackyTagName);}
-hackyTag.style.display = 'block';hackyTag.innerHTML     = tagStr;var myTag              = hackyTag.children[0];var ret = new Array;for (var prop in myTag.attributes) {
+  hackyTag.style.display = 'block';
+  hackyTag.innerHTML = tagStr;
+  var myTag = hackyTag.children[0];
+  var ret = [];
+  for (var prop in myTag.attributes) {
 try {
 var x = 'style';if (prop == x) alert('prop: ' + prop + ' ' + typeof(myTag.attributes[prop]));if (myTag.attributes[prop]['name'] == x) {
 alert(myTag.attributes[prop]['name']);alert(myTag.attributes[prop]['value']);}

@@ -190,7 +190,7 @@ Biojs.InteractionsFilterGraph = Biojs.extend(
 		var self = this;
 		var nodes = [];
 		var edges = [];
-		var elements = new Object();
+		var elements = {};
 		for(interactionId in self.opt.interactions){
 			var interactors = self.opt.interactions[interactionId];
 			edges.push({ data: { id: interactionId, source: interactors[0], target: interactors[1]},classes: "alledges"});

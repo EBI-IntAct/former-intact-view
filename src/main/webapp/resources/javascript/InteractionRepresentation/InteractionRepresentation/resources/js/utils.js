@@ -50,7 +50,7 @@ Utils = function(){
 		}
 		
 		return RGB;
-    }
+    };
     
     this.findRGB = function(c1, c2, hue){
         if (hue > 360) 
@@ -67,7 +67,7 @@ Utils = function(){
                     return (c1 + (c2 - c1) * (240 - hue) / 60);
                 else 
                     return (c1);
-    }
+    };
     
     this.RGBtoHSL = function(RGB){
 		for(var i = 0; i < RGB.length; i++){

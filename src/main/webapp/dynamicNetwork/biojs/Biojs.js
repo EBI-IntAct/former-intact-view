@@ -201,8 +201,9 @@ Biojs.Utils = {
 				}
 			}
 		},
-		
-		log: function (msg) { ; /* Do nothing by default */ }		
+
+		log: function (msg) {  /* Do nothing by default */
+		}
 	}
 };
 
@@ -280,7 +281,8 @@ Biojs.extend = function(_child, _static) { // subclass
 			if (this.constructor == klass) { // instantiation
 
 				// Create a instance of this class
-				function BiojsComponent() {};
+				function BiojsComponent() {
+				}
 				BiojsComponent.prototype = proto;
 				var instance = new BiojsComponent();
 

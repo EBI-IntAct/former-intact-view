@@ -21,6 +21,7 @@ import uk.ac.ebi.intact.model.CvObject;
 import uk.ac.ebi.intact.view.webapp.IntactViewException;
 import uk.ac.ebi.intact.view.webapp.application.SpringInitializedService;
 import uk.ac.ebi.intact.view.webapp.controller.config.IntactViewConfiguration;
+
 import javax.faces.bean.ApplicationScoped;
 import javax.persistence.Query;
 import java.math.BigDecimal;
@@ -46,10 +47,6 @@ import java.util.*;
 public class PieChartController extends SpringInitializedService {
 
     private static final Log log = LogFactory.getLog(PieChartController.class);
-
-    /* Ontology mapping strategy */
-    private String ontologyMappingStrategy = "db"; // "solr" OR "db"
-
     /* TYPE */
     private final String TYPE_FACET_FIELD = "type_s";
     private final String TYPE_TITLE = "Interaction types";
@@ -63,16 +60,14 @@ public class PieChartController extends SpringInitializedService {
     private final String[] ontologyPrefixes = {"taxid:", "psi-mi:"};
     private final String solrFiledTermId = "cid";
     private final String solrFiledTermName = "cname";
-
-    /* Series - This is the only input needed to render the Pie Charts */
-    private Map<String,JSONObject> series = new HashMap<String,JSONObject>();
-
-
-    @Autowired
-    private IntactViewConfiguration viewConfiguration;
-
     @Autowired
     protected DaoFactory daoFactory;
+    /* Ontology mapping strategy */
+    private String ontologyMappingStrategy = "db"; // "solr" OR "db"
+    /* Series - This is the only input needed to render the Pie Charts */
+    private Map<String,JSONObject> series = new HashMap<String,JSONObject>();
+    @Autowired
+    private IntactViewConfiguration viewConfiguration;
 
 
     public PieChartController() {
@@ -418,7 +413,7 @@ public class PieChartController extends SpringInitializedService {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date TIMESTAMP = null;
             try {
-                TIMESTAMP = (Date)formatter.parse(String.valueOf(row[1]));
+                TIMESTAMP = formatter.parse(String.valueOf(row[1]));
             } catch (ParseException e) {
                 throw new IntactViewException("Date parsing exception: "+TIMESTAMP, e);
             }

@@ -746,10 +746,7 @@ public class SearchController extends JpaBaseController {
     }
 
     public boolean hasLoadedCurrentQuery() {
-        if (this.currentQuery == null || !getUserQuery().getSearchQuery().equals(this.currentQuery)) {
-            return false;
-        }
-        return true;
+        return !(this.currentQuery == null || !getUserQuery().getSearchQuery().equals(this.currentQuery));
     }
 
     public String getExportQueryParameters() {

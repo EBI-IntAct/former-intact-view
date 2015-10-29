@@ -34,12 +34,11 @@ function parseDasRegistryXML(xmldoc){
 						var label = property.getAttributeNode("value").value;
 						var drl_length = das_registry_label.length;
 						var new_label = 0;
-						
-						das_registry_label_loop:
-						for (var m=0; m < drl_length; m++) {
+
+						for (var m = 0; m < drl_length; m++) {
 							if (das_registry_label[m] == label) {
 								new_label = 1;
-								break das_registry_label_loop;
+								break;
 							} else {
 								new_label = 0;
 							}
@@ -61,7 +60,7 @@ function parseDasRegistryXML(xmldoc){
 							}
 							
 							if (url != "" && labelsFound==1) {	//RC 250508
-								var server = new Object();
+								var server = {};
 								server.id  = id;
 								server.url = proxy_url + '?m=features&q=' + query_id + '&t=' + timeout + '&s=' + url;
 								

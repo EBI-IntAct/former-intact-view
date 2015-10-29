@@ -23,7 +23,18 @@ function hideDebug() {
 
 function showDebug(bShow) {
  if (debugWindow == null) {
-  debugWindow = new Window('debug_window', {className: 'dialog',width:250, height:100, right:4, bottom:42, zIndex:1000, opacity:1, showEffect: Element.show, resizable: true, title: "Debug"})
+	 debugWindow = new Window('debug_window', {
+		 className: 'dialog',
+		 width: 250,
+		 height: 100,
+		 right: 4,
+		 bottom: 42,
+		 zIndex: 1000,
+		 opacity: 1,
+		 showEffect: Element.show,
+		 resizable: true,
+		 title: "Debug"
+	 });
   debugWindow.getContent().innerHTML = "<style>#debug_window .dialog_content {background:#000;}</style> <div id='debug'></div>";
   date=new Date;
     date.setMonth(date.getMonth()+3);
@@ -90,7 +101,7 @@ function $E(data) {
 // FROM Nick Hemsley
 var Debug = {
 	inspectOutput: function (container, within) {
-		within = within || debugWindow.getContent()
+		within = within || debugWindow.getContent();
 		
 		if (debugWindow == null)
  			return;
@@ -99,8 +110,8 @@ var Debug = {
 	},
 	
 	inspect: function(object) {
-		var cont = $E({tag: "div", className: "inspector"})
-		Debug.inspectObj(object, cont)
+		var cont = $E({tag: "div", className: "inspector"});
+		Debug.inspectObj(object, cont);
 		debugWindow.getContent().appendChild(cont)
 	},
 	
@@ -111,27 +122,27 @@ var Debug = {
 	},
 	
 	inspectable: function(object, prop) {
-		cont = $E({tag: 'div', className: 'inspectable', children: [prop + " value: " + object[prop] ]})
-		cont.toInspect = object[prop]
-		Event.observe(cont, 'click', Debug.inspectClicked, false)
+		cont = $E({tag: 'div', className: 'inspectable', children: [prop + " value: " + object[prop]]});
+		cont.toInspect = object[prop];
+		Event.observe(cont, 'click', Debug.inspectClicked, false);
 		return cont
 	},
 	
 	inspectClicked: function(e) {
-		Debug.inspectContained(Event.element(e))
+		Debug.inspectContained(Event.element(e));
 		Event.stop(e)
 	},
 	
 	inspectContained: function(container) {
 		if (container.opened) {
-			container.parentNode.removeChild(container.opened)
+			container.parentNode.removeChild(container.opened);
 			delete(container.opened)
 		} else {
-			sibling = container.parentNode.insertBefore($E({tag: "div", className: "child"}), container.nextSibling)
+			sibling = container.parentNode.insertBefore($E({tag: "div", className: "child"}), container.nextSibling);
 			if (container.toInspect)
-				Debug.inspectObj(container.toInspect, sibling)
+				Debug.inspectObj(container.toInspect, sibling);
 			container.opened = sibling
 		}
 	}
-}
+};
 var inspect = Debug.inspect;

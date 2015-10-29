@@ -43,8 +43,8 @@ Event.simulateMouse = function(element, eventName) {
   this.mark.style.left = options.pointerX + "px";
   this.mark.style.width = "5px";
   this.mark.style.height = "5px;";
-  this.mark.style.borderTop = "1px solid red;"
-  this.mark.style.borderLeft = "1px solid red;"
+  this.mark.style.borderTop = "1px solid red;";
+  this.mark.style.borderLeft = "1px solid red;";
   
   if(this.step)
     alert('['+new Date().getTime().toString()+'] '+eventName+'/'+Test.Unit.inspect(options));
@@ -78,7 +78,7 @@ Event.simulateKeys = function(element, command) {
   }
 };
 
-var Test = {}
+var Test = {};
 Test.Unit = {};
 
 // security exception workaround
@@ -126,13 +126,13 @@ Test.Unit.Logger.prototype = {
     '<thead><tr><th>Status</th><th>Test</th><th>Message</th></tr></thead>' +
     '<tbody id="loglines"></tbody>' +
     '</table>';
-    this.logsummary = $('logsummary')
+    this.logsummary = $('logsummary');
     this.loglines = $('loglines');
   },
   _toHTML: function(txt) {
     return txt.escapeHTML().replace(/\n/g,"<br/>");
   }
-}
+};
 
 Test.Unit.Runner = Class.create();
 Test.Unit.Runner.prototype = {
@@ -234,7 +234,7 @@ Test.Unit.Runner.prototype = {
       failures   + " failures, " +
       errors     + " errors");
   }
-}
+};
 
 Test.Unit.Assertions = Class.create();
 Test.Unit.Assertions.prototype = {
@@ -298,7 +298,7 @@ Test.Unit.Assertions.prototype = {
     catch(e) { this.error(e); }
   },
   assertNull: function(obj) {
-    var message = arguments[1] || 'assertNull'
+    var message = arguments[1] || 'assertNull';
     try { (obj==null) ? this.pass() : 
       this.fail(message + ': got "' + Test.Unit.inspect(obj) + '"'); }
     catch(e) { this.error(e); }
@@ -348,7 +348,7 @@ Test.Unit.Assertions.prototype = {
        iterations + ' iterations in ' + (timeTaken/1000)+'s' );
     return timeTaken;
   }
-}
+};
 
 Test.Unit.Testcase = Class.create();
 Object.extend(Object.extend(Test.Unit.Testcase.prototype, Test.Unit.Assertions.prototype), {

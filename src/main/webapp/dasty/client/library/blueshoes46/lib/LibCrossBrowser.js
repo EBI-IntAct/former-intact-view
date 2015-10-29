@@ -92,7 +92,8 @@ div.style.left=left+'px';div.style.top =top +'px';return;}
 if(_dom==2 || _dom==1){
 div.style.pixelLeft=left;div.style.pixelTop =top;return;}
 if(_dom==3){
-div.moveTo(left,top);return;}
+    div.moveTo(left, top);
+}
 }
 function moveDivBy(div,left,top){
 if(_dom==4){
@@ -102,7 +103,8 @@ div.style.pixelLeft=div.offsetLeft+left;div.style.pixelTop =div.offsetTop +top;r
 if(_dom==1){
 div.style.pixelLeft+=left;div.style.pixelTop +=top;return;}
 if(_dom==3){
-div.moveBy(left,top);return;}
+    div.moveBy(left, top);
+}
 }
 function scrollExlHItTo(exdiv,x){
 if(_dom==4){
@@ -110,16 +112,24 @@ frames[exdiv.id].scrollTo(x,frames[exdiv.id].scrollY);return;}
 if(_dom==2 || _dom==1){
 frames(exdiv.id+'_if').scrollTo(x,frames(exdiv.id+'_if').document.body.scrollTop);return;}
 if(_dom==3){
-var dx=x-exdiv.clip.left, ch=exdiv.clip.width;exdiv.left-=dx;exdiv.clip.left=x; exdiv.clip.width=ch;return;}
-return;}
+    var dx = x - exdiv.clip.left, ch = exdiv.clip.width;
+    exdiv.left -= dx;
+    exdiv.clip.left = x;
+    exdiv.clip.width = ch;
+}
+}
 function scrollExlVItTo(exdiv,y){
 if(_dom==4){
 frames[exdiv.id].scrollTo(frames[exdiv.id].scrollX,y);return;}
 if(_dom==2 || _dom==1){
 frames(exdiv.id+'_if').scrollTo(frames(exdiv.id+'_if').document.body.scrollLeft,y);return;}
 if(_dom==3){
-var dy=y-exdiv.clip.top, ch=exdiv.clip.height;exdiv.top-=dy;exdiv.clip.top=y; exdiv.clip.height=ch;return;}
-return;}
+    var dy = y - exdiv.clip.top, ch = exdiv.clip.height;
+    exdiv.top -= dy;
+    exdiv.clip.top = y;
+    exdiv.clip.height = ch;
+}
+}
 function initDivSize(div){
 if(_dom==4){
 div.style.width =div.offsetWidth +'px';div.style.height=div.offsetHeight+'px';}
@@ -136,7 +146,8 @@ div.style.width =width +'px';div.style.height=height+'px';return;}
 if(_dom==2 || _dom==1){
 div.style.pixelWidth =width;div.style.pixelHeight=height;return;}
 if(_dom==3){
-div.resizeTo(width,height);return;}
+    div.resizeTo(width, height);
+}
 }
 function resizeDivBy(div,width,height){
 if(_dom==4){
@@ -146,7 +157,8 @@ div.style.pixelWidth =div.offsetWidth +width;div.style.pixelHeight=div.offsetHei
 if(_dom==1){
 div.style.pixelWidth +=width;div.style.pixelHeight+=height;return;}
 if(_dom==3){
-div.resizeBy(width,height);return;}
+    div.resizeBy(width, height);
+}
 }
 function getExlWidth (exdiv){
 if(_dom==4)
@@ -164,7 +176,8 @@ function setDivVisibility(div,visible){
 if(_dom==4 || _dom==2 || _dom==1){
 div.style.visibility=(visible)?'inherit':'hidden';return;}
 if(_dom==3){
-div.visibility      =(visible)?'inherit':'hide';return;}
+    div.visibility = (visible) ? 'inherit' : 'hide';
+}
 }
 function setDivVisibilities(divs,visible){
 if(_dom==4 || _dom==2 || _dom==1){
@@ -178,7 +191,11 @@ function setDivClip(div,top,right,bottom,left){
 if(_dom==4 || _dom==2 || _dom==1){
 div.style.clip='rect('+top+'px '+right+'px '+bottom+'px '+left+'px)';return;}
 if(_dom==3){
-div.clip.top   =top;   div.clip.right=right;div.clip.bottom=bottom;div.clip.left =left;return;}
+    div.clip.top = top;
+    div.clip.right = right;
+    div.clip.bottom = bottom;
+    div.clip.left = left;
+}
 }
 function writeDivHTML(div,op,cl){
 var s='';for(var i=3; i<arguments.length; i++) s+=arguments[i];if(_dom==4){
@@ -187,7 +204,10 @@ var range=document.createRange();range.selectNodeContents(div);range.collapse(tr
 if(_dom==2 || _dom==1){
 if(op)   div.innerHTML='';if(_mac&&!_ie512) div.innerHTML+=s;else     div.insertAdjacentHTML('BeforeEnd',s);return;}
 if(_dom==3){
-if(op) div.document.open('text/html','replace');div.document.write(s);if(cl) div.document.close();return;}
+    if (op) div.document.open('text/html', 'replace');
+    div.document.write(s);
+    if (cl) div.document.close();
+}
 }
 function setDivBackgroundColor(div,color){
 if(color==null) color='transparent';if(_dom==3) div.bgColor=color;else        div.style.backgroundColor=color;}
@@ -197,7 +217,8 @@ function setDivZIndex(div,order){
 if(_dom==4 || _dom==2 || _dom==1){
 div.style.zIndex=order;return;}
 if(_dom==3){
-div.zIndex      =order;return;}
+    div.zIndex = order;
+}
 }
 function setDivStyleAttribute(div,nm,value){
 if(_dom!=0 && _dom!=3) eval('div.style.'+nm+'=value');return div;}
@@ -208,8 +229,9 @@ if(_dom==2 || _dom==1){
     frames(exdiv.id+'_if').location.replace(url);
 return;}
 if(_dom==3){
-exdiv.load(url,exdiv.clip.width);return;}
-return;}
+    exdiv.load(url, exdiv.clip.width);
+}
+}
 function getLeftFromEvent(e){
 if(_dom==4)          return e.clientX+window.scrollX;if(_dom==2||_dom==1) return document.body.scrollLeft+window.event.clientX;if(_dom==3)          return e.pageX;return 0;}
 function getTopFromEvent(e){

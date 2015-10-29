@@ -180,9 +180,8 @@ public class QueryToken {
         if (notQuery != that.notQuery) return false;
         if (field != null ? !field.equals(that.field) : that.field != null) return false;
         if (operand != that.operand) return false;
-        if (query != null ? !query.equals(that.query) : that.query != null) return false;
+        return !(query != null ? !query.equals(that.query) : that.query != null);
 
-        return true;
     }
 
     @Override

@@ -69,9 +69,8 @@ public class SimpleInteractor {
 
         SimpleInteractor that = ( SimpleInteractor ) o;
 
-        if ( !ac.equals( that.ac ) ) return false;
+        return ac.equals(that.ac);
 
-        return true;
     }
 
     @Override
