@@ -2,42 +2,108 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
-
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ot="http://myfaces.apache.org/orchestra">
     <p:panel>
-        <section style="padding-left:0;">
-            <p:panel>
-                <fieldset id="searchPanelFld">
-                    <legend>Search in IntAct</legend>
-                    <h:panelGroup id="searchPanel">
-                        <h:inputTextarea id="queryTxt" autoResize="true" style="width: 98%;"
-                                         rows="5" value="#{userQuery.searchQuery}"
-                                         disabled="#{userQuery.showNewFieldPanel}"/>
-                        <p:watermark for="queryTxt" value="Enter search term(s)..."/>
-                        <!--<p:tooltip for="queryTxt" showEvent="focus" hideEvent="blur" value="Hallo"></p:tooltip>-->
-                        <br/>
-                        <h:commandButton id="quickSearchBtn" style="display: inline;"
-                                         styleClass="submit"
-                                         onclick="queryTxt = document.getElementById('queryTxt'); _gaq.push(['_trackEvent', 'SearchPanel', 'Search', queryTxt.value])"
-                                         value="Search"
-                                         disabled="#{userQuery.showNewFieldPanel}"
-                                         action="#{searchBean.doBinarySearchAction}">
-                        </h:commandButton>
-                        <p:commandLink id="searchHelpPanel" align="right"
-                                       style="float: right;margin-top: 0;border: none;">
-                            <i class="icon icon-generic" style="outline: 0; font-size: 108%;" title="Help"
-                               data-icon="i">Search Tips</i>
-                        </p:commandLink>
-                    </h:panelGroup>
-                </fieldset>
-            </p:panel>
+        <section class="grid_24" style="padding-top:0;">
+            <section class="grid_12" style="padding-left:0;">
+                <p:panel>
+                    <fieldset id="searchPanelFld" style="padding-top: 0;">
+                        <legend>Search in IntAct</legend>
+                        <h:panelGroup id="searchPanel">
+                            <h:inputTextarea id="queryTxt" autoResize="true" style="width: 98%;"
+                                             rows="5" value="#{userQuery.searchQuery}"
+                                             disabled="#{userQuery.showNewFieldPanel}"/>
+                            <p:watermark for="queryTxt" value="Enter search term(s)..."/>
+                            <!--<p:tooltip for="queryTxt" showEvent="focus" hideEvent="blur" value="Hallo"></p:tooltip>-->
+                            <br/>
+                            <h:commandButton id="quickSearchBtn" style="display: inline;"
+                                             styleClass="submit"
+                                             onclick="queryTxt = document.getElementById('queryTxt'); _gaq.push(['_trackEvent', 'SearchPanel', 'Search', queryTxt.value])"
+                                             value="Search"
+                                             disabled="#{userQuery.showNewFieldPanel}"
+                                             action="#{searchBean.doBinarySearchAction}">
+                            </h:commandButton>
+                            <p:commandLink id="searchHelpPanel" align="right"
+                                           style="float: right;margin-top: 0;border: none;">
+                                <i class="icon icon-generic" style="outline: 0; font-size: 108%;" title="Help"
+                                   data-icon="i">Search Tips</i>
+                            </p:commandLink>
+                        </h:panelGroup>
+                    </fieldset>
+                </p:panel>
+            </section>
+            <section class="grid_12" style="padding-top:0;">
+                <h3 class="icon icon-generic" data-icon="t">Examples</h3>
+                <ot:separateConversationContext>
+
+                    <ul class="exampleList">
+
+                        <li>Gene&#44; Protein&#44; RNA or Chemical name&#58;
+                            <h:commandLink id="example1" value="BRCA2"
+                                           action="#{searchBean.doBinarySearchAction}">
+                                <f:setPropertyActionListener value="BRCA2"
+                                                             target="#{userQuery.searchQuery}"/>
+                            </h:commandLink>
+                            &#44;
+                            <h:commandLink id="example2" value="Staurosporine"
+                                           action="#{searchBean.doBinarySearchAction}">
+                                <f:setPropertyActionListener value="Staurosporine"
+                                                             target="#{userQuery.searchQuery}"/>
+                            </h:commandLink>
+
+                        </li>
+                        <li>UniProtKB or ChEBI AC&#58;
+                            <h:commandLink id="example3" value="Q06609"
+                                           action="#{searchBean.doBinarySearchAction}">
+                                <f:setPropertyActionListener value="Q06609"
+                                                             target="#{userQuery.searchQuery}"/>
+                            </h:commandLink>
+                            &#44;
+                            <h:commandLink id="example4" value="CHEBI:15996"
+                                           action="#{searchBean.doBinarySearchAction}">
+                                <f:setPropertyActionListener value="CHEBI:15996"
+                                                             target="#{userQuery.searchQuery}"/>
+                            </h:commandLink>
+                        </li>
+                        <li>UniProtKB ID&#58;
+                            <h:commandLink id="example5" value="LCK_HUMAN"
+                                           action="#{searchBean.doBinarySearchAction}">
+                                <f:setPropertyActionListener value="LCK_HUMAN"
+                                                             target="#{userQuery.searchQuery}"/>
+                            </h:commandLink>
+                        </li>
+                        <li>RNACentral ID&#58;
+                            <h:commandLink id="example6" value="URS00004C95F4_559292"
+                                           action="#{searchBean.doBinarySearchAction}">
+                                <f:setPropertyActionListener value="URS00004C95F4_559292"
+                                                             target="#{userQuery.searchQuery}"/>
+                            </h:commandLink>
+                        </li>
+                        <li>PMID&#58;
+                            <h:commandLink id="example7" value="25416956"
+                                           action="#{searchBean.doBinarySearchAction}">
+                                <f:setPropertyActionListener value="25416956"
+                                                             target="#{userQuery.searchQuery}"/>
+                            </h:commandLink>
+                        </li>
+                        <li>IMEx ID&#58;
+                            <h:commandLink id="example8" value="IM-23318"
+                                           action="#{searchBean.doBinarySearchAction}">
+                                <f:setPropertyActionListener value="IM-23318"
+                                                             target="#{userQuery.searchQuery}"/>
+                            </h:commandLink>
+                        </li>
+                    </ul>
+                </ot:separateConversationContext>
+            </section>
         </section>
         <p:tooltip for="searchHelpPanel" showEvent="click" hideEvent="blur">
             <h:panelGroup id="searchTips">
                 <h4>Search Tips</h4>
                 <ul>
                     <li>
-                        Search based on exact word matches e.g. BRCA2 will not match BRCA2B
+                        Search is based on exact word matches e.g. BRCA2 will not match BRCA2B
                     </li>
                     <li>Search for isoforms of 'P12345' by using 'P12345*'</li>
                     <li>Use the Gene Ontology - search on
