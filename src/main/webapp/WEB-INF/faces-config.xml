@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<faces-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			  xmlns="http://java.sun.com/xml/ns/javaee"
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
               version="2.0">
 
@@ -81,13 +81,13 @@
 		</navigation-case>
 	</navigation-rule>
 
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>documentation.about</from-outcome>
-            <to-view-id>/pages/documentation/about/about.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+	<!--<navigation-rule>-->
+	<!--<from-view-id>*</from-view-id>-->
+	<!--<navigation-case>-->
+	<!--<from-outcome>documentation.about</from-outcome>-->
+	<!--<to-view-id>/pages/documentation/about/about.xhtml</to-view-id>-->
+	<!--</navigation-case>-->
+	<!--</navigation-rule>-->
 
 	<navigation-rule>
         <from-view-id>*</from-view-id>
@@ -287,7 +287,96 @@
         </navigation-case>
     </navigation-rule>
 
-    <factory>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>about.overview</from-outcome>
+			<to-view-id>/pages/documentation/about/overview.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>about.statistics</from-outcome>
+			<to-view-id>/pages/documentation/about/statistics.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>about.support</from-outcome>
+			<to-view-id>/pages/documentation/about/support.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>about.faq</from-outcome>
+			<to-view-id>/pages/documentation/about/faq.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>about.publication</from-outcome>
+			<to-view-id>/pages/documentation/about/publication.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>about.related_publication</from-outcome>
+			<to-view-id>/pages/documentation/about/related_publication.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>resources.overview</from-outcome>
+			<to-view-id>/pages/resources/overview.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>resources.curation_manual</from-outcome>
+			<to-view-id>/pages/resources/curation_manual.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>resources.datasets</from-outcome>
+			<to-view-id>/pages/resources/datasets.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>resources.developer_resources</from-outcome>
+			<to-view-id>/pages/resources/developer_resources.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>resources.training</from-outcome>
+			<to-view-id>/pages/resources/training.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<factory>
         <exception-handler-factory>uk.ac.ebi.intact.view.webapp.error.factory.ViewExpiredExceptionHandlerFactory</exception-handler-factory>
     </factory>
 
