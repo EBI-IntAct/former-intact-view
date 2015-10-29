@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:ot="http://myfaces.apache.org/orchestra"
-                xmlns:iamf="http://intact.ebi.ac.uk/mitabfunctions" >
+        >
 
     <h2>Network visualisation</h2>
 
@@ -28,38 +26,6 @@
     <h:outputScript library="javascript" name="cytoscape_web/cytoscapeweb.min.js"/>
     <h:panelGroup>
         <div id="rightPanel" style="float:right; width:24%;">
-
-            <p:panel header="Open in Cytoscape">
-
-                <h:panelGrid style="text-align:center;width:100%">
-                    <h:outputLink value="/intact/exportCytoscape?query=#{iamf:encodeURL(userQuery.searchQuery)}&amp;format=xgmml&amp;negative=#{userQuery.includeNegative}&amp;spoke=#{userQuery.filterSpoke}&amp;ontology=#{userQuery.ontologyQuery}&amp;asc=#{searchBean.ascending}&amp;sort=#{searchBean.userSortColumn}">
-                        <h:graphicImage alt="cytoscape-icon" url="/images/logos/cytoscape-icon.PNG" shortDesc="Click to start Cytoscape"/>
-                    </h:outputLink>
-                </h:panelGrid>
-                <div style="font-size:8.5pt;width:98%;">
-                    <h:outputText value="Click "/>
-                    <h:outputLink value="/intact/exportCytoscape?query=#{iamf:encodeURL(userQuery.searchQuery)}&amp;format=xgmml&amp;negative=#{userQuery.includeNegative}&amp;spoke=#{userQuery.filterSpoke}&amp;ontology=#{userQuery.ontologyQuery}&amp;asc=#{searchBean.ascending}&amp;sort=#{searchBean.userSortColumn}">
-                        &#160;here&#160;
-                    </h:outputLink>
-                    <h:outputText value=" or on the icon above to start Cytoscape." />
-
-                    <br/>
-                    <br/>
-
-                    <h:outputText value="This is going to open the current search in a WebStart " />
-
-                    <h:outputLink value="http://java.sun.com/javase/technologies/desktop/javawebstart/index.jsp" target="_blank">
-                        <h:graphicImage alt="help" url="/images/help.png" style="vertical-align: baseline;"/>
-                    </h:outputLink>
-
-                    <h:outputText value=" version of Cytoscape 2.6.3 " />
-
-                    <h:outputLink value="http://www.cytoscape.org/" target="_blank">
-                        <h:graphicImage alt="help" url="/images/help.png" style="vertical-align: baseline;"/>
-                    </h:outputLink>
-                </div>
-            </p:panel>
-            <br/>
 
             <p:panel header="CytoscapeWeb Controls" style="width:98%;">
                 <table>
@@ -225,7 +191,7 @@
                     }
                     print('<b>Identifier</b>: ');
                     if (link != null) {
-                        print('<a href="' + link + '" target="_blank">' + crossRef[1] + '</a>');
+                        print('<a class="external" href="' + link + '" target="_blank">' + crossRef[1] + '</a>');
                     } else {
                         print(crossRef[1] + ' (' + crossRef[0] + ')' + '<br/>')
                     }
