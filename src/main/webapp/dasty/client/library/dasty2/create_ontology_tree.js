@@ -14,13 +14,13 @@ function create_ontology_tree()
 function create_server_tree() 
 {
 	var elementChecked = 2;
-	var server_tree_element = new Array;
-	server_tree_element[0] = new Array;
+	var server_tree_element = [];
+	server_tree_element[0] = [];
 	server_tree_element[0]['dataContainer'] = "Servers";
 	server_tree_element[0]['caption']          = "Servers";
 	server_tree_element[0]['isOpen']           = true;
 	server_tree_element[0]['isChecked']        = 2;
-	server_tree_element[0]['children']         = new Array;
+	server_tree_element[0]['children'] = [];
 	
 	for(var c = 0; c < dasty2.loadedDasSources.length; c++)
 		{
@@ -32,7 +32,7 @@ function create_server_tree()
 							elementChecked = 0;
 						}
 				}
-			server_tree_element[0]['children'][c] = new Array;
+			server_tree_element[0]['children'][c] = [];
 			server_tree_element[0]['children'][c]['dataContainer'] = dasty2.loadedDasSources[c];
 			server_tree_element[0]['children'][c]['caption'] = dasty2.loadedDasSources[c];
 			server_tree_element[0]['children'][c]['isChecked'] = elementChecked;
@@ -242,7 +242,7 @@ function printOnSystemInformation(message)
 		document.getElementById("system_information").innerHTML = message;
 	}
 
-/**¨
+/**ï¿½
   *		The algorithm go through the tree from the root to the leafs, when 
   *		find a leaf calls the method isType to see if is a currently used type. 
   *		If is not, the leaf is deleted.  
@@ -308,14 +308,14 @@ function prune(tree,array,ontoType){
 	recursivePrune(elem);
 	
 	var root=elem.getChildren();
-	
-	
-	var elementData = new Array;
+
+
+	var elementData = [];
 	elementData.caption 		= 'Other Terms (Not in the ontology)';
 	elementData.dataContainer	= "other_types";
 	elementData.isOpen			= false;
 	elementData.isChecked		= 2;
-	elementData.children		= new Array;
+	elementData.children = [];
 	if (ontoType==1){
 		elementData.onChangeCheckbox = display_ontology_types;
 	}else{
@@ -325,7 +325,7 @@ function prune(tree,array,ontoType){
 	var newElement=elem.addChildByArray(elementData);
 	
 	for (var i=0;i<array.length;i++){
-		var term = new Array;
+		var term = [];
 		term.caption 		= array[i];
 		term.dataContainer	= array[i];
 		term.isOpen			= true;

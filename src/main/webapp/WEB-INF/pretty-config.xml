@@ -1,46 +1,46 @@
-<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.2"
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<pretty-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns="http://ocpsoft.com/prettyfaces/3.3.2"
                xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.2 http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.2.xsd">
 
-   <!-- Begin RewriteRules -->
+    <!-- Begin RewriteRules -->
 
-   <!--<rewrite trailingSlash="append" toCase="lowercase" />-->
-   <!--<rewrite match="^/old-url/(\w+)/$" substitute="/new_url/$1/" redirect="301" />-->
+    <!--<rewrite trailingSlash="append" toCase="lowercase" />-->
+    <!--<rewrite match="^/old-url/(\w+)/$" substitute="/new_url/$1/" redirect="301" />-->
 
-   <!-- Begin UrlMappings -->
+    <!-- Begin UrlMappings -->
 
     <url-mapping id="home">
-        <pattern value="/" />
+        <pattern value="/"/>
         <view-id>/home.xhtml</view-id>
     </url-mapping>
 
-	<url-mapping id="browse">
-		<pattern value="/browse" />
-		<view-id>/pages/browse/browse.xhtml</view-id>
-	</url-mapping>
+    <url-mapping id="browse">
+        <pattern value="/browse"/>
+        <view-id>/pages/browse/browse.xhtml</view-id>
+    </url-mapping>
 
     <url-mapping id="results">
-        <pattern value="/interactions" />
+        <pattern value="/interactions"/>
         <view-id>/pages/interactions/interactions.xhtml</view-id>
     </url-mapping>
 
     <url-mapping id="interactions">
-		<pattern value="/query/#{query}" />
-		<view-id>/pages/interactions/interactions.xhtml</view-id>
-	</url-mapping>
+        <pattern value="/query/#{query}"/>
+        <view-id>/pages/interactions/interactions.xhtml</view-id>
+    </url-mapping>
 
     <url-mapping id="molecule">
-        <pattern value="/molecule/#{interactorAc}" />
+        <pattern value="/molecule/#{interactorAc}"/>
         <view-id>/pages/molecule/molecule.xhtml</view-id>
     </url-mapping>
 
     <url-mapping id="details">
-        <pattern value="/interaction/#{interactionAc}" />
+        <pattern value="/interaction/#{interactionAc}"/>
         <view-id>/pages/details/details.xhtml</view-id>
     </url-mapping>
 
     <url-mapping id="cvobject">
-        <pattern value="/cv/#{ac}" />
+        <pattern value="/cv/#{ac}"/>
         <view-id>/pages/details/cv.xhtml</view-id>
     </url-mapping>
 
@@ -64,29 +64,83 @@
         <view-id>/pages/documentation/dataset.xhtml</view-id>
     </url-mapping>
 
-    <url-mapping id="documentation.statistics">
-        <pattern value="/statistics"/>
-        <view-id>/pages/documentation/statistics.xhtml</view-id>
+    <!--<url-mapping id="documentation.statistics">-->
+    <!--<pattern value="/statistics"/>-->
+    <!--<view-id>/pages/documentation/statistics.xhtml</view-id>-->
+    <!--</url-mapping>-->
+
+    <!--<url-mapping id="documentation.faq">-->
+    <!--<pattern value="/faq"/>-->
+    <!--<view-id>/pages/faq/faq.xhtml</view-id>-->
+    <!--</url-mapping>-->
+
+    <!--<url-mapping id="documentation.tools">-->
+    <!--<pattern value="/developer_resources"/>-->
+    <!--<view-id>/pages/documentation/tools.xhtml</view-id>-->
+    <!--</url-mapping>-->
+
+    <!--<url-mapping id="documentation.contactus">-->
+    <!--<pattern value="/contactus"/>-->
+    <!--<view-id>/pages/documentation/contact_content.xhtml</view-id>-->
+    <!--</url-mapping>-->
+
+    <!--<url-mapping id="about.about">-->
+    <!--<pattern value="/about"/>-->
+    <!--<view-id>/pages/documentation/about/about.xhtml</view-id>-->
+    <!--</url-mapping>-->
+
+    <url-mapping id="about.overview">
+        <pattern value="/about/overview"/>
+        <view-id>/pages/documentation/about/overview.xhtml</view-id>
     </url-mapping>
 
-    <url-mapping id="documentation.faq">
-        <pattern value="/faq"/>
-        <view-id>/pages/faq/faq.xhtml</view-id>
+    <url-mapping id="about.statistics">
+        <pattern value="/about/statistics"/>
+        <view-id>/pages/documentation/about/statistics.xhtml</view-id>
     </url-mapping>
 
-    <url-mapping id="documentation.tools">
-        <pattern value="/developer_resources"/>
-        <view-id>/pages/documentation/tools.xhtml</view-id>
+    <url-mapping id="about.support">
+        <pattern value="/about/support"/>
+        <view-id>/pages/documentation/about/current_support.xhtml</view-id>
     </url-mapping>
 
-    <url-mapping id="documentation.contactus">
-        <pattern value="/contactus"/>
-        <view-id>/pages/documentation/contact_content.xhtml</view-id>
+    <url-mapping id="about.faq">
+        <pattern value="/about/faq"/>
+        <view-id>/pages/documentation/about/faq.xhtml</view-id>
     </url-mapping>
 
-    <url-mapping id="documentation.about">
-        <pattern value="/about"/>
-        <view-id>/pages/documentation/about/about.xhtml</view-id>
+    <url-mapping id="about.publication">
+        <pattern value="/about/publication"/>
+        <view-id>/pages/documentation/about/publication.xhtml</view-id>
     </url-mapping>
 
+    <url-mapping id="about.related_publication">
+        <pattern value="/about/related_publication"/>
+        <view-id>/pages/documentation/about/related_publication.xhtml</view-id>
+    </url-mapping>
+
+    <url-mapping id="resources.overview">
+        <pattern value="/resources/overview"/>
+        <view-id>/pages/resources/overview.xhtml</view-id>
+    </url-mapping>
+
+    <url-mapping id="resources.curation_manual">
+        <pattern value="/resources/curation_manual"/>
+        <view-id>/pages/resources/curation_manual.xhtml</view-id>
+    </url-mapping>
+
+    <url-mapping id="resources.datasets">
+        <pattern value="/resources/datasets"/>
+        <view-id>/pages/resources/datasets.xhtml</view-id>
+    </url-mapping>
+
+    <url-mapping id="resources.developer_resources">
+        <pattern value="/resources/developer_resources"/>
+        <view-id>/pages/resources/developer_resources.xhtml</view-id>
+    </url-mapping>
+
+    <url-mapping id="resources.training">
+        <pattern value="/resources/training"/>
+        <view-id>/pages/resources/training.xhtml</view-id>
+    </url-mapping>
 </pretty-config>

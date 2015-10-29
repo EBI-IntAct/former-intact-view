@@ -32,7 +32,7 @@ function Bs_XmlParser () {
   * @var    array _debug
   * @see    var this._debugOn
   */
-  this._debug = new Array();
+  this._debug = [];
   
   /**
   * @access private
@@ -66,7 +66,7 @@ function Bs_XmlParser () {
       this._stackPos += numChars;
     }
     return xmlFragment;
-  }
+  };
   
   /**
   * @access public
@@ -75,7 +75,7 @@ function Bs_XmlParser () {
   */
   this.parse = function(xmlInput) {
     // init
-    this._index = new Array();
+    this._index = [];
     
   	// Get rid of those MS and MAC carrige returns and replace them whith 'standard' \n
   	var xml = xmlInput.replace(/\r(\n)?/g,"\n");
@@ -97,7 +97,7 @@ function Bs_XmlParser () {
   	this.root.children = xmlFragment.list;
     this.root.index = this._index;
   	return this.root;
-  }
+  };
   
   
   /**
@@ -126,7 +126,7 @@ function Bs_XmlParser () {
   		xml = xml.substring(end_p, xml.length);
   	}
     return this._trim(xml);
-  }
+  };
 
   /**
   * does the main job. calls itself recursively.
@@ -247,7 +247,7 @@ function Bs_XmlParser () {
       }
   	} while (true);
     return xmlFragment;
-  }
+  };
   
   /**
   * XML-Tag (Standard) 
@@ -308,7 +308,7 @@ function Bs_XmlParser () {
   		xmlFragment.str = nextFragment.str;
   	}
   	return xmlFragment;
-  }
+  };
   
   /**
   * XML-Tag Comment 
@@ -327,7 +327,7 @@ function Bs_XmlParser () {
 
   	xmlFragment.str = xmlFragment.str.substring(end_p + endMatch.length);
   	return xmlFragment;
-  }
+  };
   
   /**
   * XML-Tag PI 
@@ -346,7 +346,7 @@ function Bs_XmlParser () {
     xmlFragment.list[xmlFragment.list.length] = tmpObj;
   	xmlFragment.str = xmlFragment.str.substring(end_p + endMatch.length);
   	return xmlFragment;
-  }
+  };
 
   /**
   * XML-Tag CDATA 
@@ -365,7 +365,7 @@ function Bs_XmlParser () {
   	
     xmlFragment.str = xmlFragment.str.substring(end_p + endMatch.length);
   	return xmlFragment;
-  }
+  };
   
   /**
   * Attribute parsing
@@ -381,7 +381,7 @@ function Bs_XmlParser () {
   */
   this._extractAttributes = function(str) {
     var tmp = '';
-    var retObj = new Object();
+    var retObj = {};
     var attrStr = this._trim(str);
     if (0 == attrStr.length) return retObj;
     
@@ -401,7 +401,7 @@ function Bs_XmlParser () {
       }
     }
     return retObj;
-  }
+  };
   
   //--------------------------------------------------------------------------------------------------------------
   //---  HELPERS
@@ -415,7 +415,7 @@ function Bs_XmlParser () {
   this._trim = function(input) {
     var ret = input.replace(/^\s*/, '');
     return ret.replace(/\s*$/, '');
-  }
+  };
   /**
   * Trim a string on the left side
   * @access private
@@ -424,14 +424,14 @@ function Bs_XmlParser () {
   */
   this._trimL = function(input) {
     return input.replace(/^\s*/, '');
-  }
+  };
   
   /**
   * Replace ALL \n \t with a single space
   */
   this._normalize = function(input) {
     return input.replace(/[\n\t]/g, ' ');
-  }
+  };
   
   /**
   * Delete ALL white chars
@@ -441,7 +441,7 @@ function Bs_XmlParser () {
   */
   this._strip = function(input) {
     return input.replace(/\s*/g, '');
-  }
+  };
   
   /**
   *
@@ -451,8 +451,8 @@ function Bs_XmlParser () {
   */
   this._entity  = function (input) {
     // NOTE: & first to replace !
-    return input.replace(/&/g,'&amp;').replace(/'/g,'&#039;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); 
-  }
+    return input.replace(/&/g,'&amp;').replace(/'/g,'&#039;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  };
   
   /**
   * Used by this._extractAttributes
@@ -464,7 +464,7 @@ function Bs_XmlParser () {
   */
   this._spaceReplacer = function(input) {
     return input.replace(/\t/g, 'xzAzx').replace(/\n/g, 'xzBzx').replace(/ /g, 'xzCzx');
-  }
+  };
   /**
   * @access private
   * @param  string input
@@ -472,7 +472,7 @@ function Bs_XmlParser () {
   */
   this._unspaceReplacer = function(input) {
     return input.replace(/xzAzx/g, "\t").replace(/xzBzx/g, "\n").replace(/xzCzx/g, ' ');
-  }
+  };
 
 
   //--------------------------------------------------------------------------------------------------------------
@@ -484,7 +484,7 @@ function Bs_XmlParser () {
   */
   this.toHtml = function() {
     return this._recursivViewStruct(this.root);
-  }
+  };
   
   /**
   * @access private
@@ -500,7 +500,7 @@ function Bs_XmlParser () {
       case 'chardata': color = 'mangenta'; break;
       default: color = 'blue';
     }
-    var out = new Array();
+    var out = [];
     var i = 0;
     var ii = 0; 
     out[ii++] = '<fieldset style="border:solid thin '+ color +'; padding:5"><legend><b>' + item.type + ': ' + item.name +'</b></legend>'; 
@@ -531,8 +531,8 @@ function _Bs_XmlParserElement() {
 	this.type = "";
 	this.name = "";
   this.value = "";
-	this.attributes = new Object();
-	this.children = new Array();
+  this.attributes = {};
+  this.children = [];
 }
 
 /*
@@ -548,7 +548,7 @@ function _Bs_XmlParserStrFragment() {
   /*
   * vector of _Bs_XmlParserElement instances.
   */
-	this.list = new Array();
+  this.list = [];
   
   /*
   * the elements name, for example 'table', as far as i understand. 

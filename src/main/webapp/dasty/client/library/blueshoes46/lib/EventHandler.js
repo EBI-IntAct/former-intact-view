@@ -15,9 +15,13 @@
 _grabObj = null;function EventCtrl(div){
 this.div   = div;this.type  = ''; this.mask  = 0;this.pageX = 0;  this.pageY = 0;}
 EventCtrl.prototype.linkCtrl = function(obj){
-if(obj && !obj.eventCtrl) obj.eventCtrl=this;return this;}
+    if (obj && !obj.eventCtrl) obj.eventCtrl = this;
+    return this;
+};
 EventCtrl.prototype.setThreshold = function(threshold){
-this.threshold = threshold;return this;}
+    this.threshold = threshold;
+    return this;
+};
 function getCtrlFromElementIE(el,tagName){
 for(;el;el=el.parentElement)
 if((tagName==null || el.tagName==tagName) && el.eventCtrl)

@@ -1,20 +1,23 @@
 package uk.ac.ebi.intact.view.webapp.controller.application;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import uk.ac.ebi.intact.core.persistence.dao.DaoFactory;
 import uk.ac.ebi.intact.view.webapp.IntactViewException;
 import uk.ac.ebi.intact.view.webapp.application.SpringInitializedService;
+
 import javax.faces.bean.ApplicationScoped;
 import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Get statistics per month of:
@@ -38,9 +41,6 @@ import java.util.*;
 public class ChartController extends SpringInitializedService {
 
     private static final Log log = LogFactory.getLog(ChartController.class);
-    private List<StatsEntry> statsEntryList = new ArrayList<StatsEntry>();
-    private int entriesCount = 0;
-
     /* Titles */
     private final String proteinTitle = "Proteins";
     private final String interactionTitle = "Interactions";
@@ -49,7 +49,10 @@ public class ChartController extends SpringInitializedService {
     private final String experimentTitle = "Experiments";
     private final String termTitle = "Ontology terms";
     private final String publicationTitle = "Publications";
-
+    @Autowired
+    protected DaoFactory daoFactory;
+    private List<StatsEntry> statsEntryList = new ArrayList<StatsEntry>();
+    private int entriesCount = 0;
     /* Series */
     private JSONObject proteinSerie;
     private JSONObject interactionSerie;
@@ -58,9 +61,6 @@ public class ChartController extends SpringInitializedService {
     private JSONObject experimentSerie;
     private JSONObject termSerie;
     private JSONObject publicationSerie;
-
-    @Autowired
-    protected DaoFactory daoFactory;
 
 
     public ChartController() {
@@ -251,7 +251,7 @@ public class ChartController extends SpringInitializedService {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date TIMESTAMP = null;
             try {
-                TIMESTAMP = (Date)formatter.parse(String.valueOf(row[1]));
+                TIMESTAMP = formatter.parse(String.valueOf(row[1]));
             } catch (ParseException e) {
                 throw new IntactViewException("Date parsing exception: "+TIMESTAMP, e);
             }

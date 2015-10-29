@@ -15,7 +15,7 @@
         <section>
             <h2>Search</h2>
             <h:form id="intactForm" prependId="false">
-                <ui:include src="/pages/search/search_panel.xhtml"/>
+                <ui:include src="/pages/search/search_advanced_panel.xhtml"/>
             </h:form>
         </section>
         <section>
@@ -73,16 +73,19 @@
                 <iv:panelLabelAndMessage label="Note: ">
                     <h:outputText value="Currently the following ontologies are supported : "/>
                     <ul>
-                        <li><h:outputLink value="http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=GO"
+                        <li><h:outputLink class="external"
+                                          value="http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=GO"
                                           target="_blank">Gene Ontology</h:outputLink></li>
-                        <li><h:outputLink value="http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI"
+                        <li><h:outputLink class="external"
+                                          value="http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI"
                                           target="_blank">PSI-MI (interaction detection methods, interaction types, biological roles, interactor types, feature types, annotation topics and participant identification methods)</h:outputLink>
                         </li>
-                        <li><h:outputLink value="http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=CHEBI"
+                        <li><h:outputLink class="external"
+                                          value="http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=CHEBI"
                                           target="_blank">ChEBI</h:outputLink></li>
-                        <li><h:outputLink value="http://www.uniprot.org/taxonomy"
+                        <li><h:outputLink class="external" value="http://www.uniprot.org/taxonomy"
                                           target="_blank">UniProt Taxonomy</h:outputLink></li>
-                        <li><h:outputLink value="http://www.ebi.ac.uk/interpro/"
+                        <li><h:outputLink class="external" value="http://www.ebi.ac.uk/interpro/"
                                           target="_blank">InterPro</h:outputLink></li>
                     </ul>
 
@@ -117,20 +120,17 @@
         </section>
 
         <section>
-            <h2>Other Searches</h2>
+            <h2>Chemical Search</h2>
 
             <h:panelGroup rendered="#{intactViewConfiguration.chebiSearchEnabled}">
                 <h:form id="intactChebiForm" prependId="false">
+                    <script language="javascript">
+                        window.onload = function (e) {
+                            document.getElementById('lalaFrame').src = '#{intactViewConfiguration.chebiUrl}#{intactViewConfiguration.chebiChemicalSearchPath}&amp;callbackUrl=#{requestConfigBean.encodedCallBackUrl}'
+                        };
+                    </script>
 
-                    <p:panel header="Chemical Search" toggleable="true" collapsed="true">
-
-                        <p:ajax event="toggle"
-                                oncomplete="document.getElementById('lalaFrame').src = '#{intactViewConfiguration.chebiUrl}#{intactViewConfiguration.chebiChemicalSearchPath}&amp;callbackUrl=#{requestConfigBean.encodedCallBackUrl}'"/>
-
-                        <iframe id="lalaFrame" frameborder="0" width="100%" height="1100px" src=""/>
-
-                    </p:panel>
-
+                    <iframe id="lalaFrame" frameborder="0" width="100%" height="1100px" src=""></iframe>
                 </h:form>
 
             </h:panelGroup>

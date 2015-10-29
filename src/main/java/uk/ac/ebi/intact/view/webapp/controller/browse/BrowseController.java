@@ -57,13 +57,11 @@ import java.util.concurrent.Future;
 @ConversationName( "general" )
 public class BrowseController extends JpaBaseController {
 
-    private static final Log log = LogFactory.getLog( BrowseController.class );
-
     //identifier separators
     public static final String INTERPRO_SEPERATOR = ",";
     public static final String CHROMOSOME_SEPERATOR = ";id=";
     public static final String EXPRESSION_SEPERATOR = "+";
-
+    private static final Log log = LogFactory.getLog(BrowseController.class);
     private int maxSize = 200;
     private int maxSizeRNAExpression = 125;
 
@@ -330,9 +328,6 @@ public class BrowseController extends JpaBaseController {
 
     public boolean hasLoadedUniprotAcs(String userQuery) {
 
-        if ((this.currentQuery == null && userQuery == null) || (this.currentQuery != null && userQuery == null) || (this.currentQuery == null && userQuery != null) || (userQuery != null && !userQuery.equals(this.currentQuery))){
-            return false;
-        }
-        return true;
+        return !((this.currentQuery == null && userQuery == null) || (this.currentQuery != null && userQuery == null) || (this.currentQuery == null && userQuery != null) || (userQuery != null && !userQuery.equals(this.currentQuery)));
     }
 }

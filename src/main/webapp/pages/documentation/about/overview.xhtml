@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                template="/WEB-INF/facelets/layout/compliance-template-ebi.xhtml">
+
+    <!-- Mandatorty params -->
+    <ui:param name="sectionTitle" value="About"/>
+
+    <ui:define name="content">
+        <h2>Overview</h2>
+        <section class="grid_18 alpha">
+            <section id="intro" class="grid_23 anel-pane pane-custom pane-3 clearfix" style="padding: 10px;">
+                The Molecular Interactions team produces the IntAct database of evidence for molecular interactions, and maintains the
+                <a class="external"
+                   href="http://www.ebi.ac.uk/intact/complex/">Complex Portal</a> reference resource for macromolecular complexes. The team's primary goal is to help researchers make the most of public interaction data, and to facilitate the adoption of standards in this important area of molecular biology. We provide regular training on our resources and interact regularly with our users to ensure our services respond to their needs.
+            </section>
+            <section class="grid_12">
+                <h3>Our address</h3>
+
+                <p>
+                    IntAct Database<br/>
+                    EMBL-EBI<br/>
+                    Wellcome Genome Campus<br/>
+                    Hinxton<br/>
+                    Cambridge CB10 1SD<br/>
+                    United Kingdom<br/>
+                    <br/>
+                    <a class="external" href="http://www.ebi.ac.uk/about/travel"
+                       target="_blank">Travel information</a> on how to get to the EMBL-EBI.<br/>
+                </p>
+            </section>
+            <section class="grid_12">
+                <h3>Help and support</h3>
+
+                <p>
+                    If you have questions about use of our IntAct or the Complex Portal then email us at<br/>
+                    <a href="mailto:intact-help@ebi.ac.uk" target="_top">intact-help@ebi.ac.uk</a>
+                </p>
+            </section>
+        </section>
+        <section>
+            <ui:include src="about_menu.xhtml"/>
+        </section>
+    </ui:define>
+
+
+</ui:composition>

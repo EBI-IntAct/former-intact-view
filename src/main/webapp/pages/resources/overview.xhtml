@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                template="/WEB-INF/facelets/layout/compliance-template-ebi.xhtml">
+
+    <!-- Mandatorty params -->
+    <ui:param name="sectionTitle" value="Resources"/>
+
+    <ui:define name="content">
+        <h2>Overview</h2>
+        <section class="grid_18 alpha">
+            <section id="intro" class="grid_23 panel-pane pane-custom pane-3 clearfix"
+                     style="padding: 10px;">
+                <p>
+                    Here is a listing of additional resources for anyone wishing to work with the IntAct data files,
+                    with the file formats and associated tools or with the IntAct database open-source software.
+                    All IntAct data and software is freely available to all users, academic or commercial,
+                    under the terms of the <a class="external" href="http://www.apache.org/licenses/LICENSE-2.0"
+                                              target="_blank">Apache License, Version 2.0.</a>
+                </p>
+            </section>
+        </section>
+        <section>
+            <ui:include src="resources_menu.xhtml"/>
+        </section>
+    </ui:define>
+</ui:composition>

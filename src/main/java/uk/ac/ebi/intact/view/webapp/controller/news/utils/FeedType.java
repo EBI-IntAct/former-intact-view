@@ -29,7 +29,7 @@ public enum FeedType
 
     private String type;
 
-    private FeedType(String type)
+    FeedType(String type)
     {
         this.type = type;
     }

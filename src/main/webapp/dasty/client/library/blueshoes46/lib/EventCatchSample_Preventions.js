@@ -39,14 +39,14 @@ window.location="";return false;}
 }
 return false;}
 function preventTextSelection() {
-var txt = ""
+    var txt = "";
 if (document.getSelection) {
 txt = document.getSelection();}
 else if (document.selection) {
 txt = document.selection.createRange().text;}
 else return;if (txt!="") {
 window.location=window.location;}
-return;}
+}
 if (document.layers) {
 document.captureEvents(Event.MOUSEDOWN);document.captureEvents(Event.MOUSEUP);document.captureEvents(Event.BEFOREPRINT);document.captureEvents(Event.KEYDOWN);}
 document.onclick=preventTextSelection;document.onmousedown=preventRightMouse;document.onmouseup=preventRightMouse;preventTextSelection;document.onkeydown=preventControlKeys;

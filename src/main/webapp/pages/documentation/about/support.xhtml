@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+
+                template="/WEB-INF/facelets/layout/compliance-template-ebi.xhtml">
+
+    <!-- Mandatorty params -->
+    <ui:param name="sectionTitle" value="About"/>
+
+    <ui:define name="content">
+        <h2>IntAct support</h2>
+        <section class="grid_18 alpha">
+            <section class="grid_12">
+                <h3>Current support</h3>
+                <ul>
+                    <li>BBSRC MIDAS grant (BB/L024179/1)
+                        <a href="http://ophid.utoronto.ca/i2d/" target="_blank">
+                            <img class="contributorLogo" style="float: initial" width="200px" height="50px"
+                                 alt="bbsrc logo"
+                                 src="http://www.bbsrc.ac.uk/bbsrc/cache/file/40D4FFD9-2962-4F3C-8E2E9B2FE28E6BB7_source.jpg"/>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="grid_12">
+                <h3>Previous support</h3>
+                <ul>
+                    <li>European Commission grants SLING (226073)</li>
+                    <li>FELICS (021902)</li>
+                    <li>APO-SYS (FP7-HEALTH-2007-200767)</li>
+                    <li>European Commission grants PSIMEx (FP7-HEALTH-2007-223411)</li>
+                    <li>European Commission grant Affinomics (FP7-241481)</li>
+                    <li>NHLBI Proteomics Center Award (HHSN268201000035C)</li>
+                    <li>The Michael J. Fox Foundation for Parkinson's Research LRRK2 Biology LEAPS</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <ui:include src="about_menu.xhtml"/>
+        </section>
+    </ui:define>
+</ui:composition>

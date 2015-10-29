@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition
         xmlns:ui="http://java.sun.com/jsf/facelets"
-        xmlns:f="http://java.sun.com/jsf/core"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:ot="http://myfaces.apache.org/orchestra">
 
@@ -9,7 +8,8 @@
             <h2>How is the number of interactions in other databases obtained?</h2>
             <div style="padding:5px">
                 <p>
-                    <h:outputLink target="_blank" value="http://psicquic.googlecode.com">PSICQUIC</h:outputLink>
+                    <h:outputLink class="external" target="_blank"
+                                  value="http://psicquic.googlecode.com">PSICQUIC</h:outputLink>
                     is a standard way to access molecular interaction databases across which it repeats the same query. The number of databases providing data
                     may vary, depending on the status of their services and only those that are active are used in this query.
                     By clicking on the number of interactions you will be redirected to the PSICQUIC View, where you can browse
@@ -23,7 +23,8 @@
                     </ul>
                 </p>
                 <p>
-                    Check the&#160;<h:outputLink target="_blank" value="http://psicquic.googlecode.com">PSICQUIC site</h:outputLink> for more information.
+                    Check the&#160;<h:outputLink class="external" target="_blank"
+                                                 value="http://psicquic.googlecode.com">PSICQUIC site</h:outputLink> for more information.
                 </p>
             </div>
 
