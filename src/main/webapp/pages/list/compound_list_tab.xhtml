@@ -6,7 +6,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:iv="http://java.sun.com/jsf/composite/intactview"
                 xmlns:iax="http://intact.ebi.ac.uk/extlinks"
-                xmlns:iaf="http://intact.ebi.ac.uk/functions">
+        >
 
 
     <p:panel id="compoundSelectionButtons" style="width:100%">
@@ -64,8 +64,8 @@
                     <br/>
                 </h:panelGroup>
                 <h:panelGroup rendered="#{xref.cvDatabase.shortLabel == 'chebi'}">
-                    <h:outputLink
-                            value="http://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&amp;imageIndex=0&amp;chebiId=#{xref.primaryId}"
+                    <h:outputLink class="external"
+                                  value="http://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&amp;imageIndex=0&amp;chebiId=#{xref.primaryId}"
                             target="_blank">
                         <h:graphicImage alt="chebiImg"
                                         url="http://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&amp;imageIndex=0&amp;chebiId=#{xref.primaryId}"
