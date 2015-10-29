@@ -250,3 +250,8 @@ span.searchterm:active {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
+
+.external:after {
+    content: url('../../images/link_external.png');
+    margin: 0 0 0 2px;
+}
