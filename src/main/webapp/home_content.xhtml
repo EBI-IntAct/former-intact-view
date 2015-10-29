@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:h="http://java.sun.com/jsf/html"
+        >
 
     <section class="grid_24">
         <section class="grid_18">
@@ -14,85 +15,36 @@
                                 "/><a class="external" href="http://www.ebi.ac.uk/intact/complex/"
                                       target="blank">Complex Portal</a>.
                 </p>
-                <br/>
                 <section>
-                    <section class="grid_9">
+                    <section class="grid_17">
                         <h:form id="intactForm" style="display: inline;" prependId="false">
                             <ui:include src="/pages/search/search_panel.xhtml"/>
                         </h:form>
                     </section>
-                    <section class="grid_8">
-                        <h3 class="icon icon-generic" data-icon="t">Examples</h3>
-                        <h:form>
-                            <ul class="exampleList">
-                                <li>Gene, Protein, RNA or Chemical name:
-                                    <h:commandLink id="example1" value="BRCA2"
-                                                   action="#{searchBean.doBinarySearchAction}">
-                                        <f:setPropertyActionListener value="BRCA2"
-                                                                     target="#{userQuery.searchQuery}"/>
-                                    </h:commandLink>
-                                </li>
-                                <li>Staurosporine, UniProtKB or ChEBI AC:
-                                    <h:commandLink id="example2" value="Q06609"
-                                                   action="#{searchBean.doBinarySearchAction}">
-                                        <f:setPropertyActionListener value="Q06609"
-                                                                     target="#{userQuery.searchQuery}"/>
-                                    </h:commandLink>
-                                </li>
-                                <li>CHEBI:
-                                    <h:commandLink id="example3" value="15996"
-                                                   action="#{searchBean.doBinarySearchAction}">
-                                        <f:setPropertyActionListener value="15996"
-                                                                     target="#{userQuery.searchQuery}"/>
-                                    </h:commandLink>
-                                </li>
-                                <li>UniProtKB ID:
-                                    <h:commandLink id="example4" value="LCK_HUMAN"
-                                                   action="#{searchBean.doBinarySearchAction}">
-                                        <f:setPropertyActionListener value="LCK_HUMAN"
-                                                                     target="#{userQuery.searchQuery}"/>
-                                    </h:commandLink>
-                                </li>
-                                <li>RNACentral ID:
-                                    <h:commandLink id="example5" value="URS00004C95F4_559292"
-                                                   action="#{searchBean.doBinarySearchAction}">
-                                        <f:setPropertyActionListener value="URS00004C95F4_559292"
-                                                                     target="#{userQuery.searchQuery}"/>
-                                    </h:commandLink>
-                                </li>
-                                <li>PMID:
-                                    <h:commandLink id="example6" value="25416956"
-                                                   action="#{searchBean.doBinarySearchAction}">
-                                        <f:setPropertyActionListener value="25416956"
-                                                                     target="#{userQuery.searchQuery}"/>
-                                    </h:commandLink>
-                                </li>
-                                <li>IMEx ID:
-                                    <h:commandLink id="example7" value="IM-23318"
-                                                   action="#{searchBean.doBinarySearchAction}">
-                                        <f:setPropertyActionListener value="IM-23318"
-                                                                     target="#{userQuery.searchQuery}"/>
-                                    </h:commandLink>
-                                </li>
-                            </ul>
-                        </h:form>
-                    </section>
                     <section class="grid_7">
-                        <h3 class="icon icon-functional" data-icon="D">Submission</h3>
+                        <section class="grid_24>">
+                            <h3 class="icon icon-functional" data-icon="D" style="margin-top: 30px;">Submission</h3>
 
-                        <p style="margin-bottom: 0;text-align: justify;">
-                            <h:outputText>Submit your data to IntAct to increase its visibility and usability! We welcome
-                                direct submission of molecular interaction data, regardless of the number of interactions.
-                                <br/><br/>
-                                More information:
-                                <h:link value="Data Submission" outcome="documentation.data_submission"/>
-                            </h:outputText>
-                        </p>
+                            <p style="margin-bottom: 0;text-align: justify;">
+                                <h:outputText><h:link value="Submit"
+                                                      outcome="documentation.data_submission"/> &#160;your data to IntAct to increase its visibility and usability!
+                                </h:outputText>
+                            </p>
+                            <br/>
+                        </section>
+                        <section class="grid_24">
+                            <h3 class="icon icon-generic" data-icon="f">Training</h3>
+
+                            <p style="margin-bottom: 0;text-align: justify;">
+                                <h:link value="Online &amp; upcoming courses"
+                                        outcome="resources.training"/>
+                            </p>
+                        </section>
                     </section>
                 </section>
             </section>
             <section class="grid_24">
-                <section class="grid_9">
+                <section class="grid_12">
                     <h:panelGroup rendered="#{dataSetsBean.dataSetOfTheMonth != null}">
 
                         <h3 class="icon icon-generic"
@@ -115,16 +67,16 @@
                     </h:panelGroup>
                     <!--</section>-->
                 </section>
-                <section class="grid_8">
-                    <h3 class="icon icon-generic" data-icon="f">Training</h3>
+                <!--<section class="grid_8">-->
+                <!--<h3 class="icon icon-generic" data-icon="f">Training</h3>-->
 
-                    <p style="margin-bottom: 0;text-align: justify;">If you want to learn more about using IntAct check the following:
-                        <br/>
-                        <br/>
-                        <h:link value="Online courses &amp; Upcoming presential courses" outcome="resources.training"/>
-                    </p>
-                </section>
-                <section class="grid_7">
+                <!--<p style="margin-bottom: 0;text-align: justify;">If you want to learn more about using IntAct check the following:-->
+                <!--<br/>-->
+                <!--<br/>-->
+                <!--<h:link value="Online courses &amp; Upcoming presential courses" outcome="resources.training"/>-->
+                <!--</p>-->
+                <!--</section>-->
+                <section class="grid_12">
                     <h3 class="icon icon-generic" data-icon="P">Citing #{intactView['webapp.name']}</h3>
 
                     <p style="margin-bottom: 0; text-align: justify;">
@@ -136,7 +88,7 @@
                                           href="http://europepmc.org/abstract/MED/24234451"
                                           target="_blank">[PMID:24234451]</a>
                         <a class="external"
-                           href="http://nar.oxfordjournals.org/content/early/2013/11/13/nar.gkt1115.long"
+                           href="http://nar.oxfordjournals.org/content/42/D1/D358"
                            target="_blank">[Full Text]</a>
                     </p>
                 </section>
@@ -185,11 +137,9 @@
                 <section class="grid_7">
                     <h3 class="icon icon-generic" data-icon="}">IMEx</h3>
                     <section class="grid_16">
-                        <p style="text-align: justify;">Under the terms of the <a class="external"
-                                                                                  href="http://www.imexconsortium.org/"
-                                                                                  target="blank">IMEx</a> agreement, IntAct also incorporated and maintains the
-                            <a class="external" href="http://www.imexconsortium.org/"
-                               target="blank">IMEx</a> records of the now inactive MPIDB database.
+                        <p style="text-align: justify;">
+                            IntAct is a member of the <a class="external" href="http://www.imexconsortium.org/"
+                                                         target="blank">IMEx</a> Consortium.
                         </p>
                     </section>
                     <section class="grid_8">
