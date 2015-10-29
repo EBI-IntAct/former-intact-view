@@ -74,7 +74,7 @@
                                      disabled="#{searchBean.exportFormat == null}"
                                      process="@this"
                                      rendered="#{searchBean.results != null}"
-                                     onclick="var selector = document.getElementById('mainPanels:exportFormatSelect');_gaq.push(['_trackEvent', 'Export', selector.options[selector.selectedIndex].text,'#{userQuery.searchQuery}']); var newWindow = window.open('#{requestConfigBean.absoluteContextPath}/export?#{searchBean.exportQueryParameters}', '_blank'); newWindow.focus()"/>
+                                     onclick="var selector = document.getElementById('mainPanels:resultsTable:exportFormatSelect');_gaq.push(['_trackEvent', 'Export', selector.options[selector.selectedIndex].text,'#{userQuery.searchQuery}']); var newWindow = window.open('#{requestConfigBean.absoluteContextPath}/export?#{searchBean.exportQueryParameters}', '_blank'); newWindow.focus()"/>
                 </p:toolbarGroup>
             </p:toolbar>
         </f:facet>
