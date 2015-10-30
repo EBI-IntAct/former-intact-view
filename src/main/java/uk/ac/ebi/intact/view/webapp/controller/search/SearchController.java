@@ -324,13 +324,6 @@ public class SearchController extends JpaBaseController {
                 userQuery.clearInteractionFilters();
                 doBinarySearch(userQuery.createSolrQuery());
             }
-        } else if (evt.getTab() != null && "browseTab".equals(evt.getTab().getId())) {
-            if (browseController == null) {
-                this.browseController = (BrowseController) getBean("browseBean");
-            }
-            if (!browseController.hasLoadedUniprotAcs(this.currentQuery)) {
-                doBrowserSearch(this.currentQuery, getUserQuery());
-            }
         } else if (evt.getTab() != null && "listsTab".equals(evt.getTab().getId())) {
 
             if (this.currentQuery == null || !hasLoadedInteractorResults) {
