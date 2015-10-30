@@ -2,7 +2,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html"
 
                 template="/results_content_template.xhtml">
 
@@ -12,7 +11,7 @@
         <f:metadata>
             <f:viewParam name="interactorAc" value="#{moleculeViewBean.interactorAc}"/>
             <f:viewParam name="kmr" value="#{moleculeViewBean.keepMainSearchResults}"/>
-            <f:event type="preRenderView" listener="#{contextController.setActiveTabIndex(4)}"/>
+            <!--<f:event type="preRenderView" listener="#{contextController.setActiveTabIndex(4)}"/>-->
             <f:event type="preRenderView" listener="#{moleculeViewBean.loadInteractor}"/>
         </f:metadata>
     </ui:define>
