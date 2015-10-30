@@ -3,8 +3,8 @@
 
         >
 
-    <ui:param name="showLogoOnly" value="#{onlyLogo != null? ebisf:convertToBoolean(onlyLogo) : false}"/>
-    <ui:param name="forceUrl" value="#{useUrl != null? ebisf:convertToBoolean(useUrl) : false}"/>
+    <!--<ui:param name="showLogoOnly" value="#{onlyLogo != null? ebisf:convertToBoolean(onlyLogo) : false}"/>-->
+    <!--<ui:param name="forceUrl" value="#{useUrl != null? ebisf:convertToBoolean(useUrl) : false}"/>-->
 
     <!--TODO: This was working, as we had DAS -->
     <h:outputText value="#{(text != null)? text : query}" rendered="#{!showLogoOnly}"/>
