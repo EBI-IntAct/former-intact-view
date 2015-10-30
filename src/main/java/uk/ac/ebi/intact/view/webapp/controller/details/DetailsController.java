@@ -23,7 +23,6 @@ import org.apache.solr.client.solrj.SolrQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import uk.ac.ebi.intact.core.persistence.dao.DaoFactory;
@@ -102,6 +101,9 @@ public class DetailsController extends JpaBaseController {
     private boolean keepMainSearchResults = false;
 
     private String jsonExperimentInteractions;
+    private SimilarInteractionsMatrix matrix;
+    @Autowired
+    private TableHeaderController tableHeaderController;
 
     public DetailsController(){
         variableName2title = new HashMap<String,String>();
@@ -186,7 +188,7 @@ public class DetailsController extends JpaBaseController {
 
             this.numberInteractions = countInteractionNumbers();
             ContextController contextController = (ContextController) getBean("contextController");
-            contextController.setActiveTabIndex(3);
+            contextController.setActiveTabIndex(2);
         }
     }
 
@@ -223,8 +225,18 @@ public class DetailsController extends JpaBaseController {
         return interactionAc;
     }
 
+    public void setInteractionAc(String interactionAc) {
+        this.interactionAc = interactionAc;
+        this.experimentAc = null;
+    }
+
     public String getExperimentAc() {
         return experimentAc;
+    }
+
+    public void setExperimentAc(String experimentAc) {
+        this.experimentAc = experimentAc;
+        this.interactionAc = null;
     }
 
     public String getBinary() {
@@ -233,11 +245,6 @@ public class DetailsController extends JpaBaseController {
 
     public void setBinary( String binary ) {
         this.binary = binary;
-    }
-
-    public void setExperimentAc( String experimentAc ) {
-        this.experimentAc = experimentAc;
-        this.interactionAc = null;
     }
 
     public void loadExperiment( ) {
@@ -256,33 +263,30 @@ public class DetailsController extends JpaBaseController {
         return experiment != null;
     }
 
-    public void setExperiment( Experiment experiment ) {
-        this.experiment = experiment;
-        this.interactionAc = null;
-    }
-
     public boolean hasInteraction() {
         return interaction != null;
     }
 
     public Interaction getInteraction() {
+        System.out.println(interaction);
         return interaction;
     }
 
-    public void setInteraction( Interaction interaction ) {
-        this.interaction = interaction;
-        this.interactionAc = interaction.getAc();
-        this.experimentAc = null;
-    }
-
-    public void setInteractionAc( String interactionAc ) {
-        this.interactionAc = interactionAc;
-        this.experimentAc = null;
+    public void setInteraction(Interaction interaction) {
+        if (interaction == null) {
+            this.interaction = null;
+            this.interactionAc = null;
+            this.experimentAc = null;
+        } else {
+            this.interaction = interaction;
+            this.interactionAc = interaction.getAc();
+            this.experimentAc = null;
+        }
     }
 
     public void loadInteraction( ) {
         if ( log.isDebugEnabled() ) log.debug( "Calling setInteractionAc( '" + interactionAc + "' )..." );
-        interaction = getDaoFactory().getInteractionDao().getByAc( interactionAc );
+        interaction = getDaoFactory().getInteractionDao().getByAc(interactionAc);
         if (interaction == null) {
             interaction = getDaoFactory().getInteractionDao().getByXref( interactionAc );
         }
@@ -333,6 +337,11 @@ public class DetailsController extends JpaBaseController {
             experiment = null;
         }
         return exp;
+    }
+
+    public void setExperiment(Experiment experiment) {
+        this.experiment = experiment;
+        this.interactionAc = null;
     }
 
     /**
@@ -595,28 +604,31 @@ public class DetailsController extends JpaBaseController {
     }
 
     public String getAuthorList() {
-        return getAnnotationTextByMi( getExperiment().getPublication(), AUTHOR_LIST );
+        return getAnnotationTextByMi(getExperiment().getPublication(), AUTHOR_LIST);
     }
 
     public String getJournal() {
-        return getAnnotationTextByMi( getExperiment().getPublication(), JOURNAL );
+        return getAnnotationTextByMi(getExperiment().getPublication(), JOURNAL);
     }
 
     public String getPublicationYear() {
-        return getAnnotationTextByMi( getExperiment().getPublication(), PUBLICATION_YEAR );
+        return getAnnotationTextByMi(getExperiment().getPublication(), PUBLICATION_YEAR);
     }
 
     public String getContactEmail() {
-        return getAnnotationTextByMi( getExperiment().getPublication(), CONTACT_EMAIL );
+        return getAnnotationTextByMi(getExperiment().getPublication(), CONTACT_EMAIL);
     }
 
-    public boolean isFeaturesAvailable(){
+    public boolean isFeaturesAvailable() {
         return featureAvailable;
     }
 
-    public void loadFeatureNumber(){
-        if (interactionAc == null){
-            featureAvailable=false;
+    ///////////////////
+    // Complex View
+
+    public void loadFeatureNumber() {
+        if (interactionAc == null) {
+            featureAvailable = false;
             return;
         }
         Long number = (Long) getDaoFactory().getEntityManager().createQuery("select count(f.ac) from Feature f join f.component as c " +
@@ -625,21 +637,13 @@ public class DetailsController extends JpaBaseController {
         featureAvailable = number > 0;
     }
 
-    private String getAnnotationTextByMi( AnnotatedObject ao, final String mi ) {
-        final Annotation annotation = AnnotatedObjectUtils.findAnnotationByTopicMiOrLabel( ao, mi );
-        if ( annotation != null ) {
+    private String getAnnotationTextByMi(AnnotatedObject ao, final String mi) {
+        final Annotation annotation = AnnotatedObjectUtils.findAnnotationByTopicMiOrLabel(ao, mi);
+        if (annotation != null) {
             return annotation.getAnnotationText();
         }
         return null;
     }
-
-    ///////////////////
-    // Complex View
-
-    private SimilarInteractionsMatrix matrix;
-
-    @Autowired
-    private TableHeaderController tableHeaderController;
 
     @Transactional(readOnly = true)
     public SimilarInteractionsMatrix getSimilarInteractionMatrix() {
