@@ -29,10 +29,10 @@
         <view-id>/pages/interactions/interactions.xhtml</view-id>
     </url-mapping>
 
-    <url-mapping id="molecule">
-        <pattern value="/molecule/#{interactorAc}"/>
-        <view-id>/pages/molecule/molecule.xhtml</view-id>
-    </url-mapping>
+    <!--<url-mapping id="molecule">-->
+    <!--<pattern value="/molecule/#{interactorAc}"/>-->
+    <!--<view-id>/pages/molecule/molecule.xhtml</view-id>-->
+    <!--</url-mapping>-->
 
     <url-mapping id="details">
         <pattern value="/interaction/#{interactionAc}"/>
