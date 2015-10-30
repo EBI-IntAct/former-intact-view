@@ -180,13 +180,13 @@
 		</navigation-case>
 	</navigation-rule>
 
-	<navigation-rule>
-        <from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>documentation.tools</from-outcome>
-			<to-view-id>/pages/documentation/tools.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+	<!--<navigation-rule>-->
+	<!--<from-view-id>*</from-view-id>-->
+	<!--<navigation-case>-->
+	<!--<from-outcome>documentation.tools</from-outcome>-->
+	<!--<to-view-id>/pages/documentation/tools.xhtml</to-view-id>-->
+	<!--</navigation-case>-->
+	<!--</navigation-rule>-->
 
 	<navigation-rule>
         <from-view-id>*</from-view-id>
@@ -196,13 +196,13 @@
 		</navigation-case>
 	</navigation-rule>
 
-    <navigation-rule>
-           <from-view-id>*</from-view-id>
-   		<navigation-case>
-   			<from-outcome>documentation.statistics</from-outcome>
-   			<to-view-id>/pages/documentation/statistics.xhtml</to-view-id>
-   		</navigation-case>
-   	</navigation-rule>
+	<!--<navigation-rule>-->
+	<!--<from-view-id>*</from-view-id>-->
+	<!--<navigation-case>-->
+	<!--<from-outcome>documentation.statistics</from-outcome>-->
+	<!--<to-view-id>/pages/documentation/statistics.xhtml</to-view-id>-->
+	<!--</navigation-case>-->
+	<!--</navigation-rule>-->
 
 	<navigation-rule>
         <from-view-id>*</from-view-id>
@@ -212,13 +212,13 @@
 		</navigation-case>
 	</navigation-rule>
 
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>documentation.dataset</from-outcome>
-            <to-view-id>/pages/documentation/dataset.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+	<!--<navigation-rule>-->
+	<!--<from-view-id>*</from-view-id>-->
+	<!--<navigation-case>-->
+	<!--<from-outcome>documentation.dataset</from-outcome>-->
+	<!--<to-view-id>/pages/documentation/dataset.xhtml</to-view-id>-->
+	<!--</navigation-case>-->
+	<!--</navigation-rule>-->
 
 	<navigation-rule>
         <from-view-id>*</from-view-id>
