@@ -268,7 +268,6 @@ public class DetailsController extends JpaBaseController {
     }
 
     public Interaction getInteraction() {
-        System.out.println(interaction);
         return interaction;
     }
 
