@@ -4,9 +4,8 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:iv="http://java.sun.com/jsf/composite/intactview"
                 xmlns:iax="http://intact.ebi.ac.uk/extlinks"
-                xmlns:iaf="http://intact.ebi.ac.uk/functions">
+        >
 
 
     <p:panel id="geneSelectionButtons" style="width:100%">
@@ -58,8 +57,7 @@
                        varStatus="rowStatus">
                 <h:panelGroup rendered="#{xref.cvDatabase.shortLabel == 'ensembl'}">
                     <h:panelGroup rendered="#{xref.cvXrefQualifier.identifier == 'MI:0356'}">
-                        <h:outputText
-                                value="#{xref.primaryId}"/>
+                        <a href="http://www.ensembl.org/id/#{xref.primaryId}" target="_blank">#{xref.primaryId}</a>
                     </h:panelGroup>
                 </h:panelGroup>
 
