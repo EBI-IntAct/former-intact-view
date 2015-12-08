@@ -1,19 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-
+                xmlns:h="http://java.sun.com/jsf/html"
                 template="/WEB-INF/facelets/layout/compliance-template-ebi.xhtml">
+
 
 
     <!-- Mandatorty params -->
     <ui:param name="sectionTitle" value="Resources"/>
 
+
+
     <ui:define name="content">
+        <h:outputScript>
+            $(document).ready(function(){
+                alert('I am here');
+                $.ajax({
+                    type: "GET",
+                    url: "http://www.ebi.ac.uk/~intact/site/training/training.xml",
+                    datatype: "xml",
+                    crossDomain:true,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert('Error: ' + errorThrown);
+                    },
+                    success: function(xml) {
+                        alert('AJAX Request is succeeded.');
+
+                        var f2ftrningrenderer='';
+                        var onlinetraining_renderer='';
+
+                        $(xml).find('facetofacetraining').each(function(){
+
+                            alert('I am here 2');
+                            f2ftrningrenderer+='&lt;h6&gt;';
+                            f2ftrningrenderer+= $(this).find('month').text();
+                            f2ftrningrenderer+=$(this).find('year').text();
+                            f2ftrningrenderer+='&lt;/h6&gt;';
+                            f2ftrningrenderer+='&lt;ul&gt;';
+
+                            $(this).find('training').each(function(){
+                                f2ftrningrenderer+='&lt;li&gt;&lt;h5&gt;';
+                                f2ftrningrenderer+='&lt;a class="external" ';
+                                f2ftrningrenderer+='href="';
+                                f2ftrningrenderer+=$(this).find('url').text();
+                                f2ftrningrenderer+='" ';
+                                f2ftrningrenderer+='target="_blank" ';
+                                f2ftrningrenderer+='&gt;';
+                                f2ftrningrenderer+=$(this).find('name').text();
+                                f2ftrningrenderer+='&lt;/a&gt;';
+                                f2ftrningrenderer+='&lt;/h5&gt;&lt;/li&gt;';
+                            });
+
+                            f2ftrningrenderer+='&lt;/ul&gt;';
+
+                         });
+                        $(f2ftrningrenderer).insertAfter("#f2ftraining");
+                        alert('I am here 3');
+
+                        $(xml).find('onlinetraining').each(function(){
+                            onlinetraining_renderer+='&lt;section  class="grid_24"&gt;';
+                            onlinetraining_renderer+='&lt;h4&gt;';
+                            onlinetraining_renderer+=$(this).children('name').text();
+                            onlinetraining_renderer+='&lt;/h4&gt;';
+                            onlinetraining_renderer+='&lt;ul&gt;';
+                            $(this).find('otraining').each(function(){
+                                onlinetraining_renderer+='&lt;li&gt;&lt;h5&gt;';
+                                onlinetraining_renderer+='&lt;a class="external" ';
+                                onlinetraining_renderer+='href="';
+                                onlinetraining_renderer+=$(this).find('url').text();
+                                onlinetraining_renderer+='" ';
+                                onlinetraining_renderer+='target="_blank" ';
+                                onlinetraining_renderer+='&gt;';
+                                onlinetraining_renderer+=$(this).find('name').text();
+                                onlinetraining_renderer+='&lt;/a&gt;';
+
+                                onlinetraining_renderer+='&lt;/h5&gt;&lt;/li&gt;';
+
+                            });
+
+                            onlinetraining_renderer+='&lt;/ul&gt;';
+                            onlinetraining_renderer+='&lt;/section&gt;';
+                        });
+
+                        $(onlinetraining_renderer).insertAfter("#onlinetraining");
+
+
+                    }
+                });
+            });
+        </h:outputScript>
+        <!--<h:outputScript target="body" src="#{requestConfigBean.absoluteContextPath}/resources/javascript/training.js"></h:outputScript>-->
         <h2>Training</h2>
         <section class="grid_18 alpha">
             <section class="grid_12">
-                <h3 class="icon icon-generic" data-icon="f">Face-To-Face Training</h3>
-                <h6>November 2015</h6>
+                <h3 id='f2ftraining' class="icon icon-generic" data-icon="f">Face-To-Face Training</h3>
+                <!--<h6>November 2015</h6>
                 <ul>
                     <li>
                         <h5>
@@ -53,11 +137,11 @@
                                target="_blank">In Silico Systems Biology</a>
                         </h5>
                     </li>
-                </ul>
+                </ul>-->
             </section>
             <section class="grid_12">
-                <h3 class="icon icon-generic" data-icon="T">Online Training</h3>
-                <section class="grid_24">
+                <h3 id="onlinetraining" class="icon icon-generic" data-icon="T">Online Training</h3>
+                <!--<section  class="grid_24">
                     <h4>IntAct</h4>
                     <ul>
                         <li>
@@ -116,7 +200,7 @@
 
                         </li>
                     </ul>
-                </section>
+                </section>-->
             </section>
         </section>
         <section>
