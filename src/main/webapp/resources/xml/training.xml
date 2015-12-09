@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trainings>
+    <facetofacetrainings>
+        <facetofacetraining>
+            <month>11</month>
+            <year>2015</year>
+            <training>
+                <url>http://www.ebi.ac.uk/training/events/2015/interactions-pathways-intact</url>
+                <name>Interactions &amp; Pathways - IntAct</name>
+                <startdate>11/30/2015</startdate>
+                <enddate>11/30/2015</enddate>
+            </training>
+            <training>
+                <url>http://www.ebi.ac.uk/training/events/2015/networks-and-pathways-0</url>
+                <name>Networks and Pathways</name>
+                <startdate>11/02/2015</startdate>
+                <enddate>11/06/2015</enddate>
+            </training>
+            <training>
+                <url>http://www.ebi.ac.uk/training/events/2015/network-analysis-cytoscape-and-psicquic</url>
+                <name>Network Analysis with Cytoscape and PSICQUIC</name>
+                <startdate>11/18/2015</startdate>
+                <enddate>11/18/2015</enddate>
+            </training>
+        </facetofacetraining>
+
+        <facetofacetraining>
+            <month>05</month>
+            <year>2016</year>
+            <training>
+                <url>http://www.ebi.ac.uk/training/events/2016/networks-and-pathways-1</url>
+                <name>Networks and Pathways</name>
+                <startdate>05/09/2016</startdate>
+                <enddate>05/13/2016</enddate>
+            </training>
+        </facetofacetraining>
+
+        <facetofacetraining>
+            <month>07</month>
+            <year>2016</year>
+            <training>
+                <url>http://www.ebi.ac.uk/training/events/2016/silico-systems-biology</url>
+                <name>In Silico Systems Biology</name>
+                <startdate>03/07/2016</startdate>
+                <enddate>08/07/2016</enddate>
+            </training>
+        </facetofacetraining>
+    </facetofacetrainings>
+
+    <onlinetrainings>
+        <onlinetraining>
+            <name>IntAct</name>
+            <otraining>
+                <name>IntAct: the molecular interactions database at EMBL-EBI (webinar)</name>
+                <url>http://www.ebi.ac.uk/training/online/course/intact-molecular-interactions-database-embl-ebi-we</url>
+            </otraining>
+            <otraining>
+                <name>IntAct: Molecular Interactions at the EBI</name>
+                <url>http://www.ebi.ac.uk/training/online/course/intact-molecular-interactions-ebi</url>
+            </otraining>
+            <otraining>
+                <name>Protein interactions and their importance</name>
+                <url>http://www.ebi.ac.uk/training/online/course/protein-interactions-and-their-importance</url>
+            </otraining>
+            <otraining>
+                <name>IntAct: Quick tour</name>
+                <url>http://www.ebi.ac.uk/training/online/course/intact-quick-tour</url>
+            </otraining>
+            <otraining>
+                <name>Proteomics: an introduction to the EBI resources</name>
+                <url>http://www.ebi.ac.uk/training/online/course/proteomics-introduction-ebi-resources</url>
+            </otraining>
+
+        </onlinetraining>
+
+        <onlinetraining>
+            <name>Complex Portal</name>
+            <otraining>
+                <name>Complex Portal: Quick tour</name>
+                <url>http://www.ebi.ac.uk/training/online/course/complex-portal-quick-tour</url>
+            </otraining>
+            <otraining>
+                <name>Complex Portal: webinar</name>
+                <url>http://www.ebi.ac.uk/training/online/course/complex-portal-webinar</url>
+            </otraining>
+        </onlinetraining>
+    </onlinetrainings>
+
+</trainings>
