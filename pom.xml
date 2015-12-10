@@ -17,7 +17,7 @@
     <groupId>uk.ac.ebi.intact.service.sandbox</groupId>
     <artifactId>intact-view</artifactId>
     <packaging>war</packaging>
-    <version>4.2.2-SNAPSHOT</version>
+    <version>4.2.2</version>
 
     <name>IntAct Services :: View</name>
 
@@ -31,7 +31,7 @@
         <connection>scm:git:https://bitbucket.org/intact-ebi/intact-view.git</connection>
         <developerConnection>scm:git:https://bitbucket.org/intact-ebi/intact-view.git</developerConnection>
         <url>https://bitbucket.org/intact-ebi/intact-view</url>
-        <tag>HEAD</tag>
+        <tag>intact-view-4.2.2</tag>
     </scm>
 
     <properties>
