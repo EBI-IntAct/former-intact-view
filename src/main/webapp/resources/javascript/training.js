@@ -1,8 +1,11 @@
 $(document).ready(function () {
 
-    $.ajax({
+    var remotexmlurl=$( "#xmlresourceurl" ).val() +'/~intact/site/training/training.xml';
+    alert('remote url'+remotexmlurl);
+
+   $.ajax({
         type: "GET",
-        url: "http://www.ebi.ac.uk/~intact/site/training/training.xml",
+        url: remotexmlurl,
         datatype: "xml",
         crossDomain: true,
         headers: {

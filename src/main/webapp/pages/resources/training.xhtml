@@ -14,7 +14,7 @@
     <ui:define name="content">
 
         <h:outputScript name="javascript/training.js" />
-
+        <h:inputHidden value='http://#{request.getServerName()}' id="xmlresourceurl" />
         <h2>Training</h2>
         <section class="grid_18 alpha">
             <section class="grid_12">
