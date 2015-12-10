@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     var remotexmlurl=$( "#xmlresourceurl" ).val() +'/~intact/site/training/training.xml';
-    alert('remote url'+remotexmlurl);
 
    $.ajax({
         type: "GET",
