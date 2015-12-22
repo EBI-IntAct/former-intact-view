@@ -2,25 +2,13 @@
 <trainings>
     <facetofacetrainings>
         <facetofacetraining>
-            <month>11</month>
-            <year>2015</year>
+            <month>01</month>
+            <year>2016</year>
             <training>
-                <url>http://www.ebi.ac.uk/training/events/2015/interactions-pathways-intact</url>
-                <name>Interactions &amp; Pathways - IntAct</name>
-                <startdate>11/30/2015</startdate>
-                <enddate>11/30/2015</enddate>
-            </training>
-            <training>
-                <url>http://www.ebi.ac.uk/training/events/2015/networks-and-pathways-0</url>
-                <name>Networks and Pathways</name>
-                <startdate>11/02/2015</startdate>
-                <enddate>11/06/2015</enddate>
-            </training>
-            <training>
-                <url>http://www.ebi.ac.uk/training/events/2015/network-analysis-cytoscape-and-psicquic</url>
-                <name>Network Analysis with Cytoscape and PSICQUIC</name>
-                <startdate>11/18/2015</startdate>
-                <enddate>11/18/2015</enddate>
+                <url>http://www.tgac.ac.uk/361_Division/training-programme/courses-workshops/tgac-events/signalling-networks-from-data-to-modelling</url>
+                <name>Signalling Networks: From Data to Modelling</name>
+                <startdate>01/25/2016</startdate>
+                <enddate>01/29/2016</enddate>
             </training>
         </facetofacetraining>
 

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
-    var remotexmlurl=$( "#xmlresourceurl" ).val() +'/~intact/site/training/training.xml';
-
+      var remotexmlurl=$( "#xmlresourceurl" ).val() +'/~intact/site/training/training.xml';
+   // var remotexmlurl="http://localhost:9095/intact/resources/xml/training.xml";// only for development
    $.ajax({
         type: "GET",
         url: remotexmlurl,
@@ -20,6 +20,7 @@ $(document).ready(function () {
             var onlinetraining_renderer = '';
             var currentDate = new Date();
             var currentMonth = currentDate.getMonth();
+            currentMonth+=1;
             var currenyYear=currentDate.getFullYear();
             var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -27,13 +28,15 @@ $(document).ready(function () {
 
                 var monthNumber = parseInt(($(this).find('month').text()));
                 var yearNumber = parseInt(($(this).find('year').text()));
-                currentMonth+=1;
+
                 if (currenyYear< yearNumber|| ((currenyYear==yearNumber)&&((currentMonth)<=monthNumber))){
                     f2ftrningrenderer += '<h6>';
                     f2ftrningrenderer += month[monthNumber - 1];
                     f2ftrningrenderer += ' ' + $(this).find('year').text();
                     f2ftrningrenderer += '</h6>';
                     f2ftrningrenderer += '<ul>';
+
+                    var trainingsPresent=false;
 
                     $(this).find('training').each(function () {
 
@@ -42,6 +45,7 @@ $(document).ready(function () {
 
                         if (currentDate.getTime() <= end_training_date.getTime()) {
 
+                            trainingsPresent=true;
                             f2ftrningrenderer += '<li><h5>';
                             f2ftrningrenderer += '<a class="external" ';
                             f2ftrningrenderer += 'href="';
@@ -54,6 +58,12 @@ $(document).ready(function () {
                             f2ftrningrenderer += '</h5></li>';
                         }
                     });
+
+                    if(trainingsPresent==false){
+                        f2ftrningrenderer += '<li><h5>';
+                        f2ftrningrenderer +='All the trainings in this month have ended.';
+                        f2ftrningrenderer += '</h5></li>';
+                    }
 
                     f2ftrningrenderer += '</ul>';
                 }
