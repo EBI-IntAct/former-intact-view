@@ -13,6 +13,17 @@
         </facetofacetraining>
 
         <facetofacetraining>
+            <month>02</month>
+            <year>2016</year>
+            <training>
+                <url>http://www.ebi.ac.uk/training/events/2016/bioinformatics-resources-protein-biology</url>
+                <name>Bioinformatics resources for protein biology</name>
+                <startdate>02/09/2016</startdate>
+                <enddate>02/11/2016</enddate>
+            </training>
+        </facetofacetraining>
+
+        <facetofacetraining>
             <month>05</month>
             <year>2016</year>
             <training>
