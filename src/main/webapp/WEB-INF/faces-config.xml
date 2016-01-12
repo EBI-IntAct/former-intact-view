@@ -306,8 +306,8 @@
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
-			<from-outcome>about.support</from-outcome>
-			<to-view-id>/pages/documentation/about/support.xhtml</to-view-id>
+			<from-outcome>about.funding</from-outcome>
+			<to-view-id>/pages/documentation/about/funding.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
