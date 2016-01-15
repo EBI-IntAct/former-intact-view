@@ -28,9 +28,9 @@
     <!--</scm>-->
 
     <scm>
-        <connection>scm:git:https://bitbucket.org/intact-ebi/intact-view.git</connection>
-        <developerConnection>scm:git:https://bitbucket.org/intact-ebi/intact-view.git</developerConnection>
-        <url>https://bitbucket.org/intact-ebi/intact-view</url>
+        <connection>scm:git:https://github.com/EBI-IntAct/IntAct-View.git</connection>
+        <developerConnection>scm:git:https://github.com/EBI-IntAct/IntAct-View.git</developerConnection>
+        <url>https://github.com/EBI-IntAct/IntAct-View</url>
         <tag>intact-view-4.2.3.1</tag>
     </scm>
 
