@@ -263,5 +263,24 @@ span.searchterm:active {
 }
 
 #panel_height>div:nth-child(1) {
-    height:100%;
+   /* min-height:100%;*/
+}
+.hp_table{
+    border: none;
+}
+.hp_table td{
+    border: none;
+}
+#sub_sec{
+    margin-top: -20px;
+}
+.hp_contri{
+    margin-top: -23px;
+}
+#hp_tb{
+    margin-left: 31px;
+
+}
+form fieldset {
+    background-color: #D9D9D9;
 }
