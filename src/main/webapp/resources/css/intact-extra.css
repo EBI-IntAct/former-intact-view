@@ -304,4 +304,8 @@ form fieldset {
     display: -moz-inline-stack;
 }
 
+
+/*.link_css:focus {
+    background: pink;
+}*/
 /*************************New Home Page***************************/

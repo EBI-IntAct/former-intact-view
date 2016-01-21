@@ -30,7 +30,8 @@
                 <tr style="height: 20%;">
                     <td style="width: 25%;">
                         <section id="sub_sec">
-                            <h4 class="icon icon-functional" data-icon="D" style="margin-top: 30px;">Submission</h4>
+                            <h4 class="icon icon-functional" data-icon="D" style="margin-top: 30px;"><h:link target="_blank" value="Submission"
+                                                                                                             outcome="documentation.data_submission"/></h4>
 
                             <p style="margin-bottom: 0;text-align: justify;">
                                 <h:outputText>
@@ -45,7 +46,7 @@
                     <td style="width: 25%; ">
                         <section>
                             <h4 class="icon icon-generic" data-icon="g">
-                                <h:link
+                                <h:link target="_blank"
                                         value="Data Content" outcome="about.statistics"/>
                             </h4>
 
@@ -147,7 +148,8 @@
                 <tr>
                     <td>
                         <section >
-                            <h4 class="icon icon-generic" data-icon="P">Citing #{intactView['webapp.name']}</h4>
+                            <h4 class="icon icon-generic" data-icon="P"><a href="http://europepmc.org/abstract/MED/24234451"
+                                                                           target="_blank">Citing #{intactView['webapp.name']}</a></h4>
 
                             <p style="margin-bottom: 0; text-align: justify;">
                                 <strong>The MIntAct project--IntAct as a common curation platform for 11 molecular interaction
@@ -166,7 +168,8 @@
                     </td>
                     <td>
                         <section class="grid_24">
-                            <h4 class="icon icon-generic" data-icon="f">Training</h4>
+                            <h4 class="icon icon-generic" data-icon="f"><h:link target="_blank" value="Training"
+                                                                                outcome="resources.training"/></h4>
 
                             <p style="margin-bottom: 0;text-align: justify;">
                                 <h:link value="Online &amp; upcoming courses"
