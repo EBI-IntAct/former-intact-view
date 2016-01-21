@@ -258,12 +258,15 @@ span.searchterm:active {
 
 /*************************New Home Page***************************/
 
-.container_24 .grid_12 {
-    width: 131%;
+#panel_sec {
+    width: 100%;
+}
+#search_panel_sec {
+    width: 90.8333%;
 }
 
 #panel_height>div:nth-child(1) {
-   /* min-height:100%;*/
+    /*min-height:100%;*/
 }
 .hp_table{
     border: none;
@@ -279,8 +282,25 @@ span.searchterm:active {
 }
 #hp_tb{
     margin-left: 31px;
+    width: 90.8333%;
 
 }
 form fieldset {
     background-color: #D9D9D9;
 }
+
+.span_example{
+    float:right;
+    margin-top: -1.5%;
+    display: inline-block;
+    display: -moz-inline-stack;
+    width: 41%;
+
+}
+
+.searchPanel_span{
+    display: inline-block;width:55%;
+    display: -moz-inline-stack;
+}
+
+/*************************New Home Page***************************/
