@@ -17,7 +17,7 @@
                        target="blank">Complex Portal</a>.
                 </p>
                 <section>
-                    <section id="search_panel_sec" class="grid_17">
+                    <section id="search_panel_sec" class="grid_22">
                         <h:form id="intactForm" style="display: inline;" prependId="false">
                             <ui:include src="/pages/search/search_panel.xhtml"/>
                         </h:form>
@@ -26,7 +26,214 @@
                 </section>
             </section>
             <section class="grid_24">
-            <table class="hp_table grid_24" id="hp_tb"  >
+                <section class="grid_22">
+                <!--new code-->
+
+                <section  class="grid_12">
+                    <section class="grid_12">
+                        <h4 class="icon icon-generic" data-icon="g">
+                            <h:link target="_blank"
+                                    value="Data Content" outcome="about.statistics"/>
+                        </h4>
+
+                        <ul>
+                            <li>
+                                Publications:
+                                <h:outputText style="font-weight:bold;"
+                                              value="#{statisticsController.publicationCount}"/>
+                            </li>
+                            <li>
+                                Interactions:
+                                <h:outputText style="font-weight:bold;"
+                                              value="#{statisticsController.binaryInteractionCount}"/>
+                            </li>
+                            <li>
+                                Interactors:
+                                <h:outputText style="font-weight:bold;"
+                                              value="#{statisticsController.interactorsWithNoInteractions}"/>
+                            </li>
+                        </ul>
+                    </section>
+                    <section id="sub_sec" class="grid_12">
+                        <h4 class="icon icon-functional" data-icon="D" ><h:link target="_blank" value="Submission"
+                                                                                                         outcome="documentation.data_submission"/></h4>
+
+                        <p style="margin-bottom: 0;text-align: justify;">
+                            <h:outputText>
+                                <h:link value="Submit"
+                                        outcome="documentation.data_submission"/>
+                                &#160;your data to IntAct to increase its visibility and usability!
+                            </h:outputText>
+                        </p>
+                        <br/>
+                    </section>
+
+
+                </section>
+                <section class="grid_12">
+                    <section class="grid_24">
+                        <h4 class="icon icon-generic" data-icon="o">Contributors</h4>
+
+                        <p style="text-align: justify;">Manually curated content is added to IntAct by curators at the
+                            EMBL-EBI and the following organisations:</p>
+
+                        <p>
+                            <section class="grid_6">
+                                <a href="http://mint.bio.uniroma2.it/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_mint_s.png"/>
+                                </a>
+                            </section>
+                            <section class="grid_6">
+                                <a href="http://www.uniprot.org/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_uniprot_s.png"/>
+                                </a>
+                            </section>
+                            <section class="grid_6">
+                                <a href="http://www.isb-sib.ch/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_sib_s.png"/>
+                                </a>
+                            </section>
+                            <section class="grid_6">
+                                <a href="http://ophid.utoronto.ca/i2d/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_id2_s.png"/>
+                                </a>
+                            </section>
+
+                            <section class="grid_6">
+                                <a href="http://www.innatedb.com/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_innatedb_s.png"/>
+                                </a>
+                            </section>
+                            <section class="grid_6">
+                                <a href="http://www.molecularconnections.com/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_mconnections_s.png"/>
+                                </a>
+                            </section>
+                            <section class="grid_6">
+                                <a href="http://matrixdb.ibcp.fr/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_matrixdb_s.png"/>
+                                </a>
+                            </section>
+                            <section class="grid_6">
+                                <a href="http://www.mechanobio.info/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_mbinfo_s.png"/>
+                                </a>
+                            </section>
+                            <section class="grid_6">
+                                <a href="http://www.agbase.msstate.edu/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_agbase_s.png"/>
+                                </a>
+                            </section>
+                            <section class="grid_6">
+                                <a href="http://www.ucl.ac.uk/cardiovasculargeneontology/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/partners/imex_acg_s.png"/>
+                                </a>
+                            </section>
+                            <section class="grid_6">
+                                <a href="http://www.imexconsortium.org/" target="blank">
+                                    <img class="contributorLogo" src="/intact/images/logos/IMEx_logo_webmedium.jpg"/>
+                                </a>
+                            </section>
+
+                            <!--<table class="hp_table hp_contri">
+                                <tr>
+                                    <td><a href="http://mint.bio.uniroma2.it/" target="blank">
+                                        <img class="contributorLogo" src="/intact/images/logos/partners/imex_mint_s.png"/>
+                                    </a>
+                                    </td>
+                                    <td><a href="http://www.uniprot.org/" target="blank">
+                                        <img class="contributorLogo" src="/intact/images/logos/partners/imex_uniprot_s.png"/>
+                                    </a>
+                                    </td>
+                                    <td><a href="http://www.isb-sib.ch/" target="blank">
+                                        <img class="contributorLogo" src="/intact/images/logos/partners/imex_sib_s.png"/>
+                                    </a>
+                                    </td>
+                                    <td><a href="http://ophid.utoronto.ca/i2d/" target="blank">
+                                        <img class="contributorLogo" src="/intact/images/logos/partners/imex_id2_s.png"/>
+                                    </a>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td><a href="http://www.innatedb.com/" target="blank">
+                                        <img class="contributorLogo" src="/intact/images/logos/partners/imex_innatedb_s.png"/>
+                                    </a>
+                                    </td>
+                                    <td><a href="http://www.molecularconnections.com/" target="blank">
+                                        <img class="contributorLogo" src="/intact/images/logos/partners/imex_mconnections_s.png"/>
+                                    </a>
+                                    </td>
+                                    <td><a href="http://matrixdb.ibcp.fr/" target="blank">
+                                        <img class="contributorLogo" src="/intact/images/logos/partners/imex_matrixdb_s.png"/>
+                                    </a>
+                                    </td>
+                                    <td><a href="http://www.mechanobio.info/" target="blank">
+                                        <img class="contributorLogo" src="/intact/images/logos/partners/imex_mbinfo_s.png"/>
+                                    </a>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <a href="http://www.agbase.msstate.edu/" target="blank">
+                                            <img class="contributorLogo" src="/intact/images/logos/partners/imex_agbase_s.png"/>
+                                        </a>
+                                    </td>
+                                    <td><a href="http://www.ucl.ac.uk/cardiovasculargeneontology/" target="blank">
+                                        <img class="contributorLogo" src="/intact/images/logos/partners/imex_acg_s.png"/>
+                                    </a>
+                                    </td>
+                                    <td>
+                                        <a href="http://www.imexconsortium.org/" target="blank">
+                                            <img class="contributorLogo" src="/intact/images/logos/IMEx_logo_webmedium.jpg"/>
+                                        </a>
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                            </table>-->
+                            <!-- LOGOS -->
+
+                            <br style="clear:both"/>
+                        </p>
+
+                    </section>
+                </section>
+
+                <section id="second_btm_row" class="grid_12">
+                    <section class="grid_12">
+                        <h4 class="icon icon-generic" data-icon="P"><a href="http://europepmc.org/abstract/MED/24234451"
+                                                                       target="_blank">Citing #{intactView['webapp.name']}</a></h4>
+
+                        <p style="margin-bottom: 0; text-align: justify;">
+                            <strong>The MIntAct project--IntAct as a common curation platform for 11 molecular interaction
+                                databases.</strong>
+                        </p>
+                        <br/>
+
+                        <p>Orchard S et al <a class="external"
+                                              href="http://europepmc.org/abstract/MED/24234451"
+                                              target="_blank">[PMID:24234451]</a>
+                            <a class="external"
+                               href="http://nar.oxfordjournals.org/content/42/D1/D358"
+                               target="_blank">[Full Text]</a>
+                        </p>
+                    </section>
+                    <section class="grid_12">
+                        <h4 class="icon icon-generic" data-icon="f"><h:link target="_blank" value="Training"
+                                                                            outcome="resources.training"/></h4>
+
+                        <p style="margin-bottom: 0;text-align: justify;">
+                            <h:link value="Online &amp; upcoming courses"
+                                    outcome="resources.training"/>
+                        </p>
+                    </section>
+                </section>
+
+
+                <!--old code -->
+            <!--<table class="hp_table grid_24" id="hp_tb"  >
                 <tr style="height: 20%;">
                     <td style="width: 25%;">
                         <section id="sub_sec">
@@ -137,7 +344,7 @@
                                    </tr>
 
                                </table>
-                                <!-- LOGOS -->
+                                &lt;!&ndash; LOGOS &ndash;&gt;
 
                               <br style="clear:both"/>
                             </p>
@@ -152,7 +359,7 @@
                                                                            target="_blank">Citing #{intactView['webapp.name']}</a></h4>
 
                             <p style="margin-bottom: 0; text-align: justify;">
-                                <strong>The MIntAct project--IntAct as a common curation platform for 11 molecular interaction
+                                <strong>The MIntAct project&#45;&#45;IntAct as a common curation platform for 11 molecular interaction
                                     databases.</strong>
                             </p>
                             <br/>
@@ -181,7 +388,8 @@
 
                 </tr>
             </table>
-
+-->
+                </section>
 </section>
         </section>
 

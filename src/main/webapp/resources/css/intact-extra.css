@@ -262,7 +262,7 @@ span.searchterm:active {
     width: 100%;
 }
 #search_panel_sec {
-    width: 90.8333%;
+   /* width: 90.8333%;*/
 }
 
 #panel_height>div:nth-child(1) {
@@ -275,7 +275,7 @@ span.searchterm:active {
     border: none;
 }
 #sub_sec{
-    margin-top: -20px;
+    margin-top: 0.4%;
 }
 .hp_contri{
     margin-top: -23px;
@@ -303,7 +303,9 @@ form fieldset {
     display: inline-block;width:55%;
     display: -moz-inline-stack;
 }
-
+#second_btm_row{
+    margin-top: -24%;
+}
 
 /*.link_css:focus {
     background: pink;
