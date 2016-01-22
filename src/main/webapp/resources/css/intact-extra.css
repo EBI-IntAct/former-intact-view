@@ -307,6 +307,10 @@ form fieldset {
     margin-top: -24%;
 }
 
+.cellWidthn{
+    width: 75%;
+}
+
 /*.link_css:focus {
     background: pink;
 }*/
