@@ -9,7 +9,7 @@
     <parent>
         <groupId>uk.ac.ebi.intact.maven</groupId>
         <artifactId>intact-hibernate-master</artifactId>
-        <version>42</version>
+        <version>44</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -21,16 +21,11 @@
 
     <name>IntAct Services :: View</name>
 
-    <!--<scm>-->
-    <!--<connection>scm:svn:https://intact.googlecode.com/svn/repo/service/trunk/intact-view</connection>-->
-    <!--<developerConnection>scm:svn:https://intact.googlecode.com/svn/repo/service/trunk/intact-view</developerConnection>-->
-    <!--<url>https://intact.googlecode.com/svn/repo/service/trunk/intact-view</url>-->
-    <!--</scm>-->
 
     <scm>
-        <connection>scm:git:https://github.com/EBI-IntAct/IntAct-View.git</connection>
-        <developerConnection>scm:git:https://github.com/EBI-IntAct/IntAct-View.git</developerConnection>
-        <url>https://github.com/EBI-IntAct/IntAct-View</url>
+        <connection>scm:git:https://github.com/EBI-IntAct/intact-view.git</connection>
+        <developerConnection>scm:git:https://github.com/EBI-IntAct/intact-view.git</developerConnection>
+        <url>https://github.com/EBI-IntAct/intact-view</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -226,12 +221,20 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5</version>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
                 <configuration>
-                    <remoteTagging>true</remoteTagging>
-                    <goals>deploy</goals>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>develop</developBranchName>
+                        <featureBranchPrefix>feature-</featureBranchPrefix>
+                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                        <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
+                    </flowInitContext>
+                    <!-- see goals wiki page for configuration options -->
+                    <allowUntracked>true</allowUntracked>
                 </configuration>
             </plugin>
         </plugins>
@@ -914,19 +917,9 @@
 
     <repositories>
         <repository>
-            <id>intact.nexus</id>
-            <name>IntAct Nexus</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public</url>
+            <id>nexus-ebi-release-repo</id>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
         </repository>
     </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>intact.nexus</id>
-            <name>IntAct Nexus</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public</url>
-        </pluginRepository>
-
-    </pluginRepositories>
 
 </project>
