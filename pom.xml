@@ -9,7 +9,8 @@
     <parent>
         <groupId>uk.ac.ebi.intact.maven</groupId>
         <artifactId>intact-hibernate-master</artifactId>
-        <version>44</version>
+        <!--The version can not be updated to 43 or 44 without breaking the compilation -> java.lang.NoClassDefFoundError: org/hibernate/util/PropertiesHelper -->
+        <version>42</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
