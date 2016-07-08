@@ -125,6 +125,9 @@ public class SearchController extends JpaBaseController {
                 userQuery.clearInteractionFilters();
                 doBinarySearch(userQuery.createSolrQuery());
             }
+            if (this.currentQuery == null || !hasLoadedInteractorResults) {
+                doInteractorsSearch();
+            }
         }
     }
 
