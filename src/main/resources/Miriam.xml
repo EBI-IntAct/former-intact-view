@@ -66,9 +66,9 @@
 			</resource>
 
 			<resource id="MIR:00100158" state="up" reliability="99">
-				<dataResource>http://www.ebi.ac.uk/ontology-lookup/</dataResource>
+				<dataResource>http://www.ebi.ac.uk/ols/</dataResource>
 				<dataEntityExample>CHEBI:36927</dataEntityExample>
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 				<dataInfo>ChEBI through OLS</dataInfo>
 				<dataInstitution>European Bioinformatics Institute, Cambridge</dataInstitution>
 
@@ -1183,9 +1183,9 @@
 				<dataLocation>United Kingdom</dataLocation>
 			</resource>
 			<resource id="MIR:00100176" state="up" reliability="99">
-				<dataResource>http://www.ebi.ac.uk/ontology-lookup/</dataResource>
+				<dataResource>http://www.ebi.ac.uk/ols/</dataResource>
 				<dataEntityExample>SBO:0000262</dataEntityExample>
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 				<dataInfo>SBO through OLS</dataInfo>
 
 				<dataInstitution>European Bioinformatics Institute</dataInstitution>
@@ -2547,9 +2547,9 @@
 		<resources>
 			<resource id="MIR:00100083" state="up" reliability="96">
 
-				<dataResource>http://www.ebi.ac.uk/ontology-lookup/</dataResource>
+				<dataResource>http://www.ebi.ac.uk/ols/</dataResource>
 				<dataEntityExample>ECO:0000006</dataEntityExample>
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 				<dataInfo>Evidence Codes via the Ontology Lookup Service (OLS)</dataInfo>
 				<dataInstitution>European Bioinformatics Institute</dataInstitution>
 				<dataLocation>United Kingdom</dataLocation>
@@ -2588,9 +2588,9 @@
 
 		<resources>
 			<resource id="MIR:00100084" state="up" reliability="97">
-				<dataResource>http://www.ebi.ac.uk/ontology-lookup/</dataResource>
+				<dataResource>http://www.ebi.ac.uk/ols/</dataResource>
 				<dataEntityExample>MOD:00001</dataEntityExample>
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 				<dataInfo>Protein modifications ontology via the Ontology Lookup Service (OLS)</dataInfo>
 				<dataInstitution>European Bioinformatics Institute</dataInstitution>
 
@@ -3021,10 +3021,10 @@
 		</documentations>
 		<resources>
 			<resource id="MIR:00100097" state="up" reliability="96">
-				<dataResource>http://www.ebi.ac.uk/ontology-lookup/</dataResource>
+				<dataResource>http://www.ebi.ac.uk/ols/</dataResource>
 				<dataEntityExample>FMA:67112</dataEntityExample>
 
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 				<dataInfo>Foundational Model of Anatomy via Ontology Lookup Service (OLS)</dataInfo>
 				<dataInstitution>European Bioinformatics Institute</dataInstitution>
 				<dataLocation>United Kingdom</dataLocation>
@@ -4584,9 +4584,9 @@ PharmGKB Pathways are drug centric, gene based, interactive pathways which focus
 		</documentations>
 		<resources>
 			<resource id="MIR:00100142" state="up" reliability="99">
-				<dataResource>http://www.ebi.ac.uk/ontology-lookup/</dataResource>
+				<dataResource>http://www.ebi.ac.uk/ols/</dataResource>
 				<dataEntityExample>MI:0308</dataEntityExample>
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 
 				<dataInfo>Molecular Interactions Ontology through OLS</dataInfo>
 				<dataInstitution>European Bioinformatics Institute</dataInstitution>
@@ -4625,9 +4625,9 @@ PharmGKB Pathways are drug centric, gene based, interactive pathways which focus
 		</documentations>
 		<resources>
 			<resource id="MIR:00100143" state="up" reliability="99">
-				<dataResource>http://www.ebi.ac.uk/ontology-lookup/</dataResource>
+				<dataResource>http://www.ebi.ac.uk/ols/</dataResource>
 				<dataEntityExample>CL:0000232</dataEntityExample>
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 				<dataInfo>Cell Type Ontology through OLS</dataInfo>
 
 				<dataInstitution>European Bioinformatics Institute</dataInstitution>
@@ -4674,9 +4674,9 @@ PharmGKB Pathways are drug centric, gene based, interactive pathways which focus
 
 		<resources>
 			<resource id="MIR:00100144" state="up" reliability="99">
-				<dataResource>http://www.ebi.ac.uk/ontology-lookup/</dataResource>
+				<dataResource>http://www.ebi.ac.uk/ols/</dataResource>
 				<dataEntityExample>BTO:0000146</dataEntityExample>
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 				<dataInfo>Brenda Tissue Ontology through OLS</dataInfo>
 				<dataInstitution>European Bioinformatics Institute</dataInstitution>
 
@@ -4721,9 +4721,9 @@ PharmGKB Pathways are drug centric, gene based, interactive pathways which focus
 		<resources>
 			<resource id="MIR:00100145" state="up" reliability="99">
 
-				<dataResource>http://www.ebi.ac.uk/ontology-lookup/</dataResource>
+				<dataResource>http://www.ebi.ac.uk/ols/</dataResource>
 				<dataEntityExample>PATO:0001998</dataEntityExample>
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 				<dataInfo>PATO through OLS</dataInfo>
 				<dataInstitution>European Bioinformatics Institute</dataInstitution>
 				<dataLocation>UK</dataLocation>
@@ -5671,7 +5671,7 @@ Note: Currently, direct access to RNA products is restricted. This is expected t
 				<dataResource>http://www.obofoundry.org/cgi-bin/detail.cgi?id=unit</dataResource>
 
 				<dataEntityExample>UO:0000080</dataEntityExample>
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 				<dataInfo>Unit Ontology via Ontology Lookup Service</dataInfo>
 				<dataInstitution>European Bioinformatics Institute</dataInstitution>
 				<dataLocation>United Kingdom</dataLocation>
@@ -7618,9 +7618,9 @@ Note: Currently, direct access to RNA products is restricted. This is expected t
 
 		<resources>
 			<resource id="MIR:00100246" state="up" reliability="100">
-				<dataResource>http://www.ebi.ac.uk/ontology-lookup/</dataResource>
+				<dataResource>http://www.ebi.ac.uk/ols/</dataResource>
 				<dataEntityExample>EDAM:0001163</dataEntityExample>
-				<dataEntry>http://www.ebi.ac.uk/ontology-lookup/?termId=$id</dataEntry>
+				<dataEntry>http://www.ebi.ac.uk/ols/ontologies/go/terms?obo_id=$id</dataEntry>
 				<dataInfo>EDAM via OLS</dataInfo>
 				<dataInstitution>EMBL-EBI</dataInstitution>
 
