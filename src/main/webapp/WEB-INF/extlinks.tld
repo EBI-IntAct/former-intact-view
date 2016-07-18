@@ -29,6 +29,17 @@
         <tag-class/>
     </tag>
     <tag>
+        <name>goComplexPortal</name>
+        <attribute>
+            <name>query</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>onlyLogo</name>
+        </attribute>
+        <tag-class/>
+    </tag>
+    <tag>
         <name>goDrugbank</name>
         <attribute>
             <name>query</name>

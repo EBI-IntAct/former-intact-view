@@ -1,11 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
 
                 xmlns:iamf="http://intact.ebi.ac.uk/mitabfunctions"
-                xmlns:iav="http://intact.ebi.ac.uk/view"
                 xmlns:iax="http://intact.ebi.ac.uk/extlinks"
 
                 xmlns:composite="http://java.sun.com/jsf/composite">
@@ -24,23 +21,39 @@
             <ui:repeat var="xref" value="#{cc.attrs.interactor.identifiers}" varStatus="rowStatus">
                 <h:panelGroup rendered="#{xref.database == 'uniprotkb'}">
                     <iax:goUniprot query="#{xref.identifier}" onlyLogo="false"/>
+                    <br/>
                 </h:panelGroup>
                 <h:panelGroup rendered="#{xref.database == 'chebi'}">
                     <iax:goChebi query="#{xref.identifier}" onlyLogo="false"/>
+                    <br/>
                 </h:panelGroup>
                 <h:panelGroup rendered="#{xref.database == 'drugbank'}">
                     <iax:goDrugbank query="#{xref.identifier}" onlyLogo="false"/>
                     <br/>
                     <iax:goDrugPortChemicalView query="#{xref.identifier}" onlyLogo="false" renderDrugPort="#{iamf:isApprovedDrug(iamf:getDrugStatus(cc.attrs.interactor))}"/>
+                    <br/>
                 </h:panelGroup>
-                <h:panelGroup rendered="#{xref.database == 'intact'}">
+                <h:panelGroup rendered="#{xref.database == 'intact' and !cc.attrs.interactor.interactorTypes[0].text.contains('complex')}">
                     <iax:goMoleculeView query="#{xref.identifier}" onlyLogo="false"
                                         useUrl="true"/>
+                    <br/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{xref.database == 'intact' and cc.attrs.interactor.interactorTypes[0].text.contains('complex')}">
+                    <h:outputText value="CP: "/><iax:goComplexPortal query="#{xref.identifier}" onlyLogo="false"/>
+                    <br/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{xref.database != 'intact' and cc.attrs.interactor.interactorTypes[0].text.contains('complex')}">
+                    <h:outputText value="CP: "/><iax:goComplexPortal query="#{iamf:getMainIdentifierFromCrossReferences(cc.attrs.interactor.alternativeIdentifiers)}" onlyLogo="false"/>
+                    <br/>
                 </h:panelGroup>
             </ui:repeat>
-            <br/>
-            <iax:goMoleculeView query="#{iamf:getMainIdentifierFromCrossReferences(cc.attrs.interactor.alternativeIdentifiers)}" onlyLogo="false"
-                                useUrl="true"/>
+            <h:panelGroup rendered="#{!cc.attrs.interactor.interactorTypes[0].text.contains('complex')}">
+                <iax:goMoleculeView
+                        query="#{iamf:getMainIdentifierFromCrossReferences(cc.attrs.interactor.alternativeIdentifiers)}"
+                        onlyLogo="false"
+                        useUrl="true"/>
+            </h:panelGroup>
+
         </h:panelGroup>
 
     </composite:implementation>

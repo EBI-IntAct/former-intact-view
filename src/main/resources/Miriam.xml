@@ -3068,9 +3068,9 @@
 		</documentations>
 		<resources>
 			<resource id="MIR:00100098" state="up" reliability="100">
-				<dataResource>http://matrixdb.ibcp.fr/</dataResource>
+				<dataResource>http://matrixdb.univ-lyon1.fr/</dataResource>
 				<dataEntityExample>P00747_P07355</dataEntityExample>
-				<dataEntry>http://matrixdb.ibcp.fr/cgi-bin/model/report/default?name=$id&amp;class=Association</dataEntry>
+				<dataEntry>http://matrixdb.univ-lyon1.fr/cgi-bin/model/report/default?name=$id&amp;class=Association</dataEntry>
 				<dataInfo>MatrixDB Association</dataInfo>
 
 				<dataInstitution>Institut de Biologie et Chimie des Prot&#233;ines, Lyon University</dataInstitution>

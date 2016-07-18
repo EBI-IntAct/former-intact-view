@@ -36,11 +36,13 @@ public class OntologyInteractorTypeConfig implements InitializingBean{
     private IntactViewConfiguration viewConfiguration;
 
     private String [] proteinTypes;
+    private String [] complexTypes;
     private String [] compoundTypes;
     private String [] nucleicAcidTypes;
     private String[] geneTypes;
 
     private boolean proteinTypesInitialized;
+    private boolean complexTypesInitialized;
     private boolean compoundTypesInitialized;
     private boolean nucleicAcidTypesInitialized;
     private boolean geneTypesInitialized;
@@ -54,6 +56,10 @@ public class OntologyInteractorTypeConfig implements InitializingBean{
         // load proteins
         log.info("Loading protein types...");
         loadProteins(ontologySearcher);
+
+        // load complexes
+        log.info("Loading complex types...");
+        loadComplexes(ontologySearcher);
 
         // load nucleic acids
         log.info("Loading nucleic acid types...");
@@ -75,6 +81,11 @@ public class OntologyInteractorTypeConfig implements InitializingBean{
         // load proteins
         log.info("Loading protein types...");
         loadProteins(ontologySearcher);
+
+        // load complexes
+        log.info("Loading complexes types...");
+        loadComplexes(ontologySearcher);
+
 
         // load nucleic acids
         log.info("Loading nucleic acid types...");
@@ -118,6 +129,30 @@ public class OntologyInteractorTypeConfig implements InitializingBean{
             proteinTypesInitialized = false;
 
             proteinTypes = new String[]{CvInteractorType.PROTEIN_MI_REF,CvInteractorType.PEPTIDE_MI_REF};
+        }
+    }
+
+    private void loadComplexes(OntologySearcher ontologySearcher){
+        try{
+            OntologyTerm bioActiveEntity = new LazyLoadedOntologyTerm( ontologySearcher, "MI:0314", "complex" );
+
+            List<OntologyTerm> complexChildren = loadChildrenFor(bioActiveEntity);
+
+            this.complexTypes = new String[1+complexChildren.size()];
+
+            this.complexTypes[0] = bioActiveEntity.getId();
+
+            int index = 1;
+            for (OntologyTerm term : complexChildren){
+                this.complexTypes[index] = term.getId();
+                index++;
+            }
+            complexTypesInitialized = true;
+        }
+        catch (SolrServerException e){
+            log.error("Could not load complexes types from SOLR index. Use defaults.", e);
+            complexTypesInitialized = false;
+            complexTypes = new String[]{"MI:0314", "MI:1302"};
         }
     }
 
@@ -216,6 +251,15 @@ public class OntologyInteractorTypeConfig implements InitializingBean{
             loadProteins(ontologySearcher);
         }
         return proteinTypes;
+    }
+
+    public String[] getComplexTypes() {
+        if (!complexTypesInitialized){
+            final SolrServer ontologySolrServer = viewConfiguration.getOntologySolrServer();
+            OntologySearcher ontologySearcher = new OntologySearcher(ontologySolrServer);
+            loadComplexes(ontologySearcher);
+        }
+        return complexTypes;
     }
 
     public String[] getCompoundTypes() {
