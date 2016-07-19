@@ -65,7 +65,7 @@ public class SearchController extends JpaBaseController {
     private int geneTotalResults;
     private int nucleicAcidTotalResults;
     private int complexTotalResults;
-    private int threadTimeOut = 20;
+    private int threadTimeOut = 40;
     private String currentQuery;
     private String selectedInteractor;
     private boolean hasLoadedSearchControllerResults = false;

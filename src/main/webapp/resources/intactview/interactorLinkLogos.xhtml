@@ -39,11 +39,11 @@
                     <br/>
                 </h:panelGroup>
                 <h:panelGroup rendered="#{xref.database == 'intact' and cc.attrs.interactor.interactorTypes[0].text.contains('complex')}">
-                    <h:outputText value="CP: "/><iax:goComplexPortal query="#{xref.identifier}" onlyLogo="false"/>
+                    <h:outputText value="cp : " style="font-weight:bold"/><iax:goComplexPortal query="#{xref.identifier}" onlyLogo="false"/>
                     <br/>
                 </h:panelGroup>
                 <h:panelGroup rendered="#{xref.database != 'intact' and cc.attrs.interactor.interactorTypes[0].text.contains('complex')}">
-                    <h:outputText value="CP: "/><iax:goComplexPortal query="#{iamf:getMainIdentifierFromCrossReferences(cc.attrs.interactor.alternativeIdentifiers)}" onlyLogo="false"/>
+                    <h:outputText value="cp : " style="font-weight:bold"/><iax:goComplexPortal query="#{iamf:getMainIdentifierFromCrossReferences(cc.attrs.interactor.alternativeIdentifiers)}" onlyLogo="false"/>
                     <br/>
                 </h:panelGroup>
             </ui:repeat>

@@ -342,7 +342,6 @@
                                 </h:panelGroup>
                             </ui:repeat>
                             <h:panelGroup rendered="#{participant.interactorTypeShortlabel.contains('complex')}">
-                                <c:set var="containsComplex" value="true" />
                                 <iax:goComplexPortal query="#{participant.interactorAc}" onlyLogo="true"/>
                                 <br/>
                             </h:panelGroup>
@@ -731,7 +730,7 @@
                 <br/>
 
                 <div class="grid_24">
-                    <h:panelGroup rendered="#{detailsBean.featuresAvailable and !containsComplex} ">
+                    <h:panelGroup rendered="#{detailsBean.featuresAvailable and !detailsBean.containComplexes}">
                         <h2>Graphical Representation of Experimental Features</h2>
                         <iv:interactionRepresentation url="/intact/json?ac=#{interaction.ac}"/>
                     </h:panelGroup>
