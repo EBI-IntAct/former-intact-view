@@ -188,6 +188,23 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+            <!--Avoids deployment and install at release time-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
 
             <!-- Conversion of XML Schema into Java source code using JAXB-XJC -->
             <plugin>
@@ -245,6 +262,16 @@
     </build>
 
     <profiles>
+        <!--Avoids problems in java8 with the documentation at release time-->
+        <profile>
+            <id>disable-java8-doclint</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <properties>
+                <additionalparam>-Xdoclint:none</additionalparam>
+            </properties>
+        </profile>
         <profile>
             <id>integration-tests</id>
             <properties>
