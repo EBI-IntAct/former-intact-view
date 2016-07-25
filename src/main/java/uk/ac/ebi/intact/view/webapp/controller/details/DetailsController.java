@@ -39,6 +39,7 @@ import uk.ac.ebi.intact.view.webapp.controller.details.complex.TableHeaderContro
 import uk.ac.ebi.intact.view.webapp.controller.search.SearchController;
 import uk.ac.ebi.intact.view.webapp.controller.search.UserQuery;
 import uk.ac.ebi.intact.view.webapp.model.ParticipantLazyDataModel;
+import uk.ac.ebi.intact.view.webapp.model.ParticipantWrapper;
 
 import javax.faces.context.FacesContext;
 import javax.persistence.Query;
@@ -92,6 +93,8 @@ public class DetailsController extends JpaBaseController {
     private Experiment experiment;
     private int numberInteractions=0;
     private int numberParticipants=0;
+    private boolean containComplexes=false;
+
     private ParticipantLazyDataModel participants;
     private boolean featureAvailable;
     private int numberOfInteractorsInExperiment=0;
@@ -749,6 +752,19 @@ public class DetailsController extends JpaBaseController {
             return exp.getFullName();
         }
         return "-";
+    }
+
+    public boolean isContainComplexes() {
+
+        containComplexes =false;
+        for (ParticipantWrapper participant : participants) {
+            if (participant.getInteractorTypeShortlabel().contains("complex")) {
+                containComplexes = true;
+                break;
+            }
+        }
+
+        return containComplexes;
     }
 
     public ParticipantLazyDataModel getParticipants() {

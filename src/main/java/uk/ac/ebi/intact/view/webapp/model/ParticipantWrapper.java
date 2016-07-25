@@ -31,6 +31,8 @@ public class ParticipantWrapper {
     private Collection<InteractorXref> interactorXrefs;
     private Collection<InteractorAlias> interactorAliases;
     private CvInteractorType interactorType;
+    private String interactorTypeShortlabel;
+
 
     private String bioSourceAc;
     private String bioSourceShortLabel;
@@ -69,6 +71,8 @@ public class ParticipantWrapper {
         interactorXrefs = Functions.extractIdentityXrefs(interactor.getXrefs());
         interactorAliases = new ArrayList<InteractorAlias>(interactor.getAliases());
         interactorType = interactor.getCvInteractorType();
+        interactorTypeShortlabel = interactorType.getShortLabel();
+
         Hibernate.initialize(interactorType.getAnnotations());
         Hibernate.initialize(interactorType.getXrefs());
 
@@ -199,5 +203,9 @@ public class ParticipantWrapper {
 
     public String getInteractorAc() {
         return interactorAc;
+    }
+
+    public String getInteractorTypeShortlabel() {
+        return interactorTypeShortlabel;
     }
 }
