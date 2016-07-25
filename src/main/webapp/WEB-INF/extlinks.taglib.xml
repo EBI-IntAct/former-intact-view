@@ -15,6 +15,10 @@
         <source>facelets/components/links/GoChebi.xhtml</source>
     </tag>
     <tag>
+        <tag-name>goComplexPortal</tag-name>
+        <source>facelets/components/links/GoComplexPortal.xhtml</source>
+    </tag>
+    <tag>
         <tag-name>goDrugbank</tag-name>
         <source>facelets/components/links/GoDrugbank.xhtml</source>
     </tag>

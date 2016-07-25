@@ -10,8 +10,8 @@
                 xmlns:iam="http://intact.ebi.ac.uk/miscel"
 
                 xmlns:iaf="http://intact.ebi.ac.uk/functions"
-                xmlns:iax="http://intact.ebi.ac.uk/extlinks"
-        >
+                xmlns:iax="http://intact.ebi.ac.uk/extlinks" xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
 
     <ui:param name="experiment" value="#{detailsBean.experiment}"/>
     <ui:param name="interactionCount" value="#{detailsBean.numberInteractions}"/>
@@ -341,6 +341,10 @@
                                     <br/>
                                 </h:panelGroup>
                             </ui:repeat>
+                            <h:panelGroup rendered="#{participant.interactorTypeShortlabel.contains('complex')}">
+                                <iax:goComplexPortal query="#{participant.interactorAc}" onlyLogo="true"/>
+                                <br/>
+                            </h:panelGroup>
                         </p:column>
 
                         <p:column id="interactorIdCol">
@@ -352,6 +356,7 @@
                                               target="_blank">
                                     <h:outputText value="#{xref.primaryId}"/>
                                 </h:outputLink>
+                                <br/>
                             </ui:repeat>
                         </p:column>
 
@@ -725,7 +730,7 @@
                 <br/>
 
                 <div class="grid_24">
-                    <h:panelGroup rendered="#{detailsBean.featuresAvailable}">
+                    <h:panelGroup rendered="#{detailsBean.featuresAvailable and !detailsBean.containComplexes}">
                         <h2>Graphical Representation of Experimental Features</h2>
                         <iv:interactionRepresentation url="/intact/json?ac=#{interaction.ac}"/>
                     </h:panelGroup>

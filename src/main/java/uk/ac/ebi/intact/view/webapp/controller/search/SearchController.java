@@ -64,7 +64,8 @@ public class SearchController extends JpaBaseController {
     private int smallMoleculeTotalResults;
     private int geneTotalResults;
     private int nucleicAcidTotalResults;
-    private int threadTimeOut = 10;
+    private int complexTotalResults;
+    private int threadTimeOut = 40;
     private String currentQuery;
     private String selectedInteractor;
     private boolean hasLoadedSearchControllerResults = false;
@@ -75,6 +76,8 @@ public class SearchController extends JpaBaseController {
     private InteractorSearchResultDataModel smallMoleculeResults;
     private InteractorSearchResultDataModel nucleicAcidResults;
     private InteractorSearchResultDataModel geneResults;
+    private InteractorSearchResultDataModel complexResults;
+
     // io
     private String exportFormat;
     private String userSortColumn = DEFAULT_SORT_COLUMN;
@@ -124,6 +127,9 @@ public class SearchController extends JpaBaseController {
             if (this.currentQuery == null || !userQuery.getSearchQuery().equals(this.currentQuery) || !hasLoadedSearchControllerResults) {
                 userQuery.clearInteractionFilters();
                 doBinarySearch(userQuery.createSolrQuery());
+            }
+            if (this.currentQuery == null || !hasLoadedInteractorResults) {
+                doInteractorsSearch();
             }
         }
     }
@@ -379,18 +385,20 @@ public class SearchController extends JpaBaseController {
         final int pageSize = getUserQuery().getPageSize();
 
         Callable<InteractorSearchResultDataModel> proteinRunnable = createProteinSearchRunnable(config, solrQuery, solrServer, pageSize);
+        Callable<InteractorSearchResultDataModel> complexRunnable = createComplexSearchRunnable(config, solrQuery, solrServer, pageSize);
         Callable<InteractorSearchResultDataModel> compoundRunnable = createSmallMoleculeSearchRunnable(config, solrQuery, solrServer, pageSize);
         Callable<InteractorSearchResultDataModel> nucleicAcidRunnable = createNucleicAcidSearchRunnable(config, solrQuery, solrServer, pageSize);
         Callable<InteractorSearchResultDataModel> geneRunnable = createGeneSearchRunnable(config, solrQuery, solrServer, pageSize);
 
         Future<InteractorSearchResultDataModel> proteinFuture = executorService.submit(proteinRunnable);
+        Future<InteractorSearchResultDataModel> complexFuture = executorService.submit(complexRunnable);
         Future<InteractorSearchResultDataModel> compoundFuture = executorService.submit(compoundRunnable);
         Future<InteractorSearchResultDataModel> nucleicAcidFuture = executorService.submit(nucleicAcidRunnable);
         Future<InteractorSearchResultDataModel> geneFuture = executorService.submit(geneRunnable);
 
-        checkAndResumeInteractorTasks(proteinFuture, compoundFuture, nucleicAcidFuture, geneFuture);
+        checkAndResumeInteractorTasks(proteinFuture, compoundFuture, complexFuture, nucleicAcidFuture, geneFuture);
 
-        interactorTotalResults = smallMoleculeTotalResults + proteinTotalResults + nucleicAcidTotalResults + geneTotalResults;
+        interactorTotalResults = smallMoleculeTotalResults + proteinTotalResults + complexTotalResults + nucleicAcidTotalResults + geneTotalResults;
 
         // loaded browse results
         hasLoadedInteractorResults = true;
@@ -405,6 +413,15 @@ public class SearchController extends JpaBaseController {
             public InteractorSearchResultDataModel call() {
 
                 return doInteractorSearch(typeConfig.getProteinTypes(), solrQuery, solrServer, pageSize);
+            }
+        };
+    }
+
+    private Callable<InteractorSearchResultDataModel> createComplexSearchRunnable(final OntologyInteractorTypeConfig typeConfig, final SolrQuery solrQuery, final SolrServer solrServer, final int pageSize) {
+        return new Callable<InteractorSearchResultDataModel>() {
+            public InteractorSearchResultDataModel call() {
+
+                return doInteractorSearch(typeConfig.getComplexTypes(), solrQuery, solrServer, pageSize);
             }
         };
     }
@@ -437,7 +454,8 @@ public class SearchController extends JpaBaseController {
     }
 
     private void checkAndResumeInteractorTasks(Future<InteractorSearchResultDataModel> proteinFuture, Future<InteractorSearchResultDataModel> compoundFuture,
-                                               Future<InteractorSearchResultDataModel> nucleicAcidFuture, Future<InteractorSearchResultDataModel> geneFuture) {
+                                               Future<InteractorSearchResultDataModel> complexFuture, Future<InteractorSearchResultDataModel> nucleicAcidFuture,
+                                               Future<InteractorSearchResultDataModel> geneFuture) {
         if (proteinFuture != null) {
             try {
                 this.proteinResults = proteinFuture.get(threadTimeOut, TimeUnit.SECONDS);
@@ -507,6 +525,29 @@ public class SearchController extends JpaBaseController {
             }
         }
 
+        if (complexFuture != null) {
+            try {
+                this.complexResults = complexFuture.get(threadTimeOut, TimeUnit.SECONDS);
+                this.complexTotalResults = complexResults.getRowCount();
+
+            } catch (InterruptedException e) {
+                log.error("The intact nucleic acid search was interrupted, we cancel the task.", e);
+                if (!complexFuture.isCancelled()) {
+                    complexFuture.cancel(false);
+                }
+            } catch (ExecutionException e) {
+                log.error("The intact nucleic acid search could not be executed, we cancel the task.", e);
+                if (!complexFuture.isCancelled()) {
+                    complexFuture.cancel(false);
+                }
+            } catch (Throwable e) {
+                log.error("The intact nucleic acid interactor could not be executed, we cancel the task.", e);
+                if (!complexFuture.isCancelled()) {
+                    complexFuture.cancel(false);
+                }
+            }
+        }
+
         if (geneFuture != null) {
             try {
                 this.geneResults = geneFuture.get(threadTimeOut, TimeUnit.SECONDS);
@@ -544,6 +585,7 @@ public class SearchController extends JpaBaseController {
         return interactorResults;
     }
 
+
     public void doSearchInteractionsFromCompoundListSelection(ActionEvent evt) {
         doSearchInteractionsFromListSelection((InteractorListController) getBean("compoundListController"));
     }
@@ -554,6 +596,10 @@ public class SearchController extends JpaBaseController {
 
     public void doSearchInteractionsFromProteinListSelection(ActionEvent evt) {
         doSearchInteractionsFromListSelection((InteractorListController) getBean("proteinListController"));
+    }
+
+    public void doSearchInteractionsFromComplexListSelection(ActionEvent evt) {
+        doSearchInteractionsFromListSelection((InteractorListController) getBean("complexListController"));
     }
 
     public void doSearchInteractionsFromDnaListSelection(ActionEvent evt) {
@@ -707,6 +753,14 @@ public class SearchController extends JpaBaseController {
         this.nucleicAcidTotalResults = nucleicAcidTotalResults;
     }
 
+    public int getComplexTotalResults() {
+        return complexTotalResults;
+    }
+
+    public void setComplexTotalResults(int complexTotalResults) {
+        this.complexTotalResults = complexTotalResults;
+    }
+
     public int getGeneTotalResults() {
         return geneTotalResults;
     }
@@ -721,6 +775,10 @@ public class SearchController extends JpaBaseController {
 
     public InteractorSearchResultDataModel getGeneResults() {
         return geneResults;
+    }
+
+    public InteractorSearchResultDataModel getComplexResults() {
+        return complexResults;
     }
 
     private UserQuery getUserQuery() {
