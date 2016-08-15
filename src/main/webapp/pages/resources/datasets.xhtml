@@ -25,6 +25,8 @@
                         </li>
                         <li class="last leaf menu-mlid-3528 menu-press-releases mid-3528"><a
                                 href="#speciesDs">Species-based datasets</a></li>
+                        <li class="last leaf menu-mlid-3528 menu-press-releases mid-3528"><a
+                                href="#mutationDs">Mutations influencing interactions dataset: documentation</a></li>
                     </ul>
                 </div>
             </section>
@@ -58,7 +60,7 @@
                             well as interaction derived from the literature. The current focus is on
                             interactions derived by Proximity Ligation Assay (<a class="external"
                                                                                  href="http://www.ebi.ac.uk/ontology-lookup/?termId=MI:0813"
-                                target="_blank">MI:0813</a>), a method
+                                                                                 target="_blank">MI:0813</a>), a method
                             pioneered by the group of consortium partner Ulf Landegreen.
                         </p>
                     </li>
@@ -105,11 +107,11 @@
                                 href="http://www.jbc.org/"
                                 target="_blank">Journal of Biological Chemistry (2006)</a> and <a class="external"
                                                                                                   href="http://www.signaling-gateway.org/aboutus/"
-                                target="_blank">Nature publishing house</a>
+                                                                                                  target="_blank">Nature publishing house</a>
                             which were manually curated by IntAct curators.
                             This dataset has been used in <a class="external"
                                                              href="http://biocreative.sourceforge.net/biocreative_2_ppi.html"
-                                target="_blank">BioCreative II</a> (Critical Assessment of Information Extraction systems in Biology): Protein-Protein Interaction Task
+                                                             target="_blank">BioCreative II</a> (Critical Assessment of Information Extraction systems in Biology): Protein-Protein Interaction Task
                             . The protein-protein interaction task focused on the prediction of protein interactions from full text articles,
                             which are represented in the Biocreative dataset.
                             The Biocreative dataset provided by IntAct is a resource for text mining development and testing. The data file (source-text.txt) that provides a mapping between
@@ -420,22 +422,270 @@
                             class="external"
                             href="http://www.plantcell.org/cgi/content/full/22/4/997">20371643</a>.</p>
 
-                <!--Navigation menu-->
-                <!--<section class="grid_6 omega">-->
-                <!--<h3>Datasets</h3>-->
+                <h2 id="mutationDs">Mutations influencing interactions dataset: documentation</h2>
 
-                <!--<div class="int-nav">-->
-                <!--<ul id="dataset-nav">-->
-                <!--<li><a href="#curatedDs">Curated Datasets</a>-->
-                <!--<ul>-->
-                <!--<li><a href="#manDs">Manually selected datasets</a></li>-->
-                <!--<li><a href="#compDs">Computationally maintained datasets</a></li>-->
-                <!--</ul>-->
-                <!--</li>-->
-                <!--<li class="last"><a href="#speciesDs">Species-based datasets</a></li>-->
-                <!--</ul>-->
-                <!--</div>-->
-                <!--</section>-->
+                <h3>Introduction</h3>
+
+                <p>This dataset is the result of the efforts we made to standardise the way short labels for the mutation-related
+                    features are written, according to rules previously agreed with the IMEx curators community (<a
+                            href="#mutationRules">see below</a>). The
+                    information given in the dataset expands the information that can be found in the &quot;Feature(s) interactor
+                    A/B&quot; columns in the PSI-MITAB 2.7 standard format. </p>
+
+                <h3>Dataset description</h3>
+
+                <p>This dataset contains ~15000 instances where mutations have been experimentally shown to affect a protein-protein
+                    interaction. There are several types of mutations covered, the terms used have been described in the PSI-MI
+                    controlled vocabularies, accessible at <a
+                            href="http://www.ebi.ac.uk/ols/beta/ontologies/mi">www.ebi.ac.uk/ols/beta/ontologies/mi</a>:
+                </p>
+
+                <ul>
+                    <li>Mutation (MI:0118): A change in a sequence or structure in comparison to a reference entity due to a
+                        insertion, deletion or substitution event.
+                        <em>This root term is used when there is a mutation present in a
+                            protein and the wild type version has not been tested or shown to interact in the referenced paper.</em>
+
+                        <ul>
+                            <li>Mutation causing an interaction (MI:2227): A change in a sequence or structure in comparison to a
+                                reference entity due to a insertion, deletion or substitution event that enables an interaction when
+                                compared with the wild-type, which does not interact.
+                            </li>
+                            <li>Mutation decreasing interaction (MI:0119): Region of a molecule whose mutation or deletion decreases
+                                significantly interaction strength or rate (in the case of interactions inferred from enzymatic
+                                reaction).
+
+                                <ul>
+                                    <li>Mutation decreasing interaction rate (MI:1130): Region of a molecule whose mutation or
+                                        deletion decreases significantly interaction rate (in the case of interactions inferred from
+                                        enzymatic reaction).
+                                    </li>
+                                    <li>Mutation decreasing interaction strength (MI:1133): Region of a molecule whose mutation or
+                                        deletion decreases significantly interaction strength.
+                                    </li>
+                                    <li>Mutation disrupting interaction (MI:0573): Region of a molecule whose mutation or deletion
+                                        totally disrupts an interaction strength or rate (in the case of interactions inferred from
+                                        enzymatic reaction).<br/>
+                                        • Mutation disrupting interaction rate (MI:1129): Region of a molecule whose mutation or
+                                        deletion totally disrupts an interaction rate (in the case of interactions inferred from
+                                        enzymatic reaction).<br/>
+                                        • Mutation disrupting interaction strength (MI:1128): Region of a molecule whose mutation or
+                                        deletion totally disrupts an interaction strength.<br/></li>
+                                </ul>
+                            </li>
+                            <li>Mutation increasing interaction (MI:0382): Region of a molecule whose mutation or deletion increases
+                                significantly interaction strength or rate (in the case of interactions inferred from enzymatic
+                                reaction).
+
+                                <ul>
+                                    <li>Mutation increasing interaction rate (MI:1131): Region of a molecule whose mutation or
+                                        deletion increases significantly interaction rate (in the case of interactions inferred from
+                                        enzymatic reaction).
+                                    </li>
+                                    <li>Mutation increasing interaction strength (MI:1132): Region of a molecule whose mutation or
+                                        deletion increases significantly interaction strength.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Mutation with no effect (MI:2226): A change in a sequence or structure in comparison to a reference
+                                entity due to a insertion, deletion or substitution event that does not have any effect over an
+                                interaction when compared with the wild-type.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Stats</h3>
+
+                    <ul>
+                        <li>Involved features: Around 15300</li>
+                    </ul>
+
+                <h3>Output format description</h3>
+
+                <p>We provide a tab-delimited flatfile download with the full dataset. Every instance of a mutation affecting a
+                    given interaction is recorded in a separate line. Here is a brief description of the different columns used in
+                    the file:</p>
+
+                <ul>
+                    <li>Feature AC: Accession number for that particular mutation feature.</li>
+                    <li>Feature short label: Human-readable short label summarizing the amino acid changes and their positions (see
+                        rules for its construction below).
+                    </li>
+                    <li>Feature range(s): Position(s) in the protein sequence affected by the mutation.</li>
+                    <li>Original sequence: Wild type amino acid residue(s) affected, in one letter code.</li>
+                    <li>Resulting sequence: Replacement sequence (or deletion) in one letter code.</li>
+                    <li>Feature type: Mutation type, following the PSI-MI controlled vocabularies as stated above.</li>
+                    <li>Feature annotation: Specific comments about the feature that can be of interest.</li>
+                    <li>Affected protein AC: Affected protein identifier (preferably UniProtKB accession, if available).</li>
+                    <li>Affected protein symbol</li>
+                    <li>Affected protein organism</li>
+                    <li>Interaction participants: Identifiers for all participants in the affected interaction, along with their
+                        species and molecule type between brackets.
+                    </li>
+                    <li>PubMedID: Reference to the publication where the interaction evidence was reported.</li>
+                    <li>Figure legend: Reference to the specific figures in the paper where the interaction evidence was reported.
+                    </li>
+                    <li>Interaction AC: Interaction accession within our databases. This can be used to obtain further information
+                        about the interaction.
+                    </li>
+                </ul>
+
+                <p>Further columns will be added once the dataset is enriched with cross-references to other databases such as
+                    UniProt and Ensembl. </p>
+
+                <h4>Mutations dataset format example</h4>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Feature AC</th>
+                        <th>Feature short label</th>
+                        <th>Feature range(s)</th>
+                        <th>Original sequence</th>
+                        <th>Resulting sequence</th>
+                        <th>Feature type</th>
+                        <th>Feature annotation</th>
+                        <th>Affected protein AC</th>
+                        <th>Affected protein symbol</th>
+                        <th>Affected protein organism</th>
+                        <th>Interaction participants</th>
+                        <th>PubMedID</th>
+                        <th>Figure legend</th>
+                        <th>Interaction AC</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>EBI-1203484</td>
+                        <td>asp_tyr3702-3703ala_ala</td>
+                        <td>3702-3703</td>
+                        <td>DY</td>
+                        <td>AA</td>
+                        <td>mutation decreasing strength(MI:1133)</td>
+                        <td></td>
+                        <td>uniprotkb:P20659</td>
+                        <td>TRX</td>
+                        <td>7227 - Drosophile melanogaster (Fruit fly)</td>
+                        <td>uniprotkb:P20659 (protein, 7227 - Drosophile melanogaster (Fruit fly))</td>
+                        <td>10656681</td>
+                        <td>5A</td>
+                        <td>EBI-1203452</td>
+                    </tr>
+                    <tr>
+                        <td>EBI-709274</td>
+                        <td>leu152glu</td>
+                        <td>152-152</td>
+                        <td>L</td>
+                        <td>E</td>
+                        <td>mutation decreasing(MI:0119)</td>
+                        <td></td>
+                        <td>uniprotkb:O43521</td>
+                        <td>B2L11</td>
+                        <td>9606 - Homo sapiens</td>
+                        <td>uniprotkb:O43521(protein, 9606 - Homo sapiens);uniprotkb:P97287(protein, 10090 - Mus musculus)</td>
+                        <td>15694340</td>
+                        <td></td>
+                        <td>EBI-709266</td>
+                    </tr>
+                    <tr>
+                        <td>EBI-10762087</td>
+                        <td>pro116pro_unc</td>
+                        <td>116-116</td>
+                        <td>P</td>
+                        <td>PX</td>
+                        <td>mutation(MI:0118)</td>
+                        <td>comment:Feature - insertion of crosslinkable amino acid p-benzoyl-L-phenylalanine (pBpa)</td>
+                        <td>uniprotkb:P69411</td>
+                        <td>RCSF</td>
+                        <td>83333 - Escherichia coli (strain K12)</td>
+                        <td>uniprotkb:P69411 (protein, 83333 - Escherichia coli (strain K12));uniprotkb:P0A940 (protein, 83333 -
+                            Escherichia coli (strain K12))
+                        </td>
+                        <td>25525882</td>
+                        <td>Fig. 2C Supp Fig.3D</td>
+                        <td>EBI-10761554</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="mutationRules">Mutation short label annotation rules</h3>
+
+                <p>Rules used for short label notation in mutation features:</p>
+
+                <ul>
+                    <li>
+                        <p>Single aminoacid change: Three letter code of original aa is used, then sequence position, then three
+                            letter code of replacement.</p>
+                        <h6>Example:</h6>
+                        <ul>
+                            <li>ile345thr</li>
+                        </ul>
+                        <br/>
+                    </li>
+                    <li>
+                        <p>Multiple aminoacid change, non-sequential positions: Same rule as above, comma-separated. </p>
+                        <h6>Example:</h6>
+                        <ul>
+                            <li>ile234ala,thr345ala,pro456ala</li>
+                            <li>ile345ala,ile678ala,ile897ala</li>
+                        </ul>
+                        <br/>
+                    </li>
+                    <li>
+                        <p>Multiple aminoacid change, sequential positions: Original aas separated by underscore, then sequence
+                            range separated by hyphen, then substitution aminoacids separated by underscore. Replacement residues are
+                            not collapsed even if they correspond to the same aminoacid (all changed to alanine, for example). </p>
+                        <h6>Example:</h6>
+                        <ul>
+                            <li>pro_pro_pro_pro123-126ala_ala_ala_ala</li>
+                            <li>pro_thr_leu12-14ala_ala_pro</li>
+                            <li>thr_ile_cys_tyr30-33ala_ala_ala_ala</li>
+                        </ul>
+                        <br/>
+                    </li>
+                    <li><p>Deletions: Deletions are represented with the three letter code
+                        <strong>&quot;del&quot;</strong>. For
+                        representation of deletions in the &quot;resulting sequence&quot; field dots are used:
+                        <strong>&quot;.&quot;</strong>. When the deleted region spans over three residues in length, it is not a
+                        mutation anymore, but a region affecting binding, and should be represented with other feature type: &quot;required
+                        to bind region&quot;. </p>
+                        <h6>Example:</h6>
+                        <ul>
+                            <li>pro123del</li>
+                            <li>pro345del,ile347del</li>
+                            <li>leu_leu_leu356-358del_del_del</li>
+                            <li> arg_pro_arg_lys_arg123-127del_pro_del_lys_del</li>
+                        </ul>
+                        <br/>
+                    </li>
+                    <li>
+                        <p>Insertions: Same rules applied for multiple aminoacid changes in sequential positions are used, adding
+                            replacement aminoacids in the second part of the expression. If there is no substitution of original
+                            residues, they are included in the replacement part of the statement.</p>
+                        <h6>Examples:</h6>
+                        <ul>
+                            <li>cys_thr123-124cys_pro_ala_thr -
+                                <em>Cys and thr do not get replaced, there is only an insertion of
+                                    pro and ala between them.</em></li>
+                            <li> pro123ala_ala_tyr_lys -
+                                <em>Proline gets replaced at position 123, followed by three new residues
+                                    inserted.</em></li>
+                            <li> thr_lys12-13pro_pro_pro_pro -
+                                <em>Both threonine and lysine get replaced and a couple of prolines
+                                    get inserted in the middle.</em></li>
+                            <li> met1-1pro_ala_lys_met - <em>P-A-K added N-terminal to methionine.</em></li>
+                        </ul>
+                        <br/>
+                    </li>
+                    <li>
+                        <p>Unconventional / unknown amino acid substitutions: Instances where the resulting amino acid is unknown
+                            use the three letter code
+                            <strong>&quot;xaa&quot;</strong>. When an unconventional amino acid is used
+                            (e.g. pBpa, crosslinkable amino acid p-benzoyl-L-phenylalanine) the three letter code
+                            <strong>&quot;unc&quot;</strong> is used. Both cases are represented with the one letter code
+                            <strong>&quot;X&quot;</strong> in the &quot;resulting sequence&quot; field. </p></li>
+                </ul>
             </section>
         </section>
         <section>
