@@ -1,6 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://java.sun.com/jsf/html"
 >
 
     <section class="grid_24">
@@ -31,48 +31,48 @@
 
                     <section class="grid_12">
                         <section class="grid_24">
-                        <section class="grid_12">
-                            <h4 class="icon icon-generic" data-icon="g">
-                                <h:link target="_blank"
-                                        value="Data Content" outcome="about.statistics"/>
-                            </h4>
+                            <section class="grid_12">
+                                <h4 class="icon icon-generic" data-icon="g">
+                                    <h:link target="_blank"
+                                            value="Data Content" outcome="about.statistics"/>
+                                </h4>
 
-                            <ul class="cellWidthn">
-                                <li>
-                                    Publications:
-                                    <h:outputText style="font-weight:bold;"
-                                                  value="#{statisticsController.publicationCount}"/>
-                                </li>
-                                <li>
-                                    Interactions:
-                                    <h:outputText style="font-weight:bold;"
-                                                  value="#{statisticsController.binaryInteractionCount}"/>
-                                </li>
-                                <li>
-                                    Interactors:
-                                    <h:outputText style="font-weight:bold;"
-                                                  value="#{statisticsController.interactorsWithNoInteractions}"/>
-                                </li>
-                            </ul>
-                        </section>
-                        <section id="sub_sec" class="grid_12">
-                            <h4 class="icon icon-functional" data-icon="D">
-                                <h:link target="_blank" value="Submission"
-                                        outcome="documentation.data_submission"/>
-                            </h4>
-
-                            <p class="cellWidthn" style="margin-bottom: 0;">
-                                <h:outputText>
-                                    <h:link value="Submit"
+                                <ul class="cellWidthn">
+                                    <li>
+                                        Publications:
+                                        <h:outputText style="font-weight:bold;"
+                                                      value="#{statisticsController.publicationCount}"/>
+                                    </li>
+                                    <li>
+                                        Interactions:
+                                        <h:outputText style="font-weight:bold;"
+                                                      value="#{statisticsController.binaryInteractionCount}"/>
+                                    </li>
+                                    <li>
+                                        Interactors:
+                                        <h:outputText style="font-weight:bold;"
+                                                      value="#{statisticsController.interactorsWithNoInteractions}"/>
+                                    </li>
+                                </ul>
+                            </section>
+                            <section id="sub_sec" class="grid_12">
+                                <h4 class="icon icon-functional" data-icon="D">
+                                    <h:link target="_blank" value="Submission"
                                             outcome="documentation.data_submission"/>
-                                    &#160;your data to IntAct to increase its visibility and usability!
-                                </h:outputText>
-                            </p>
-                            <br/>
-                        </section>
+                                </h4>
 
-</section>
-                        <section  class="grid_24">
+                                <p class="cellWidthn" style="margin-bottom: 0;">
+                                    <h:outputText>
+                                        <h:link value="Submit"
+                                                outcome="documentation.data_submission"/>
+                                        &#160;your data to IntAct to increase its visibility and usability!
+                                    </h:outputText>
+                                </p>
+                                <br/>
+                            </section>
+
+                        </section>
+                        <section class="grid_24">
                             <section class="grid_12">
                                 <h4 class="icon icon-generic" data-icon="P"><a
                                         href="http://europepmc.org/abstract/MED/24234451"
@@ -85,9 +85,9 @@
                                 </p>
                                 <br/>
 
-                                <p style="width:54%" >Orchard S et al <a class="external"
-                                                                         href="http://europepmc.org/abstract/MED/24234451"
-                                                                         target="_blank">[PMID:24234451]</a>
+                                <p style="width:54%">Orchard S et al <a class="external"
+                                                                        href="http://europepmc.org/abstract/MED/24234451"
+                                                                        target="_blank">[PMID:24234451]</a>
                                     <a class="external"
                                        href="http://nar.oxfordjournals.org/content/42/D1/D358"
                                        target="_blank">[Full Text]</a>
@@ -99,7 +99,7 @@
                                             outcome="resources.training"/>
                                 </h4>
 
-                                <p  style="margin-bottom: 0;">
+                                <p style="margin-bottom: 0;">
                                     <h:link value="Online &amp; upcoming courses"
                                             outcome="resources.training"/>
                                 </p>
@@ -200,8 +200,6 @@
                     </section>
 
 
-
-
                 </section>
             </section>
         </section>
@@ -230,6 +228,13 @@
 
                 </h:panelGroup>
                 <!--</section>-->
+            </section>
+            <section>
+                <h4 class="icon icon-generic"
+                    data-icon="U">Sign up for our newsletter</h4>
+                <p style="text-align: justify;">
+                    <a href="http://www.eepurl.com/b_9iu1" target="_blank">Sign up here</a>
+                </p>
             </section>
             <section>
                 <!--<h3 class="icon icon-generic" data-icon="N">News-->

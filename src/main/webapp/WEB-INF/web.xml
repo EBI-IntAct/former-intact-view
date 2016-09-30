@@ -17,8 +17,9 @@
  * specific language governing permissions and limitations
  * under the License.
 -->
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          metadata-complete="true" version="3.0">
@@ -566,7 +567,7 @@
     </error-page>
 
     <resource-env-ref>
-        <resource-env-ref-name>jdbc/IntactPubDS</resource-env-ref-name>
+        <resource-env-ref-name>jdbc/IntactDS</resource-env-ref-name>
         <resource-env-ref-type>
             javax.sql.DataSource
         </resource-env-ref-type>
