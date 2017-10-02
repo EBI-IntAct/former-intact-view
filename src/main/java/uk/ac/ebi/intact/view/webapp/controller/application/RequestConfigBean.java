@@ -47,7 +47,7 @@ public class RequestConfigBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         this.request = (HttpServletRequest) context.getExternalContext().getRequest();
 
-        this.absoluteContextPath = "//" +
+        this.absoluteContextPath = "https://" +
                request.getServerName() + ":" +
                request.getServerPort() +
                request.getContextPath();
