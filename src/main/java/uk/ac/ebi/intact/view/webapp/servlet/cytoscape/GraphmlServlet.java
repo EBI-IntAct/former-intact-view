@@ -39,14 +39,15 @@ public class GraphmlServlet extends HttpServlet {
 
         mitabUrl = mitabUrl.replaceAll("%26rows%3D0", "");
 
-        String absoluteContextPath = request.getScheme() + "://" +
-                request.getServerName() + ":" +
-                request.getServerPort() +
+        String absoluteContextPath = "//" +
+                request.getServerName() +
                 ((HttpServletRequest)request).getContextPath();
         
         String completeUrl = absoluteContextPath+"/"+mitabUrl;
 
         final URL inputUrl = new URL( completeUrl );
+
+        log.info("Complete Url"+inputUrl);
         final InputStream is = inputUrl.openStream();
 
         ServletOutputStream stream = response.getOutputStream();
