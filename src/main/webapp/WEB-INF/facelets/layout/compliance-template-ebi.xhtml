@@ -62,6 +62,46 @@
                 max-width: 1600px;
                 margin: 0 auto;
             }
+             /*Elixir Logo Css*/
+            .elixir-ribbon {
+                padding: 3rem 0;
+            }
+
+            .elixir-ribbon a:hover {
+                color: #fff;
+            }
+            .elixir-ribbon .elixir-logo-kite {
+                background-image: url("http://wwwdev.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/assorted/elixir_kitemark-60px.png");
+                background-size: 100%;
+                position: relative;
+                top: 3px;
+                margin-bottom: -.5rem;
+                height: 60px;
+                width: 60px;
+                background-position: 80% 58%;
+                background-repeat: no-repeat;
+                display: block;
+                margin-right: 1rem;
+            }
+
+            .float-left {
+                float: left !important;
+            }
+
+            .padding-top-medium {
+                padding-top: .5rem;
+            }
+
+            .white-color {
+                color: white;
+            }
+
+            .row {
+                max-width: 97rem;
+                margin-left: auto;
+            }
+
+            /*Elixir Logo Css - End*/
         </style>
 
         <!-- end CSS-->
@@ -412,7 +452,24 @@
             </div>
 
 
+
+
             <footer>
+
+                <!--Elixir Logo-->
+
+            <div id="elixir-ribbon" class="elixir-ribbon" style="background-color: rgb(79,138,156);">
+                <div class="row">
+                    <div class="float-left elixir-logo-kite"></div>
+                    <div style="top: 24px;position: relative;"><h5 class="white-color padding-top-medium" style="display: inline;top: 15px;">
+                        This is part of the ELIXIR infrastructure
+                    </h5></div>
+
+               </div>
+            </div>
+
+                <!--Elixir Logo End-->
+
                 <!-- Optional local footer (insert citation / project-specific copyright / etc here -->
 
                 <div id="local-footer" class="grid_24 clearfix">
