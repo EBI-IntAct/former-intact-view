@@ -39,7 +39,7 @@ public class GraphmlServlet extends HttpServlet {
 
         mitabUrl = mitabUrl.replaceAll("%26rows%3D0", "");
 
-        String absoluteContextPath = "//" +
+        String absoluteContextPath = "https://" +
                 request.getServerName() +
                 ((HttpServletRequest)request).getContextPath();
         
