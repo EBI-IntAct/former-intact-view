@@ -62,6 +62,46 @@
                 max-width: 1600px;
                 margin: 0 auto;
             }
+             /*Elixir Logo Css*/
+            .elixir-ribbon {
+                padding: 0.5rem .3%;
+            }
+
+            .elixir-ribbon a:hover {
+                color: #fff;
+            }
+            .elixir-ribbon .elixir-logo-kite {
+                background-image: url("https://www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/assorted/elixir_kitemark-60px.png");
+                background-size: 100%;
+                position: relative;
+                top: -2px;
+                margin-bottom: -.5rem;
+                height: 60px;
+                width: 60px;
+                background-position: 80% 58%;
+                background-repeat: no-repeat;
+                display: block;
+                margin-right: 1rem;
+            }
+
+            .float-left {
+                float: left !important;
+            }
+
+            .padding-top-medium {
+                padding-top: .5rem;
+            }
+
+            .white-color {
+                color: white;
+            }
+
+            /*.row {
+                max-width: 97%;
+                margin-left: auto;
+            }*/
+
+            /*Elixir Logo Css - End*/
         </style>
 
         <!-- end CSS-->
@@ -412,7 +452,24 @@
             </div>
 
 
+
+
             <footer>
+
+                <!--Elixir Logo-->
+
+            <div id="elixir-ribbon" class="elixir-ribbon grid_24" style="background-color: rgb(79,138,156);">
+                <div >
+                    <div class="float-left elixir-logo-kite"></div>
+                    <h5 class="white-color padding-top-medium" style="display: inline;top: 18px;position: relative;">
+                        This is part of the ELIXIR infrastructure
+                    </h5>
+
+               </div>
+            </div>
+
+                <!--Elixir Logo End-->
+
                 <!-- Optional local footer (insert citation / project-specific copyright / etc here -->
 
                 <div id="local-footer" class="grid_24 clearfix">

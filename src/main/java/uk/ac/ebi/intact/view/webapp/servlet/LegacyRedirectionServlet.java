@@ -38,9 +38,8 @@ public class LegacyRedirectionServlet extends HttpServlet {
         //ServletContext context = getServletContext();
         //WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(context);
 
-        String absContextPath = request.getScheme() + "://" +
-               request.getServerName() + ":" +
-               request.getServerPort() +
+        String absContextPath ="https://" +
+               request.getServerName() +
                request.getContextPath();
 
         String url = request.getRequestURI();
