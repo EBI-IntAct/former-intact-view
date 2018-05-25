@@ -95,6 +95,25 @@
             .white-color {
                 color: white;
             }
+            a.white-color{
+                color: #fff;
+            }
+
+            a#data-protection-agree {
+                color: #fff;
+            }
+            .data-protection-banner .medium-8 {
+                width: 74%;
+                margin-left: 1%;
+                float: left;
+            }
+
+            .data-protection-banner .medium-4 {
+                width: 23%;
+                margin-right: 2%;
+                float: right;
+                text-align: right;
+            }
 
             /*.row {
                 max-width: 97%;
@@ -518,6 +537,9 @@
                     </section>
 
                 </div>
+                <div id="data-protection-message-configuration"
+                     data-message="This website requires cookies, and the limited processing of your personal data in order to function. By using the site you are agreeing to this as outlined in our &lt;a target='_blank' href='https://www.ebi.ac.uk/data-protection/privacy-notice/intact-and-complex-portal-websites' class='white-color'&gt;Privacy Notice&lt;/a&gt; and &lt;a target='_blank' href='https://www.ebi.ac.uk/about/terms-of-use' class='white-color'&gt;Terms of Use&lt;/a&gt;."
+                     data-service-id="intact-and-complex-portal-websites" data-data-protection-version="0.1"></div>
 
             </footer>
         </div>
@@ -538,7 +560,7 @@
         <script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/plugins.js"></script>
         <script defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/script.js"></script>
         -->
-        <script type="text/javascript" defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/cookiebanner.js"></script>
+        <!--<script type="text/javascript" defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/cookiebanner.js"></script>-->
         <script type="text/javascript" defer="defer" src="//www.ebi.ac.uk/web_guidelines/js/foot.js"></script>
         <!-- end scripts-->
 
@@ -642,6 +664,18 @@
 
             });
 
+        </script>
+
+        <script type="text/javascript">
+            var localFrameworkVersion = '1.2'; // 1.1 or 1.2 or compliance or other
+            // if you select compliance or other we will add some helpful
+            // CSS styling, but you may need to add some CSS yourself
+            var newDataProtectionNotificationBanner = document.createElement('script');
+            newDataProtectionNotificationBanner.src = 'https://ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/js/ebi-global-includes/script/5_ebiFrameworkNotificationBanner.js?legacyRequest='+localFrameworkVersion;
+            document.head.appendChild(newDataProtectionNotificationBanner);
+            newDataProtectionNotificationBanner.onload = function() {
+                ebiFrameworkRunDataProtectionBanner(); // invoke the banner
+            };
         </script>
 
     </h:body>
