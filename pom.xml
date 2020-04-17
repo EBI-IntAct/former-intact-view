@@ -24,9 +24,9 @@
 
 
     <scm>
-        <connection>scm:git:https://github.com/EBI-IntAct/intact-view.git</connection>
-        <developerConnection>scm:git:https://github.com/EBI-IntAct/intact-view.git</developerConnection>
-        <url>https://github.com/EBI-IntAct/intact-view</url>
+        <connection>scm:git:https://github.com/EBI-IntAct/former-intact-view.git</connection>
+        <developerConnection>scm:git:https://github.com/EBI-IntAct/former-intact-view.git</developerConnection>
+        <url>https://github.com/EBI-IntAct/former-intact-view</url>
         <tag>HEAD</tag>
     </scm>
 
