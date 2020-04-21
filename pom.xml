@@ -32,7 +32,7 @@
 
     <properties>
         <core.version>2.6.5</core.version>
-        <dataexchange.version>3.0.42</dataexchange.version>
+        <dataexchange.version>2.1.10</dataexchange.version>
         <spring.version>3.1.2.RELEASE</spring.version>
 
         <debug>false</debug>
@@ -55,15 +55,15 @@
         <intact.institution>institutionIntact</intact.institution>
         <intact.acprefix>EBI</intact.acprefix>
 
-        <intact.menu.url>http://www.ebi.ac.uk/~intact/site/menu/menu-latest.xml</intact.menu.url>
-        <intact.news.url>http://www.ebi.ac.uk/~intact/site/news/news-latest.xml</intact.news.url>
-        <intact.dotm.url>http://www.ebi.ac.uk/~intact/site/dotm/dotm-1.1.xml</intact.dotm.url>
+        <intact.menu.url>https://www.ebi.ac.uk/~intact/site/menu/menu-latest.xml</intact.menu.url>
+        <intact.news.url>https://www.ebi.ac.uk/~intact/site/news/news-latest.xml</intact.news.url>
+        <intact.dotm.url>https://www.ebi.ac.uk/~intact/site/dotm/dotm-1.1.xml</intact.dotm.url>
         <intact.ftp.url>ftp://ftp.ebi.ac.uk/pub/databases/intact/current</intact.ftp.url>
         <complex.ftp.url>ftp://ftp.ebi.ac.uk/pub/databases/intact/complex/current</complex.ftp.url>
-        <intact.faq.url>http://www.ebi.ac.uk/~intact/site/faq/faq-latest.xml</intact.faq.url>
+        <intact.faq.url>https://www.ebi.ac.uk/~intact/site/faq/faq-latest.xml</intact.faq.url>
 
         <intact.webapp.name>IntAct</intact.webapp.name>
-        <intact.webapp.logo.url>http://www.ebi.ac.uk/~intact/site/images/logo_intact_small.gif</intact.webapp.logo.url>
+        <intact.webapp.logo.url>https://www.ebi.ac.uk/~intact/site/images/logo_intact_small.gif</intact.webapp.logo.url>
 
         <!-- Export limits -->
         <intact.maxsize.xml>500</intact.maxsize.xml>
@@ -546,6 +546,10 @@
                 <exclusion>
                     <groupId>uk.ac.ebi.intact.core</groupId>
                     <artifactId>intact-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>uk.ac.ebi.intact.dataexchange</groupId>
+                    <artifactId>intact-enricher</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>org.apache.commons</groupId>

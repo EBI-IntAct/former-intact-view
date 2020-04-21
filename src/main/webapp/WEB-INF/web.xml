@@ -28,7 +28,7 @@
     <context-param>
         <description>URL to the news, needed by the feed servlet</description>
         <param-name>uk.ac.ebi.faces.NEWS_URL</param-name>
-        <param-value>http://www.ebi.ac.uk/~intact/site/news/news-latest.xml</param-value>
+        <param-value>https://www.ebi.ac.uk/~intact/site/news/news-latest.xml</param-value>
     </context-param>
 
     <context-param>
@@ -36,7 +36,7 @@
             Where to find the Dataset of the Month XML file
         </description>
         <param-name>uk.ac.ebi.intact.DATASET_OF_THE_MONTH_URL</param-name>
-        <param-value>http://www.ebi.ac.uk/~intact/site/dotm/dotm-1.1.xml</param-value>
+        <param-value>https://www.ebi.ac.uk/~intact/site/dotm/dotm-1.1.xml</param-value>
     </context-param>
 
     <!-- to avoid viewExpiredException-->
