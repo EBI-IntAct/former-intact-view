@@ -35,7 +35,9 @@
                 </f:facet>
                 <ui:param name="isUrl" value="#{annot.cvTopic.identifier == 'MI:0614'}" />
                 <h:outputText id="annotText" value="#{(annot.annotationText == null ? '-' : annot.annotationText )}" rendered="#{not isUrl}"/>
-                <h:outputLink id="annotTextLink" text="#{annot.annotationText}" destination="#{annot.annotationText}" targetFrame="_blank" rendered="#{isUrl}"/>
+                <h:outputLink id="annotTextLink" value="#{annot.annotationText}" targetFrame="_blank" rendered="#{isUrl}">
+                    <h:outputText value="#{annot.annotationText}" />
+                </h:outputLink>
             </p:column>
         </p:dataTable>
 
