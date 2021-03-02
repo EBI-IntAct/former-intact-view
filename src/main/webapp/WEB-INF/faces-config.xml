@@ -137,14 +137,6 @@
 		</navigation-case>
 	</navigation-rule>
 
-	<navigation-rule>
-        <from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>graph</from-outcome>
-			<to-view-id>/pages/graph/graph.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
 	<!-- help dialogs -->
 	<navigation-rule>
         <from-view-id>*</from-view-id>
