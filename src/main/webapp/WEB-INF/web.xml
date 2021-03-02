@@ -28,7 +28,7 @@
     <context-param>
         <description>URL to the news, needed by the feed servlet</description>
         <param-name>uk.ac.ebi.faces.NEWS_URL</param-name>
-        <param-value>https://www.ebi.ac.uk/~intact/site/news/news-latest.xml</param-value>
+        <param-value>http://www.ebi.ac.uk/~intact/site/news/news-latest.xml</param-value>
     </context-param>
 
     <context-param>
@@ -518,29 +518,6 @@
         <url-pattern>/proxy</url-pattern>
     </servlet-mapping>
 
-    <!-- Cytoscape Servlet -->
-    <servlet>
-        <servlet-name>exportCytoscape</servlet-name>
-        <servlet-class>uk.ac.ebi.intact.view.webapp.servlet.cytoscape.CytoscapeServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>exportCytoscape</servlet-name>
-        <url-pattern>/exportCytoscape</url-pattern>
-    </servlet-mapping>
-
-    <!-- GraphML Servlet-->
-    <servlet>
-        <servlet-name>graphmlDownload</servlet-name>
-        <servlet-class>uk.ac.ebi.intact.view.webapp.servlet.cytoscape.GraphmlServlet</servlet-class>
-    </servlet>
-
-    <!-- Faces Servlet Mappings -->
-    <servlet-mapping>
-        <servlet-name>graphmlDownload</servlet-name>
-        <url-pattern>/graphmlDownload</url-pattern>
-    </servlet-mapping>
-
     <!-- Welcome files -->
     <welcome-file-list>
         <welcome-file>/index.jsp</welcome-file>
@@ -567,7 +544,7 @@
     </error-page>
 
     <resource-env-ref>
-        <resource-env-ref-name>jdbc/IntactDS</resource-env-ref-name>
+        <resource-env-ref-name>jdbc/IntactEditorDS</resource-env-ref-name>
         <resource-env-ref-type>
             javax.sql.DataSource
         </resource-env-ref-type>
