@@ -33,7 +33,7 @@
     <properties>
         <core.version>2.6.5</core.version>
         <dataexchange.version>2.1.10</dataexchange.version>
-        <spring.version>3.1.2.RELEASE</spring.version>
+        <spring.version>5.3.4</spring.version>
 
         <debug>false</debug>
         <projectStage>Production</projectStage>
