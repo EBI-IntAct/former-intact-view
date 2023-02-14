@@ -5,9 +5,7 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
-import sun.misc.LRUCache;
 import uk.ac.ebi.intact.core.context.DataContext;
-import uk.ac.ebi.intact.core.persistence.dao.DaoFactory;
 import uk.ac.ebi.intact.model.Component;
 
 import javax.persistence.EntityManager;
