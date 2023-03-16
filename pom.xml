@@ -1,16 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <!--<parent>
-        <groupId>uk.ac.ebi.intact.service</groupId>
-        <artifactId>service-master</artifactId>
-        <version>3.0.0-SNAPSHOT</version>
-    </parent>-->
-
     <parent>
         <groupId>uk.ac.ebi.intact.maven</groupId>
         <artifactId>intact-hibernate-master</artifactId>
-        <!--The version can not be updated to 43 or 44 without breaking the compilation -> java.lang.NoClassDefFoundError: org/hibernate/util/PropertiesHelper -->
-        <version>42</version>
+        <version>46.1</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -18,7 +11,7 @@
     <groupId>uk.ac.ebi.intact.service.sandbox</groupId>
     <artifactId>intact-view</artifactId>
     <packaging>war</packaging>
-    <version>4.2.18-SNAPSHOT</version>
+    <version>4.3.0</version>
 
     <name>IntAct Services :: View</name>
 
@@ -31,9 +24,15 @@
     </scm>
 
     <properties>
-        <core.version>2.6.5</core.version>
-        <dataexchange.version>2.1.10</dataexchange.version>
-        <spring.version>3.1.2.RELEASE</spring.version>
+        <core.version>2.7.1</core.version>
+        <dataexchange.version>3.1.1</dataexchange.version>
+        <psicquic.simple.client.version>1.5.1</psicquic.simple.client.version>
+        <psicquic.registry.client.version>1.5.0</psicquic.registry.client.version>
+        <psicquic.client.version>1.7.0</psicquic.client.version>
+        <psicquic.solr.version>1.5.0</psicquic.solr.version>
+        <psimi.version>1.10.0</psimi.version>
+        <calimocho.version>2.6.0</calimocho.version>
+        <spring.version>4.3.30.RELEASE</spring.version>
 
         <debug>false</debug>
         <projectStage>Production</projectStage>
@@ -89,7 +88,7 @@
     </properties>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}</finalName>
+        <finalName>legacy-${project.artifactId}-${project.version}</finalName>
 
         <resources>
             <resource>
@@ -210,7 +209,7 @@
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.12.3</version>
+                <version>0.15.1</version>
                 <configuration>
                     <schemaDirectory>src/main/resources/META-INF/schema</schemaDirectory>
                     <schemaIncludes>
@@ -493,13 +492,13 @@
         <dependency>
             <groupId>uk.ac.ebi.intact.core</groupId>
             <artifactId>intact-core-readonly</artifactId>
-            <version>${core.version}</version>
+            <version>2.7.1</version>
         </dependency>
 
         <dependency>
             <groupId>uk.ac.ebi.intact.commons</groupId>
             <artifactId>intact-commons</artifactId>
-            <version>2.1.9</version>
+            <version>2.1.10</version>
             <exclusions>
                 <exclusion>
                     <groupId>uk.ac.ebi.intact.core</groupId>
@@ -557,21 +556,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>com.sun.xml.ws</groupId>
-            <artifactId>jaxws-tools</artifactId>
-            <version>2.1.7</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-xjc</artifactId>
-            <version>2.2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.servicemix.specs</groupId>
-            <artifactId>org.apache.servicemix.specs.jaxb-api-2.1</artifactId>
-            <version>2.1.0</version>
-        </dependency>
 
         <dependency>
             <groupId>uk.ac.ebi.intact.dataexchange.psimi</groupId>
@@ -609,7 +593,7 @@
         <dependency>
             <groupId>psidev.psi.mi</groupId>
             <artifactId>psi25-xml-rdf</artifactId>
-            <version>1.8.4</version>
+            <version>${psimi.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>woodstox</groupId>
@@ -624,31 +608,41 @@
         <dependency>
             <groupId>org.hupo.psi.mi.psicquic</groupId>
             <artifactId>psicquic-solr</artifactId>
-            <version>1.2.4</version>
+            <version>${psicquic.solr.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-server</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-webapp</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>psidev.psi.mi</groupId>
             <artifactId>psimitab</artifactId>
-            <version>1.8.4.2</version>
+            <version>${psimi.version}</version>
         </dependency>
 
         <dependency>
             <groupId>psidev.psi.mi</groupId>
             <artifactId>calimocho-tab</artifactId>
-            <version>2.5.1</version>
+            <version>${calimocho.version}</version>
         </dependency>
         <dependency>
             <groupId>psidev.psi.mi</groupId>
             <artifactId>calimocho-xgmml</artifactId>
-            <version>2.5.1</version>
+            <version>${calimocho.version}</version>
         </dependency>
 
         <!-- PSICQUIC -->
         <dependency>
             <groupId>org.hupo.psi.mi.psicquic</groupId>
             <artifactId>psicquic-client</artifactId>
-            <version>1.5.3</version>
+            <version>${psicquic.client.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -672,7 +666,7 @@
         <dependency>
             <groupId>org.hupo.psi.mi.psicquic</groupId>
             <artifactId>psicquic-simple-client</artifactId>
-            <version>1.3.3</version>
+            <version>${psicquic.simple.client.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -691,7 +685,7 @@
         <dependency>
             <groupId>org.hupo.psi.mi.psicquic</groupId>
             <artifactId>psicquic-registry-client</artifactId>
-            <version>1.1.0</version>
+            <version>${psicquic.registry.client.version}</version>
         </dependency>
 
         <!-- other -->
@@ -783,24 +777,24 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>1.7.0</version>
+            <version>1.8.14</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.7.0</version>
+            <version>1.8.14</version>
         </dependency>
 
         <!-- JSF (MyFaces) -->
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-api</artifactId>
-            <version>2.1.9</version>
+            <version>2.1.12</version>
         </dependency>
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-impl</artifactId>
-            <version>2.1.9</version>
+            <version>2.1.12</version>
         </dependency>
 
         <!-- JSP 2.2 support (methods etc). May not be needed in recent J2EE 6 app containers -->
@@ -845,7 +839,7 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.2.1</version>
+            <version>1.2.2</version>
         </dependency>
 
         <!-- Atmosphere (Comet) -->
@@ -889,21 +883,11 @@
             <version>1.6.6</version>
         </dependency>
 
-        <!-- JAXB related deps -->
+        <!-- commons dbcp -->
         <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>2.2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>stax</groupId>
-            <artifactId>stax</artifactId>
-            <version>1.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.2.7</version>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
         </dependency>
 
         <dependency>
@@ -923,7 +907,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -935,10 +919,9 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.3.168</version>
+            <version>${h2.version}</version>
             <scope>test</scope>
         </dependency>
-
 
         <dependency>
             <groupId>net.sf.json-lib</groupId>
@@ -946,13 +929,21 @@
             <version>2.2.3</version>
         </dependency>
 
-
     </dependencies>
 
     <repositories>
         <repository>
+            <id>intact.nexus</id>
+            <name>IntAct Nexus</name>
+            <url>https://www.ebi.ac.uk/intact/maven/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
             <id>nexus-ebi-release-repo</id>
-            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
+        </repository>
+        <repository>
+            <id>nexus-ebi-snapshot-repo</id>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
         </repository>
     </repositories>
 
