@@ -42,6 +42,7 @@ import uk.ac.ebi.intact.view.webapp.model.ParticipantLazyDataModel;
 import uk.ac.ebi.intact.view.webapp.model.ParticipantWrapper;
 
 import javax.faces.context.FacesContext;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.io.IOException;
 import java.util.*;
@@ -206,14 +207,16 @@ public class DetailsController extends JpaBaseController {
     }
 
     private int countParticipantNumbers(){
-
-        if (interaction == null){
-            return 0;
+        if (interaction != null) {
+            try {
+                Long l = (Long) getDaoFactory().getEntityManager().createQuery("select count(distinct p.ac) from InteractionImpl i join i.components as p " +
+                        "where i.ac = :ac").setParameter("ac", interactionAc).getSingleResult();
+                return l.intValue();
+            } catch (NoResultException e) {
+                // Nothing to do, the query did not find any result
+            }
         }
-        Long l = (Long) getDaoFactory().getEntityManager().createQuery("select count(distinct p.ac) from InteractionImpl i join i.components as p " +
-                "where i.ac = :ac").setParameter("ac", interactionAc).getSingleResult();
-
-        return l.intValue();
+        return 0;
     }
 
     public int getNumberInteractions() {
@@ -351,10 +354,15 @@ public class DetailsController extends JpaBaseController {
      * @return
      */
     public void loadNumberOfInteractorsInExperiment(){
-        Long number = (Long) getDaoFactory().getEntityManager().createQuery("select count(distinct interactor.ac) " +
-                "from Experiment e join e.interactions as i join i.components as comp join comp.interactor as interactor " +
-                "where e.ac = :experimentAc").setParameter("experimentAc", getExperiment().getAc()).getSingleResult();
-        this.numberOfInteractorsInExperiment = number != null ? number.intValue() : 0;
+        try {
+            Long number = (Long) getDaoFactory().getEntityManager().createQuery("select count(distinct interactor.ac) " +
+                    "from Experiment e join e.interactions as i join i.components as comp join comp.interactor as interactor " +
+                    "where e.ac = :experimentAc").setParameter("experimentAc", getExperiment().getAc()).getSingleResult();
+            this.numberOfInteractorsInExperiment = number != null ? number.intValue() : 0;
+        } catch (NoResultException e) {
+            // Nothing to do, the query did not find any result
+            this.numberOfInteractorsInExperiment = 0;
+        }
     }
 
     public int getNumberOfInteractorsInExperiment(){
@@ -633,10 +641,14 @@ public class DetailsController extends JpaBaseController {
             featureAvailable = false;
             return;
         }
-        Long number = (Long) getDaoFactory().getEntityManager().createQuery("select count(f.ac) from Feature f join f.component as c " +
-                "join c.interaction as i where i.ac = :ac").setParameter("ac", interactionAc).getSingleResult();
-
-        featureAvailable = number > 0;
+        try {
+            Long number = (Long) getDaoFactory().getEntityManager().createQuery("select count(f.ac) from Feature f join f.component as c " +
+                    "join c.interaction as i where i.ac = :ac").setParameter("ac", interactionAc).getSingleResult();
+            featureAvailable = number > 0;
+        } catch (NoResultException e) {
+            // Nothing to do, the query did not find any result
+            featureAvailable = false;
+        }
     }
 
     private String getAnnotationTextByMi(AnnotatedObject ao, final String mi) {
