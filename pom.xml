@@ -3,7 +3,7 @@
     <parent>
         <groupId>uk.ac.ebi.intact.maven</groupId>
         <artifactId>intact-hibernate-master</artifactId>
-        <version>47-SNAPSHOT</version>
+        <version>47</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -11,7 +11,7 @@
     <groupId>uk.ac.ebi.intact.service.sandbox</groupId>
     <artifactId>intact-view</artifactId>
     <packaging>war</packaging>
-    <version>4.4.0-SNAPSHOT</version>
+    <version>4.4.0</version>
 
     <name>IntAct Services :: View</name>
 
@@ -24,9 +24,9 @@
     </scm>
 
     <properties>
-        <core.version>2.8.0-SNAPSHOT</core.version>
-        <core.readonly.version>2.8.0-SNAPSHOT</core.readonly.version>
-        <dataexchange.version>3.2.0-SNAPSHOT</dataexchange.version>
+        <core.version>2.8.0</core.version>
+        <core.readonly.version>2.8.0</core.readonly.version>
+        <dataexchange.version>3.2.1</dataexchange.version>
         <psicquic.simple.client.version>1.5.1</psicquic.simple.client.version>
         <psicquic.registry.client.version>1.5.0</psicquic.registry.client.version>
         <psicquic.client.version>1.7.0</psicquic.client.version>
