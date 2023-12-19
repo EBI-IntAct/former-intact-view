@@ -11,7 +11,7 @@
     <groupId>uk.ac.ebi.intact.service.sandbox</groupId>
     <artifactId>intact-view</artifactId>
     <packaging>war</packaging>
-    <version>4.4.1</version>
+    <version>4.4.2</version>
 
     <name>IntAct Services :: View</name>
 
